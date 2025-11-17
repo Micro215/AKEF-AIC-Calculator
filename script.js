@@ -1,6 +1,13 @@
 document.addEventListener('DOMContentLoaded', () => {
     // --- Control elements ---
-    const itemSelect = document.getElementById('item-select');
+    const categorySelector = document.getElementById('category-selector');
+    const categoryOptions = document.getElementById('category-options');
+    const categorySelectedText = document.getElementById('category-selected-text');
+
+    const itemSelector = document.getElementById('item-selector');
+    const itemOptions = document.getElementById('item-options');
+    const itemSelectedText = document.getElementById('item-selected-text');
+    
     const amountInput = document.getElementById('amount-input');
     const calculateBtn = document.getElementById('calculate-btn');
     const nodesContainer = document.getElementById('nodes-container');
@@ -8,12 +15,53 @@ document.addEventListener('DOMContentLoaded', () => {
     const loadingMessage = document.getElementById('loading-message');
     const noRecipeMessage = document.getElementById('no-recipe-message');
 
-    // --- Global variabels ---
+    const totalPowerDiv = document.getElementById('total-power');
+
+    // --- Global variables ---
     let itemsData = {};
     let buildingsData = {};
     let allNeedsMap = new Map();
-    const selectedRecipesMap = new Map(); // Persistent: itemId -> selectedRecipeIndex
+    const selectedRecipesMap = new Map(); //itemId -> selectedRecipeIndex
     const SECONDS_PER_MINUTE = 60;
+
+    // --- Custom selector control ---
+    function setupCustomSelect(selector, optionsContainer, selectedTextSpan, onOptionClick) {
+        const styledDiv = selector.querySelector('.select-styled');
+        
+        styledDiv.addEventListener('click', () => {
+            document.querySelectorAll('.custom-select.active').forEach(s => {
+                if (s !== selector) s.classList.remove('active');
+            });
+            selector.classList.toggle('active');
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!selector.contains(e.target)) {
+                selector.classList.remove('active');
+            }
+        });
+    }
+
+    function addOption(container, text, value, imgSrc, onClick) {
+        const option = document.createElement('div');
+        option.className = 'select-option';
+        option.textContent = text;
+        if (imgSrc) {
+            const img = document.createElement('img');
+            img.src = `images/${imgSrc}`;
+            img.alt = text;
+            option.prepend(img);
+        }
+        option.addEventListener('click', () => {
+            container.parentElement.setAttribute('data-selected-value', value);
+            onClick(value, text);
+        });
+        container.appendChild(option);
+    }
+
+    function clearOptions(container) {
+        container.innerHTML = '';
+    }
 
     // --- Data load ---
     async function loadData() {
@@ -21,34 +69,87 @@ document.addEventListener('DOMContentLoaded', () => {
             const [itemsResponse, buildingsResponse] = await Promise.all([
                 fetch('db/items.json'), fetch('db/buildings.json')
             ]);
+            if (!itemsResponse.ok || !buildingsResponse.ok) throw new Error(`Data loading error.`);
             itemsData = await itemsResponse.json();
             buildingsData = await buildingsResponse.json();
-            populateItemSelect();
+            
+            populateCategories();
         } catch (error) {
-            itemSelect.innerHTML = `<option value="">Error: ${error.message}</option>`;
+            categorySelectedText.textContent = `Error: ${error.message}`;
         }
     }
 
-    function populateItemSelect() {
-        itemSelect.innerHTML = '<option value="">Choose item...</option>';
+    function populateCategories() {
+        const categories = new Set();
         for (const itemId in itemsData.items) {
-            const item = itemsData.items[itemId];
-            const option = document.createElement('option');
-            option.value = itemId;
-            option.textContent = item.name;
-            itemSelect.appendChild(option);
+            categories.add(itemsData.items[itemId].type);
         }
+
+        clearOptions(categoryOptions);
+        addOption(categoryOptions, 'Choose category...', '', null, () => {
+            categorySelectedText.textContent = 'Choose category...';
+            itemSelectedText.textContent = 'Choose item first...';
+            clearOptions(itemOptions);
+            itemSelector.classList.remove('active');
+        });
+
+        Array.from(categories).sort().forEach(category => {
+            const displayText = category.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+            addOption(categoryOptions, displayText, category, null, (value, text) => {
+                categorySelectedText.textContent = text;
+                populateItems(value);
+                itemSelector.classList.remove('active');
+            });
+        });
+    }
+
+    function populateItems(category) {
+        clearOptions(itemOptions);
+        if (!category) {
+            itemSelectedText.textContent = 'Choose item first...';
+            return;
+        }
+
+        const itemsInCategory = [];
+        for (const itemId in itemsData.items) {
+            if (itemsData.items[itemId].type === category) {
+                itemsInCategory.push({ id: itemId, ...itemsData.items[itemId] });
+            }
+        }
+
+        itemsInCategory.sort((a, b) => a.name.localeCompare(b.name));
+
+        if (itemsInCategory.length > 0) {
+            addOption(itemOptions, itemsInCategory[0].name, itemsInCategory[0].id, itemsInCategory[0].img, (value, text) => {
+                itemSelectedText.textContent = text;
+                itemSelector.classList.remove('active');
+            });
+        } else {
+            itemSelectedText.textContent = 'No items in this category';
+        }
+        
+        itemsInCategory.forEach(item => {
+            addOption(itemOptions, item.name, item.id, item.img, (value, text) => {
+                itemSelectedText.textContent = text;
+                itemSelector.classList.remove('active');
+            });
+        });
     }
 
     // --- Main logic ---
     function calculateProduction() {
-        const targetItemId = itemSelect.value;
+        const itemValue = itemSelectedText.textContent; 
+        const targetItemId = itemSelector.getAttribute('data-selected-value') || '';
         const targetRatePerMinute = parseFloat(amountInput.value);
-        if (!targetItemId || isNaN(targetRatePerMinute) || targetRatePerMinute <= 0) { alert('Wrong input.'); return; }
+        if (!targetItemId || isNaN(targetRatePerMinute) || targetRatePerMinute <= 0) {
+            alert('Wrong input.');
+            return;
+        }
 
         loadingMessage.style.display = 'block';
         nodesContainer.style.display = 'none';
         noRecipeMessage.style.display = 'none';
+        totalPowerDiv.innerHTML = '';
 
         setTimeout(() => {
             allNeedsMap.clear();
@@ -60,6 +161,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 renderGraph(groupedByLevel);
                 nodesContainer.style.display = 'flex';
+
+                let totalPower = 0;
+                allNeedsMap.forEach(itemData => {
+                    if (!itemData.isRawMaterial) {
+                        const ceiledCount = Math.ceil(itemData.machineCount);
+                        totalPower += ceiledCount * itemData.powerPerMachine;
+                    }
+                });
+                totalPowerDiv.innerHTML = `Energy consumption: ${totalPower.toFixed(0)}`;
             } else {
                 noRecipeMessage.style.display = 'block';
             }
@@ -89,7 +199,8 @@ document.addEventListener('DOMContentLoaded', () => {
             selectedRecipeIndex: selectedIndex,
             machineCount: 0,
             machineName: '',
-            machineImg: ''
+            machineImg: '',
+            powerPerMachine: 0
         });
 
         if (!isRawMaterial && selectedRecipe) {
@@ -102,6 +213,7 @@ document.addEventListener('DOMContentLoaded', () => {
             itemData.machineCount = machinesNeeded;
             itemData.machineName = buildingData.name;
             itemData.machineImg = buildingData.img;
+            itemData.powerPerMachine = buildingsData.buildings[selectedRecipe.buildingId].power || 0;
 
             if (selectedRecipe.ingredients) {
                 for (const ingredient of selectedRecipe.ingredients) {
@@ -156,7 +268,6 @@ document.addEventListener('DOMContentLoaded', () => {
         container.className = 'node-container';
         container.setAttribute('data-node-id', itemData.itemId);
 
-        // Узел предмета (выход)
         const itemDiv = document.createElement('div');
         itemDiv.className = `node-item ${isRaw ? 'raw-material' : ''}`;
         itemDiv.innerHTML = `
@@ -168,26 +279,28 @@ document.addEventListener('DOMContentLoaded', () => {
         `;
         container.appendChild(itemDiv);
 
-        // Узел машины (если не сырье)
         if (!isRaw) {
+            const ceiledCount = itemData.machineCount;
+            const totalPower = Math.ceil(ceiledCount) * itemData.powerPerMachine;
+
             const machineDiv = document.createElement('div');
             machineDiv.className = 'node-machine';
             machineDiv.innerHTML = `
                 <div class="tree-node-content">
                     <img src="images/${itemData.machineImg || 'placeholder.png'}" alt="${itemData.machineName}">
                     <div class="tree-node-name">${itemData.machineName}</div>
-                    <div class="tree-node-rate">${itemData.machineCount.toFixed(2)} pcs.</div>
+                    <div class="tree-node-rate">${ceiledCount.toFixed(2)} pcs.</div>
+                    <div class="tree-node-power">Energy: ${totalPower.toFixed(0)}</div>
                 </div>
             `;
             container.appendChild(machineDiv);
 
             if (itemData.allRecipes.length > 1) {
-                console.log(`[DEBUG] Создаю селектор для "${itemData.itemId}", recipes finded: ${itemData.allRecipes.length}`);
                 const selector = document.createElement('select');
                 selector.className = 'recipe-selector';
                 itemData.allRecipes.forEach((r, index) => {
                     const option = document.createElement('option');
-                    option.textContent = `На: ${r.buildingName}`;
+                    option.textContent = `${r.buildingName} (${r.power} Вт)`;
                     option.value = index;
                     option.selected = index === itemData.selectedRecipeIndex;
                     selector.appendChild(option);
@@ -232,7 +345,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 const childCenterX = childRect.left + childRect.width / 2 - svgRect.left;
                 const childTopY = childRect.top - svgRect.top;
 
-                // Кривая Безье для более "древовидного" вида
                 const midY = (machineBottomY + childTopY) / 2;
                 const d = `M ${machineCenterX} ${machineBottomY} C ${machineCenterX} ${midY}, ${childCenterX} ${midY}, ${childCenterX} ${childTopY}`;
 
@@ -259,6 +371,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (recipe.products && Array.isArray(recipe.products) && recipe.products.some(p => p.item_id === itemId)) {
                         recipe.buildingName = building.name;
                         recipe.buildingImg = building.img;
+                        recipe.buildingId = buildingId;
+                        recipe.power = building.power || 0;
                         recipes.push(recipe);
                     }
                 }
@@ -275,6 +389,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- Run ---
+    setupCustomSelect(categorySelector, categoryOptions, categorySelectedText);
+    setupCustomSelect(itemSelector, itemOptions, itemSelectedText);
+
     calculateBtn.addEventListener('click', calculateProduction);
     loadData();
 });

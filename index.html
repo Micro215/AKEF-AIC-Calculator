@@ -15,9 +15,27 @@
             <h1>AIC Calculator</h1>
         </header>
         <div class="input-section">
-            <div class="input-group">
-                <label for="item-select">Choose item:</label>
-                <select id="item-select"></select>
+            <div class="input-group" style="flex-grow: 2;">
+                <label for="item-category-select">Choose item:</label>
+                <div class="custom-select-container">
+                    <div class="custom-select" id="category-selector">
+                        <div class="select-styled">
+                            <span id="category-selected-text">Choose category...</span>
+                            <div class="select-arrow"></div>
+                        </div>
+                        <div class="select-options" id="category-options">
+                        </div>
+                    </div>
+
+                    <div class="custom-select" id="item-selector">
+                        <div class="select-styled">
+                            <span id="item-selected-text">Choose item...</span>
+                            <div class="select-arrow"></div>
+                        </div>
+                        <div class="select-options" id="item-options">
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="input-group">
                 <label for="amount-input">Items per minute:</label>
@@ -28,6 +46,7 @@
         <div id="results-tree-container">
             <svg id="lines-svg"></svg>
             <div id="nodes-container"></div>
+            <div id="total-power"></div>
         </div>
         <p id="loading-message" style="display: none; text-align: center;">Processing...</p>
         <p id="no-recipe-message" style="display: none; text-align: center; color: red;">Recipe not found.</p>
