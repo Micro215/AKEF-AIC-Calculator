@@ -1118,6 +1118,7 @@
         "planting_unit": {
             "name": "Planting Unit",
             "type": "Processing",
+            "img": "Planting_Unit.png",
             "tier": 3,
             "power": 10,
             "description": "The Planting Unit can grow seeds of common plants and raise them to maturity. Typical product: Buckflower, grown from Buckflower Seeds placed in the Planting Unit.",
@@ -1241,7 +1242,7 @@
         "seed_picking_unit": {
             "name": "Seed-Picking Unit",
             "type": "Processing",
-            "img": "Planting_Unit.png",
+            "img": "Seed-Picking_Unit.png",
             "tier": 3,
             "power": 10,
             "description": "The Seed-Picking Unit can pick seeds from common plants. Typical product: Buckflower Seed, picked from Buckflowers placed in the Seed-Picking Unit.",
