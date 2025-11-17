@@ -300,7 +300,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 selector.className = 'recipe-selector';
                 itemData.allRecipes.forEach((r, index) => {
                     const option = document.createElement('option');
-                    option.textContent = `${r.buildingName} (${r.power} Вт)`;
+                    option.textContent = `${r.buildingName} (${r.power} Energy)`;
                     option.value = index;
                     option.selected = index === itemData.selectedRecipeIndex;
                     selector.appendChild(option);
