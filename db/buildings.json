@@ -124,7 +124,12 @@
                     "recipes": [
                         {
                             "time": 1.5,
-                            "ingredients": null,
+                            "ingredients": [
+                                {
+                                    "item_id": "clean_water",
+                                    "amount": 0.01
+                                }
+                            ],
                             "products": [
                                 {
                                     "item_id": "originium_ore",
@@ -135,7 +140,12 @@
                         },
                         {
                             "time": 1.5,
-                            "ingredients": null,
+                            "ingredients": [
+                                {
+                                    "item_id": "clean_water",
+                                    "amount": 0.01
+                                }
+                            ],
                             "products": [
                                 {
                                     "item_id": "amethyst_ore",
@@ -146,7 +156,12 @@
                         },
                         {
                             "time": 1.5,
-                            "ingredients": null,
+                            "ingredients": [
+                                {
+                                    "item_id": "clean_water",
+                                    "amount": 0.01
+                                }
+                            ],
                             "products": [
                                 {
                                     "item_id": "ferrium_ore",
@@ -157,7 +172,12 @@
                         },
                         {
                             "time": 1.5,
-                            "ingredients": null,
+                            "ingredients": [
+                                {
+                                    "item_id": "clean_water",
+                                    "amount": 0.01
+                                }
+                            ],
                             "products": [
                                 {
                                     "item_id": "cuprium_ore",
