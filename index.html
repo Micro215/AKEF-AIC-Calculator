@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,64 +9,71 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
+
 <body>
+    <!-- Main application container -->
     <div class="app-container">
+        <!-- Application header with title and controls -->
         <header class="app-header">
-            <h1><i class="fas fa-sitemap"></i> Arknights: Endfield AIC Calculator</h1>
+            <h1><i class="fas fa-sitemap" aria-hidden="true"></i> Arknights: Endfield AIC Calculator</h1>
             <div class="header-controls">
-                <button id="reset-btn" class="btn btn-icon"><i class="fas fa-redo-alt" title="Reset"></i></button>
-                <button id="help-btn" class="btn btn-icon"><i class="fas fa-question-circle" title="Help"></i></button>
+                <button id="reset-btn" class="btn btn-icon" aria-label="Reset"><i class="fas fa-redo-alt"></i></button>
+                <button id="help-btn" class="btn btn-icon" aria-label="Help"><i
+                        class="fas fa-question-circle"></i></button>
             </div>
         </header>
-        
+
+        <!-- Main content area with control panel and graph -->
         <main class="app-main">
-            <aside class="control-panel">
+            <!-- Control panel with settings and options -->
+            <aside class="control-panel" aria-label="Production settings">
                 <div class="panel-section">
                     <h2>Production Settings</h2>
                     <div class="control-group">
-                        <label for="item-selector-search">Search Item</label>
-                        <div class="search-wrapper">
-                            <i class="fas fa-search"></i>
-                            <input type="text" id="item-selector-search" placeholder="e.g., Ferrium">
-                        </div>
-                        <div id="item-selector-dropdown" class="item-dropdown"></div>
+                        <label for="item-selector-btn">Select Recipe</label>
+                        <button id="item-selector-btn" class="btn btn-selector" aria-expanded="false"
+                            aria-haspopup="true">
+                            <i class="fas fa-list" aria-hidden="true"></i>
+                            <span id="selected-item-name">Choose a recipe...</span>
+                        </button>
                     </div>
-                    
+
                     <div class="control-group">
                         <label for="amount-input">Target Rate</label>
                         <div class="input-wrapper">
-                            <input type="number" id="amount-input" placeholder="10" value="10">
-                            <span class="input-suffix">/ min</span>
+                            <input type="number" id="amount-input" placeholder="10" value="10"
+                                aria-describedby="rate-unit">
+                            <span id="rate-unit" class="input-suffix">/ min</span>
                         </div>
                     </div>
-                    
+
                     <button id="calculate-btn" class="btn btn-primary">
-                        <i class="fas fa-calculator"></i> Calculate
+                        <i class="fas fa-calculator" aria-hidden="true"></i> Calculate
                     </button>
                 </div>
-                
+
                 <div class="panel-section">
                     <h2>Display Options</h2>
                     <div class="control-group">
-                        <label>
+                        <label for="show-raw-materials">
                             <input type="checkbox" id="show-raw-materials" checked>
                             <span class="checkmark"></span>
                             Show Raw Materials
                         </label>
                     </div>
                     <div class="control-group">
-                        <label>
+                        <label for="show-power">
                             <input type="checkbox" id="show-power" checked>
                             <span class="checkmark"></span>
                             Show Power
                         </label>
                     </div>
                 </div>
-                
+
                 <div class="panel-section stats-section">
                     <h2>Summary</h2>
                     <div class="stat-item">
-                        <i class="fas fa-bolt stat-icon"></i>
+                        <i class="fas fa-bolt stat-icon" aria-hidden="true"></i>
                         <div class="stat-info">
                             <span id="total-power" class="stat-value">0</span>
                             <span class="stat-label">Total Power</span>
@@ -73,8 +81,9 @@
                     </div>
                 </div>
             </aside>
-            
-            <section id="graph-container" class="graph-container">
+
+            <!-- Graph container for production chain visualization -->
+            <section id="graph-container" class="graph-container" aria-label="Production chain graph">
                 <svg id="graph-svg" class="graph-svg">
                     <defs>
                         <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
@@ -83,22 +92,23 @@
                     </defs>
                 </svg>
                 <div id="nodes-container" class="nodes-container"></div>
-                <div id="loading-message" class="loading-message">
-                    <div class="spinner"></div>
+                <div id="loading-message" class="loading-message" aria-live="polite">
+                    <div class="spinner" aria-hidden="true"></div>
                     Calculating...
                 </div>
-                <div id="no-recipe-message" class="overlay-message">
-                    <i class="fas fa-exclamation-triangle"></i>
+                <div id="no-recipe-message" class="overlay-message" hidden>
+                    <i class="fas fa-exclamation-triangle" aria-hidden="true"></i>
                     <p>No production recipe found for this item.</p>
                 </div>
             </section>
         </main>
-        
-        <div id="help-modal" class="modal">
+
+        <!-- Help modal with instructions -->
+        <div id="help-modal" class="modal" role="dialog" aria-labelledby="help-title" aria-hidden="true">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h2>How to Use</h2>
-                    <button class="modal-close">&times;</button>
+                    <h2 id="help-title">How to Use</h2>
+                    <button class="modal-close" aria-label="Close">&times;</button>
                 </div>
                 <div class="modal-body">
                     <ol>
@@ -110,14 +120,65 @@
                         <li><strong>Scroll</strong> to zoom in and out.</li>
                         <li><strong>Click</strong> on a machine's recipe to switch between alternatives.</li>
                     </ol>
+                    <p><strong>P.s.</strong> If you have some bugs try reload page with Ctrl+F5. If doesnt work send
+                        issue
+                        to <strong>bilzebuba</strong> at discord.</p>
                 </div>
-                <div  class="modal-header">
-                    <h5>Created by Bilzebuba</h5>
+                <div class="modal-footer">
+                    <p>Created by Bilzebuba</p>
                 </div>
             </div>
         </div>
     </div>
-    
+
+    <!-- Recipe selector modal -->
+    <div id="recipe-selector-modal" class="modal" role="dialog" aria-labelledby="recipe-selector-title"
+        aria-hidden="true">
+        <div class="modal-content recipe-selector-content">
+            <div class="modal-header">
+                <h2 id="recipe-selector-title">Select Recipe</h2>
+                <button class="modal-close" aria-label="Close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="recipe-search">
+                    <div class="search-wrapper">
+                        <i class="fas fa-search" aria-hidden="true"></i>
+                        <input type="text" id="recipe-search-input" placeholder="Search for a recipe..."
+                            aria-label="Search recipes">
+                    </div>
+                </div>
+                <div class="recipe-categories">
+                    <div class="category-tabs" role="tablist">
+                        <button class="category-tab active" data-category="all" role="tab"
+                            aria-selected="true">All</button>
+                    </div>
+                    <div class="category-content">
+                        <div class="recipe-grid" id="all-recipes" role="tabpanel"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Delete confirmation modal -->
+    <div id="delete-confirmation-modal" class="modal" role="dialog" aria-labelledby="delete-title" aria-hidden="true">
+        <div class="modal-content delete-modal-content">
+            <div class="modal-header">
+                <h2 id="delete-title">Confirm Deletion</h2>
+                <button class="modal-close" aria-label="Close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to delete "<strong id="delete-item-name"></strong>" and all its unique
+                    ingredient chains?</p>
+            </div>
+            <div class="modal-footer">
+                <button id="confirm-delete-btn" class="btn btn-danger">Delete</button>
+                <button id="cancel-delete-btn" class="btn">Cancel</button>
+            </div>
+        </div>
+    </div>
+
     <script src="script.js"></script>
 </body>
+
 </html>

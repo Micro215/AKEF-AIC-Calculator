@@ -1,5 +1,9 @@
+/* ==============================================
+   CSS Custom Properties (Variables)
+   ============================================== */
 :root {
-    --bg-primary: #0d1117; /* Darker, more modern background */
+    /* Color Palette */
+    --bg-primary: #0d1117;
     --bg-secondary: #161b22;
     --bg-tertiary: #21262d;
     --border-color: #30363d;
@@ -9,14 +13,23 @@
     --accent-blue: #58a6ff;
     --accent-green: #3fb950;
     --accent-orange: #f85149;
+
+    /* Component-specific Variables */
     --node-bg: var(--bg-secondary);
     --node-border: var(--border-color);
+
+    /* Shadow Effects */
     --shadow-light: rgba(0, 0, 0, 0.1);
     --shadow-medium: rgba(0, 0, 0, 0.25);
     --shadow-heavy: rgba(0, 0, 0, 0.4);
+
+    /* Animation */
     --transition-speed: 0.2s;
 }
 
+/* ==============================================
+   Global Styles & Reset
+   ============================================== */
 * {
     margin: 0;
     padding: 0;
@@ -28,16 +41,20 @@ body {
     background-color: var(--bg-primary);
     color: var(--text-primary);
     overflow: hidden;
-    user-select: none; /* Prevent text selection while dragging */
+    user-select: none;
+    /* Prevent text selection while dragging */
 }
 
+/* ==============================================
+   Application Layout
+   ============================================== */
 .app-container {
     display: flex;
     flex-direction: column;
     height: 100vh;
 }
 
-/* --- Header --- */
+/* Header Section */
 .app-header {
     background-color: var(--bg-secondary);
     padding: 1rem 1.5rem;
@@ -62,13 +79,14 @@ body {
     gap: 0.5rem;
 }
 
-/* --- Main Layout --- */
+/* Main Content Area */
 .app-main {
     display: flex;
     flex: 1;
     overflow: hidden;
 }
 
+/* Control Panel */
 .control-panel {
     width: 320px;
     background-color: var(--bg-secondary);
@@ -91,7 +109,9 @@ body {
     letter-spacing: 0.05em;
 }
 
-/* --- Controls --- */
+/* ==============================================
+   Form Controls
+   ============================================== */
 .control-group {
     margin-bottom: 1.25rem;
     position: relative;
@@ -106,6 +126,7 @@ body {
     font-weight: 500;
 }
 
+/* Search Input */
 .search-wrapper {
     position: relative;
 }
@@ -135,6 +156,7 @@ body {
     background-color: var(--bg-primary);
 }
 
+/* Dropdown Component */
 .item-dropdown {
     position: absolute;
     top: 100%;
@@ -147,7 +169,8 @@ body {
     border-radius: 6px;
     margin-top: 0.25rem;
     z-index: 1000;
-    display: none; /* Controlled by JS */
+    display: none;
+    /* Controlled by JS */
 }
 
 .item-dropdown.is-active {
@@ -163,7 +186,8 @@ body {
     transition: background-color var(--transition-speed);
 }
 
-.dropdown-item:hover, .dropdown-item.is-selected {
+.dropdown-item:hover,
+.dropdown-item.is-selected {
     background-color: var(--accent-blue);
 }
 
@@ -173,6 +197,17 @@ body {
     border-radius: 4px;
 }
 
+.dropdown-item.no-results {
+    justify-content: center;
+    color: #888;
+    cursor: default;
+}
+
+.dropdown-item.no-results:hover {
+    background-color: transparent;
+}
+
+/* Input Field Wrapper */
 .input-wrapper {
     position: relative;
     display: flex;
@@ -213,7 +248,9 @@ body {
     pointer-events: none;
 }
 
-/* --- Buttons --- */
+/* ==============================================
+   Buttons
+   ============================================== */
 .btn {
     padding: 0.75rem 1rem;
     border: none;
@@ -254,7 +291,42 @@ body {
     border-radius: 50%;
 }
 
-/* --- Custom Checkbox --- */
+.btn-danger {
+    background-color: var(--accent-orange);
+    color: white;
+    border-color: var(--accent-orange);
+}
+
+.btn-danger:hover {
+    background-color: #f9716b;
+    border-color: #f9716b;
+}
+
+.btn-selector {
+    width: 100%;
+    justify-content: space-between;
+    background-color: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    padding: 0.75rem;
+    color: var(--text-primary);
+    font-weight: 500;
+    text-align: left;
+}
+
+.btn-selector:hover {
+    background-color: var(--border-color);
+}
+
+#selected-item-name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 80%;
+}
+
+/* ==============================================
+   Custom Checkbox
+   ============================================== */
 label {
     cursor: pointer;
 }
@@ -274,12 +346,12 @@ input[type="checkbox"] {
     transition: all var(--transition-speed);
 }
 
-input[type="checkbox"]:checked + .checkmark {
+input[type="checkbox"]:checked+.checkmark {
     background-color: var(--accent-blue);
     border-color: var(--accent-blue);
 }
 
-input[type="checkbox"]:checked + .checkmark::after {
+input[type="checkbox"]:checked+.checkmark::after {
     content: '';
     position: absolute;
     left: 4px;
@@ -291,7 +363,9 @@ input[type="checkbox"]:checked + .checkmark::after {
     transform: rotate(45deg);
 }
 
-/* --- Stats Section --- */
+/* ==============================================
+   Stats Section
+   ============================================== */
 .stats-section {
     margin-top: auto;
     padding-top: 1.5rem;
@@ -329,7 +403,9 @@ input[type="checkbox"]:checked + .checkmark::after {
     text-transform: uppercase;
 }
 
-/* --- Graph Visualization --- */
+/* ==============================================
+   Graph Visualization
+   ============================================== */
 .graph-container {
     flex: 1;
     position: relative;
@@ -361,7 +437,9 @@ input[type="checkbox"]:checked + .checkmark::after {
     z-index: 2;
 }
 
-/* --- Node Design --- */
+/* ==============================================
+   Node Components
+   ============================================== */
 .node {
     position: absolute;
     background-color: var(--node-bg);
@@ -373,10 +451,15 @@ input[type="checkbox"]:checked + .checkmark::after {
     cursor: move;
     transition: box-shadow var(--transition-speed), transform var(--transition-speed);
     transform-origin: center center;
+    overflow: visible;
 }
 
 .node:hover {
     box-shadow: 0 8px 20px var(--shadow-heavy);
+}
+
+.node:hover .node-delete-btn {
+    opacity: 0.7;
 }
 
 .node.is-dragging {
@@ -394,11 +477,39 @@ input[type="checkbox"]:checked + .checkmark::after {
     border-color: var(--accent-blue);
 }
 
+/* Node Header */
 .node-header {
+    position: relative;
     display: flex;
     align-items: center;
     gap: 0.75rem;
     margin-bottom: 0.75rem;
+}
+
+.node-delete-btn {
+    position: absolute;
+    top: -14px;
+    right: -14px;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background-color: var(--text-tertiary);
+    border: 1px solid var(--bg-secondary);
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: all var(--transition-speed);
+    z-index: 10;
+    box-shadow: 0 2px 8px var(--shadow-medium);
+}
+
+.node-delete-btn:hover {
+    opacity: 1;
+    transform: scale(1.1);
+    background-color: var(--text-secondary);
 }
 
 .node-icon {
@@ -408,6 +519,13 @@ input[type="checkbox"]:checked + .checkmark::after {
     flex-shrink: 0;
 }
 
+.node-title-container {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    flex-grow: 1;
+}
+
 .node-title {
     font-weight: 600;
     font-size: 0.95rem;
@@ -415,7 +533,6 @@ input[type="checkbox"]:checked + .checkmark::after {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    flex-grow: 1;
 }
 
 .node-rate {
@@ -425,6 +542,14 @@ input[type="checkbox"]:checked + .checkmark::after {
     white-space: nowrap;
 }
 
+.node-type {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+    margin-top: 2px;
+}
+
+/* Node Body */
 .node-body {
     display: flex;
     flex-direction: column;
@@ -473,7 +598,64 @@ input[type="checkbox"]:checked + .checkmark::after {
     gap: 0.25rem;
 }
 
-/* --- Recipe Selector --- */
+/* Node Ingredients Summary */
+.node-ingredients-summary {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.node-ingredients-summary-raw {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 0.75rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.node-ingredients-list {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    flex-wrap: wrap;
+}
+
+.ingredient-summary-item {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.ingredient-summary-item img {
+    width: 20px;
+    height: 20px;
+    border-radius: 3px;
+}
+
+.ingredient-summary-item span {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+}
+
+.summary-arrow {
+    color: var(--text-tertiary);
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.summary-rate {
+    font-size: 0.8rem;
+    color: var(--accent-blue);
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+/* ==============================================
+   Recipe Selector Component
+   ============================================== */
 .recipe-selector {
     background-color: var(--bg-tertiary);
     border: 1px solid var(--border-color);
@@ -556,6 +738,23 @@ input[type="checkbox"]:checked + .checkmark::after {
     align-items: center;
     gap: 0.5rem;
     font-size: 0.8rem;
+    flex-wrap: wrap;
+}
+
+.recipe-component {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.component-category {
+    font-size: 0.6rem;
+    color: var(--text-tertiary);
+    text-align: center;
+    max-width: 60px;
+    word-wrap: break-word;
+    line-height: 1.1;
 }
 
 .recipe-option-content img {
@@ -569,7 +768,9 @@ input[type="checkbox"]:checked + .checkmark::after {
     margin: 0 0.5rem;
 }
 
-/* --- SVG Edges --- */
+/* ==============================================
+   SVG Edges
+   ============================================== */
 .edge-path {
     fill: none;
     stroke: var(--text-tertiary);
@@ -586,11 +787,15 @@ input[type="checkbox"]:checked + .checkmark::after {
     fill: var(--text-secondary);
     font-size: 0.75rem;
     font-family: 'Inter', sans-serif;
-    pointer-events: none; /* Prevent label from interfering with mouse events */
+    pointer-events: none;
+    /* Prevent label from interfering with mouse events */
 }
 
-/* --- Overlay Messages --- */
-.overlay-message, .loading-message {
+/* ==============================================
+   Overlay Messages
+   ============================================== */
+.overlay-message,
+.loading-message {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -603,7 +808,8 @@ input[type="checkbox"]:checked + .checkmark::after {
     z-index: 3000;
 }
 
-.overlay-message i, .loading-message .spinner {
+.overlay-message i,
+.loading-message .spinner {
     font-size: 3rem;
     margin-bottom: 1rem;
     color: var(--accent-orange);
@@ -629,11 +835,18 @@ input[type="checkbox"]:checked + .checkmark::after {
 }
 
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
-/* --- Modal --- */
+/* ==============================================
+   Modal Component
+   ============================================== */
 .modal {
     position: fixed;
     top: 0;
@@ -703,12 +916,152 @@ input[type="checkbox"]:checked + .checkmark::after {
     margin-bottom: 0.75rem;
 }
 
-.dropdown-item.no-results {
-    justify-content: center;
-    color: #888;
-    cursor: default;
+.modal-footer {
+    padding: 1rem 1.5rem;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.75rem;
 }
 
-.dropdown-item.no-results:hover {
-    background-color: transparent;
+.delete-modal-content {
+    max-width: 450px;
+}
+
+/* ==============================================
+   Recipe Selector Modal
+   ============================================== */
+.recipe-selector-content {
+    max-width: 900px;
+    max-height: 85vh;
+}
+
+.recipe-search {
+    margin-bottom: 1.5rem;
+}
+
+.recipe-search .search-wrapper {
+    width: 100%;
+}
+
+.recipe-search input {
+    width: 100%;
+}
+
+#recipe-search-input {
+    width: 100%;
+    padding: 0.75rem 0.75rem 0.75rem 2.5rem;
+    background-color: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    color: var(--text-primary);
+    font-size: 0.9rem;
+    transition: border-color var(--transition-speed), background-color var(--transition-speed);
+}
+
+#recipe-search-input:focus {
+    outline: none;
+    border-color: var(--accent-blue);
+    background-color: var(--bg-primary);
+}
+
+.category-tabs {
+    display: flex;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color);
+    overflow-x: auto;
+}
+
+.category-tab {
+    background: none;
+    border: none;
+    padding: 0.75rem 1rem;
+    color: var(--text-secondary);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    white-space: nowrap;
+    transition: all var(--transition-speed);
+}
+
+.category-tab.active {
+    color: var(--accent-blue);
+    border-bottom-color: var(--accent-blue);
+}
+
+.category-tab:hover {
+    color: var(--text-primary);
+}
+
+.recipe-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+    max-height: 400px;
+    overflow-y: auto;
+    padding: 0.5rem;
+}
+
+.recipe-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    background-color: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all var(--transition-speed);
+}
+
+.recipe-item:hover {
+    background-color: var(--accent-blue);
+    border-color: var(--accent-blue);
+}
+
+.recipe-item img {
+    width: 40px;
+    height: 40px;
+    border-radius: 4px;
+}
+
+.recipe-item-info {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.recipe-item-name {
+    font-weight: 500;
+    color: var(--text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.recipe-item-type {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    text-transform: capitalize;
+}
+
+.recipe-item.is-raw-item {
+    opacity: 0.5;
+    cursor: not-allowed;
+    border-color: var(--text-tertiary);
+    pointer-events: none;
+}
+
+.recipe-item-status {
+    font-size: 0.7rem;
+    color: var(--text-tertiary);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.no-recipes-message {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 2rem;
+    color: var(--text-secondary);
 }
