@@ -240,6 +240,7 @@ body {
     color: white;
     border-color: var(--accent-green);
     width: 100%;
+    font-weight: 1000;
 }
 
 .btn-primary:hover {
