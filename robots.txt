@@ -1,2 +1,4 @@
 User-agent: *
 Disallow:
+
+Sitemap: https://micro215.github.io/AKEF-AIC-Calculator/sitemap.xml
