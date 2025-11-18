@@ -418,7 +418,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div class="node-rate">${this.data.rate.toFixed(2)} / min</div>
                 </div>
                 <div class="node-body">
-                    ${hasRecipe ? ` <!-- ИСПОЛЬЗУЕМ НОВЫЙ ФЛАГ ЗДЕСЬ -->
+                    ${hasRecipe ? `
                         <div class="node-machine">
                             <img src="images/${building.img}" class="machine-icon" alt="${building.name}">
                             <div class="machine-info">
