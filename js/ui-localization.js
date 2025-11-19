@@ -7,7 +7,7 @@ function updateUIWithLocalization() {
 
     // Update meta tags
     document.querySelector('meta[name="description"]').content =
-        `Free online production calculator for Arknights: Endfield. ${window.localization.t('app.subtitle')}.`;
+        window.localization.t('app.meta_description');
 
     // Update headers and labels
     document.querySelector('.app-header h1').innerHTML =

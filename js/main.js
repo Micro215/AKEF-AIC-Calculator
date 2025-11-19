@@ -55,11 +55,34 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // --- INITIALIZATION ---
     /**
+     * Detect language from url
+     * @returns {Promise<string>}
+     */
+    async function getInitialLanguageFromURL() {
+        try {
+            const response = await fetch('/db/languages.json');
+            const availableLanguages = await response.json();
+            const languageCodes = Object.keys(availableLanguages);
+
+            const pathParts = window.location.pathname.split('/').filter(part => part);
+
+            if (pathParts.length > 0 && languageCodes.includes(pathParts[0])) {
+                return pathParts[0];
+            }
+        } catch (error) {
+            console.error("Could not load languages.json for URL detection:", error);
+        }
+
+        return 'en';
+    }
+
+
+    /**
      * Initialize the application by loading data and setting up event listeners
      */
-    async function initializeApp() {
+    async function initializeApp(language) {
         // Initialize localization first
-        await window.localization.init();
+        await window.localization.init(language);
 
         // Update UI with localized strings
         updateUIWithLocalization();
@@ -75,8 +98,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         try {
             // Load both data files in parallel
             const [itemsResponse, buildingsResponse] = await Promise.all([
-                fetch('db/items.json'),
-                fetch('db/buildings.json')
+                fetch('/db/items.json'),
+                fetch('/db/buildings.json')
             ]);
 
             // Check if both requests were successful
@@ -210,48 +233,53 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
 
         // Language change event listener
-        window.addEventListener('languageChanged', () => {
-            updateUIWithLocalization();
+        // window.addEventListener('languageChanged', () => {
+        //     updateUIWithLocalization();
             
-            // Update the selected item name with the new language
-            if (app.currentTargetItem) {
-                app.selectedItemName.textContent = window.localization.getItemName(app.currentTargetItem);
-            } else {
-                app.selectedItemName.textContent = window.localization.t('app.choose_recipe');
-            }
+        //     // Update the selected item name with the new language
+        //     if (app.currentTargetItem) {
+        //         app.selectedItemName.textContent = window.localization.getItemName(app.currentTargetItem);
+        //     } else {
+        //         app.selectedItemName.textContent = window.localization.t('app.choose_recipe');
+        //     }
             
-            // Close any open recipe dropdowns
-            document.querySelectorAll('.recipe-dropdown.is-active').forEach(dropdown => {
-                dropdown.remove();
-            });
+        //     // Close any open recipe dropdowns
+        //     document.querySelectorAll('.recipe-dropdown.is-active').forEach(dropdown => {
+        //         dropdown.remove();
+        //     });
             
-            // Update recipe selector modal if it's open
-            const recipeModal = document.getElementById('recipe-selector-modal');
-            if (recipeModal && recipeModal.classList.contains('is-active')) {
-                renderRecipeCategories();
-            }
+        //     // Update recipe selector modal if it's open
+        //     const recipeModal = document.getElementById('recipe-selector-modal');
+        //     if (recipeModal && recipeModal.classList.contains('is-active')) {
+        //         renderRecipeCategories();
+        //     }
             
-            // Update mobile recipe selector modal if it's open
-            const mobileRecipeModal = document.getElementById('recipe-selector-modal-mobile');
-            if (mobileRecipeModal && mobileRecipeModal.classList.contains('is-active')) {
-                // Get the current node ID from the modal
-                const currentNodeId = mobileRecipeModal.dataset.nodeId;
-                if (currentNodeId) {
-                    showMobileRecipeSelector(currentNodeId);
-                }
-            }
+        //     // Update mobile recipe selector modal if it's open
+        //     const mobileRecipeModal = document.getElementById('recipe-selector-modal-mobile');
+        //     if (mobileRecipeModal && mobileRecipeModal.classList.contains('is-active')) {
+        //         // Get the current node ID from the modal
+        //         const currentNodeId = mobileRecipeModal.dataset.nodeId;
+        //         if (currentNodeId) {
+        //             showMobileRecipeSelector(currentNodeId);
+        //         }
+        //     }
             
-            // Re-render the graph if it exists
-            if (app.productionGraph) {
-                app.productionGraph.stopSimulation();
-                resetGraph();
-                app.productionGraph = new ProductionGraph(app.graphSvg, app.nodesContainer, app.allNeedsMap);
-                renderGraph();
-                updateTotalPower();
-            }
-        });
+        //     // Re-render the graph if it exists
+        //     if (app.productionGraph) {
+        //         app.productionGraph.stopSimulation();
+        //         resetGraph();
+        //         app.productionGraph = new ProductionGraph(app.graphSvg, app.nodesContainer, app.allNeedsMap);
+        //         renderGraph();
+        //         updateTotalPower();
+        //     }
+        // });
     }
 
     // --- START THE APP ---
-    initializeApp();
+    async function startApp() {
+        const initialLanguage = await getInitialLanguageFromURL();
+        await initializeApp(initialLanguage);
+    }
+
+    startApp();
 });

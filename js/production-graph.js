@@ -370,7 +370,7 @@ class ProductionNode {
             const ingredientElements = recipe.ingredients.map(ing => {
                 const item = app.itemsData.items[ing.item_id];
                 const consumptionRate = (ing.amount / recipeTimeInMinutes) * machinesNeeded;
-                const imgSrc = item.img ? `images/${item.img}` : 'images/default-item.png';
+                const imgSrc = item.img ? `/images/${item.img}` : '/images/default-item.png';
                 return `
                     <div class="ingredient-summary-item">
                         <img src="${imgSrc}" alt="${window.localization.getItemName(item)}">
@@ -399,7 +399,7 @@ class ProductionNode {
         // Set node HTML
         nodeEl.innerHTML = `
             <div class="node-header">
-                <img src="images/${itemInfo.img}" class="node-icon" alt="${window.localization.getItemName(itemInfo)}">
+                <img src="/images/${itemInfo.img}" class="node-icon" alt="${window.localization.getItemName(itemInfo)}">
                 <div class="node-title-container">
                     <div class="node-title">${window.localization.getItemName(itemInfo)}</div>
                     ${localizedType ? `<div class="node-type">${localizedType}</div>` : ''}
@@ -412,7 +412,7 @@ class ProductionNode {
             <div class="node-body">
                 ${hasRecipe ? `
                     <div class="node-machine">
-                        <img src="images/${building.img}" class="machine-icon" alt="${window.localization.getBuildingName(building)}">
+                        <img src="/images/${building.img}" class="machine-icon" alt="${window.localization.getBuildingName(building)}">
                         <div class="machine-info">
                             <div class="machine-name">${window.localization.getBuildingName(building)}</div>
                             <div class="machine-count">${this.data.machineCount.toFixed(2)}x</div>
@@ -535,7 +535,7 @@ class ProductionNode {
     
             option.innerHTML = `
                 <div class="recipe-option-header">
-                    <img src="images/${building.img}" alt="${window.localization.getBuildingName(building)}">
+                    <img src="/images/${building.img}" alt="${window.localization.getBuildingName(building)}">
                     <span>${window.localization.getBuildingName(building)}</span>
                 </div>
                 <div class="recipe-option-content">
@@ -589,7 +589,7 @@ class ProductionNode {
 
             return `
                 <div class="recipe-component">
-                    <img src="images/${item.img}" title="${window.localization.getItemName(item)}: ${ing.amount}">
+                    <img src="/images/${item.img}" title="${window.localization.getItemName(item)}: ${ing.amount}">
                     ${localizedType ? `<div class="component-category">${localizedType}</div>` : ''}
                 </div>
             `;
@@ -610,7 +610,7 @@ class ProductionNode {
 
             return `
                 <div class="recipe-component">
-                    <img src="images/${item.img}" title="${window.localization.getItemName(item)}: ${prod.amount}">
+                    <img src="/images/${item.img}" title="${window.localization.getItemName(item)}: ${prod.amount}">
                     ${localizedType ? `<div class="component-category">${localizedType}</div>` : ''}
                 </div>
             `;
@@ -665,7 +665,7 @@ function showMobileRecipeSelector(nodeId) {
 
         option.innerHTML = `
             <div class="recipe-option-header">
-                <img src="images/${building.img}" alt="${window.localization.getBuildingName(building)}">
+                <img src="/images/${building.img}" alt="${window.localization.getBuildingName(building)}">
                 <span>${window.localization.getBuildingName(building)} ${isSelected ? window.localization.t('app.current') : ''}</span>
             </div>
             <div class="recipe-option-content">

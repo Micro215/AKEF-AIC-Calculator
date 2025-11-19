@@ -1,14 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset
-      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+                http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 
-<url>
-  <loc>https://micro215.github.io/AKEF-AIC-Calculator/</loc>
-  <lastmod>2025-11-18T22:11:21+00:00</lastmod>
-</url>
+  <!-- English Version -->
+  <url>
+    <loc>https://micro215.github.io/AKEF-AIC-Calculator/</loc>
+    <lastmod>2025-11-20T00:00:00+00:00</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://micro215.github.io/AKEF-AIC-Calculator/" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://micro215.github.io/AKEF-AIC-Calculator/ru/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://micro215.github.io/AKEF-AIC-Calculator/" />
+  </url>
 
+  <!-- Russian Version -->
+  <url>
+    <loc>https://micro215.github.io/AKEF-AIC-Calculator/ru/</loc>
+    <lastmod>2025-11-20T00:00:00+00:00</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://micro215.github.io/AKEF-AIC-Calculator/" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://micro215.github.io/AKEF-AIC-Calculator/ru/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://micro215.github.io/AKEF-AIC-Calculator/" />
+  </url>
 
 </urlset>

@@ -11,7 +11,8 @@
         "total_power": "Total Power",
         "per_minute": "/ min",
         "uncraftable": "Uncraftable",
-        "current": "(Current)"
+        "current": "(Current)",
+        "meta_description": "Free online production calculator for Arknights: Endfield. Plan your factory chains, calculate resource requirements, and optimize power consumption."
     },
     "buttons": {
         "calculate": "Calculate",
@@ -43,7 +44,7 @@
             "Scroll to zoom in and out.",
             "Click on a machine's recipe to switch between alternatives."
         ],
-        "note": "<strong>P.S.</strong> If you have some bugs try reload page with Ctrl+F5. If it doesn't work send issue to <strong>bilzebuba</strong> at Discord.",
+        "note": "<strong>P.S.</strong> If you have some bugs try reload page with Ctrl+F5. If it doesn't work send issue to <strong>bilzebuba</strong> at Discord or Telegram.",
         "created_by": "Created by Bilzebuba"
     },
     "delete_confirmation": {

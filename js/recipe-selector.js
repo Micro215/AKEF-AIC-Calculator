@@ -101,7 +101,7 @@ function renderRecipeGrid() {
         }
 
         // Set image source with fallback
-        const imgSrc = item.img ? `images/${item.img}` : 'images/default-item.png';
+        const imgSrc = item.img ? `/images/${item.img}` : '/images/default-item.png';
 
         itemEl.innerHTML = `
             <img src="${imgSrc}" alt="${window.localization.getItemName(item)}">

@@ -13,8 +13,12 @@ class LocalizationManager {
      * @param {string} defaultLanguage - Default language to use
      */
     async init(defaultLanguage = 'en') {
-        const savedLanguage = localStorage.getItem('akef-language');
-        this.currentLanguage = savedLanguage || defaultLanguage;
+        if (defaultLanguage) {
+            this.currentLanguage = defaultLanguage;
+        } else {
+            const savedLanguage = localStorage.getItem('akef-language');
+            this.currentLanguage = savedLanguage || 'en';
+        }
 
         // Load translations
         await this.loadTranslations();
@@ -31,12 +35,12 @@ class LocalizationManager {
      */
     async loadTranslations() {
         try {
-            const response = await fetch(`db/translations/${this.currentLanguage}.json`);
+            const response = await fetch(`/db/translations/${this.currentLanguage}.json`);
             if (response.ok) {
                 this.translations = await response.json();
             } else {
                 console.warn(`Translation file for ${this.currentLanguage} not found, using English`);
-                const fallbackResponse = await fetch('db/translations/en.json');
+                const fallbackResponse = await fetch('/db/translations/en.json');
                 if (fallbackResponse.ok) {
                     this.translations = await fallbackResponse.json();
                 }
@@ -125,12 +129,17 @@ class LocalizationManager {
     async setLanguage(language) {
         if (language === this.currentLanguage) return;
 
-        this.currentLanguage = language;
-        localStorage.setItem('akef-language', language);
+        const baseUrl = window.location.origin;
+        const defaultLanguage = 'en';
 
-        await this.loadTranslations();
-        document.documentElement.lang = language;
-        window.dispatchEvent(new CustomEvent('languageChanged', { detail: { language } }));
+        let newUrl;
+        if (language === defaultLanguage) {
+            newUrl = `${baseUrl}/`;
+        } else {
+            newUrl = `${baseUrl}/${language}/`;
+        }
+
+        window.location.href = newUrl;
     }
 
     /**
@@ -139,7 +148,7 @@ class LocalizationManager {
      */
     async getAvailableLanguages() {
         try {
-            const response = await fetch('db/languages.json');
+            const response = await fetch('/db/languages.json');
             if (response.ok) {
                 return await response.json();
             }

@@ -1,31 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- SEO: Title Tag -->
-    <title>Arknights: Endfield Production Calculator</title>
+    <title>Калькулятор производства Arknights: Endfield</title>
 
     <!-- SEO: Meta Description -->
-    <meta name="description" content="Free online production calculator for Arknights: Endfield.">
+    <meta name="description" content="Бесплатный онлайн-калькулятор производства для Arknights: Endfield.">
 
     <!-- SEO: Meta Keywords -->
-    <meta name="keywords" content="Arknights Endfield, calculator, production">
+    <meta name="keywords" content="Arknights Endfield, калькулятор, производство">
 
     <!-- SEO: Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://micro215.github.io/AKEF-AIC-Calculator/">
-    <meta property="og:title" content="Arknights: Endfield Production Calculator">
-    <meta property="og:description" content="Free online production calculator for Arknights: Endfield.">
+    <meta property="og:url" content="https://micro215.github.io/AKEF-AIC-Calculator/ru/">
+    <meta property="og:title" content="Калькулятор производства Arknights: Endfield">
+    <meta property="og:description" content="Бесплатный онлайн-калькулятор производства для Arknights: Endfield.">
     <meta property="og:image" content="https://micro215.github.io/AKEF-AIC-Calculator/Preview.png">
 
-    <!-- SEO: Twitter-->
+    <!-- SEO: Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://micro215.github.io/AKEF-AIC-Calculator/">
-    <meta property="twitter:title" content="Arknights: Endfield Production Calculator">
-    <meta property="twitter:description" content="Free online production calculator for Arknights: Endfield.">
+    <meta property="twitter:url" content="https://micro215.github.io/AKEF-AIC-Calculator/ru/">
+    <meta property="twitter:title" content="Калькулятор производства Arknights: Endfield">
+    <meta property="twitter:description" content="Бесплатный онлайн-калькулятор производства для Arknights: Endfield.">
     <meta property="twitter:image" content="https://micro215.github.io/AKEF-AIC-Calculator/Preview.png">
 
     <!-- SEO: Yandex Verification -->
@@ -46,20 +46,19 @@
     <div class="app-container">
         <!-- Application header with title and controls -->
         <header class="app-header">
-            <button id="menu-toggle-btn" class="btn btn-icon" aria-label="Toggle Menu">
+            <button id="menu-toggle-btn" class="btn btn-icon" aria-label="Переключить меню">
                 <i class="fas fa-bars"></i>
             </button>
-            <!-- Title will be populated by JavaScript -->
-            <h1><i class="fas fa-sitemap" aria-hidden="true"></i> <span id="app-title">Arknights: Endfield Production
-                    Calculator</span></h1>
+            <h1><i class="fas fa-sitemap" aria-hidden="true"></i> <span id="app-title">Калькулятор производства
+                    Arknights: Endfield</span></h1>
             <div class="header-controls">
                 <div class="language-selector">
                     <select id="language-select" class="language-select">
                         <!-- Language options will be populated by JavaScript -->
                     </select>
                 </div>
-                <button id="reset-btn" class="btn btn-icon" aria-label="Reset"><i class="fas fa-redo-alt"></i></button>
-                <button id="help-btn" class="btn btn-icon" aria-label="Help"><i
+                <button id="reset-btn" class="btn btn-icon" aria-label="Сброс"><i class="fas fa-redo-alt"></i></button>
+                <button id="help-btn" class="btn btn-icon" aria-label="Помощь"><i
                         class="fas fa-question-circle"></i></button>
                 <a id="github-btn" class="btn btn-icon" href="https://github.com/Micro215/AKEF-AIC-Calculator"
                     target="_blank" rel="noopener noreferrer" aria-label="GitHub">
@@ -71,37 +70,35 @@
         <!-- Main content area with control panel and graph -->
         <main class="app-main">
             <!-- Control panel with settings and options -->
-            <aside class="control-panel" aria-label="Production settings">
+            <aside class="control-panel" aria-label="Настройки производства">
                 <div class="panel-section">
-                    <!-- Titles will be populated by JavaScript -->
-                    <h2 id="production-settings-title">Production Settings</h2>
+                    <h2 id="production-settings-title">Настройки производства</h2>
                     <div class="control-group">
-                        <label for="item-selector-btn" id="select-recipe-label">Select Recipe</label>
+                        <label for="item-selector-btn" id="select-recipe-label">Выберите рецепт</label>
                         <button id="item-selector-btn" class="btn btn-selector" aria-expanded="false"
                             aria-haspopup="true">
                             <i class="fas fa-list" aria-hidden="true"></i>
-                            <span id="selected-item-name">Choose a recipe...</span>
+                            <span id="selected-item-name">Выберите рецепт...</span>
                         </button>
                     </div>
 
                     <div class="control-group">
-                        <label for="amount-input" id="target-rate-label">Target Rate</label>
+                        <label for="amount-input" id="target-rate-label">Целевая скорость</label>
                         <div class="input-wrapper">
                             <input type="number" id="amount-input" placeholder="10" value="10"
                                 aria-describedby="rate-unit">
-                            <span id="rate-unit" class="input-suffix">/ min</span>
+                            <span id="rate-unit" class="input-suffix">/ мин</span>
                         </div>
                     </div>
 
                     <button id="calculate-btn" class="btn btn-primary">
                         <i class="fas fa-calculator" aria-hidden="true"></i> <span
-                            id="calculate-btn-text">Calculate</span>
+                            id="calculate-btn-text">Рассчитать</span>
                     </button>
                 </div>
 
                 <div class="panel-section">
-                    <!-- Titles will be populated by JavaScript -->
-                    <h2 id="display-options-title">Display Options</h2>
+                    <h2 id="display-options-title">Опции отображения</h2>
                     <div class="control-group">
                         <label for="show-raw-materials">
                             <input type="checkbox" id="show-raw-materials" checked>
@@ -119,20 +116,19 @@
                 </div>
 
                 <div class="panel-section stats-section">
-                    <!-- Titles will be populated by JavaScript -->
-                    <h2 id="summary-title">Summary</h2>
+                    <h2 id="summary-title">Итог</h2>
                     <div class="stat-item">
                         <i class="fas fa-bolt stat-icon" aria-hidden="true"></i>
                         <div class="stat-info">
                             <span id="total-power" class="stat-value">0</span>
-                            <span id="total-power-label" class="stat-label">Total Power</span>
+                            <span id="total-power-label" class="stat-label">Общee энергопотребление</span>
                         </div>
                     </div>
                 </div>
             </aside>
 
             <!-- Graph container for production chain visualization -->
-            <section id="graph-container" class="graph-container" aria-label="Production chain graph">
+            <section id="graph-container" class="graph-container" aria-label="Граф производственной цепочки">
                 <svg id="graph-svg" class="graph-svg">
                     <defs>
                         <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
@@ -143,11 +139,11 @@
                 <div id="nodes-container" class="nodes-container"></div>
                 <div id="loading-message" class="loading-message" aria-live="polite">
                     <div class="spinner" aria-hidden="true"></div>
-                    <span id="loading-message-text">Calculating...</span>
+                    <span id="loading-message-text">Расчет...</span>
                 </div>
                 <div id="no-recipe-message" class="overlay-message" hidden>
                     <i class="fas fa-exclamation-triangle" aria-hidden="true"></i>
-                    <p id="no-recipe-message-text">No production recipe found for this item.</p>
+                    <p id="no-recipe-message-text">Рецепт производства для этого предмета не найден.</p>
                 </div>
             </section>
         </main>
@@ -156,18 +152,19 @@
         <div id="help-modal" class="modal" role="dialog" aria-labelledby="help-title" aria-hidden="true">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h2 id="help-title">How to Use</h2>
-                    <button class="modal-close" aria-label="Close">&times;</button>
+                    <h2 id="help-title">Как использовать</h2>
+                    <button class="modal-close" aria-label="Закрыть">&times;</button>
                 </div>
                 <div class="modal-body">
                     <ol id="help-steps">
                         <!-- Steps will be populated by JavaScript -->
                     </ol>
-                    <p id="help-note"><strong>P.S.</strong> If you have some bugs try reload page with Ctrl+F5. If it
-                        doesn't work send issue to <strong>bilzebuba</strong> at Discord or Telegram.</p>
+                    <p id="help-note"><strong>P.S.</strong> Если у вас возникли ошибки, попробуйте перезагрузить
+                        страницу с помощью Ctrl+F5. Если это не помогло, отправьте отчет об ошибке
+                        <strong>bilzebuba</strong> в Telegram.</p>
                 </div>
                 <div class="modal-footer">
-                    <p id="created-by-text">Created by Bilzebuba</p>
+                    <p id="created-by-text">Создано Bilzebuba</p>
                 </div>
             </div>
         </div>
@@ -178,21 +175,21 @@
         aria-hidden="true">
         <div class="modal-content recipe-selector-content">
             <div class="modal-header">
-                <h2 id="recipe-selector-title">Select Recipe</h2>
-                <button class="modal-close" aria-label="Close">&times;</button>
+                <h2 id="recipe-selector-title">Выберите рецепт</h2>
+                <button class="modal-close" aria-label="Закрыть">&times;</button>
             </div>
             <div class="modal-body">
                 <div class="recipe-search">
                     <div class="search-wrapper">
                         <i class="fas fa-search" aria-hidden="true"></i>
-                        <input type="text" id="recipe-search-input" placeholder="Search for a recipe..."
-                            aria-label="Search recipes">
+                        <input type="text" id="recipe-search-input" placeholder="Поиск рецепта..."
+                            aria-label="Поиск рецептов">
                     </div>
                 </div>
                 <div class="recipe-categories">
                     <div class="category-tabs" role="tablist">
                         <button class="category-tab active" data-category="all" role="tab" aria-selected="true"
-                            id="all-tab-text">All</button>
+                            id="all-tab-text">Все</button>
                     </div>
                     <div class="category-content">
                         <div class="recipe-grid" id="all-recipes" role="tabpanel"></div>
@@ -206,16 +203,16 @@
     <div id="delete-confirmation-modal" class="modal" role="dialog" aria-labelledby="delete-title" aria-hidden="true">
         <div class="modal-content delete-modal-content">
             <div class="modal-header">
-                <h2 id="delete-title">Confirm Deletion</h2>
-                <button class="modal-close" aria-label="Close">&times;</button>
+                <h2 id="delete-title">Подтвердить Удаление</h2>
+                <button class="modal-close" aria-label="Закрыть">&times;</button>
             </div>
             <div class="modal-body">
-                <p id="delete-confirmation-message">Are you sure you want to delete "<strong
-                        id="delete-item-name"></strong>" and all its unique ingredient chains?</p>
+                <p id="delete-confirmation-message">Вы уверены, что хотите удалить "<strong
+                        id="delete-item-name"></strong>" и все его уникальные цепочки ингредиентов?</p>
             </div>
             <div class="modal-footer">
-                <button id="confirm-delete-btn" class="btn btn-danger" id="delete-btn-text">Delete</button>
-                <button id="cancel-delete-btn" class="btn" id="cancel-btn-text">Cancel</button>
+                <button id="confirm-delete-btn" class="btn btn-danger" id="delete-btn-text">Удалить</button>
+                <button id="cancel-delete-btn" class="btn" id="cancel-btn-text">Отмена</button>
             </div>
         </div>
     </div>
@@ -225,8 +222,8 @@
         aria-hidden="true">
         <div class="modal-content">
             <div class="modal-header">
-                <h2 id="recipe-selector-mobile-title">Select Recipe</h2>
-                <button class="modal-close" aria-label="Close">&times;</button>
+                <h2 id="recipe-selector-mobile-title">Выберите рецепт</h2>
+                <button class="modal-close" aria-label="Закрыть">&times;</button>
             </div>
             <div class="modal-body">
                 <div id="mobile-recipe-options" class="recipe-options-list"></div>
@@ -239,9 +236,9 @@
     {
         "@context": "https://schema.org",
         "@type": "SoftwareApplication",
-        "name": "Arknights: Endfield Production Calculator",
-        "description": "A free online tool to plan and calculate production chains in game Arknights: Endfield.",
-        "url": "https://micro215.github.io/AKEF-AIC-Calculator/",
+        "name": "Калькулятор производства Arknights: Endfield",
+        "description": "Бесплатный онлайн-инструмент для планирования и расчета производственных цепочек в игре Arknights: Endfield.",
+        "url": "https://micro215.github.io/AKEF-AIC-Calculator/ru/",
         "applicationCategory": "Game",
         "operatingSystem": "Web",
         "offers": {
