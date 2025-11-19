@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', async () => {
      */
     async function getInitialLanguageFromURL() {
         try {
-            const response = await fetch('${app.projectBaseUrl}db/languages.json');
+            const response = await fetch(`${app.projectBaseUrl}db/languages.json`);
             const availableLanguages = await response.json();
             const languageCodes = Object.keys(availableLanguages);
 
@@ -101,8 +101,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         try {
             // Load both data files in parallel
             const [itemsResponse, buildingsResponse] = await Promise.all([
-                fetch('${app.projectBaseUrl}db/items.json'),
-                fetch('${app.projectBaseUrl}db/buildings.json')
+                fetch(`${app.projectBaseUrl}db/items.json`),
+                fetch(`${app.projectBaseUrl}db/buildings.json`)
             ]);
 
             // Check if both requests were successful

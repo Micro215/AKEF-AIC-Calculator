@@ -40,7 +40,7 @@ class LocalizationManager {
                 this.translations = await response.json();
             } else {
                 console.warn(`Translation file for ${this.currentLanguage} not found, using English`);
-                const fallbackResponse = await fetch('${window.productionApp.projectBaseUrl}db/translations/en.json');
+                const fallbackResponse = await fetch(`${window.productionApp.projectBaseUrl}db/translations/en.json`);
                 if (fallbackResponse.ok) {
                     this.translations = await fallbackResponse.json();
                 }
@@ -148,7 +148,7 @@ class LocalizationManager {
      */
     async getAvailableLanguages() {
         try {
-            const response = await fetch('${window.productionApp.projectBaseUrl}db/languages.json');
+            const response = await fetch(`${window.productionApp.projectBaseUrl}db/languages.json`);
             if (response.ok) {
                 return await response.json();
             }
