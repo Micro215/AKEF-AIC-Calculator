@@ -1,0 +1,62 @@
+{
+    "app": {
+        "title": "Arknights: Endfield Production Calculator",
+        "subtitle": "Plan Your Factory",
+        "loading": "Loading data...",
+        "error": "Error: Could not load data",
+        "choose_recipe": "Choose a recipe...",
+        "no_recipes_found": "No recipes found",
+        "no_recipe_message": "No production recipe found for this item.",
+        "calculating": "Calculating...",
+        "total_power": "Total Power",
+        "per_minute": "/ min",
+        "uncraftable": "Uncraftable",
+        "current": "(Current)"
+    },
+    "buttons": {
+        "calculate": "Calculate",
+        "reset": "Reset",
+        "help": "Help",
+        "close": "Close",
+        "delete": "Delete",
+        "cancel": "Cancel",
+        "confirm_delete": "Confirm Deletion",
+        "recipe": "Recipe"
+    },
+    "labels": {
+        "select_recipe": "Select Recipe",
+        "target_rate": "Target Rate",
+        "production_settings": "Production Settings",
+        "display_options": "Display Options",
+        "show_raw_materials": "Show Raw Materials",
+        "show_power": "Show Power",
+        "summary": "Summary"
+    },
+    "help": {
+        "title": "How to Use",
+        "steps": [
+            "Use the search bar to find and select an item you want to produce.",
+            "Enter the desired production rate (items per minute).",
+            "Click \"Calculate\" to generate the production chain.",
+            "Drag nodes to rearrange the graph.",
+            "Click and drag on the background to pan the view.",
+            "Scroll to zoom in and out.",
+            "Click on a machine's recipe to switch between alternatives."
+        ],
+        "note": "<strong>P.S.</strong> If you have some bugs try reload page with Ctrl+F5. If it doesn't work send issue to <strong>bilzebuba</strong> at Discord.",
+        "created_by": "Created by Bilzebuba"
+    },
+    "delete_confirmation": {
+        "title": "Confirm Deletion",
+        "message": "Are you sure you want to delete \"<strong id=\"delete-item-name\"></strong>\" and all its unique ingredient chains?"
+    },
+    "types": {
+        "progression_materials": "Progression Materials",
+        "naturals": "Naturals",
+        "gatherables": "Gatherables",
+        "valuables": "Valuables",
+        "aic_products": "AIC Products",
+        "usables": "Usables",
+        "functionals": "Functionals"
+    }
+}

@@ -357,8 +357,8 @@ class ProductionNode {
         const recipe = hasRecipe ? this.data.allRecipes[this.data.selectedRecipeIndex] : null;
         const building = recipe ? app.buildingsData.buildings[recipe.buildingId] : null;
 
-        // Format item type for display
-        const formattedType = itemInfo.type ? itemInfo.type.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase()) : '';
+        // Get localized item type for display
+        const localizedType = window.localization.getItemTypeName(itemInfo.type);
 
         // Create ingredients summary
         let ingredientsSummaryHtml = '';
@@ -373,7 +373,7 @@ class ProductionNode {
                 const imgSrc = item.img ? `images/${item.img}` : 'images/default-item.png';
                 return `
                     <div class="ingredient-summary-item">
-                        <img src="${imgSrc}" alt="${item.name}">
+                        <img src="${imgSrc}" alt="${window.localization.getItemName(item)}">
                         <span>${consumptionRate.toFixed(1)}</span>
                     </div>
                 `;
@@ -385,13 +385,13 @@ class ProductionNode {
                         ${ingredientElements}
                     </div>
                     <div class="summary-arrow">→</div>
-                    <div class="summary-rate">${this.data.rate.toFixed(2)} / min</div>
+                    <div class="summary-rate">${this.data.rate.toFixed(2)} ${window.localization.t('app.per_minute')}</div>
                 </div>
             `;
         } else {
             ingredientsSummaryHtml = `
                 <div class="node-ingredients-summary-raw">
-                    <div class="summary-rate">${this.data.rate.toFixed(2)} / min</div>
+                    <div class="summary-rate">${this.data.rate.toFixed(2)} ${window.localization.t('app.per_minute')}</div>
                 </div>
             `;
         }
@@ -399,10 +399,10 @@ class ProductionNode {
         // Set node HTML
         nodeEl.innerHTML = `
             <div class="node-header">
-                <img src="images/${itemInfo.img}" class="node-icon" alt="${itemInfo.name}">
+                <img src="images/${itemInfo.img}" class="node-icon" alt="${window.localization.getItemName(itemInfo)}">
                 <div class="node-title-container">
-                    <div class="node-title">${itemInfo.name}</div>
-                    ${formattedType ? `<div class="node-type">${formattedType}</div>` : ''}
+                    <div class="node-title">${window.localization.getItemName(itemInfo)}</div>
+                    ${localizedType ? `<div class="node-type">${localizedType}</div>` : ''}
                 </div>
                 <button class="node-delete-btn" data-node-id="${this.data.itemId}" title="Delete node and all dependencies">
                     <i class="fas fa-times"></i>
@@ -412,16 +412,16 @@ class ProductionNode {
             <div class="node-body">
                 ${hasRecipe ? `
                     <div class="node-machine">
-                        <img src="images/${building.img}" class="machine-icon" alt="${building.name}">
+                        <img src="images/${building.img}" class="machine-icon" alt="${window.localization.getBuildingName(building)}">
                         <div class="machine-info">
-                            <div class="machine-name">${building.name}</div>
+                            <div class="machine-name">${window.localization.getBuildingName(building)}</div>
                             <div class="machine-count">${this.data.machineCount.toFixed(2)}x</div>
                             ${app.showPower.checked ? `<div class="machine-power"><i class="fas fa-bolt"></i> ${(Math.ceil(this.data.machineCount) * building.power).toFixed(0)}</div>` : ''}
                         </div>
                     </div>
                     ${this.data.allRecipes.length > 1 ? `
                         <div class="recipe-selector" data-node-id="${this.data.itemId}">
-                            <span>Recipe: ${this.data.selectedRecipeIndex + 1} / ${this.data.allRecipes.length}</span>
+                            <span>${window.localization.t('buttons.recipe')}: ${this.data.selectedRecipeIndex + 1} / ${this.data.allRecipes.length}</span>
                             <i class="fas fa-chevron-down"></i>
                         </div>
                     ` : ''}
@@ -488,8 +488,6 @@ class ProductionNode {
             selector.addEventListener('click', (e) => {
                 e.stopPropagation();
 
-                
-
                 if (isMobileDevice()) {
                     showMobileRecipeSelector(this.data.itemId);
                 } else {
@@ -522,23 +520,23 @@ class ProductionNode {
         
         // Remove any existing dropdowns
         document.querySelectorAll('.recipe-dropdown.is-active').forEach(d => d.remove());
-
+    
         // Create dropdown
         const dropdown = document.createElement('div');
         dropdown.className = 'recipe-dropdown';
-
+    
         dropdown.dataset.nodeId = this.data.itemId;
-
+    
         // Add recipe options
         this.data.allRecipes.forEach((recipe, index) => {
             const option = document.createElement('div');
             option.className = 'recipe-option';
             const building = app.buildingsData.buildings[recipe.buildingId];
-
+    
             option.innerHTML = `
                 <div class="recipe-option-header">
-                    <img src="images/${building.img}" alt="${building.name}">
-                    <span>${building.name}</span>
+                    <img src="images/${building.img}" alt="${window.localization.getBuildingName(building)}">
+                    <span>${window.localization.getBuildingName(building)}</span>
                 </div>
                 <div class="recipe-option-content">
                     ${this.renderIngredients(recipe.ingredients)}
@@ -546,7 +544,7 @@ class ProductionNode {
                     ${this.renderProducts(recipe.products)}
                 </div>
             `;
-
+    
             // Add click event to select recipe
             option.addEventListener('click', () => {
                 app.selectedRecipesMap.set(this.data.itemId, index);
@@ -555,18 +553,18 @@ class ProductionNode {
             });
             dropdown.appendChild(option);
         });
-
+    
         // Add dropdown to container
         app.graphContainer.appendChild(dropdown);
-
+    
         // Position dropdown
         const rect = e.target.getBoundingClientRect();
         const containerRect = app.graphContainer.getBoundingClientRect();
-
+    
         dropdown.style.left = `${rect.left - containerRect.left}px`;
         dropdown.style.top = `${rect.bottom - containerRect.top}px`;
         dropdown.classList.add('is-active');
-
+    
         // Close dropdown when clicking outside
         const closeDropdown = (e) => {
             if (!dropdown.contains(e.target)) {
@@ -587,12 +585,12 @@ class ProductionNode {
         if (!ingredients) return '';
         return ingredients.map(ing => {
             const item = app.itemsData.items[ing.item_id];
-            const formattedType = item.type ? item.type.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase()) : '';
+            const localizedType = window.localization.getItemTypeName(item.type);
 
             return `
                 <div class="recipe-component">
-                    <img src="images/${item.img}" title="${item.name}: ${ing.amount}">
-                    ${formattedType ? `<div class="component-category">${formattedType}</div>` : ''}
+                    <img src="images/${item.img}" title="${window.localization.getItemName(item)}: ${ing.amount}">
+                    ${localizedType ? `<div class="component-category">${localizedType}</div>` : ''}
                 </div>
             `;
         }).join('');
@@ -608,12 +606,12 @@ class ProductionNode {
         if (!products) return '';
         return products.map(prod => {
             const item = app.itemsData.items[prod.item_id];
-            const formattedType = item.type ? item.type.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase()) : '';
+            const localizedType = window.localization.getItemTypeName(item.type);
 
             return `
                 <div class="recipe-component">
-                    <img src="images/${item.img}" title="${item.name}: ${prod.amount}">
-                    ${formattedType ? `<div class="component-category">${formattedType}</div>` : ''}
+                    <img src="images/${item.img}" title="${window.localization.getItemName(item)}: ${prod.amount}">
+                    ${localizedType ? `<div class="component-category">${localizedType}</div>` : ''}
                 </div>
             `;
         }).join('');
@@ -651,6 +649,10 @@ function showMobileRecipeSelector(nodeId) {
 
     const modal = document.getElementById('recipe-selector-modal-mobile');
     const optionsContainer = document.getElementById('mobile-recipe-options');
+    
+    // Store the node ID in the modal for language change updates
+    modal.dataset.nodeId = nodeId;
+    
     optionsContainer.innerHTML = '';
 
     nodeData.allRecipes.forEach((recipe, index) => {
@@ -663,8 +665,8 @@ function showMobileRecipeSelector(nodeId) {
 
         option.innerHTML = `
             <div class="recipe-option-header">
-                <img src="images/${building.img}" alt="${building.name}">
-                <span>${building.name} ${isSelected ? '(Current)' : ''}</span>
+                <img src="images/${building.img}" alt="${window.localization.getBuildingName(building)}">
+                <span>${window.localization.getBuildingName(building)} ${isSelected ? window.localization.t('app.current') : ''}</span>
             </div>
             <div class="recipe-option-content">
                 ${nodeInstance.renderIngredients(recipe.ingredients)}

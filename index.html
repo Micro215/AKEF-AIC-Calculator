@@ -53,6 +53,11 @@
             </button>
             <h1><i class="fas fa-sitemap" aria-hidden="true"></i> Arknights: Endfield Production Calculator</h1>
             <div class="header-controls">
+                <div class="language-selector">
+                    <select id="language-select" class="language-select">
+                        <!-- Language options will be populated by JavaScript -->
+                    </select>
+                </div>
                 <button id="reset-btn" class="btn btn-icon" aria-label="Reset"><i class="fas fa-redo-alt"></i></button>
                 <button id="help-btn" class="btn btn-icon" aria-label="Help"><i
                         class="fas fa-question-circle"></i></button>
@@ -164,9 +169,7 @@
                         <li><strong>Scroll</strong> to zoom in and out.</li>
                         <li><strong>Click</strong> on a machine's recipe to switch between alternatives.</li>
                     </ol>
-                    <p><strong>P.s.</strong> If you have some bugs try reload page with Ctrl+F5. If doesnt work send
-                        issue
-                        to <strong>bilzebuba</strong> at discord.</p>
+                    <p><strong>P.S.</strong> If you have some bugs try reload page with Ctrl+F5. If it doesn't work send issue to <strong>bilzebuba</strong> at Discord.</p>
                 </div>
                 <div class="modal-footer">
                     <p>Created by Bilzebuba</p>
@@ -230,7 +233,6 @@
                 <button class="modal-close" aria-label="Close">&times;</button>
             </div>
             <div class="modal-body">
-                <!-- Сюда будут динамически вставляться опции рецептов -->
                 <div id="mobile-recipe-options" class="recipe-options-list"></div>
             </div>
         </div>
@@ -259,6 +261,8 @@
     </script>
 
     <!-- Add JS files -->
+    <script src="js/localization.js"></script>
+    <script src="js/ui-localization.js"></script>
     <script src="js/data-loader.js"></script>
     <script src="js/recipe-selector.js"></script>
     <script src="js/production-calculator.js"></script>

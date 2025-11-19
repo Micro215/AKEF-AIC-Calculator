@@ -1,1032 +1,1032 @@
 {
   "items": {
     "arms_insp_kit": {
-      "name": "Arms INSP Kit",
+      "name_en": "Arms INSP Kit",
       "type": "progression_materials",
       "img": "Arms_INSP_Kit.png"
     },
     "arms_insp_set": {
-      "name": "Arms INSP Set",
+      "name_en": "Arms INSP Set",
       "type": "progression_materials",
       "img": "Arms_INSP_Set.png"
     },
     "arms_inspector": {
-      "name": "Arms Inspector",
+      "name_en": "Arms Inspector",
       "type": "progression_materials",
       "img": "Arms_Inspector.png"
     },
     "cast_die": {
-      "name": "Cast Die",
+      "name_en": "Cast Die",
       "type": "progression_materials",
       "img": "Cast_Die.png"
     },
     "compact_script_i": {
-      "name": "Compact Script I",
+      "name_en": "Compact Script I",
       "type": "progression_materials",
       "img": "Compact_Script_I.png"
     },
     "compact_script_ii": {
-      "name": "Compact Script II",
+      "name_en": "Compact Script II",
       "type": "progression_materials",
       "img": "Compact_Script_II.png"
     },
     "compact_script_iii": {
-      "name": "Compact Script III",
+      "name_en": "Compact Script III",
       "type": "progression_materials",
       "img": "Compact_Script_III.png"
     },
     "essence_softener": {
-      "name": "Essence Softener",
+      "name_en": "Essence Softener",
       "type": "progression_materials",
       "img": "Essence_Softener.png"
     },
     "heavy_cast_die": {
-      "name": "Heavy Cast Die",
+      "name_en": "Heavy Cast Die",
       "type": "progression_materials",
       "img": "Heavy_Cast_Die.png"
     },
     "protodisk": {
-      "name": "Protodisk",
+      "name_en": "Protodisk",
       "type": "progression_materials",
       "img": "Protodisk.png"
     },
     "protohedron": {
-      "name": "Protohedron",
+      "name_en": "Protohedron",
       "type": "progression_materials",
       "img": "Protohedron.png"
     },
     "protolog_i": {
-      "name": "Protolog I",
+      "name_en": "Protolog I",
       "type": "progression_materials",
       "img": "Protolog_I.png"
     },
     "protolog_ii": {
-      "name": "Protolog II",
+      "name_en": "Protolog II",
       "type": "progression_materials",
       "img": "Protolog_II.png"
     },
     "protoprism": {
-      "name": "Protoprism",
+      "name_en": "Protoprism",
       "type": "progression_materials",
       "img": "Protoprism.png"
     },
     "protoset": {
-      "name": "Protoset",
+      "name_en": "Protoset",
       "type": "progression_materials",
       "img": "Protoset.png"
     },
     "aketine": {
-      "name": "Aketine",
+      "name_en": "Aketine",
       "type": "naturals",
       "img": "Aketine.png"
     },
     "aketine_seed": {
-      "name": "Aketine Seed",
+      "name_en": "Aketine Seed",
       "type": "naturals",
       "img": "Aketine_Seed.png"
     },
     "amber_rice": {
-      "name": "Amber Rice",
+      "name_en": "Amber Rice",
       "type": "naturals",
       "img": "Amber_Rice.png"
     },
     "amber_rice_seed": {
-      "name": "Amber Rice Seed",
+      "name_en": "Amber Rice Seed",
       "type": "naturals",
       "img": "Amber_Rice_Seed.png"
     },
     "amethyst_ore": {
-      "name": "Amethyst Ore",
+      "name_en": "Amethyst Ore",
       "type": "naturals",
       "img": "Amethyst_Ore.png"
     },
     "buckflower": {
-      "name": "Buckflower",
+      "name_en": "Buckflower",
       "type": "naturals",
       "img": "Buckflower.png"
     },
     "buckflower_seed": {
-      "name": "Buckflower Seed",
+      "name_en": "Buckflower Seed",
       "type": "naturals",
       "img": "Buckflower_Seed.png"
     },
     "citrome": {
-      "name": "Citrome",
+      "name_en": "Citrome",
       "type": "naturals",
       "img": "Citrome.png"
     },
     "citrome_seed": {
-      "name": "Citrome Seed",
+      "name_en": "Citrome Seed",
       "type": "naturals",
       "img": "Citrome_Seed.png"
     },
     "clean_water": {
-      "name": "Clean Water",
+      "name_en": "Clean Water",
       "type": "naturals",
       "img": "Clean_Water.png"
     },
     "cuprium_ore": {
-      "name": "Cuprium Ore",
+      "name_en": "Cuprium Ore",
       "type": "naturals",
       "img": "Cuprium_Ore.png"
     },
     "cyanite_ore": {
-      "name": "Cyanite Ore",
+      "name_en": "Cyanite Ore",
       "type": "naturals",
       "img": "Cyanite_Ore.png"
     },
     "ferrium_ore": {
-      "name": "Ferrium Ore",
+      "name_en": "Ferrium Ore",
       "type": "naturals",
       "img": "Ferrium_Ore.png"
     },
     "firebuckle": {
-      "name": "Firebuckle",
+      "name_en": "Firebuckle",
       "type": "naturals",
       "img": "Firebuckle.png"
     },
     "fluffed_jincao": {
-      "name": "Fluffed Jincao",
+      "name_en": "Fluffed Jincao",
       "type": "naturals",
       "img": "Fluffed_Jincao.png"
     },
     "jincao": {
-      "name": "Jincao",
+      "name_en": "Jincao",
       "type": "naturals",
       "img": "Jincao.png"
     },
     "jincao_seed": {
-      "name": "Jincao Seed",
+      "name_en": "Jincao Seed",
       "type": "naturals",
       "img": "Jincao_Seed.png"
     },
     "originium_ore": {
-      "name": "Originium Ore",
+      "name_en": "Originium Ore",
       "type": "naturals",
       "img": "Originium_Ore.png"
     },
     "redjade_ginseng": {
-      "name": "Redjade Ginseng",
+      "name_en": "Redjade Ginseng",
       "type": "naturals",
       "img": "Redjade_Ginseng.png"
     },
     "redjade_ginseng_seed": {
-      "name": "Redjade Ginseng Seed",
+      "name_en": "Redjade Ginseng Seed",
       "type": "naturals",
       "img": "Redjade_Ginseng_Seed.png"
     },
     "reed_rye": {
-      "name": "Reed Rye",
+      "name_en": "Reed Rye",
       "type": "naturals",
       "img": "Reed_Rye.png"
     },
     "reed_rye_seed": {
-      "name": "Reed Rye Seed",
+      "name_en": "Reed Rye Seed",
       "type": "naturals",
       "img": "Reed_Rye_Seed.png"
     },
     "sandleaf": {
-      "name": "Sandleaf",
+      "name_en": "Sandleaf",
       "type": "naturals",
       "img": "Sandleaf.png"
     },
     "sandleaf_seed": {
-      "name": "Sandleaf Seed",
+      "name_en": "Sandleaf Seed",
       "type": "naturals",
       "img": "Sandleaf_Seed.png"
     },
     "sewage": {
-      "name": "Sewage",
+      "name_en": "Sewage",
       "type": "naturals",
       "img": "Sewage.png"
     },
     "tartpepper": {
-      "name": "Tartpepper",
+      "name_en": "Tartpepper",
       "type": "naturals",
       "img": "Tartpepper.png"
     },
     "tartpepper_seed": {
-      "name": "Tartpepper Seed",
+      "name_en": "Tartpepper Seed",
       "type": "naturals",
       "img": "Tartpepper_Seed.png"
     },
     "thorny_yazhen": {
-      "name": "Thorny Yazhen",
+      "name_en": "Thorny Yazhen",
       "type": "naturals",
       "img": "Thorny_Yazhen.png"
     },
     "umbraline": {
-      "name": "Umbraline",
+      "name_en": "Umbraline",
       "type": "naturals",
       "img": "Umbraline.png"
     },
     "wood": {
-      "name": "Wood",
+      "name_en": "Wood",
       "type": "naturals",
       "img": "Wood.png"
     },
     "yazhen": {
-      "name": "Yazhen",
+      "name_en": "Yazhen",
       "type": "naturals",
       "img": "Yazhen.png"
     },
     "yazhen_seed": {
-      "name": "Yazhen Seed",
+      "name_en": "Yazhen Seed",
       "type": "naturals",
       "img": "Yazhen_Seed.png"
     },
     "aggagrit": {
-      "name": "Aggagrit",
+      "name_en": "Aggagrit",
       "type": "gatherables",
       "img": "Aggagrit.png"
     },
     "aggagrit_block": {
-      "name": "Aggagrit Block",
+      "name_en": "Aggagrit Block",
       "type": "gatherables",
       "img": "Aggagrit_Block.png"
     },
     "aggagrit_cluster": {
-      "name": "Aggagrit Cluster",
+      "name_en": "Aggagrit Cluster",
       "type": "gatherables",
       "img": "Aggagrit_Cluster.png"
     },
     "cartilage_bit": {
-      "name": "Cartilage Bit",
+      "name_en": "Cartilage Bit",
       "type": "gatherables",
       "img": "Cartilage_Bit.png"
     },
     "chitin_bit": {
-      "name": "Chitin Bit",
+      "name_en": "Chitin Bit",
       "type": "gatherables",
       "img": "Chitin_Bit.png"
     },
     "fillet": {
-      "name": "Fillet",
+      "name_en": "Fillet",
       "type": "gatherables",
       "img": "Fillet.png"
     },
     "glowbug": {
-      "name": "Glowbug",
+      "name_en": "Glowbug",
       "type": "gatherables",
       "img": "Glowbug.png"
     },
     "grass_chaff": {
-      "name": "Grass Chaff",
+      "name_en": "Grass Chaff",
       "type": "gatherables",
       "img": "Grass_Chaff.png"
     },
     "hollow_bone": {
-      "name": "Hollow Bone",
+      "name_en": "Hollow Bone",
       "type": "gatherables",
       "img": "Hollow_Bone.png"
     },
     "hollow_bonechip": {
-      "name": "Hollow Bonechip",
+      "name_en": "Hollow Bonechip",
       "type": "gatherables",
       "img": "Hollow_Bonechip.png"
     },
     "scorchbug": {
-      "name": "Scorchbug",
+      "name_en": "Scorchbug",
       "type": "gatherables",
       "img": "Scorchbug.png"
     },
     "soaked_wood": {
-      "name": "Soaked Wood",
+      "name_en": "Soaked Wood",
       "type": "gatherables",
       "img": "Soaked_Wood.png"
     },
     "soaked_woodchip": {
-      "name": "Soaked Woodchip",
+      "name_en": "Soaked Woodchip",
       "type": "gatherables",
       "img": "Soaked_Woodchip.png"
     },
     "auronyx": {
-      "name": "Auronyx",
+      "name_en": "Auronyx",
       "type": "valuables",
       "img": "Auronyx.png"
     },
     "auronyx_seed": {
-      "name": "Auronyx Seed",
+      "name_en": "Auronyx Seed",
       "type": "valuables",
       "img": "Auronyx_Seed.png"
     },
     "blighted_jadeleaf": {
-      "name": "Blighted Jadeleaf",
+      "name_en": "Blighted Jadeleaf",
       "type": "valuables",
       "img": "Blighted_Jadeleaf.png"
     },
     "blighted_jadeleaf_tuber": {
-      "name": "Blighted Jadeleaf Tuber",
+      "name_en": "Blighted Jadeleaf Tuber",
       "type": "valuables",
       "img": "Blighted_Jadeleaf_Tuber.png"
     },
     "bloodcap": {
-      "name": "Bloodcap",
+      "name_en": "Bloodcap",
       "type": "valuables",
       "img": "Bloodcap.png"
     },
     "bloodcap_mycelia": {
-      "name": "Bloodcap Mycelia",
+      "name_en": "Bloodcap Mycelia",
       "type": "valuables",
       "img": "Bloodcap_Mycelia.png"
     },
     "chrysodendra": {
-      "name": "Chrysodendra",
+      "name_en": "Chrysodendra",
       "type": "valuables",
       "img": "Chrysodendra.png"
     },
     "chrysodendra_tuber": {
-      "name": "Chrysodendra Tuber",
+      "name_en": "Chrysodendra Tuber",
       "type": "valuables",
       "img": "Chrysodendra_Tuber.png"
     },
     "igneosite": {
-      "name": "Igneosite",
+      "name_en": "Igneosite",
       "type": "valuables",
       "img": "Igneosite.png"
     },
     "igneosite_seed": {
-      "name": "Igneosite Seed",
+      "name_en": "Igneosite Seed",
       "type": "valuables",
       "img": "Igneosite_Seed.png"
     },
     "kalkodendra": {
-      "name": "Kalkodendra",
+      "name_en": "Kalkodendra",
       "type": "valuables",
       "img": "Kalkodendra.png"
     },
     "kalkodendra_tuber": {
-      "name": "Kalkodendra Tuber",
+      "name_en": "Kalkodendra Tuber",
       "type": "valuables",
       "img": "Kalkodendra_Tuber.png"
     },
     "kalkonyx": {
-      "name": "Kalkonyx",
+      "name_en": "Kalkonyx",
       "type": "valuables",
       "img": "Kalkonyx.png"
     },
     "kalkonyx_seed": {
-      "name": "Kalkonyx Seed",
+      "name_en": "Kalkonyx Seed",
       "type": "valuables",
       "img": "Kalkonyx_Seed.png"
     },
     "pink_bolete": {
-      "name": "Pink Bolete",
+      "name_en": "Pink Bolete",
       "type": "valuables",
       "img": "Pink_Bolete.png"
     },
     "pink_bolete_mycelia": {
-      "name": "Pink Bolete Mycelia",
+      "name_en": "Pink Bolete Mycelia",
       "type": "valuables",
       "img": "Pink_Bolete_Mycelia.png"
     },
     "red_bolete": {
-      "name": "Red Bolete",
+      "name_en": "Red Bolete",
       "type": "valuables",
       "img": "Red_Bolete.png"
     },
     "red_bolete_mycelia": {
-      "name": "Red Bolete Mycelia",
+      "name_en": "Red Bolete Mycelia",
       "type": "valuables",
       "img": "Red_Bolete_Mycelia.png"
     },
     "ruby_bolete": {
-      "name": "Ruby Bolete",
+      "name_en": "Ruby Bolete",
       "type": "valuables",
       "img": "Ruby_Bolete.png"
     },
     "ruby_bolete_mycelia": {
-      "name": "Ruby Bolete Mycelia",
+      "name_en": "Ruby Bolete Mycelia",
       "type": "valuables",
       "img": "Ruby_Bolete_Mycelia.png"
     },
     "umbronyx": {
-      "name": "Umbronyx",
+      "name_en": "Umbronyx",
       "type": "valuables",
       "img": "Umbronyx.png"
     },
     "umbronyx_seed": {
-      "name": "Umbronyx Seed",
+      "name_en": "Umbronyx Seed",
       "type": "valuables",
       "img": "Umbronyx_Seed.png"
     },
     "vitrodendra": {
-      "name": "Vitrodendra",
+      "name_en": "Vitrodendra",
       "type": "valuables",
       "img": "Vitrodendra.png"
     },
     "vitrodendra_tuber": {
-      "name": "Vitrodendra Tuber",
+      "name_en": "Vitrodendra Tuber",
       "type": "valuables",
       "img": "Vitrodendra_Tuber.png"
     },
     "aketine_powder": {
-      "name": "Aketine Powder",
+      "name_en": "Aketine Powder",
       "type": "aic_products",
       "img": "Aketine_Powder.png"
     },
     "amethyst_bottle": {
-      "name": "Amethyst Bottle",
+      "name_en": "Amethyst Bottle",
       "type": "aic_products",
       "img": "Amethyst_Bottle.png"
     },
     "amethyst_component": {
-      "name": "Amethyst Component",
+      "name_en": "Amethyst Component",
       "type": "aic_products",
       "img": "Amethyst_Component.png"
     },
     "amethyst_fiber": {
-      "name": "Amethyst Fiber",
+      "name_en": "Amethyst Fiber",
       "type": "aic_products",
       "img": "Amethyst_Fiber.png"
     },
     "amethyst_part": {
-      "name": "Amethyst Part",
+      "name_en": "Amethyst Part",
       "type": "aic_products",
       "img": "Amethyst_Part.png"
     },
     "amethyst_powder": {
-      "name": "Amethyst Powder",
+      "name_en": "Amethyst Powder",
       "type": "aic_products",
       "img": "Amethyst_Powder.png"
     },
     "carbon": {
-      "name": "Carbon",
+      "name_en": "Carbon",
       "type": "aic_products",
       "img": "Carbon.png"
     },
     "carbon_powder": {
-      "name": "Carbon Powder",
+      "name_en": "Carbon Powder",
       "type": "aic_products",
       "img": "Carbon_Powder.png"
     },
     "cryston_bottle": {
-      "name": "Cryston Bottle",
+      "name_en": "Cryston Bottle",
       "type": "aic_products",
       "img": "Cryston_Bottle.png"
     },
     "cryston_component": {
-      "name": "Cryston Component",
+      "name_en": "Cryston Component",
       "type": "aic_products",
       "img": "Cryston_Component.png"
     },
     "cryston_fiber": {
-      "name": "Cryston Fiber",
+      "name_en": "Cryston Fiber",
       "type": "aic_products",
       "img": "Cryston_Fiber.png"
     },
     "cryston_part": {
-      "name": "Cryston Part",
+      "name_en": "Cryston Part",
       "type": "aic_products",
       "img": "Cryston_Part.png"
     },
     "cryston_powder": {
-      "name": "Cryston Powder",
+      "name_en": "Cryston Powder",
       "type": "aic_products",
       "img": "Cryston_Powder.png"
     },
     "cuprium": {
-      "name": "Cuprium",
+      "name_en": "Cuprium",
       "type": "aic_products",
       "img": "Cuprium.png"
     },
     "cuprium_component": {
-      "name": "Cuprium Component",
+      "name_en": "Cuprium Component",
       "type": "aic_products",
       "img": "Cuprium_Component.png"
     },
     "cuprium_jar": {
-      "name": "Cuprium Jar",
+      "name_en": "Cuprium Jar",
       "type": "aic_products",
       "img": "Cuprium_Jar.png"
     },
     "cuprium_part": {
-      "name": "Cuprium Part",
+      "name_en": "Cuprium Part",
       "type": "aic_products",
       "img": "Cuprium_Part.png"
     },
     "cuprium_powder": {
-      "name": "Cuprium Powder",
+      "name_en": "Cuprium Powder",
       "type": "aic_products",
       "img": "Cuprium_Powder.png"
     },
     "dense_carbon_powder": {
-      "name": "Dense Carbon Powder",
+      "name_en": "Dense Carbon Powder",
       "type": "aic_products",
       "img": "Dense_Carbon_Powder.png"
     },
     "dense_ferrium_powder": {
-      "name": "Dense Ferrium Powder",
+      "name_en": "Dense Ferrium Powder",
       "type": "aic_products",
       "img": "Dense_Ferrium_Powder.png"
     },
     "dense_originium_powder": {
-      "name": "Dense Originium Powder",
+      "name_en": "Dense Originium Powder",
       "type": "aic_products",
       "img": "Dense_Originium_Powder.png"
     },
     "dense_origocrust_powder": {
-      "name": "Dense Origocrust Powder",
+      "name_en": "Dense Origocrust Powder",
       "type": "aic_products",
       "img": "Dense_Origocrust_Powder.png"
     },
     "ferrium": {
-      "name": "Ferrium",
+      "name_en": "Ferrium",
       "type": "aic_products",
       "img": "Ferrium.png"
     },
     "ferrium_bottle": {
-      "name": "Ferrium Bottle",
+      "name_en": "Ferrium Bottle",
       "type": "aic_products",
       "img": "Ferrium_Bottle.png"
     },
     "ferrium_component": {
-      "name": "Ferrium Component",
+      "name_en": "Ferrium Component",
       "type": "aic_products",
       "img": "Ferrium_Component.png"
     },
     "ferrium_part": {
-      "name": "Ferrium Part",
+      "name_en": "Ferrium Part",
       "type": "aic_products",
       "img": "Ferrium_Part.png"
     },
     "ferrium_powder": {
-      "name": "Ferrium Powder",
+      "name_en": "Ferrium Powder",
       "type": "aic_products",
       "img": "Ferrium_Powder.png"
     },
     "glowbug_powder": {
-      "name": "Glowbug Powder",
+      "name_en": "Glowbug Powder",
       "type": "aic_products",
       "img": "Glowbug_Powder.png"
     },
     "ground_buckflower_powder": {
-      "name": "Ground Buckflower Powder",
+      "name_en": "Ground Buckflower Powder",
       "type": "aic_products",
       "img": "Ground_Buckflower_Powder.png"
     },
     "ground_citrome_powder": {
-      "name": "Ground Citrome Powder",
+      "name_en": "Ground Citrome Powder",
       "type": "aic_products",
       "img": "Ground_Citrome_Powder.png"
     },
     "hc_battery": {
-      "name": "HC Battery",
+      "name_en": "HC Battery",
       "type": "aic_products",
       "img": "HC_Battery.png"
     },
     "jincao_solution": {
-      "name": "Jincao Solution",
+      "name_en": "Jincao Solution",
       "type": "aic_products",
       "img": "Jincao_Solution.png"
     },
     "lc_battery": {
-      "name": "LC Battery",
+      "name_en": "LC Battery",
       "type": "aic_products",
       "img": "LC_Battery.png"
     },
     "originium_powder": {
-      "name": "Originium Powder",
+      "name_en": "Originium Powder",
       "type": "aic_products",
       "img": "Originium_Powder.png"
     },
     "origocrust": {
-      "name": "Origocrust",
+      "name_en": "Origocrust",
       "type": "aic_products",
       "img": "Origocrust.png"
     },
     "origocrust_powder": {
-      "name": "Origocrust Powder",
+      "name_en": "Origocrust Powder",
       "type": "aic_products",
       "img": "Origocrust_Powder.png"
     },
     "packed_origocrust": {
-      "name": "Packed Origocrust",
+      "name_en": "Packed Origocrust",
       "type": "aic_products",
       "img": "Packed_Origocrust.png"
     },
     "plant_matter": {
-      "name": "Plant Matter",
+      "name_en": "Plant Matter",
       "type": "aic_products",
       "img": "Plant_Matter.png"
     },
     "sandleaf_powder": {
-      "name": "Sandleaf Powder",
+      "name_en": "Sandleaf Powder",
       "type": "aic_products",
       "img": "Sandleaf_Powder.png"
     },
     "sc_battery": {
-      "name": "SC Battery",
+      "name_en": "SC Battery",
       "type": "aic_products",
       "img": "SC_Battery.png"
     },
     "scorchbug_powder": {
-      "name": "Scorchbug Powder",
+      "name_en": "Scorchbug Powder",
       "type": "aic_products",
       "img": "Scorchbug_Powder.png"
     },
     "stabilized_carbon": {
-      "name": "Stabilized Carbon",
+      "name_en": "Stabilized Carbon",
       "type": "aic_products",
       "img": "Stabilized_Carbon.png"
     },
     "steel": {
-      "name": "Steel",
+      "name_en": "Steel",
       "type": "aic_products",
       "img": "Steel.png"
     },
     "steel_bottle": {
-      "name": "Steel Bottle",
+      "name_en": "Steel Bottle",
       "type": "aic_products",
       "img": "Steel_Bottle.png"
     },
     "steel_jar": {
-      "name": "Steel Jar",
+      "name_en": "Steel Jar",
       "type": "aic_products",
       "img": "Steel_Jar.png"
     },
     "steel_part": {
-      "name": "Steel Part",
+      "name_en": "Steel Part",
       "type": "aic_products",
       "img": "Steel_Part.png"
     },
     "yazhen_solution": {
-      "name": "Yazhen Solution",
+      "name_en": "Yazhen Solution",
       "type": "aic_products",
       "img": "Yazhen_Solution.png"
     },
     "arts_tube": {
-      "name": "Arts Tube",
+      "name_en": "Arts Tube",
       "type": "usables",
       "img": "Arts_Tube.png"
     },
     "arts_vial": {
-      "name": "Arts Vial",
+      "name_en": "Arts Vial",
       "type": "usables",
       "img": "Arts_Vial.png"
     },
     "ashpin_remedy": {
-      "name": "Ashpin Remedy",
+      "name_en": "Ashpin Remedy",
       "type": "usables",
       "img": "Ashpin_Remedy.png"
     },
     "bizarro_chili": {
-      "name": "Bizarro Chili",
+      "name_en": "Bizarro Chili",
       "type": "usables",
       "img": "Bizarro_Chili.png"
     },
     "bizarrotack": {
-      "name": "Bizarrotack",
+      "name_en": "Bizarrotack",
       "type": "usables",
       "img": "Bizarrotack.png"
     },
     "blanched_remedy": {
-      "name": "Blanched Remedy",
+      "name_en": "Blanched Remedy",
       "type": "usables",
       "img": "Blanched_Remedy.png"
     },
     "buck_capsule_a": {
-      "name": "Buck Capsule (A)",
+      "name_en": "Buck Capsule (A)",
       "type": "usables",
       "img": "Buck_Capsule_(A).png"
     },
     "buck_capsule_b": {
-      "name": "Buck Capsule (B)",
+      "name_en": "Buck Capsule (B)",
       "type": "usables",
       "img": "Buck_Capsule_(B).png"
     },
     "buck_capsule_c": {
-      "name": "Buck Capsule (C)",
+      "name_en": "Buck Capsule (C)",
       "type": "usables",
       "img": "Buck_Capsule_(C).png"
     },
     "buckflower_powder": {
-      "name": "Buckflower Powder",
+      "name_en": "Buckflower Powder",
       "type": "usables",
       "img": "Buckflower_Powder.png"
     },
     "buckpill_l": {
-      "name": "Buckpill (L)",
+      "name_en": "Buckpill (L)",
       "type": "usables",
       "img": "Buckpill_(L).png"
     },
     "buckpill_rf.": {
-      "name": "Buckpill (Rf.)",
+      "name_en": "Buckpill (Rf.)",
       "type": "usables",
       "img": "Buckpill_(Rf.).png"
     },
     "buckpill_s": {
-      "name": "Buckpill (S)",
+      "name_en": "Buckpill (S)",
       "type": "usables",
       "img": "Buckpill_(S).png"
     },
     "bugtack": {
-      "name": "Bugtack",
+      "name_en": "Bugtack",
       "type": "usables",
       "img": "Bugtack.png"
     },
     "canned_citrome_a": {
-      "name": "Canned Citrome (A)",
+      "name_en": "Canned Citrome (A)",
       "type": "usables",
       "img": "Canned_Citrome_(A).png"
     },
     "canned_citrome_b": {
-      "name": "Canned Citrome (B)",
+      "name_en": "Canned Citrome (B)",
       "type": "usables",
       "img": "Canned_Citrome_(B).png"
     },
     "canned_citrome_c": {
-      "name": "Canned Citrome (C)",
+      "name_en": "Canned Citrome (C)",
       "type": "usables",
       "img": "Canned_Citrome_(C).png"
     },
     "cartilage_tack": {
-      "name": "Cartilage Tack",
+      "name_en": "Cartilage Tack",
       "type": "usables",
       "img": "Cartilage_Tack.png"
     },
     "citrobucky_mix": {
-      "name": "Citrobucky Mix",
+      "name_en": "Citrobucky Mix",
       "type": "usables",
       "img": "Citrobucky_Mix.png"
     },
     "citrome_jam": {
-      "name": "Citrome Jam",
+      "name_en": "Citrome Jam",
       "type": "usables",
       "img": "Citrome_Jam.png"
     },
     "citrome_jelly": {
-      "name": "Citrome Jelly",
+      "name_en": "Citrome Jelly",
       "type": "usables",
       "img": "Citrome_Jelly.png"
     },
     "citrome_powder": {
-      "name": "Citrome Powder",
+      "name_en": "Citrome Powder",
       "type": "usables",
       "img": "Citrome_Powder.png"
     },
     "citrome_pudding": {
-      "name": "Citrome Pudding",
+      "name_en": "Citrome Pudding",
       "type": "usables",
       "img": "Citrome_Pudding.png"
     },
     "citromix": {
-      "name": "Citromix",
+      "name_en": "Citromix",
       "type": "usables",
       "img": "Citromix.png"
     },
     "citromix_l": {
-      "name": "Citromix (L)",
+      "name_en": "Citromix (L)",
       "type": "usables",
       "img": "Citromix_(L).png"
     },
     "citromix_rf.": {
-      "name": "Citromix (Rf.)",
+      "name_en": "Citromix (Rf.)",
       "type": "usables",
       "img": "Citromix_(Rf.).png"
     },
     "citromix_s": {
-      "name": "Citromix (S)",
+      "name_en": "Citromix (S)",
       "type": "usables",
       "img": "Citromix_(S).png"
     },
     "coarse_flatbread": {
-      "name": "Coarse Flatbread",
+      "name_en": "Coarse Flatbread",
       "type": "usables",
       "img": "Coarse_Flatbread.png"
     },
     "corrective_remedy": {
-      "name": "Corrective Remedy",
+      "name_en": "Corrective Remedy",
       "type": "usables",
       "img": "Corrective_Remedy.png"
     },
     "fillet_confit": {
-      "name": "Fillet Confit",
+      "name_en": "Fillet Confit",
       "type": "usables",
       "img": "Fillet_Confit.png"
     },
     "firebuckle_powder": {
-      "name": "Firebuckle Powder",
+      "name_en": "Firebuckle Powder",
       "type": "usables",
       "img": "Firebuckle_Powder.png"
     },
     "firestove_rice": {
-      "name": "Firestove Rice",
+      "name_en": "Firestove Rice",
       "type": "usables",
       "img": "Firestove_Rice.png"
     },
     "firetack": {
-      "name": "Firetack",
+      "name_en": "Firetack",
       "type": "usables",
       "img": "Firetack.png"
     },
     "fluffed_jincao_powder": {
-      "name": "Fluffed Jincao Powder",
+      "name_en": "Fluffed Jincao Powder",
       "type": "usables",
       "img": "Fluffed_Jincao_Powder.png"
     },
     "fortifying_infusion": {
-      "name": "Fortifying Infusion",
+      "name_en": "Fortifying Infusion",
       "type": "usables",
       "img": "Fortifying_Infusion.png"
     },
     "garden_fried_rice": {
-      "name": "Garden Fried Rice",
+      "name_en": "Garden Fried Rice",
       "type": "usables",
       "img": "Garden_Fried_Rice.png"
     },
     "garden_stir_fry": {
-      "name": "Garden Stir-Fry",
+      "name_en": "Garden Stir-Fry",
       "type": "usables",
       "img": "Garden_Stir-Fry.png"
     },
     "ginseng_meat_stew": {
-      "name": "Ginseng Meat Stew",
+      "name_en": "Ginseng Meat Stew",
       "type": "usables",
       "img": "Ginseng_Meat_Stew.png"
     },
     "hot_crunchy_ribs": {
-      "name": "Hot Crunchy Ribs",
+      "name_en": "Hot Crunchy Ribs",
       "type": "usables",
       "img": "Hot_Crunchy_Ribs.png"
     },
     "industrial_explosive": {
-      "name": "Industrial Explosive",
+      "name_en": "Industrial Explosive",
       "type": "usables",
       "img": "Industrial_Explosive.png"
     },
     "jincao_drink": {
-      "name": "Jincao Drink",
+      "name_en": "Jincao Drink",
       "type": "usables",
       "img": "Jincao_Drink.png"
     },
     "jincao_infusion": {
-      "name": "Jincao Infusion",
+      "name_en": "Jincao Infusion",
       "type": "usables",
       "img": "Jincao_Infusion.png"
     },
     "jincao_powder": {
-      "name": "Jincao Powder",
+      "name_en": "Jincao Powder",
       "type": "usables",
       "img": "Jincao_Powder.png"
     },
     "jincao_tea": {
-      "name": "Jincao Tea",
+      "name_en": "Jincao Tea",
       "type": "usables",
       "img": "Jincao_Tea.png"
     },
     "jincao_tisane": {
-      "name": "Jincao Tisane",
+      "name_en": "Jincao Tisane",
       "type": "usables",
       "img": "Jincao_Tisane.png"
     },
     "kunst_tube": {
-      "name": "Kunst Tube",
+      "name_en": "Kunst Tube",
       "type": "usables",
       "img": "Kunst_Tube.png"
     },
     "kunst_vial": {
-      "name": "Kunst Vial",
+      "name_en": "Kunst Vial",
       "type": "usables",
       "img": "Kunst_Vial.png"
     },
     "meat_stir_fry": {
-      "name": "Meat Stir-Fry",
+      "name_en": "Meat Stir-Fry",
       "type": "usables",
       "img": "Meat_Stir-Fry.png"
     },
     "mossfield_pie": {
-      "name": "Mossfield Pie",
+      "name_en": "Mossfield Pie",
       "type": "usables",
       "img": "Mossfield_Pie.png"
     },
     "perplexing_medication": {
-      "name": "Perplexing Medication",
+      "name_en": "Perplexing Medication",
       "type": "usables",
       "img": "Perplexing_Medication.png"
     },
     "preserve_stew": {
-      "name": "Preserve Stew",
+      "name_en": "Preserve Stew",
       "type": "usables",
       "img": "Preserve_Stew.png"
     },
     "savory_fillet": {
-      "name": "Savory Fillet",
+      "name_en": "Savory Fillet",
       "type": "usables",
       "img": "Savory_Fillet.png"
     },
     "savory_tangbao": {
-      "name": "Savory Tangbao",
+      "name_en": "Savory Tangbao",
       "type": "usables",
       "img": "Savory_Tangbao.png"
     },
     "savory_tangmian": {
-      "name": "Savory Tangmian",
+      "name_en": "Savory Tangmian",
       "type": "usables",
       "img": "Savory_Tangmian.png"
     },
     "sensory_remedy": {
-      "name": "Sensory Remedy",
+      "name_en": "Sensory Remedy",
       "type": "usables",
       "img": "Sensory_Remedy.png"
     },
     "smoked_riceball": {
-      "name": "Smoked Riceball",
+      "name_en": "Smoked Riceball",
       "type": "usables",
       "img": "Smoked_Riceball.png"
     },
     "tartpepper_pickle": {
-      "name": "Tartpepper Pickle",
+      "name_en": "Tartpepper Pickle",
       "type": "usables",
       "img": "Tartpepper_Pickle.png"
     },
     "tartpepper_salad": {
-      "name": "Tartpepper Salad",
+      "name_en": "Tartpepper Salad",
       "type": "usables",
       "img": "Tartpepper_Salad.png"
     },
     "thorny_yazhen_powder": {
-      "name": "Thorny Yazhen Powder",
+      "name_en": "Thorny Yazhen Powder",
       "type": "usables",
       "img": "Thorny_Yazhen_Powder.png"
     },
     "valley_graybread": {
-      "name": "Valley Graybread",
+      "name_en": "Valley Graybread",
       "type": "usables",
       "img": "Valley_Graybread.png"
     },
     "wuling_fried_rice": {
-      "name": "Wuling Fried Rice",
+      "name_en": "Wuling Fried Rice",
       "type": "usables",
       "img": "Wuling_Fried_Rice.png"
     },
     "yazhen_powder": {
-      "name": "Yazhen Powder",
+      "name_en": "Yazhen Powder",
       "type": "usables",
       "img": "Yazhen_Powder.png"
     },
     "yazhen_spray_l": {
-      "name": "Yazhen Spray (L)",
+      "name_en": "Yazhen Spray (L)",
       "type": "usables",
       "img": "Yazhen_Spray_(L).png"
     },
     "yazhen_spray_s": {
-      "name": "Yazhen Spray (S)",
+      "name_en": "Yazhen Spray (S)",
       "type": "usables",
       "img": "Yazhen_Spray_(S).png"
     },
     "yazhen_syringe_a": {
-      "name": "Yazhen Syringe (A)",
+      "name_en": "Yazhen Syringe (A)",
       "type": "usables",
       "img": "Yazhen_Syringe_(A).png"
     },
     "yazhen_syringe_c": {
-      "name": "Yazhen Syringe (C)",
+      "name_en": "Yazhen Syringe (C)",
       "type": "usables",
       "img": "Yazhen_Syringe_(C).png"
     },
     "aerospace_material_i": {
-      "name": "Aerospace Material I",
+      "name_en": "Aerospace Material I",
       "type": "functionals",
       "img": "Aerospace_Material_I.png"
     },
     "aerospace_material_ii": {
-      "name": "Aerospace Material II",
+      "name_en": "Aerospace Material II",
       "type": "functionals",
       "img": "Aerospace_Material_II.png"
     },
     "algorithm_expansion_chip": {
-      "name": "Algorithm Expansion Chip",
+      "name_en": "Algorithm Expansion Chip",
       "type": "functionals",
       "img": "Algorithm_Expansion_Chip.png"
     },
     "basic_aic_index": {
-      "name": "Basic AIC Index",
+      "name_en": "Basic AIC Index",
       "type": "functionals",
       "img": "Basic_AIC_Index.png"
     },
     "basic_expansion_core": {
-      "name": "Basic Expansion Core",
+      "name_en": "Basic Expansion Core",
       "type": "functionals",
       "img": "Basic_Expansion_Core.png"
     },
     "jinlong_aic_index": {
-      "name": "Jinlong AIC Index",
+      "name_en": "Jinlong AIC Index",
       "type": "functionals",
       "img": "Jinlong_AIC_Index.png"
     },
     "jinlong_convention_certificate": {
-      "name": "Jinlong Convention Certificate",
+      "name_en": "Jinlong Convention Certificate",
       "type": "functionals",
       "img": "Jinlong_Convention_Certificate.png"
     },
     "jinlong_expansion_core": {
-      "name": "Jinlong Expansion Core",
+      "name_en": "Jinlong Expansion Core",
       "type": "functionals",
       "img": "Jinlong_Expansion_Core.png"
     },
     "valley_convention_certificate": {
-      "name": "Valley Convention Certificate",
+      "name_en": "Valley Convention Certificate",
       "type": "functionals",
       "img": "Valley_Convention_Certificate.png"
     }

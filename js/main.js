@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
     const app = {
         // --- DOM ELEMENT REFERENCES ---
         itemSelectorBtn: document.getElementById('item-selector-btn'),
@@ -22,7 +22,8 @@ document.addEventListener('DOMContentLoaded', () => {
         loadingMessage: document.getElementById('loading-message'),
         noRecipeMessage: document.getElementById('no-recipe-message'),
         totalPowerEl: document.getElementById('total-power'),
-        
+        languageSelect: document.getElementById('language-select'),
+
         // --- GLOBAL STATE VARIABLES ---
         itemsData: {},
         buildingsData: {},
@@ -43,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
         lastTouchDistance: 0,
 
         // --- HELPERS ---
-        closeAllDropdowns: function() {
+        closeAllDropdowns: function () {
             document.querySelectorAll('.recipe-dropdown.is-active').forEach(dropdown => {
                 dropdown.remove();
             });
@@ -57,10 +58,19 @@ document.addEventListener('DOMContentLoaded', () => {
      * Initialize the application by loading data and setting up event listeners
      */
     async function initializeApp() {
+        // Initialize localization first
+        await window.localization.init();
+
+        // Update UI with localized strings
+        updateUIWithLocalization();
+
+        // Setup language selector
+        await setupLanguageSelector();
+
         // Disable controls during data load
         app.itemSelectorBtn.disabled = true;
         app.calculateBtn.disabled = true;
-        app.selectedItemName.textContent = 'Loading data...';
+        app.selectedItemName.textContent = window.localization.t('app.loading');
 
         try {
             // Load both data files in parallel
@@ -84,11 +94,11 @@ document.addEventListener('DOMContentLoaded', () => {
             // Re-enable controls after successful load
             app.itemSelectorBtn.disabled = false;
             app.calculateBtn.disabled = false;
-            app.selectedItemName.textContent = 'Choose a recipe...';
+            app.selectedItemName.textContent = window.localization.t('app.choose_recipe');
 
         } catch (error) {
             console.error("Initialization failed:", error);
-            app.selectedItemName.textContent = 'Error: Could not load data';
+            app.selectedItemName.textContent = window.localization.t('app.error');
             app.itemSelectorBtn.disabled = true; // Keep button disabled on error
         }
     }
@@ -129,7 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 updateTotalPower();
             }
         });
-        
+
         app.showPower.addEventListener('change', () => {
             if (app.productionGraph) {
                 app.productionGraph.updatePowerDisplay();
@@ -196,6 +206,48 @@ document.addEventListener('DOMContentLoaded', () => {
         mobileRecipeModal.addEventListener('click', (e) => {
             if (e.target === mobileRecipeModal) {
                 hideMobileRecipeSelector();
+            }
+        });
+
+        // Language change event listener
+        window.addEventListener('languageChanged', () => {
+            updateUIWithLocalization();
+            
+            // Update the selected item name with the new language
+            if (app.currentTargetItem) {
+                app.selectedItemName.textContent = window.localization.getItemName(app.currentTargetItem);
+            } else {
+                app.selectedItemName.textContent = window.localization.t('app.choose_recipe');
+            }
+            
+            // Close any open recipe dropdowns
+            document.querySelectorAll('.recipe-dropdown.is-active').forEach(dropdown => {
+                dropdown.remove();
+            });
+            
+            // Update recipe selector modal if it's open
+            const recipeModal = document.getElementById('recipe-selector-modal');
+            if (recipeModal && recipeModal.classList.contains('is-active')) {
+                renderRecipeCategories();
+            }
+            
+            // Update mobile recipe selector modal if it's open
+            const mobileRecipeModal = document.getElementById('recipe-selector-modal-mobile');
+            if (mobileRecipeModal && mobileRecipeModal.classList.contains('is-active')) {
+                // Get the current node ID from the modal
+                const currentNodeId = mobileRecipeModal.dataset.nodeId;
+                if (currentNodeId) {
+                    showMobileRecipeSelector(currentNodeId);
+                }
+            }
+            
+            // Re-render the graph if it exists
+            if (app.productionGraph) {
+                app.productionGraph.stopSimulation();
+                resetGraph();
+                app.productionGraph = new ProductionGraph(app.graphSvg, app.nodesContainer, app.allNeedsMap);
+                renderGraph();
+                updateTotalPower();
             }
         });
     }

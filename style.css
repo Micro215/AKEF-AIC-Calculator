@@ -1,4 +1,38 @@
 /* ==============================================
+   Language Selector
+   ============================================== */
+   .language-selector {
+    position: relative;
+    margin-right: 0.5rem;
+}
+
+.language-select {
+    background-color: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    color: var(--text-primary);
+    font-size: 0.875rem;
+    padding: 0.5rem;
+    cursor: pointer;
+    transition: all var(--transition-speed);
+    min-width: 80px;
+}
+
+.language-select:hover {
+    background-color: var(--border-color);
+}
+
+.language-select:focus {
+    outline: none;
+    border-color: var(--accent-blue);
+}
+
+.language-select option {
+    background-color: var(--bg-tertiary);
+    color: var(--text-primary);
+}
+
+/* ==============================================
    CSS Custom Properties (Variables)
    ============================================== */
 :root {
@@ -77,6 +111,7 @@ body {
 .header-controls {
     display: flex;
     gap: 0.5rem;
+    align-items: center;
 }
 
 /* Main Content Area */
@@ -295,6 +330,7 @@ body {
     background-color: var(--accent-orange);
     color: white;
     border-color: var(--accent-orange);
+    font-weight: 1000;
 }
 
 .btn-danger:hover {

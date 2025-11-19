@@ -9,7 +9,7 @@ function showDeleteConfirmation(itemId) {
 
     const item = app.itemsData.items[itemId];
     if (item) {
-        deleteItemName.textContent = item.name;
+        deleteItemName.textContent = window.localization.getItemName(item);
         app.nodePendingDeletion = itemId;
         deleteModal.classList.add('is-active');
     }
@@ -112,7 +112,7 @@ function deleteNodeAndDependents(nodeId) {
     // If deleted node was the target, reset target
     if (app.currentTargetItem && app.currentTargetItem.id === nodeId) {
         app.currentTargetItem = null;
-        app.selectedItemName.textContent = 'Choose a recipe...';
+        app.selectedItemName.textContent = window.localization.t('app.choose_recipe');
     }
 
     // Recreate graph if there are still nodes

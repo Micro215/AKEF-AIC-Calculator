@@ -7,12 +7,12 @@ function calculateProduction(preservePositions = false) {
     
     // Validate inputs
     if (!app.currentTargetItem) {
-        alert('Please select an item to produce.');
+        alert(window.localization.t('app.select_item_alert'));
         return;
     }
     const targetRate = parseFloat(app.amountInput.value);
     if (isNaN(targetRate) || targetRate <= 0) {
-        alert('Please enter a valid production rate.');
+        alert(window.localization.t('app.valid_rate_alert'));
         return;
     }
 
@@ -217,7 +217,7 @@ function resetGraph() {
 function resetApp() {
     const app = window.productionApp;
     app.currentTargetItem = null;
-    app.selectedItemName.textContent = 'Choose a recipe...';
+    app.selectedItemName.textContent = window.localization.t('app.choose_recipe');
     app.allNeedsMap.clear();
     app.selectedRecipesMap.clear();
     app.nodePositions.clear();

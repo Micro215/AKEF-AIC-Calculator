@@ -1,7 +1,7 @@
 {
     "buildings": {
         "portable_originium_rig": {
-            "name": "Portable Originium Rig",
+            "name_en": "Portable Originium Rig",
             "type": "resourcing_facilities",
             "img": "Portable_Originium_Rig.png",
             "tier": 1,
@@ -27,7 +27,7 @@
             }
         },
         "electric_mining_rig": {
-            "name": "Electric Mining Rig",
+            "name_en": "Electric Mining Rig",
             "type": "resourcing_facilities",
             "img": "Electric_Mining_Rig.png",
             "tier": 2,
@@ -64,7 +64,7 @@
             }
         },
         "electric_mining_rig_mk_ii": {
-            "name": "Electric Mining Rig Mk II",
+            "name_en": "Electric Mining Rig Mk II",
             "type": "resourcing_facilities",
             "img": "Electric_Mining_Rig_Mk_II.png",
             "tier": 3,
@@ -112,7 +112,7 @@
             }
         },
         "hydro_mining_rig": {
-            "name": "Hydro Mining Rig",
+            "name_en": "Hydro Mining Rig",
             "type": "resourcing_facilities",
             "img": "Hydro_Mining_Rig.png",
             "tier": 3,
@@ -191,7 +191,7 @@
             }
         },
         "fluid_pump": {
-            "name": "Fluid Pump",
+            "name_en": "Fluid Pump",
             "type": "resourcing_facilities",
             "img": "Fluid_Pump.png",
             "tier": 2,
@@ -250,7 +250,7 @@
             }
         },
         "refining_unit": {
-            "name": "Refining Unit",
+            "name_en": "Refining Unit",
             "type": "Processing",
             "img": "Refining_Unit.png",
             "tier": 1,
@@ -718,7 +718,7 @@
             }
         },
         "shreading_unit": {
-            "name": "Shredding Unit",
+            "name_en": "Shredding Unit",
             "type": "Processing",
             "img": "Shredding_Unit.png",
             "tier": 1,
@@ -909,7 +909,7 @@
             }
         },
         "fitting_unit": {
-            "name": "Fitting Unit",
+            "name_en": "Fitting Unit",
             "type": "Processing",
             "img": "Fitting_Unit.png",
             "tier": 2,
@@ -1004,7 +1004,7 @@
             }
         },
         "moulding_unit": {
-            "name": "Moulding Unit",
+            "name_en": "Moulding Unit",
             "type": "Processing",
             "img": "Moulding_Unit.png",
             "tier": 2,
@@ -1136,7 +1136,7 @@
             }
         },
         "planting_unit": {
-            "name": "Planting Unit",
+            "name_en": "Planting Unit",
             "type": "Processing",
             "img": "Planting_Unit.png",
             "tier": 3,
@@ -1260,7 +1260,7 @@
             }
         },
         "seed_picking_unit": {
-            "name": "Seed-Picking Unit",
+            "name_en": "Seed-Picking Unit",
             "type": "Processing",
             "img": "Seed-Picking_Unit.png",
             "tier": 3,
@@ -1435,7 +1435,7 @@
             }
         },
         "water_treatment_unit": {
-            "name": "Water Treatment Unit",
+            "name_en": "Water Treatment Unit",
             "type": "Processing",
             "img": "Water_Treatment_Unit.png",
             "tier": 3,
@@ -1461,7 +1461,7 @@
             }
         },
         "gearing_unit": {
-            "name": "Gearing Unit",
+            "name_en": "Gearing Unit",
             "type": "Assembly",
             "img": "Gearing_Unit.png",
             "tier": 1,
@@ -1556,7 +1556,7 @@
             }
         },
         "filling_unit": {
-            "name": "Filling Unit",
+            "name_en": "Filling Unit",
             "type": "Assembly",
             "img": "Filling_Unit.png",
             "tier": 3,
@@ -1816,7 +1816,7 @@
             }
         },
         "packaging_unit": {
-            "name": "Packaging Unit",
+            "name_en": "Packaging Unit",
             "type": "Assembly",
             "img": "Packaging_Unit.png",
             "tier": 3,
@@ -1911,7 +1911,7 @@
             }
         },
         "grinding_unit": {
-            "name": "Grinding Unit",
+            "name_en": "Grinding Unit",
             "type": "Assembly",
             "img": "Grinding_Unit.png",
             "tier": 4,
@@ -2066,7 +2066,7 @@
             }
         },
         "reactor_crucible": {
-            "name": "Reactor Crucible",
+            "name_en": "Reactor Crucible",
             "type": "Assembly",
             "img": "Reactor_Crucible.png",
             "tier": 3,
