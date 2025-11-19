@@ -45,6 +45,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Node deletion state
     let nodePendingDeletion = null;
 
+    // Node positions preservation state
+    let nodePositions = new Map();
+
     // --- INITIALIZATION ---
     /**
      * Initialize the application by loading data and setting up event listeners
@@ -138,8 +141,22 @@ document.addEventListener('DOMContentLoaded', () => {
         modalClose.addEventListener('click', () => helpModal.classList.remove('is-active'));
 
         // Display options
-        showRawMaterials.addEventListener('change', () => { if (productionGraph) renderGraph(); });
-        showPower.addEventListener('change', () => { if (productionGraph) renderGraph(); });
+        showRawMaterials.addEventListener('change', () => {
+            if (productionGraph) {
+                productionGraph.stopSimulation();
+                resetGraph();
+                productionGraph = new ProductionGraph(graphSvg, nodesContainer, allNeedsMap);
+                renderGraph();
+                updateTotalPower();
+            }
+        });
+        
+        showPower.addEventListener('change', () => {
+            if (productionGraph) {
+                productionGraph.updatePowerDisplay();
+                updateTotalPower();
+            }
+        });
 
         // Graph interaction
         graphContainer.addEventListener('mousedown', handleCanvasMouseDown);
@@ -299,8 +316,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- PRODUCTION LOGIC ---
     /**
      * Calculate production based on selected item and target rate
+     * @param {boolean} preservePositions - Whether to preserve node positions
      */
-    function calculateProduction() {
+    function calculateProduction(preservePositions = false) {
         // Validate inputs
         if (!currentTargetItem) {
             alert('Please select an item to produce.');
@@ -310,6 +328,11 @@ document.addEventListener('DOMContentLoaded', () => {
         if (isNaN(targetRate) || targetRate <= 0) {
             alert('Please enter a valid production rate.');
             return;
+        }
+
+        // Save current node positions if requested
+        if (preservePositions && productionGraph) {
+            saveNodePositions();
         }
 
         // Show loading state
@@ -337,10 +360,46 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Create and render the production graph
             productionGraph = new ProductionGraph(graphSvg, nodesContainer, allNeedsMap);
+            
+            // Restore positions if requested and available
+            if (preservePositions && nodePositions.size > 0) {
+                restoreNodePositions();
+            }
+            
             renderGraph();
             updateTotalPower();
             showLoading(false);
         }, 100);
+    }
+
+    /**
+     * Save current positions of all nodes
+     */
+    function saveNodePositions() {
+        if (!productionGraph || !productionGraph.nodes) return;
+        
+        nodePositions.clear();
+        productionGraph.nodes.forEach((node, itemId) => {
+            nodePositions.set(itemId, {
+                x: node.x,
+                y: node.y
+            });
+        });
+    }
+
+    /**
+     * Restore saved positions to nodes
+     */
+    function restoreNodePositions() {
+        if (!productionGraph || !productionGraph.nodes || nodePositions.size === 0) return;
+        
+        productionGraph.nodes.forEach((node, itemId) => {
+            const savedPosition = nodePositions.get(itemId);
+            if (savedPosition) {
+                node.x = savedPosition.x;
+                node.y = savedPosition.y;
+            }
+        });
     }
 
     /**
@@ -421,7 +480,6 @@ document.addEventListener('DOMContentLoaded', () => {
     function renderGraph() {
         if (!productionGraph) return;
         productionGraph.applyLayout('hierarchical');
-        productionGraph.render();
     }
 
     /**
@@ -429,9 +487,11 @@ document.addEventListener('DOMContentLoaded', () => {
      */
     function updateTotalPower() {
         if (!allNeedsMap || allNeedsMap.size === 0) return;
-
+    
         let totalPower = 0;
         allNeedsMap.forEach(itemData => {
+            if (itemData.isRaw && !showRawMaterials.checked) return;
+            
             if (itemData.machineCount > 0) {
                 const recipe = itemData.allRecipes[itemData.selectedRecipeIndex];
                 if (recipe) {
@@ -459,6 +519,8 @@ document.addEventListener('DOMContentLoaded', () => {
             this.container = container;
             this.nodes = new Map();
             this.edges = [];
+            this.animationFrameId = null;
+            this.isSimulating = false;
 
             // Filter nodes based on display options
             const filteredData = Array.from(allNeedsMap.values()).filter(itemData => {
@@ -494,7 +556,18 @@ document.addEventListener('DOMContentLoaded', () => {
          * @param {string} type - Type of layout to apply
          */
         applyLayout(type) {
-            // Group nodes by level
+            // Check if nodes already have positions (preserved from previous graph)
+            const hasPreservedPositions = Array.from(this.nodes.values()).some(node => 
+                node.x !== 0 || node.y !== 0
+            );
+
+            // If nodes already have positions, don't reposition them
+            if (hasPreservedPositions) {
+                this.startSimulation();
+                return;
+            }
+
+            // Group nodes by level for initial positioning
             const levels = new Map();
             this.nodes.forEach(node => {
                 const level = node.data.level;
@@ -505,9 +578,9 @@ document.addEventListener('DOMContentLoaded', () => {
             // Sort levels
             const sortedLevels = Array.from(levels.keys()).sort((a, b) => a - b);
             const nodeWidth = 240;
-            const levelHeight = 150;
+            const levelHeight = 200; // More space to prevent initial overlap
 
-            // Position nodes
+            // Position nodes level by level
             sortedLevels.forEach((level, index) => {
                 const nodes = levels.get(level);
                 const totalWidth = nodes.length * nodeWidth;
@@ -516,10 +589,98 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (startX < 10) startX = 10;
 
                 nodes.forEach(node => {
-                    node.x = startX;
+                    node.x = startX + Math.random() * 50 - 25; // Add some randomness
                     node.y = index * levelHeight + 100;
+                    // Initialize velocity for the simulation
+                    node.vx = 0;
+                    node.vy = 0;
                     startX += nodeWidth;
                 });
+            });
+
+            // Start the continuous simulation
+            this.startSimulation();
+        }
+        
+        /**
+         * Start the force simulation loop
+         */
+        startSimulation() {
+            if (this.isSimulating) return;
+            this.isSimulating = true;
+            this.simulate();
+        }
+
+        /**
+         * Stop the force simulation loop
+         */
+        stopSimulation() {
+            this.isSimulating = false;
+            if (this.animationFrameId) {
+                cancelAnimationFrame(this.animationFrameId);
+            }
+        }
+
+        /**
+         * The main simulation loop with corrected physics
+         */
+        simulate() {
+            if (!this.isSimulating) return;
+
+            const nodes = Array.from(this.nodes.values());
+            const repulsionStrength = 800;
+            const damping = 0.9;
+            const maxVelocity = 5;
+
+            nodes.forEach(node => {
+                if (node.isPinned) return; // Skip if node is being dragged
+
+                let fx = 0, fy = 0;
+
+                // Repulsion from all other nodes
+                nodes.forEach(otherNode => {
+                    if (node === otherNode) return;
+                    const dx = node.x - otherNode.x;
+                    const dy = node.y - otherNode.y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    
+                    // Only apply force if nodes are close
+                    if (distance < 250 && distance > 0) { 
+                        const force = repulsionStrength / distance; 
+                        fx += (dx / distance) * force;
+                        fy += (dy / distance) * force;
+                    }
+                });
+
+                // Update velocity
+                node.vx = (node.vx + fx) * damping;
+                node.vy = (node.vy + fy) * damping;
+
+                const velocity = Math.sqrt(node.vx * node.vx + node.vy * node.vy);
+                if (velocity > maxVelocity) {
+                    const scale = maxVelocity / velocity;
+                    node.vx *= scale;
+                    node.vy *= scale;
+                }
+
+                // Update position
+                node.x += node.vx;
+                node.y += node.vy;
+            });
+
+            // Render and continue the loop
+            this.render();
+            if (this.isSimulating) {
+                this.animationFrameId = requestAnimationFrame(() => this.simulate());
+            }
+        }
+
+        /**
+         * Update power display in nodes
+         */
+        updatePowerDisplay() {
+            this.nodes.forEach(node => {
+                node.updatePowerDisplay();
             });
         }
 
@@ -670,6 +831,9 @@ document.addEventListener('DOMContentLoaded', () => {
             this.element = null;
             this.x = 0;
             this.y = 0;
+            this.vx = 0; // Velocity X
+            this.vy = 0; // Velocity Y
+            this.isPinned = false; // Is the node being dragged?
             this.create();
         }
 
@@ -739,7 +903,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         <div class="node-title">${itemInfo.name}</div>
                         ${formattedType ? `<div class="node-type">${formattedType}</div>` : ''}
                     </div>
-                    <button class="node-delete-btn" data-node-id="${this.data.itemId}" title="Удалить узел и все зависимые">
+                    <button class="node-delete-btn" data-node-id="${this.data.itemId}" title="Delete node and all dependencies">
                         <i class="fas fa-times"></i>
                     </button>
                 </div>
@@ -770,6 +934,35 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         /**
+         * Update power display in the node
+         */
+        updatePowerDisplay() {
+            if (!this.element) return;
+            
+            const machineInfo = this.element.querySelector('.machine-info');
+            if (!machineInfo) return;
+            
+            // Check if power display already exists
+            const powerDisplay = machineInfo.querySelector('.machine-power');
+            
+            if (showPower.checked && !powerDisplay) {
+                // Add power display if it doesn't exist
+                const hasRecipe = this.data.allRecipes && this.data.allRecipes.length > 0;
+                if (hasRecipe) {
+                    const recipe = this.data.allRecipes[this.data.selectedRecipeIndex];
+                    const building = buildingsData.buildings[recipe.buildingId];
+                    const powerElement = document.createElement('div');
+                    powerElement.className = 'machine-power';
+                    powerElement.innerHTML = `<i class="fas fa-bolt"></i> ${(Math.ceil(this.data.machineCount) * building.power).toFixed(0)}`;
+                    machineInfo.appendChild(powerElement);
+                }
+            } else if (!showPower.checked && powerDisplay) {
+                // Remove power display if it exists
+                powerDisplay.remove();
+            }
+        }
+
+        /**
          * Set up node interactions
          */
         setupInteractions() {
@@ -782,17 +975,26 @@ document.addEventListener('DOMContentLoaded', () => {
                 dragStart.nodeX = this.x;
                 dragStart.nodeY = this.y;
                 this.element.classList.add('is-dragging');
+                this.isPinned = true; // Pin the node so it's not affected by forces
             });
-
+        
             // Recipe selector
             const selector = this.element.querySelector('.recipe-selector');
             if (selector) {
                 selector.addEventListener('click', (e) => {
                     e.stopPropagation();
+
+                    const activeDropdown = document.querySelector('.recipe-dropdown.is-active');
+
+                    if (activeDropdown && activeDropdown.dataset.nodeId === this.data.itemId) {
+                        activeDropdown.remove();
+                        return;
+                    }
+
                     this.showRecipeDropdown(e);
                 });
             }
-
+        
             // Delete button
             const deleteBtn = this.element.querySelector('.node-delete-btn');
             if (deleteBtn) {
@@ -815,6 +1017,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const dropdown = document.createElement('div');
             dropdown.className = 'recipe-dropdown';
 
+            dropdown.dataset.nodeId = this.data.itemId;
+
             // Add recipe options
             this.data.allRecipes.forEach((recipe, index) => {
                 const option = document.createElement('div');
@@ -836,7 +1040,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Add click event to select recipe
                 option.addEventListener('click', () => {
                     selectedRecipesMap.set(this.data.itemId, index);
-                    calculateProduction();
+                    // Calculate production with position preservation
+                    calculateProduction(true);
                 });
                 dropdown.appendChild(option);
             });
@@ -993,6 +1198,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Remove nodes from the needs map
         nodesToDelete.forEach(idToDelete => {
             allNeedsMap.delete(idToDelete);
+            nodePositions.delete(idToDelete); // Also remove from saved positions
         });
 
         // If deleted node was the target, reset target
@@ -1009,6 +1215,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             productionGraph = null;
             totalPowerEl.textContent = '0';
+            nodePositions.clear(); // Clear saved positions if graph is empty
         }
     }
 
@@ -1017,6 +1224,9 @@ document.addEventListener('DOMContentLoaded', () => {
      * Reset the graph
      */
     function resetGraph() {
+        if (productionGraph) {
+            productionGraph.stopSimulation();
+        }
         graphSvg.innerHTML = '';
         while (nodesContainer.firstChild) {
             nodesContainer.removeChild(nodesContainer.firstChild);
@@ -1056,6 +1266,10 @@ document.addEventListener('DOMContentLoaded', () => {
             isDraggingNode.x = dragStart.nodeX + deltaX;
             isDraggingNode.y = dragStart.nodeY + deltaY;
 
+            // Give the node velocity based on drag speed for a natural interaction
+            isDraggingNode.vx = 0;
+            isDraggingNode.vy = 0;
+
             isDraggingNode.render();
             if (productionGraph) productionGraph.render();
         }
@@ -1074,6 +1288,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Stop dragging node
         if (isDraggingNode) {
             isDraggingNode.element.classList.remove('is-dragging');
+            isDraggingNode.isPinned = false; // Unpin the node so it's affected by forces again
             isDraggingNode = null;
         }
         // Stop panning canvas
@@ -1170,16 +1385,11 @@ document.addEventListener('DOMContentLoaded', () => {
         selectedItemName.textContent = 'Choose a recipe...';
         allNeedsMap.clear();
         selectedRecipesMap.clear();
+        nodePositions.clear();
         canvasTransform = { x: 0, y: 0, scale: 1 };
 
         // Clear graph
-        graphSvg.innerHTML = '';
-        while (nodesContainer.firstChild) {
-            nodesContainer.removeChild(nodesContainer.firstChild);
-        }
-
-        productionGraph = null;
-        totalPowerEl.textContent = '0';
+        resetGraph();
         noRecipeMessage.style.display = 'none';
     }
 

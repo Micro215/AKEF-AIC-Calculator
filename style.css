@@ -723,13 +723,17 @@ input[type="checkbox"]:checked+.checkmark::after {
 .recipe-option-header {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.1rem;
     font-weight: 500;
 }
 
+.recipe-option-header span {
+    font-size: 0.8rem;
+}
+
 .recipe-option-header img {
-    width: 24px;
-    height: 24px;
+    width: 20px;
+    height: 20px;
     border-radius: 3px;
 }
 
@@ -738,14 +742,14 @@ input[type="checkbox"]:checked+.checkmark::after {
     align-items: center;
     gap: 0.5rem;
     font-size: 0.8rem;
-    flex-wrap: wrap;
+    /* flex-wrap: wrap; */
 }
 
 .recipe-component {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.25rem;
+    gap: 0.5rem;
 }
 
 .component-category {
@@ -758,8 +762,8 @@ input[type="checkbox"]:checked+.checkmark::after {
 }
 
 .recipe-option-content img {
-    width: 20px;
-    height: 20px;
+    width: 24px;
+    height: 24px;
     border-radius: 3px;
 }
 
