@@ -129,16 +129,16 @@ class LocalizationManager {
     async setLanguage(language) {
         if (language === this.currentLanguage) return;
 
-        const baseUrl = window.location.origin;
+        const projectBaseUrl = '/AKEF-AIC-Calculator/';
         const defaultLanguage = 'en';
-
+    
         let newUrl;
         if (language === defaultLanguage) {
-            newUrl = `${baseUrl}/`;
+            newUrl = projectBaseUrl;
         } else {
-            newUrl = `${baseUrl}/${language}/`;
+            newUrl = `${projectBaseUrl}${language}/`;
         }
-
+    
         window.location.href = newUrl;
     }
 
