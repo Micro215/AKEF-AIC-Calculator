@@ -35,12 +35,12 @@ class LocalizationManager {
      */
     async loadTranslations() {
         try {
-            const response = await fetch(`/db/translations/${this.currentLanguage}.json`);
+            const response = await fetch(`db/translations/${this.currentLanguage}.json`);
             if (response.ok) {
                 this.translations = await response.json();
             } else {
                 console.warn(`Translation file for ${this.currentLanguage} not found, using English`);
-                const fallbackResponse = await fetch('/db/translations/en.json');
+                const fallbackResponse = await fetch('db/translations/en.json');
                 if (fallbackResponse.ok) {
                     this.translations = await fallbackResponse.json();
                 }
@@ -148,7 +148,7 @@ class LocalizationManager {
      */
     async getAvailableLanguages() {
         try {
-            const response = await fetch('/db/languages.json');
+            const response = await fetch('db/languages.json');
             if (response.ok) {
                 return await response.json();
             }
