@@ -35,12 +35,12 @@ class LocalizationManager {
      */
     async loadTranslations() {
         try {
-            const response = await fetch(`${window.productionApp.projectBaseUrl}db/translations/${this.currentLanguage}.json`);
+            const response = await fetch(`./db/translations/${this.currentLanguage}.json`);
             if (response.ok) {
                 this.translations = await response.json();
             } else {
                 console.warn(`Translation file for ${this.currentLanguage} not found, using English`);
-                const fallbackResponse = await fetch(`${window.productionApp.projectBaseUrl}db/translations/en.json`);
+                const fallbackResponse = await fetch(`./db/translations/en.json`);
                 if (fallbackResponse.ok) {
                     this.translations = await fallbackResponse.json();
                 }
@@ -129,14 +129,17 @@ class LocalizationManager {
     async setLanguage(language) {
         if (language === this.currentLanguage) return;
 
-        const projectBaseUrl = '/AKEF-AIC-Calculator/';
+        const projectBaseUrl = window.productionApp.projectBaseUrl;
         const defaultLanguage = 'en';
     
         let newUrl;
         if (language === defaultLanguage) {
-            newUrl = projectBaseUrl;
+            newUrl = projectBaseUrl.replace(/\/[a-z]{2}\/$/, '/');
         } else {
-            newUrl = `${projectBaseUrl}${language}/`;
+            newUrl = projectBaseUrl.replace(/\/[a-z]{2}\/$/, `/${language}/`);
+            if (!projectBaseUrl.match(/\/[a-z]{2}\/$/)) {
+                newUrl = `${projectBaseUrl}${language}/`;
+            }
         }
     
         window.location.href = newUrl;

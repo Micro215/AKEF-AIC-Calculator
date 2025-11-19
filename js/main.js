@@ -1,7 +1,11 @@
 document.addEventListener('DOMContentLoaded', async () => {
+    const pathSegments = window.location.pathname.split('/').filter(segment => segment);
+    const isSubdirectory = pathSegments.length > 0 && ['ru', 'en'].includes(pathSegments[0]);
+    const projectBaseUrl = isSubdirectory ? `/${pathSegments[0]}/` : '/';
+
     const app = {
         // --- CONFIGURATION ---
-        projectBaseUrl: '/AKEF-AIC-Calculator/',
+        projectBaseUrl: projectBaseUrl,
 
         // --- DOM ELEMENT REFERENCES ---
         itemSelectorBtn: document.getElementById('item-selector-btn'),
@@ -63,19 +67,19 @@ document.addEventListener('DOMContentLoaded', async () => {
      */
     async function getInitialLanguageFromURL() {
         try {
-            const response = await fetch(`${app.projectBaseUrl}db/languages.json`);
+            const response = await fetch(`./db/languages.json`);
             const availableLanguages = await response.json();
             const languageCodes = Object.keys(availableLanguages);
-
+    
             const pathParts = window.location.pathname.split('/').filter(part => part);
-
+    
             if (pathParts.length > 0 && languageCodes.includes(pathParts[0])) {
                 return pathParts[0];
             }
         } catch (error) {
             console.error("Could not load languages.json for URL detection:", error);
         }
-
+    
         return 'en';
     }
 
