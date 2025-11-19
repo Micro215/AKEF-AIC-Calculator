@@ -1,7 +1,10 @@
 document.addEventListener('DOMContentLoaded', async () => {
-    const pathSegments = window.location.pathname.split('/').filter(segment => segment);
-    const isSubdirectory = pathSegments.length > 0 && ['ru', 'en'].includes(pathSegments[0]);
-    const projectBaseUrl = isSubdirectory ? `/${pathSegments[0]}/` : '/';
+    function getProjectBaseUrl() {
+        const pathSegments = window.location.pathname.split('/').filter(segment => segment);
+        return pathSegments.length > 0 ? '/' + pathSegments[0] + '/' : '/';
+    }
+
+    const projectBaseUrl = getProjectBaseUrl();
 
     const app = {
         // --- CONFIGURATION ---
@@ -67,14 +70,16 @@ document.addEventListener('DOMContentLoaded', async () => {
      */
     async function getInitialLanguageFromURL() {
         try {
-            const response = await fetch(`./db/languages.json`);
+            const response = await fetch(`${app.projectBaseUrl}db/languages.json`);
             const availableLanguages = await response.json();
             const languageCodes = Object.keys(availableLanguages);
     
-            const pathParts = window.location.pathname.split('/').filter(part => part);
-    
-            if (pathParts.length > 0 && languageCodes.includes(pathParts[0])) {
-                return pathParts[0];
+            const pathSegments = window.location.pathname.split('/').filter(segment => segment);
+
+            const languageIndex = pathSegments.findIndex(segment => languageCodes.includes(segment));
+            
+            if (languageIndex !== -1) {
+                return pathSegments[languageIndex];
             }
         } catch (error) {
             console.error("Could not load languages.json for URL detection:", error);
