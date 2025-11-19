@@ -17,6 +17,7 @@ window.app = {
         showPower: null,
         graphContainer: null,
         graphSvg: null,
+        controlPanel: null,
         nodesContainer: null,
         loadingMessage: null,
         noRecipeMessage: null,
@@ -40,10 +41,13 @@ window.app = {
         nodePendingDeletion: null,
         nodePositions: new Map(),
         dragStart: { mouseX: 0, mouseY: 0, nodeX: 0, nodeY: 0 },
+        lastTouchDistance: 0,
     },
 
     // --- CONSTANTS ---
     constants: {
         SECONDS_PER_MINUTE: 60,
+        ZOOM_MIN_SCALE: 0.2,
+        ZOOM_MAX_SCALE: 3,
     }
 };

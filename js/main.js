@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
         showPower: document.getElementById('show-power'),
         graphContainer: document.getElementById('graph-container'),
         graphSvg: document.getElementById('graph-svg'),
+        controlPanel: document.querySelector('.control-panel'),
         nodesContainer: document.getElementById('nodes-container'),
         loadingMessage: document.getElementById('loading-message'),
         noRecipeMessage: document.getElementById('no-recipe-message'),
@@ -38,7 +39,15 @@ document.addEventListener('DOMContentLoaded', () => {
         allCategories: new Set(),
         nodePendingDeletion: null,
         nodePositions: new Map(),
-        dragStart: { mouseX: 0, mouseY: 0, nodeX: 0, nodeY: 0 }
+        dragStart: { mouseX: 0, mouseY: 0, nodeX: 0, nodeY: 0 },
+        lastTouchDistance: 0,
+
+        // --- HELPERS ---
+        closeAllDropdowns: function() {
+            document.querySelectorAll('.recipe-dropdown.is-active').forEach(dropdown => {
+                dropdown.remove();
+            });
+        }
     };
 
     window.productionApp = app;
@@ -129,10 +138,16 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         // Graph interaction
+        // Mouse Events
         app.graphContainer.addEventListener('mousedown', handleCanvasMouseDown);
         window.addEventListener('mousemove', handleMouseMove);
         window.addEventListener('mouseup', handleMouseUp);
         app.graphContainer.addEventListener('wheel', handleWheel, { passive: false });
+
+        // Touch Events
+        app.graphContainer.addEventListener('touchstart', handleTouchStart, { passive: false });
+        app.graphContainer.addEventListener('touchmove', handleTouchMove, { passive: false });
+        app.graphContainer.addEventListener('touchend', handleTouchEnd);
 
         // Delete confirmation modal
         const deleteModal = document.getElementById('delete-confirmation-modal');
@@ -153,6 +168,34 @@ document.addEventListener('DOMContentLoaded', () => {
         deleteModal.addEventListener('click', (e) => {
             if (e.target === deleteModal) {
                 hideDeleteConfirmation();
+            }
+        });
+
+        // Menu Toggle Control
+        const menuToggleBtn = document.getElementById('menu-toggle-btn');
+        const appOverlay = document.createElement('div');
+        appOverlay.className = 'app-overlay';
+        document.body.appendChild(appOverlay);
+
+        menuToggleBtn.addEventListener('click', () => {
+            app.controlPanel.classList.toggle('is-open');
+            appOverlay.classList.toggle('is-active');
+        });
+
+        appOverlay.addEventListener('click', () => {
+            app.controlPanel.classList.remove('is-open');
+            appOverlay.classList.remove('is-active');
+        });
+
+        // Mobile Recipe Selector Modal
+        const mobileRecipeModal = document.getElementById('recipe-selector-modal-mobile');
+        const mobileRecipeModalCloseBtn = mobileRecipeModal.querySelector('.modal-close');
+
+        mobileRecipeModalCloseBtn.addEventListener('click', hideMobileRecipeSelector);
+
+        mobileRecipeModal.addEventListener('click', (e) => {
+            if (e.target === mobileRecipeModal) {
+                hideMobileRecipeSelector();
             }
         });
     }

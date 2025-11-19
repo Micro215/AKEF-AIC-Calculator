@@ -348,6 +348,7 @@ class ProductionNode {
         // Create node element
         const nodeEl = document.createElement('div');
         nodeEl.className = `node ${isRaw ? 'is-raw' : ''} ${isTarget ? 'is-target' : ''}`;
+        nodeEl.setAttribute('data-node-id', this.data.itemId);
         nodeEl.style.left = `${this.x}px`;
         nodeEl.style.top = `${this.y}px`;
 
@@ -487,14 +488,18 @@ class ProductionNode {
             selector.addEventListener('click', (e) => {
                 e.stopPropagation();
 
-                const activeDropdown = document.querySelector('.recipe-dropdown.is-active');
+                
 
-                if (activeDropdown && activeDropdown.dataset.nodeId === this.data.itemId) {
-                    activeDropdown.remove();
-                    return;
+                if (isMobileDevice()) {
+                    showMobileRecipeSelector(this.data.itemId);
+                } else {
+                    const activeDropdown = document.querySelector('.recipe-dropdown.is-active');
+                    if (activeDropdown && activeDropdown.dataset.nodeId === this.data.itemId) {
+                        activeDropdown.remove();
+                        return;
+                    }
+                    this.showRecipeDropdown(e);
                 }
-
-                this.showRecipeDropdown(e);
             });
         }
     
@@ -621,4 +626,69 @@ class ProductionNode {
         this.element.style.left = `${this.x}px`;
         this.element.style.top = `${this.y}px`;
     }
+}
+
+/**
+ * Checks whether the current device is mobile based on a CSS media query.
+ * @returns {boolean}
+ */
+function isMobileDevice() {
+    return window.matchMedia('(max-width: 768px)').matches;
+}
+
+/**
+ * A mobile modal window for selecting a recipe is displayed.
+ * @param {string} nodeId — the ID of the node for which you are selecting a recipe.
+ */
+function showMobileRecipeSelector(nodeId) {
+    const app = window.productionApp;
+
+    const nodeInstance = app.productionGraph.nodes.get(nodeId);
+    if (!nodeInstance) return;
+
+    const nodeData = app.allNeedsMap.get(nodeId);
+    if (!nodeData) return;
+
+    const modal = document.getElementById('recipe-selector-modal-mobile');
+    const optionsContainer = document.getElementById('mobile-recipe-options');
+    optionsContainer.innerHTML = '';
+
+    nodeData.allRecipes.forEach((recipe, index) => {
+        const option = document.createElement('div');
+        option.className = 'recipe-option-mobile';
+        option.setAttribute('tabindex', '0');
+
+        const building = app.buildingsData.buildings[recipe.buildingId];
+        const isSelected = index === nodeData.selectedRecipeIndex;
+
+        option.innerHTML = `
+            <div class="recipe-option-header">
+                <img src="images/${building.img}" alt="${building.name}">
+                <span>${building.name} ${isSelected ? '(Current)' : ''}</span>
+            </div>
+            <div class="recipe-option-content">
+                ${nodeInstance.renderIngredients(recipe.ingredients)}
+                <div class="recipe-arrow">→</div>
+                ${nodeInstance.renderProducts(recipe.products)}
+            </div>
+        `;
+
+        option.addEventListener('click', () => {
+            app.selectedRecipesMap.set(nodeId, index);
+            calculateProduction(true);
+            hideMobileRecipeSelector();
+        });
+
+        optionsContainer.appendChild(option);
+    });
+
+    modal.classList.add('is-active');
+}
+
+/**
+ * Hides the mobile recipe selection modal.
+ */
+function hideMobileRecipeSelector() {
+    const modal = document.getElementById('recipe-selector-modal-mobile');
+    modal.classList.remove('is-active');
 }

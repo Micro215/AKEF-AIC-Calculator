@@ -25,6 +25,7 @@ Whether you're planning a small-scale operation or a massive factory, this tool 
 -   **Power Consumption Summary**: Get a real-time calculation of the total power required for your current production setup.
 -   **Customizable Display Options**: Toggle the visibility of raw materials and power consumption to focus on what matters to you.
 -   **Search and Filtering**: Quickly find any item in the recipe database with the search bar and category filters.
+-   **Mobile Support**: You can plan your production using your mobile device.
 
 ## Usage
 
@@ -42,7 +43,6 @@ Whether you're planning a small-scale operation or a massive factory, this tool 
 ## Planned
 
 -   Add sewage processing.
--   Add mobile support.
 
 ##  Credits
 

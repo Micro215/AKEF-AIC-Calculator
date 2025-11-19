@@ -1,16 +1,20 @@
+// =============================================================================
+// MOUSE EVENT HANDLERS (For Desktop)
+// =============================================================================
+
 /**
- * Handle mouse down on canvas
- * @param {Event} e - Mouse event
+ * Handle mouse down on canvas.
+ * @param {MouseEvent} e - The mouse event.
  */
 function handleCanvasMouseDown(e) {
     const app = window.productionApp;
     
-    // Ignore if clicking on a node
+    // Ignore if clicking on a node, as it will be handled by the node's own listener
     if (e.target.closest('.node')) {
         return;
     }
 
-    // Start panning
+    // Start panning the canvas
     app.isPanningCanvas = true;
     app.panStart.x = e.clientX - app.canvasTransform.x;
     app.panStart.y = e.clientY - app.canvasTransform.y;
@@ -18,8 +22,8 @@ function handleCanvasMouseDown(e) {
 }
 
 /**
- * Handle mouse move
- * @param {Event} e - Mouse event
+ * Handle mouse move.
+ * @param {MouseEvent} e - The mouse event.
  */
 function handleMouseMove(e) {
     const app = window.productionApp;
@@ -32,13 +36,13 @@ function handleMouseMove(e) {
         app.isDraggingNode.x = app.dragStart.nodeX + deltaX;
         app.isDraggingNode.y = app.dragStart.nodeY + deltaY;
 
-        // Give the node velocity based on drag speed for a natural interaction
+        // Reset velocity while dragging for a stable interaction
         app.isDraggingNode.vx = 0;
         app.isDraggingNode.vy = 0;
 
         app.isDraggingNode.render();
         if (app.productionGraph) app.productionGraph.render();
-    }
+    } 
     // Handle canvas panning
     else if (app.isPanningCanvas) {
         app.canvasTransform.x = e.clientX - app.panStart.x;
@@ -48,7 +52,7 @@ function handleMouseMove(e) {
 }
 
 /**
- * Handle mouse up
+ * Handle mouse up.
  */
 function handleMouseUp() {
     const app = window.productionApp;
@@ -67,14 +71,14 @@ function handleMouseUp() {
 }
 
 /**
- * Handle wheel event for zooming
- * @param {Event} e - Wheel event
+ * Handle wheel event for zooming.
+ * @param {WheelEvent} e - The wheel event.
  */
 function handleWheel(e) {
     const app = window.productionApp;
     
-    // Ignore if hovering over dropdown
-    if (e.target.closest('.recipe-dropdown')) {
+    // Ignore if hovering over a dropdown or other interactive element
+    if (e.target.closest('.recipe-dropdown, .modal')) {
         return;
     }
 
@@ -83,18 +87,166 @@ function handleWheel(e) {
 
     // Calculate new scale
     const delta = e.deltaY > 0 ? 0.9 : 1.1;
-    const newScale = app.canvasTransform.scale * delta;
+    applyZoom(e.clientX, e.clientY, delta);
+}
+
+
+// =============================================================================
+// TOUCH EVENT HANDLERS (For Mobile)
+// =============================================================================
+
+/**
+ * Handle touch start on canvas.
+ * Detects single-touch (for drag/pan) or multi-touch (for zoom).
+ * @param {TouchEvent} e - The touch event.
+ */
+function handleTouchStart(e) {
+    const app = window.productionApp;
+    const touch = e.touches[0];
+    const targetElement = document.elementFromPoint(touch.clientX, touch.clientY);
+
+    if (targetElement && targetElement.closest('.recipe-selector, .node-delete-btn, .recipe-dropdown, .modal')) {
+        return;
+    }
+
+    e.preventDefault();
+    window.productionApp.closeAllDropdowns();
+    
+    if (e.touches.length === 1) {
+        if (targetElement && targetElement.closest('.node')) {
+            const nodeElement = targetElement.closest('.node');
+            const nodeId = nodeElement.dataset.nodeId; 
+            const node = app.productionGraph.nodes.get(nodeId);
+
+            if (node) {
+                app.isDraggingNode = node;
+                app.dragStart.mouseX = touch.clientX;
+                app.dragStart.mouseY = touch.clientY;
+                app.dragStart.nodeX = node.x;
+                app.dragStart.nodeY = node.y;
+                node.element.classList.add('is-dragging');
+                node.isPinned = true;
+            }
+        } 
+        else {
+            app.isPanningCanvas = true;
+            app.panStart.x = touch.clientX - app.canvasTransform.x;
+            app.panStart.y = touch.clientY - app.canvasTransform.y;
+        }
+    } 
+
+    else if (e.touches.length === 2) {
+        e.preventDefault(); 
+        app.lastTouchDistance = getTouchDistance(e.touches);
+    }
+}
+
+/**
+ * Handle touch move.
+ * Continues the action started in `handleTouchStart`.
+ * @param {TouchEvent} e - The touch event.
+ */
+function handleTouchMove(e) {
+    const app = window.productionApp;
+    e.preventDefault();
+
+    if (e.touches.length === 1) {
+        const touch = e.touches[0];
+        
+        if (app.isDraggingNode) {
+            // Dragging a node
+            const deltaX = (touch.clientX - app.dragStart.mouseX) / app.canvasTransform.scale;
+            const deltaY = (touch.clientY - app.dragStart.mouseY) / app.canvasTransform.scale;
+
+            app.isDraggingNode.x = app.dragStart.nodeX + deltaX;
+            app.isDraggingNode.y = app.dragStart.nodeY + deltaY;
+            app.isDraggingNode.vx = 0;
+            app.isDraggingNode.vy = 0;
+
+            app.isDraggingNode.render();
+            if (app.productionGraph) app.productionGraph.render();
+        } 
+        else if (app.isPanningCanvas) {
+            // Panning the canvas
+            app.canvasTransform.x = touch.clientX - app.panStart.x;
+            app.canvasTransform.y = touch.clientY - app.panStart.y;
+            if (app.productionGraph) app.productionGraph.render();
+        }
+    } 
+    else if (e.touches.length === 2) {
+        // Pinch-to-zoom
+        const currentDistance = getTouchDistance(e.touches);
+        if (app.lastTouchDistance > 0) {
+            const scale = currentDistance / lastTouchDistance;
+            const centerX = (e.touches[0].clientX + e.touches[1].clientX) / 2;
+            const centerY = (e.touches[0].clientY + e.touches[1].clientY) / 2;
+            
+            applyZoom(centerX, centerY, scale);
+        }
+        app.lastTouchDistance = currentDistance;
+    }
+}
+
+/**
+ * Handle touch end.
+ * Resets all interaction states.
+ * @param {TouchEvent} e - The touch event.
+ */
+function handleTouchEnd(e) {
+    const app = window.productionApp;
+
+    // Stop dragging node
+    if (app.isDraggingNode) {
+        app.isDraggingNode.element.classList.remove('is-dragging');
+        app.isDraggingNode.isPinned = false;
+        app.isDraggingNode = null;
+    }
+
+    // Stop panning canvas
+    if (app.isPanningCanvas) {
+        app.isPanningCanvas = false;
+    }
+
+    // Reset zoom tracking
+    app.lastTouchDistance = 0;
+}
+
+
+// =============================================================================
+// HELPER FUNCTIONS
+// =============================================================================
+
+/**
+ * Calculates the distance between two touch points.
+ * @param {TouchList} touches - The list of touches (should contain 2).
+ * @returns {number} The distance between the first two touches.
+ */
+function getTouchDistance(touches) {
+    const dx = touches[0].clientX - touches[1].clientX;
+    const dy = touches[0].clientY - touches[1].clientY;
+    return Math.sqrt(dx * dx + dy * dy);
+}
+
+/**
+ * Applies zoom to the canvas, centered on a specific point.
+ * @param {number} centerX - The X coordinate of the zoom center (relative to the viewport).
+ * @param {number} centerY - The Y coordinate of the zoom center (relative to the viewport).
+ * @param {number} scaleDelta - The scale factor (e.g., 1.1 for zoom in, 0.9 for zoom out).
+ */
+function applyZoom(centerX, centerY, scaleDelta) {
+    const app = window.productionApp;
+    if (!app.productionGraph) return;
+
+    const newScale = app.canvasTransform.scale * scaleDelta;
     if (newScale < 0.2 || newScale > 3) return;
 
-    // Calculate new transform
     const rect = app.graphContainer.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
+    const x = centerX - rect.left;
+    const y = centerY - rect.top;
 
-    app.canvasTransform.x = x - (x - app.canvasTransform.x) * delta;
-    app.canvasTransform.y = y - (y - app.canvasTransform.y) * delta;
+    app.canvasTransform.x = x - (x - app.canvasTransform.x) * scaleDelta;
+    app.canvasTransform.y = y - (y - app.canvasTransform.y) * scaleDelta;
     app.canvasTransform.scale = newScale;
 
-    // Re-render graph
     if (app.productionGraph) app.productionGraph.render();
 }

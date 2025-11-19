@@ -48,6 +48,9 @@
     <div class="app-container">
         <!-- Application header with title and controls -->
         <header class="app-header">
+            <button id="menu-toggle-btn" class="btn btn-icon" aria-label="Toggle Menu">
+                <i class="fas fa-bars"></i>
+            </button>
             <h1><i class="fas fa-sitemap" aria-hidden="true"></i> Arknights: Endfield Production Calculator</h1>
             <div class="header-controls">
                 <button id="reset-btn" class="btn btn-icon" aria-label="Reset"><i class="fas fa-redo-alt"></i></button>
@@ -215,6 +218,20 @@
             <div class="modal-footer">
                 <button id="confirm-delete-btn" class="btn btn-danger">Delete</button>
                 <button id="cancel-delete-btn" class="btn">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Recipe Selector Modal -->
+    <div id="recipe-selector-modal-mobile" class="modal" role="dialog" aria-labelledby="recipe-selector-mobile-title" aria-hidden="true">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="recipe-selector-mobile-title">Select Recipe</h2>
+                <button class="modal-close" aria-label="Close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <!-- Сюда будут динамически вставляться опции рецептов -->
+                <div id="mobile-recipe-options" class="recipe-options-list"></div>
             </div>
         </div>
     </div>
