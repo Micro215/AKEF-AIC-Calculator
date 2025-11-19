@@ -97,11 +97,21 @@ function handleWheel(e) {
 
 /**
  * Handle touch start on canvas.
- * Detects single-touch (for drag/pan) or multi-touch (for zoom).
  * @param {TouchEvent} e - The touch event.
  */
 function handleTouchStart(e) {
     const app = window.productionApp;
+
+    if (e.touches.length === 2) {
+        e.preventDefault();
+        app.lastTouchDistance = getTouchDistance(e.touches);
+        return;
+    }
+
+    if (e.touches.length !== 1) {
+        return;
+    }
+
     const touch = e.touches[0];
     const targetElement = document.elementFromPoint(touch.clientX, touch.clientY);
 
@@ -110,34 +120,29 @@ function handleTouchStart(e) {
     }
 
     e.preventDefault();
-    window.productionApp.closeAllDropdowns();
-    
-    if (e.touches.length === 1) {
-        if (targetElement && targetElement.closest('.node')) {
-            const nodeElement = targetElement.closest('.node');
-            const nodeId = nodeElement.dataset.nodeId; 
-            const node = app.productionGraph.nodes.get(nodeId);
 
-            if (node) {
-                app.isDraggingNode = node;
-                app.dragStart.mouseX = touch.clientX;
-                app.dragStart.mouseY = touch.clientY;
-                app.dragStart.nodeX = node.x;
-                app.dragStart.nodeY = node.y;
-                node.element.classList.add('is-dragging');
-                node.isPinned = true;
-            }
-        } 
-        else {
-            app.isPanningCanvas = true;
-            app.panStart.x = touch.clientX - app.canvasTransform.x;
-            app.panStart.y = touch.clientY - app.canvasTransform.y;
+    window.productionApp.closeAllDropdowns();
+
+    if (targetElement && targetElement.closest('.node')) {
+        const nodeElement = targetElement.closest('.node');
+        const nodeId = nodeElement.dataset.nodeId; 
+        const node = app.productionGraph.nodes.get(nodeId);
+
+        if (node) {
+            app.isDraggingNode = node;
+            app.dragStart.mouseX = touch.clientX;
+            app.dragStart.mouseY = touch.clientY;
+            app.dragStart.nodeX = node.x;
+            app.dragStart.nodeY = node.y;
+            node.element.classList.add('is-dragging');
+            node.isPinned = true;
         }
     } 
 
-    else if (e.touches.length === 2) {
-        e.preventDefault(); 
-        app.lastTouchDistance = getTouchDistance(e.touches);
+    else {
+        app.isPanningCanvas = true;
+        app.panStart.x = touch.clientX - app.canvasTransform.x;
+        app.panStart.y = touch.clientY - app.canvasTransform.y;
     }
 }
 
@@ -148,13 +153,29 @@ function handleTouchStart(e) {
  */
 function handleTouchMove(e) {
     const app = window.productionApp;
+
     e.preventDefault();
+
+    if (e.touches.length === 2) {
+        const currentDistance = getTouchDistance(e.touches);
+
+        if (app.lastTouchDistance > 0) {
+            const scale = currentDistance / app.lastTouchDistance;
+            const centerX = (e.touches[0].clientX + e.touches[1].clientX) / 2;
+            const centerY = (e.touches[0].clientY + e.touches[1].clientY) / 2;
+
+            if (app.productionGraph) {
+                applyZoom(centerX, centerY, scale);
+            }
+        }
+        app.lastTouchDistance = currentDistance;
+        return;
+    }
 
     if (e.touches.length === 1) {
         const touch = e.touches[0];
         
         if (app.isDraggingNode) {
-            // Dragging a node
             const deltaX = (touch.clientX - app.dragStart.mouseX) / app.canvasTransform.scale;
             const deltaY = (touch.clientY - app.dragStart.mouseY) / app.canvasTransform.scale;
 
@@ -167,23 +188,10 @@ function handleTouchMove(e) {
             if (app.productionGraph) app.productionGraph.render();
         } 
         else if (app.isPanningCanvas) {
-            // Panning the canvas
             app.canvasTransform.x = touch.clientX - app.panStart.x;
             app.canvasTransform.y = touch.clientY - app.panStart.y;
             if (app.productionGraph) app.productionGraph.render();
         }
-    } 
-    else if (e.touches.length === 2) {
-        // Pinch-to-zoom
-        const currentDistance = getTouchDistance(e.touches);
-        if (app.lastTouchDistance > 0) {
-            const scale = currentDistance / lastTouchDistance;
-            const centerX = (e.touches[0].clientX + e.touches[1].clientX) / 2;
-            const centerY = (e.touches[0].clientY + e.touches[1].clientY) / 2;
-            
-            applyZoom(centerX, centerY, scale);
-        }
-        app.lastTouchDistance = currentDistance;
     }
 }
 
@@ -195,20 +203,19 @@ function handleTouchMove(e) {
 function handleTouchEnd(e) {
     const app = window.productionApp;
 
-    // Stop dragging node
     if (app.isDraggingNode) {
         app.isDraggingNode.element.classList.remove('is-dragging');
         app.isDraggingNode.isPinned = false;
         app.isDraggingNode = null;
     }
 
-    // Stop panning canvas
     if (app.isPanningCanvas) {
         app.isPanningCanvas = false;
     }
 
-    // Reset zoom tracking
-    app.lastTouchDistance = 0;
+    if (e.touches.length === 0) {
+        app.lastTouchDistance = 0;
+    }
 }
 
 
