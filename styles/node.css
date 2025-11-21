@@ -267,3 +267,11 @@
 .node-flow-container-raw {
     justify-content: left;
 }
+
+/* Disable drag for icons and images */
+.node-icon,
+.machine-icon,
+.flow-item-icon,
+.transport-icon {
+    pointer-events: none;
+}
