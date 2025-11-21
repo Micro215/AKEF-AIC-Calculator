@@ -1,0 +1,14 @@
+{
+    "belt": {
+        "name_en": "Conveyor Belt",
+        "name_ru": "Конвеерная лента",
+        "speed": 30,
+        "img": "Belt.png"
+    },
+    "pipe": {
+        "name_en": "Pipe",
+        "name_ru": "Труба",
+        "speed": 240,
+        "img": "Pipe.png"
+    }
+}

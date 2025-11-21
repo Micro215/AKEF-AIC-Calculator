@@ -1,0 +1,84 @@
+/* ==============================================
+   Buttons
+   ============================================== */
+.btn {
+    padding: 0.75rem 1rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    transition: all var(--transition-speed);
+    background-color: var(--bg-tertiary);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+}
+
+.btn:hover {
+    background-color: var(--border-color);
+}
+
+.btn-primary {
+    background-color: var(--accent-green);
+    color: white;
+    border-color: var(--accent-green);
+    width: 100%;
+    font-weight: 1000;
+}
+
+.btn-primary:hover {
+    background-color: #4cc263;
+}
+
+.btn-icon {
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    border-radius: 50%;
+}
+
+.btn-danger {
+    background-color: var(--accent-orange);
+    color: white;
+    border-color: var(--accent-orange);
+    font-weight: 1000;
+}
+
+.btn-danger:hover {
+    background-color: #f9716b;
+    border-color: #f9716b;
+}
+
+.btn-selector {
+    width: 100%;
+    justify-content: space-between;
+    background-color: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    padding: 0.75rem;
+    color: var(--text-primary);
+    font-weight: 500;
+    text-align: left;
+}
+
+.btn-selector:hover {
+    background-color: var(--border-color);
+}
+
+#selected-item-name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 80%;
+}
+
+#github-btn {
+    text-decoration: none;
+}
+
+#menu-toggle-btn {
+    display: none;
+}

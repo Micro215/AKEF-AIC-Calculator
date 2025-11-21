@@ -37,6 +37,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         // --- GLOBAL STATE VARIABLES ---
         itemsData: {},
         buildingsData: {},
+        transportData: {},
         productionGraph: null,
         selectedRecipesMap: new Map(),
         allNeedsMap: new Map(),
@@ -73,18 +74,18 @@ document.addEventListener('DOMContentLoaded', async () => {
             const response = await fetch(`${app.projectBaseUrl}db/languages.json`);
             const availableLanguages = await response.json();
             const languageCodes = Object.keys(availableLanguages);
-    
+
             const pathSegments = window.location.pathname.split('/').filter(segment => segment);
 
             const languageIndex = pathSegments.findIndex(segment => languageCodes.includes(segment));
-            
+
             if (languageIndex !== -1) {
                 return pathSegments[languageIndex];
             }
         } catch (error) {
             console.error("Could not load languages.json for URL detection:", error);
         }
-    
+
         return 'en';
     }
 
@@ -108,20 +109,22 @@ document.addEventListener('DOMContentLoaded', async () => {
         app.selectedItemName.textContent = window.localization.t('app.loading');
 
         try {
-            // Load both data files in parallel
-            const [itemsResponse, buildingsResponse] = await Promise.all([
+            // Load all three data files in parallel
+            const [itemsResponse, buildingsResponse, transportResponse] = await Promise.all([
                 fetch(`${app.projectBaseUrl}db/items.json`),
-                fetch(`${app.projectBaseUrl}db/buildings.json`)
+                fetch(`${app.projectBaseUrl}db/buildings.json`),
+                fetch(`${app.projectBaseUrl}db/transport.json`)
             ]);
 
-            // Check if both requests were successful
-            if (!itemsResponse.ok || !buildingsResponse.ok) {
+            // Check if all requests were successful
+            if (!itemsResponse.ok || !buildingsResponse.ok || !transportResponse.ok) {
                 throw new Error('Failed to load data files.');
             }
 
             // Parse JSON data
             app.itemsData = await itemsResponse.json();
             app.buildingsData = await buildingsResponse.json();
+            app.transportData = await transportResponse.json();
 
             // Set up event listeners after data is loaded
             setupEventListeners();
@@ -243,48 +246,6 @@ document.addEventListener('DOMContentLoaded', async () => {
                 hideMobileRecipeSelector();
             }
         });
-
-        // Language change event listener
-        // window.addEventListener('languageChanged', () => {
-        //     updateUIWithLocalization();
-            
-        //     // Update the selected item name with the new language
-        //     if (app.currentTargetItem) {
-        //         app.selectedItemName.textContent = window.localization.getItemName(app.currentTargetItem);
-        //     } else {
-        //         app.selectedItemName.textContent = window.localization.t('app.choose_recipe');
-        //     }
-            
-        //     // Close any open recipe dropdowns
-        //     document.querySelectorAll('.recipe-dropdown.is-active').forEach(dropdown => {
-        //         dropdown.remove();
-        //     });
-            
-        //     // Update recipe selector modal if it's open
-        //     const recipeModal = document.getElementById('recipe-selector-modal');
-        //     if (recipeModal && recipeModal.classList.contains('is-active')) {
-        //         renderRecipeCategories();
-        //     }
-            
-        //     // Update mobile recipe selector modal if it's open
-        //     const mobileRecipeModal = document.getElementById('recipe-selector-modal-mobile');
-        //     if (mobileRecipeModal && mobileRecipeModal.classList.contains('is-active')) {
-        //         // Get the current node ID from the modal
-        //         const currentNodeId = mobileRecipeModal.dataset.nodeId;
-        //         if (currentNodeId) {
-        //             showMobileRecipeSelector(currentNodeId);
-        //         }
-        //     }
-            
-        //     // Re-render the graph if it exists
-        //     if (app.productionGraph) {
-        //         app.productionGraph.stopSimulation();
-        //         resetGraph();
-        //         app.productionGraph = new ProductionGraph(app.graphSvg, app.nodesContainer, app.allNeedsMap);
-        //         renderGraph();
-        //         updateTotalPower();
-        //     }
-        // });
     }
 
     // --- START THE APP ---

@@ -1,0 +1,22 @@
+/* ==============================================
+   SVG Edges
+   ============================================== */
+.edge-path {
+    fill: none;
+    stroke: var(--text-tertiary);
+    stroke-width: 2;
+    transition: stroke var(--transition-speed), stroke-width var(--transition-speed);
+}
+
+.edge-path.highlighted {
+    stroke: var(--accent-blue);
+    stroke-width: 3;
+}
+
+.edge-label {
+    fill: var(--text-secondary);
+    font-size: 0.75rem;
+    font-family: 'Inter', sans-serif;
+    pointer-events: none;
+    /* Prevent label from interfering with mouse events */
+}

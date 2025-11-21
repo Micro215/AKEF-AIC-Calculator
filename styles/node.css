@@ -1,0 +1,269 @@
+/* ==============================================
+   Node Components
+   ============================================== */
+.node {
+    position: absolute;
+    background-color: var(--node-bg);
+    border: 1px solid var(--node-border);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px var(--shadow-medium);
+    padding: 1rem;
+    width: 280px;
+    cursor: move;
+    transition: box-shadow var(--transition-speed), transform var(--transition-speed);
+    transform-origin: center center;
+    overflow: visible;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.node:hover {
+    box-shadow: 0 8px 20px var(--shadow-heavy);
+}
+
+.node:hover .node-delete-btn {
+    opacity: 0.7;
+}
+
+.node.is-dragging {
+    cursor: grabbing;
+    box-shadow: 0 12px 24px var(--shadow-heavy);
+    z-index: 1000;
+    transform: scale(1.05);
+}
+
+.node.is-target {
+    border-color: var(--accent-green);
+    border-width: 2px;
+}
+
+.node.is-raw {
+    border-color: var(--accent-blue);
+    border-width: 2px;
+}
+
+/* Node Header */
+.node-header {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.node-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 6px;
+    flex-shrink: 0;
+    object-fit: contain;
+    /* Ensure icon scales correctly */
+}
+
+.node-title-container {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    flex-grow: 1;
+}
+
+.node-title {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.node-type {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+    margin-top: 2px;
+}
+
+/* Delete Button */
+.node-delete-btn {
+    position: absolute;
+    top: -14px;
+    right: -14px;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background-color: var(--text-tertiary);
+    border: 1px solid var(--bg-secondary);
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: all var(--transition-speed);
+    z-index: 10;
+    box-shadow: 0 2px 8px var(--shadow-medium);
+}
+
+.node-delete-btn:hover {
+    opacity: 1;
+    transform: scale(1.1);
+    background-color: var(--text-secondary);
+}
+
+/* Node Body */
+.node-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.node-machine {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.machine-icon {
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    flex-shrink: 0;
+    opacity: 0.9;
+    object-fit: contain;
+    /* Added for consistency */
+}
+
+.machine-info {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.machine-name {
+    font-size: 0.85rem;
+    color: var(--text-primary);
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.machine-count {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+}
+
+.machine-power {
+    font-size: 0.75rem;
+    color: var(--accent-orange);
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+/* Recipe Selector */
+.recipe-selector {
+    background-color: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    padding: 0.5rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.8rem;
+    transition: background-color var(--transition-speed);
+}
+
+.recipe-selector:hover {
+    background-color: var(--bg-primary);
+}
+
+/* Flow */
+.node-flow-container {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin: 1rem 0;
+    padding: 0rem;
+    background-color: rgba(255, 255, 255, 0);
+    border-radius: 6px;
+}
+
+.flow-inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    min-width: 0;
+}
+
+.flow-output {
+    flex-shrink: 0;
+}
+
+.flow-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0rem;
+    border-radius: 4px;
+    background-color: rgba(255, 255, 255, 0);
+    min-width: 0;
+}
+
+.flow-item-main {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    white-space: nowrap;
+}
+
+.flow-item-transport {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.65rem;
+    color: var(--text-tertiary);
+    opacity: 0.8;
+    white-space: nowrap;
+}
+
+.flow-item-icon {
+    width: 20px;
+    height: 20px;
+    border-radius: 3px;
+    flex-shrink: 0;
+    object-fit: contain;
+}
+
+.transport-icon {
+    width: 16px;
+    height: 16px;
+    border-radius: 2px;
+    flex-shrink: 0;
+    opacity: 0.7;
+    object-fit: contain;
+}
+
+.flow-item-rate {
+    font-size: 0.75rem;
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.flow-item-transport-rate {
+    font-weight: 500;
+}
+
+.flow-arrow {
+    font-size: 1.8rem;
+    color: var(--text-tertiary);
+    font-weight: bold;
+    flex-shrink: 0;
+}
+
+.node-flow-container-raw {
+    justify-content: left;
+}

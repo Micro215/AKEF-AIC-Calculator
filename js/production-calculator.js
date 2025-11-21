@@ -288,6 +288,19 @@ function populateNeedsMap(itemIndexMap, solutionVector) {
             machineCount = rate / (product.amount / recipeTimeInMinutes);
         }
 
+        // Calculate transport requirements
+        let transportType = 'belt'; // Default to belt
+        let transportCount = 0;
+        
+        if (app.itemsData.items[itemId] && app.itemsData.items[itemId].transport_type) {
+            transportType = app.itemsData.items[itemId].transport_type;
+        }
+
+        if (app.transportData && app.transportData[transportType]) {
+            const transportSpeed = app.transportData[transportType].speed;
+            transportCount = rate / transportSpeed;
+        }
+
         app.allNeedsMap.set(itemId, {
             itemId,
             rate: rate,
@@ -296,7 +309,9 @@ function populateNeedsMap(itemIndexMap, solutionVector) {
             isTarget: (itemId === app.currentTargetItem.id),
             allRecipes: allRecipes || [],
             selectedRecipeIndex: selectedIndex,
-            machineCount: machineCount
+            machineCount: machineCount,
+            transportType: transportType,
+            transportCount: transportCount
         });
     }
 

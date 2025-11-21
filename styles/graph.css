@@ -1,0 +1,33 @@
+/* ==============================================
+   Graph Visualization
+   ============================================== */
+.graph-container {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+    background-color: var(--bg-primary);
+    cursor: grab;
+}
+
+.graph-container.dragging-node {
+    cursor: grabbing;
+}
+
+.graph-svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    overflow: visible;
+}
+
+.nodes-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+}

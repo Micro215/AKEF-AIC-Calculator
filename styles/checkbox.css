@@ -1,0 +1,38 @@
+/* ==============================================
+   Custom Checkbox
+   ============================================== */
+label {
+    cursor: pointer;
+}
+
+input[type="checkbox"] {
+    display: none;
+}
+
+.checkmark {
+    width: 16px;
+    height: 16px;
+    background-color: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    margin-right: 0.75rem;
+    position: relative;
+    transition: all var(--transition-speed);
+}
+
+input[type="checkbox"]:checked+.checkmark {
+    background-color: var(--accent-blue);
+    border-color: var(--accent-blue);
+}
+
+input[type="checkbox"]:checked+.checkmark::after {
+    content: '';
+    position: absolute;
+    left: 4px;
+    top: 1px;
+    width: 4px;
+    height: 8px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}

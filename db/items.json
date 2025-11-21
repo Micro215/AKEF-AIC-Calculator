@@ -123,7 +123,8 @@
     "clean_water": {
       "name_en": "Clean Water",
       "type": "naturals",
-      "img": "Clean_Water.png"
+      "img": "Clean_Water.png",
+      "transport_type": "pipe"
     },
     "cuprium_ore": {
       "name_en": "Cuprium Ore",
@@ -198,7 +199,8 @@
     "sewage": {
       "name_en": "Sewage",
       "type": "naturals",
-      "img": "Sewage.png"
+      "img": "Sewage.png",
+      "transport_type": "pipe"
     },
     "tartpepper": {
       "name_en": "Tartpepper",
@@ -578,7 +580,8 @@
     "jincao_solution": {
       "name_en": "Jincao Solution",
       "type": "aic_products",
-      "img": "Jincao_Solution.png"
+      "img": "Jincao_Solution.png",
+      "transport_type": "pipe"
     },
     "lc_battery": {
       "name_en": "LC Battery",
@@ -653,7 +656,8 @@
     "yazhen_solution": {
       "name_en": "Yazhen Solution",
       "type": "aic_products",
-      "img": "Yazhen_Solution.png"
+      "img": "Yazhen_Solution.png",
+      "transport_type": "pipe"
     },
     "arts_tube": {
       "name_en": "Arts Tube",

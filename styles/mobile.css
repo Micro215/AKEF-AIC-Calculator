@@ -1,0 +1,103 @@
+/* ==============================================
+   Mobile Devices Support
+   ============================================== */
+@media (max-width: 768px) {
+    #menu-toggle-btn {
+        display: flex;
+    }
+
+    .control-panel {
+        position: fixed;
+        left: -320px;
+        top: 0;
+        height: 100vh;
+        z-index: 1001;
+        transition: left 0.3s ease-in-out;
+    }
+
+    .control-panel.is-open {
+        left: 0;
+    }
+
+    .app-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 1000;
+    }
+
+    .app-overlay.is-active {
+        display: block;
+    }
+
+    .btn {
+        padding: 1rem;
+        font-size: 1rem;
+    }
+
+    .node-delete-btn {
+        opacity: 1;
+        transform: scale(1.1);
+        background-color: var(--text-secondary);
+    }
+}
+
+#recipe-selector-modal-mobile .modal-content {
+    width: 95%;
+    max-width: 400px;
+    max-height: 80vh;
+}
+
+#recipe-selector-modal-mobile .modal-body {
+    padding: 0;
+    max-height: 60vh;
+    overflow-y: auto;
+}
+
+.recipe-options-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.recipe-option-mobile {
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+    cursor: pointer;
+    transition: background-color var(--transition-speed);
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.recipe-option-mobile:last-child {
+    border-bottom: none;
+}
+
+.recipe-option-mobile:hover,
+.recipe-option-mobile:focus {
+    background-color: var(--bg-tertiary);
+}
+
+.recipe-option-mobile .recipe-option-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-weight: 500;
+}
+
+.recipe-option-mobile .recipe-option-header img {
+    width: 24px;
+    height: 24px;
+    border-radius: 4px;
+}
+
+.recipe-option-mobile .recipe-option-content {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+}

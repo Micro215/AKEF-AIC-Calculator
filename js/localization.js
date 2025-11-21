@@ -161,6 +161,17 @@ class LocalizationManager {
         
         return { en: 'English' };
     }
+
+    /**
+     * Get localized transport name
+     * @param {Object} transport - Transport object
+     * @returns {string} Localized transport name
+     */
+    getTransportName(transport) {
+        if (!transport) return '';
+        const nameKey = `name_${this.currentLanguage}`;
+        return transport[nameKey] || transport.name_en || transport.name || '';
+    }
 }
 
 // Create a singleton instance
