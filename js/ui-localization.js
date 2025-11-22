@@ -95,6 +95,12 @@ function updateUIWithLocalization() {
     if (defaultRecipesBtn) {
         defaultRecipesBtn.innerHTML = `<i class="fas fa-cog"></i> <span>${window.localization.t('buttons.default_recipes')}</span>`;
     }
+
+    // Set text for the "Physics Simulation" checkbox
+    const physicsSimulationCheckmark = document.querySelector('label[for="physics-simulation"] span.checkmark');
+    if (physicsSimulationCheckmark && physicsSimulationCheckmark.nextSibling) {
+        physicsSimulationCheckmark.nextSibling.textContent = ` ${window.localization.t('app.physics_simulation')}`;
+    }
 }
 
 /**

@@ -33,6 +33,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         noRecipeMessage: document.getElementById('no-recipe-message'),
         totalPowerEl: document.getElementById('total-power'),
         languageSelect: document.getElementById('language-select'),
+        physicsSimulation: document.getElementById('physics-simulation'),
 
         // --- GLOBAL STATE VARIABLES ---
         itemsData: {},
@@ -205,11 +206,11 @@ document.addEventListener('DOMContentLoaded', async () => {
                 if (window.tabsManager && window.tabsManager.saveCurrentTabData) {
                     window.tabsManager.saveCurrentTabData();
                 }
-
+        
                 app.productionGraph.stopSimulation();
                 resetGraph();
                 app.productionGraph = new ProductionGraph(app.graphSvg, app.nodesContainer, app.allNeedsMap);
-
+        
                 if (window.tabsManager && window.tabsManager.activeTabIndex !== undefined) {
                     const currentTab = window.tabsManager.tabs[window.tabsManager.activeTabIndex];
                     if (currentTab && currentTab.nodePositions.size > 0) {
@@ -217,9 +218,14 @@ document.addEventListener('DOMContentLoaded', async () => {
                         const restored = restoreNodePositions();
                     }
                 }
-
+        
                 renderGraph();
                 updateTotalPower();
+                
+                // Start simulation only if the checkbox is checked
+                if (app.physicsSimulation.checked) {
+                    app.productionGraph.startSimulation();
+                }
             }
         });
 
@@ -326,6 +332,21 @@ document.addEventListener('DOMContentLoaded', async () => {
             }
 
             updateItemSelectorIcon();
+        });
+
+        // Physics simulation control
+        app.physicsSimulation.addEventListener('change', () => {
+            if (app.productionGraph) {
+                if (app.physicsSimulation.checked) {
+                    app.productionGraph.startSimulation();
+                } else {
+                    app.productionGraph.stopSimulation();
+                }
+
+                if (window.tabsManager && window.tabsManager.saveCurrentTabData) {
+                    window.tabsManager.saveCurrentTabData();
+                }
+            }
         });
     }
 

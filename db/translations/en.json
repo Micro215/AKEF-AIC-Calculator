@@ -16,7 +16,8 @@
         "valid_rate_alert": "Please enter valid production rate.",
         "all": "All",
         "meta_description": "Free online production calculator for Arknights: Endfield. Plan your factory chains, calculate resource requirements, and optimize power consumption.",
-        "waste_disposal": "Disposal"
+        "waste_disposal": "Disposal",
+        "physics_simulation": "Physics Simulation"
     },
     "buttons": {
         "calculate": "Calculate",
