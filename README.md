@@ -42,7 +42,7 @@ Whether you're planning a small-scale operation or a massive factory, this tool 
 
 ## Planned
 
--   Add sewage processing.
+-   Rewrite README and User manual
 
 ##  Credits
 

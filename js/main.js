@@ -89,7 +89,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         return 'en';
     }
 
-
     /**
      * Initialize the application by loading data and setting up event listeners
      */
@@ -126,6 +125,21 @@ document.addEventListener('DOMContentLoaded', async () => {
             app.buildingsData = await buildingsResponse.json();
             app.transportData = await transportResponse.json();
 
+            // Initialize managers in the correct order
+            // 1. Initialize DefaultRecipeManager first
+            const defaultRecipeManager = new window.DefaultRecipeManager();
+            window.defaultRecipeManager = defaultRecipeManager;
+
+            // 2. Initialize WasteManager
+            const wasteManager = new window.WasteManager();
+            await wasteManager.loadWasteItems();
+            window.wasteManager = wasteManager;
+
+            // 3. Initialize TabsManager BEFORE setting up event listeners
+            const tabsManager = new window.TabsManager();
+            tabsManager.init();
+            window.tabsManager = tabsManager;
+
             // Set up event listeners after data is loaded
             setupEventListeners();
 
@@ -139,6 +153,24 @@ document.addEventListener('DOMContentLoaded', async () => {
             app.selectedItemName.textContent = window.localization.t('app.error');
             app.itemSelectorBtn.disabled = true; // Keep button disabled on error
         }
+
+        app.itemSelectorBtn.addEventListener('click', () => {
+            app.recipeSelectorModal.classList.add('is-active');
+            if (!app.recipeGrid.innerHTML) {
+                renderRecipeCategories();
+            }
+        });
+
+        window.addEventListener('beforeunload', (e) => {
+            // Check if we're in the middle of a reset
+            if (window.isResetting) {
+                return;
+            }
+            
+            if (window.tabsManager && window.tabsManager.activeTabIndex !== undefined) {
+                window.tabsManager.saveCurrentTabData();
+            }
+        });
     }
 
     // --- EVENT LISTENERS SETUP ---
@@ -163,16 +195,29 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         // Main controls
         app.calculateBtn.addEventListener('click', calculateProduction);
-        app.resetBtn.addEventListener('click', resetApp);
+        app.resetBtn.addEventListener('click', clearApp);
         app.helpBtn.addEventListener('click', () => app.helpModal.classList.add('is-active'));
         app.modalClose.addEventListener('click', () => app.helpModal.classList.remove('is-active'));
 
         // Display options
         app.showRawMaterials.addEventListener('change', () => {
             if (app.productionGraph) {
+                if (window.tabsManager && window.tabsManager.saveCurrentTabData) {
+                    window.tabsManager.saveCurrentTabData();
+                }
+
                 app.productionGraph.stopSimulation();
                 resetGraph();
                 app.productionGraph = new ProductionGraph(app.graphSvg, app.nodesContainer, app.allNeedsMap);
+
+                if (window.tabsManager && window.tabsManager.activeTabIndex !== undefined) {
+                    const currentTab = window.tabsManager.tabs[window.tabsManager.activeTabIndex];
+                    if (currentTab && currentTab.nodePositions.size > 0) {
+                        app.nodePositions = new Map(currentTab.nodePositions);
+                        const restored = restoreNodePositions();
+                    }
+                }
+
                 renderGraph();
                 updateTotalPower();
             }
@@ -182,6 +227,10 @@ document.addEventListener('DOMContentLoaded', async () => {
             if (app.productionGraph) {
                 app.productionGraph.updatePowerDisplay();
                 updateTotalPower();
+
+                if (window.tabsManager && window.tabsManager.saveCurrentTabData) {
+                    window.tabsManager.saveCurrentTabData();
+                }
             }
         });
 
@@ -246,6 +295,124 @@ document.addEventListener('DOMContentLoaded', async () => {
                 hideMobileRecipeSelector();
             }
         });
+
+        // Default recipes button
+        const defaultRecipesBtn = document.getElementById('akef-default-recipes-btn');
+        if (defaultRecipesBtn) {
+            defaultRecipesBtn.addEventListener('click', () => {
+                window.defaultRecipeManager.showModal();
+            });
+        }
+
+        // Update recipe icons
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                if (window.productionApp && window.productionApp.currentTargetItem) {
+                    updateItemSelectorIcon();
+                }
+            }, 10);
+        });
+
+        document.addEventListener('tabLoaded', () => {
+            updateItemSelectorIcon();
+        });
+
+        // Listen for production calculations to finish
+        document.addEventListener('productionCalculated', () => {
+            // After production is calculated, save the current state to the active tab
+            if (window.tabsManager && window.tabsManager.activeTabIndex !== undefined) {
+                window.tabsManager.saveCurrentTabData();
+                window.tabsManager.renderTabs();
+            }
+
+            updateItemSelectorIcon();
+        });
+    }
+
+    // --- HELPERS ---
+    /**
+     * Updates the item selector icon with the current target item's icon
+     */
+    function updateItemSelectorIcon() {
+        const app = window.productionApp;
+
+        if (!app.currentTargetItem) {
+            // Remove icons if no item is selected
+            const iconElement = app.itemSelectorBtn.querySelector('.item-selector-icon');
+            if (iconElement) iconElement.remove();
+
+            const recipeIconElement = app.itemSelectorBtn.querySelector('.item-recipe-icon');
+            if (recipeIconElement) recipeIconElement.remove();
+
+            return;
+        }
+
+        // Skip if the current target item is a waste disposal node
+        if (app.currentTargetItem.id && app.currentTargetItem.id.startsWith('disposal_')) {
+            return;
+        }
+
+        // Get item information
+        const itemInfo = app.itemsData.items[app.currentTargetItem.id];
+        if (!itemInfo || !itemInfo.img) return;
+
+        // Create or update item icon
+        let iconElement = app.itemSelectorBtn.querySelector('.item-selector-icon');
+        if (!iconElement) {
+            iconElement = document.createElement('img');
+            iconElement.className = 'item-selector-icon';
+
+            // Insert icon before list icon
+            const listIcon = app.itemSelectorBtn.querySelector('i.fas.fa-list');
+            if (listIcon) {
+                listIcon.parentNode.insertBefore(iconElement, listIcon);
+            } else {
+                app.itemSelectorBtn.prepend(iconElement);
+            }
+        }
+
+        // Update item icon properties
+        iconElement.src = `${app.projectBaseUrl}images/${itemInfo.img}`;
+        iconElement.alt = window.localization.getItemName(itemInfo);
+        iconElement.title = window.localization.getItemName(itemInfo);
+
+        // Handle recipe icon
+        updateRecipeIcon(app, iconElement);
+    }
+
+    // Helper function to update the recipe icon
+    function updateRecipeIcon(app, itemIconElement) {
+        let recipeIconElement = app.itemSelectorBtn.querySelector('.item-recipe-icon');
+
+        // Check if we have a selected recipe for this item
+        if (app.selectedRecipesMap && app.selectedRecipesMap.has(app.currentTargetItem.id)) {
+            const recipeIndex = app.selectedRecipesMap.get(app.currentTargetItem.id);
+            const recipes = findRecipesForItem(app.currentTargetItem.id);
+
+            if (recipes && recipes[recipeIndex]) {
+                const recipe = recipes[recipeIndex];
+                const building = app.buildingsData.buildings[recipe.buildingId];
+
+                if (building && building.img) {
+                    if (!recipeIconElement) {
+                        recipeIconElement = document.createElement('img');
+                        recipeIconElement.className = 'item-recipe-icon';
+                        recipeIconElement.style.marginLeft = '5px';
+                        itemIconElement.parentNode.insertBefore(recipeIconElement, itemIconElement.nextSibling);
+                    }
+
+                    recipeIconElement.src = `${app.projectBaseUrl}images/${building.img}`;
+                    recipeIconElement.alt = window.localization.getBuildingName(building);
+                    recipeIconElement.title = window.localization.getBuildingName(building);
+                    return; // Exit early if we've successfully updated the recipe icon
+                }
+            }
+        }
+
+        // Remove recipe icon if we don't have a valid recipe
+        if (recipeIconElement) {
+            recipeIconElement.remove();
+        }
     }
 
     // --- START THE APP ---

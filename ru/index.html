@@ -47,6 +47,9 @@
     <link rel="stylesheet" href="../styles/recipe-selector.css">
     <link rel="stylesheet" href="../styles/stats.css">
     <link rel="stylesheet" href="../styles/svg.css">
+    <link rel="stylesheet" href="../styles/tabs.css">
+    <link rel="stylesheet" href="../styles/default-recipes.css">
+    <link rel="stylesheet" href="../styles/waste-disposal.css">
 
     <link rel="shortcut icon" type="image/x-icon" href="../favicon.ico">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -69,7 +72,9 @@
                         <!-- Language options will be populated by JavaScript -->
                     </select>
                 </div>
-                <button id="reset-btn" class="btn btn-icon" aria-label="Сброс"><i class="fas fa-redo-alt"></i></button>
+                <button id="reset-btn" class="btn btn-icon" aria-label="Clear Cache" title="Очистить кэш">
+                    <i class="fas fa-redo-alt"></i>
+                </button>
                 <button id="help-btn" class="btn btn-icon" aria-label="Помощь"><i
                         class="fas fa-question-circle"></i></button>
                 <a id="github-btn" class="btn btn-icon" href="https://github.com/Micro215/AKEF-AIC-Calculator"
@@ -78,6 +83,16 @@
                 </a>
             </div>
         </header>
+        <div class="tabs-container">
+            <div class="tabs-bar">
+                <div class="tabs-list" id="tabs-list">
+                    <!-- Tabs will be populated by JavaScript -->
+                </div>
+                <button id="add-tab-btn" class="btn btn-icon" aria-label="Add new tab">
+                    <i class="fas fa-plus"></i>
+                </button>
+            </div>
+        </div>
 
         <!-- Main content area with control panel and graph -->
         <main class="app-main">
@@ -103,10 +118,19 @@
                         </div>
                     </div>
 
-                    <button id="calculate-btn" class="btn btn-primary">
-                        <i class="fas fa-calculator" aria-hidden="true"></i> <span
-                            id="calculate-btn-text">Рассчитать</span>
-                    </button>
+                    <div class="control-group">
+                        <button id="calculate-btn" class="btn btn-primary">
+                            <i class="fas fa-calculator" aria-hidden="true"></i> <span
+                                id="calculate-btn-text">Рассчитать</span>
+                        </button>
+                    </div>
+
+                    <div class="control-group">
+                        <button id="akef-default-recipes-btn" class="btn akef-btn-secondary">
+                            <i class="fas fa-cog"></i>
+                            <span id="default-recipes-btn-text">Рецепты по умолчанию</span>
+                        </button>
+                    </div>
                 </div>
 
                 <div class="panel-section">
@@ -243,6 +267,30 @@
         </div>
     </div>
 
+    <!-- Default Recipe Selector Modal -->
+    <div id="akef-default-recipe-modal" class="modal" role="dialog" aria-labelledby="default-recipe-title"
+        aria-hidden="true">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="default-recipe-title">Выберите рецепты по умолчанию</h2>
+                <button class="akef-modal-close" aria-label="Close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="akef-default-recipe-intro">
+                    <p>Выберите рецепты по умолчанию для предметов с несколькими вариантами производства. Они будут использоваться по умолчанию
+                        при расчёте производственных цепочек.</p>
+                </div>
+                <div id="akef-default-recipe-list" class="akef-default-recipe-list">
+                    <!-- Recipe options will be populated by JavaScript -->
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="akef-save-default-recipes-btn" class="btn btn-primary">Сохранить</button>
+                <button id="akef-cancel-default-recipes-btn" class="btn">Отмена</button>
+            </div>
+        </div>
+    </div>
+
     <!-- SEO: Structured Data (JSON-LD) -->
     <script type="application/ld+json" id="structured-data">
     {
@@ -270,6 +318,10 @@
     <script src="../js/ui-localization.js"></script>
     <script src="../js/data-loader.js"></script>
     <script src="../js/recipe-selector.js"></script>
+    <script src="../js/default-recipes.js"></script>
+    <script src="../js/recipe-finder.js"></script>
+    <script src="../js/tabs-manager.js"></script>
+    <script src="../js/waste-manager.js"></script>
     <script src="../js/production-calculator.js"></script>
     <script src="../js/production-graph.js"></script>
     <script src="../js/node-deletion.js"></script>

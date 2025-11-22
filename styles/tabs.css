@@ -1,0 +1,204 @@
+/* Tabs Container */
+.tabs-container {
+    background-color: var(--bg-secondary);
+    border-bottom: 1px solid var(--border-color);
+    flex-shrink: 0;
+}
+
+.tabs-bar {
+    display: flex;
+    align-items: center;
+    padding: 0 1rem;
+    position: relative;
+}
+
+.tabs-list {
+    display: flex;
+    flex: 1;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: thin; /* Firefox */
+    scrollbar-color: var(--border-color) transparent; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+    padding-bottom: 2px; /* Space for scrollbar */
+}
+
+/* Scrollbar styling for Chrome, Safari, Edge */
+.tabs-list::-webkit-scrollbar {
+    height: 6px;
+}
+
+.tabs-list::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.tabs-list::-webkit-scrollbar-thumb {
+    background-color: var(--border-color);
+    border-radius: 3px;
+}
+
+.tabs-list::-webkit-scrollbar-thumb:hover {
+    background-color: var(--text-secondary);
+}
+
+.tab {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    transition: all var(--transition-speed);
+    white-space: nowrap;
+    min-width: 150px;
+    max-width: 250px; /* Maximum tab width */
+    flex-shrink: 0; /* Prevent tab compression */
+}
+
+.tab.active {
+    border-bottom-color: var(--accent-blue);
+    background-color: var(--bg-tertiary);
+}
+
+.tab-content {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+}
+
+/* Styles for tab name display */
+.tab-name-display {
+    background: transparent;
+    border: none;
+    color: inherit;
+    font: inherit;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    outline: none;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+    display: block;
+}
+
+/* Styles for tab name input field */
+.tab-name-input {
+    background: var(--bg-tertiary);
+    border: 1px solid var(--accent-blue);
+    color: inherit;
+    font: inherit;
+    padding: 2px 4px;
+    margin: 0;
+    outline: none;
+    border-radius: 3px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.tab-edit-icon {
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 0.5rem;
+    padding: 0.25rem;
+    border-radius: 4px;
+    transition: all var(--transition-speed);
+    opacity: 0.7;
+    flex-shrink: 0; /* Prevent button compression */
+}
+
+.tab-edit-icon:hover {
+    color: var(--text-primary);
+    opacity: 1;
+}
+
+.tab-close {
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 0.5rem;
+    padding: 0.25rem;
+    border-radius: 4px;
+    transition: all var(--transition-speed);
+    flex-shrink: 0; /* Prevent button compression */
+}
+
+.tab-close:hover {
+    color: var(--text-primary);
+    background-color: var(--bg-tertiary);
+}
+
+#add-tab-btn {
+    margin-left: 0.5rem;
+    padding: 0.5rem;
+    flex-shrink: 0; /* Prevent button compression */
+}
+
+/* Responsive for small screens */
+@media (max-width: 768px) {
+    .tab {
+        min-width: 120px;
+        max-width: 180px;
+        padding: 0.5rem 0.75rem;
+    }
+    
+    .tab-edit-icon, .tab-close {
+        padding: 0.2rem;
+        margin-left: 0.3rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .tab {
+        min-width: 100px;
+        max-width: 140px;
+        padding: 0.4rem 0.6rem;
+    }
+    
+    .tab-edit-icon, .tab-close {
+        padding: 0.15rem;
+        margin-left: 0.2rem;
+    }
+    
+    .tabs-bar {
+        padding: 0 0.5rem;
+    }
+}
+
+/* Tab icons */
+.tab-item-icon {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin-right: 0.5rem;
+    border-radius: 2px;
+    vertical-align: middle;
+    object-fit: cover;
+    transition: transform 0.2s;
+}
+
+.tab-item-icon:hover {
+    transform: scale(1.1);
+}
+
+.tab-name-text {
+    display: inline;
+    vertical-align: middle;
+}
+
+.tab-name-display {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}

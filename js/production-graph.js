@@ -8,32 +8,42 @@ class ProductionGraph {
      * @param {HTMLElement} container - Container element for nodes
      * @param {Map} allNeedsMap - Map of all production needs
      */
-    constructor(svg, container, allNeedsMap) {
+    constructor(svg, container, allNeedsMap, wasteEdges = []) {
         const app = window.productionApp;
-
+    
         this.svg = svg;
         this.container = container;
         this.nodes = new Map();
         this.edges = [];
         this.animationFrameId = null;
         this.isSimulating = false;
-
-        // Filter nodes based on display options
+        this.settlingFrames = 0;
+    
+        // --- Create all nodes from the map ---
+        // This includes production nodes, raw materials, AND disposal nodes
         const filteredData = Array.from(allNeedsMap.values()).filter(itemData => {
             if (itemData.isTarget) return true;
             if (itemData.isRaw && !app.showRawMaterials.checked) return false;
             return true;
         });
-
-        // Create nodes
+    
         filteredData.forEach(itemData => {
             const node = new ProductionNode(itemData, this.container, this);
             this.nodes.set(itemData.itemId, node);
         });
-
-        // Create edges
+    
+        // --- Create all edges ---
+    
+        // 1. Add the pre-calculated waste disposal edges
+        this.edges.push(...wasteEdges);
+    
+        // 2. Create regular production edges
         allNeedsMap.forEach(itemData => {
-            if (itemData.isRaw) return;
+            // Skip disposal nodes, raw materials, and items without recipes
+            if (itemData.isWasteDisposal || itemData.isRaw || !itemData.allRecipes || itemData.allRecipes.length === 0) {
+                return;
+            }
+    
             const recipe = itemData.allRecipes[itemData.selectedRecipeIndex];
             if (recipe && recipe.ingredients) {
                 const recipeTimeInMinutes = recipe.time / app.SECONDS_PER_MINUTE;
@@ -59,40 +69,39 @@ class ProductionGraph {
 
         // If nodes already have positions, don't reposition them
         if (hasPreservedPositions) {
-            this.startSimulation();
-            return;
-        }
-
-        // Group nodes by level for initial positioning
-        const levels = new Map();
-        this.nodes.forEach(node => {
-            const level = node.data.level;
-            if (!levels.has(level)) levels.set(level, []);
-            levels.get(level).push(node);
-        });
-
-        // Sort levels
-        const sortedLevels = Array.from(levels.keys()).sort((a, b) => a - b);
-        const nodeWidth = 240;
-        const levelHeight = 200; // More space to prevent initial overlap
-
-        // Position nodes level by level
-        sortedLevels.forEach((level, index) => {
-            const nodes = levels.get(level);
-            const totalWidth = nodes.length * nodeWidth;
-            const svgWidth = this.svg.clientWidth || 800;
-            let startX = (svgWidth - totalWidth) / 2;
-            if (startX < 10) startX = 10;
-
-            nodes.forEach(node => {
-                node.x = startX + Math.random() * 50 - 25; // Add some randomness
-                node.y = index * levelHeight + 100;
-                // Initialize velocity for the simulation
-                node.vx = 0;
-                node.vy = 0;
-                startX += nodeWidth;
+            this.settlingFrames = 40;
+        } else {
+            // Group nodes by level for initial positioning
+            const levels = new Map();
+            this.nodes.forEach(node => {
+                const level = node.data.level;
+                if (!levels.has(level)) levels.set(level, []);
+                levels.get(level).push(node);
             });
-        });
+
+            // Sort levels
+            const sortedLevels = Array.from(levels.keys()).sort((a, b) => a - b);
+            const nodeWidth = 240;
+            const levelHeight = 200; // More space to prevent initial overlap
+
+            // Position nodes level by level
+            sortedLevels.forEach((level, index) => {
+                const nodes = levels.get(level);
+                const totalWidth = nodes.length * nodeWidth;
+                const svgWidth = this.svg.clientWidth || 800;
+                let startX = (svgWidth - totalWidth) / 2;
+                if (startX < 10) startX = 10;
+
+                nodes.forEach(node => {
+                    node.x = startX + Math.random() * 50 - 25; // Add some randomness
+                    node.y = index * levelHeight + 100;
+                    // Initialize velocity for the simulation
+                    node.vx = 0;
+                    node.vy = 0;
+                    startX += nodeWidth;
+                });
+            });
+        }
 
         // Start the continuous simulation
         this.startSimulation();
@@ -129,13 +138,21 @@ class ProductionGraph {
 
         // --- Physics Parameters ---
         // Repulsion strength. Determines how strongly nodes push each other away when overlapping.
-        const repulsionStrength = 0.1;
+        let repulsionStrength = 0.1;
         // Damping. Slows down movement. A value closer to 1.0 makes movement more "slippery".
-        const damping = 0.85;
+        let damping = 0.85;
         // Maximum velocity to prevent nodes from "flying away" and causing instability.
-        const maxVelocity = 8;
+        let maxVelocity = 8;
         // Minimum distance between the *edges* of nodes. This is a key parameter for controlling density.
         const separationDistance = 35;
+
+        // If tab changed
+        if (this.settlingFrames > 0) {
+            repulsionStrength = 0;
+            damping = 0;
+            maxVelocity = 0;
+            this.settlingFrames--;
+        }
 
         // Iterate through each node to calculate forces and update its position
         nodes.forEach(node => {
@@ -287,7 +304,7 @@ class ProductionGraph {
         this.container.style.transform = transformString;
         this.container.style.transformOrigin = '0 0';
 
-        // Create arrow marker
+        // Create arrow marker definition
         const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
         const marker = document.createElementNS('http://www.w3.org/2000/svg', 'marker');
         marker.setAttribute('id', 'arrowhead');
@@ -311,33 +328,33 @@ class ProductionGraph {
             const sourceNode = this.nodes.get(edge.source);
             const targetNode = this.nodes.get(edge.target);
             if (!sourceNode || !targetNode) return;
-
-            // Get node dimensions
+        
+            // Get node dimensions and positions
             const sourceRect = sourceNode.element.getBoundingClientRect();
             const targetRect = targetNode.element.getBoundingClientRect();
-
+        
             const sourceWidth = sourceRect.width / scale;
             const sourceHeight = sourceRect.height / scale;
             const targetWidth = targetRect.width / scale;
             const targetHeight = targetRect.height / scale;
 
-            const sourceCenterX = sourceNode.x + sourceWidth / 2;
-            const sourceCenterY = sourceNode.y + sourceHeight / 2;
-            const targetCenterX = targetNode.x + targetWidth / 2;
-            const targetCenterY = targetNode.y + targetHeight / 2;
-
-            // Calculate connection points
+            // The previous special case for waste disposal is removed.
+            const sourceCenterX = sourceNode.x + (sourceWidth / 2);
+            const sourceCenterY = sourceNode.y + (sourceHeight / 2);
+            const targetCenterX = targetNode.x + (targetWidth / 2);
+            const targetCenterY = targetNode.y + (targetHeight / 2);
+        
             const connectionPoints = this.getConnectionPoints(
                 sourceCenterX, sourceCenterY, sourceWidth, sourceHeight,
                 targetCenterX, targetCenterY, targetWidth, targetHeight
             );
-
+        
             const startX = connectionPoints.startX;
             const startY = connectionPoints.startY;
             const endX = connectionPoints.endX;
             const endY = connectionPoints.endY;
-
-            // Create path for edge
+        
+            // Create the SVG path element for the edge
             const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
             const d = `M ${startX} ${startY} L ${endX} ${endY}`;
             path.setAttribute('d', d);
@@ -429,9 +446,17 @@ class ProductionNode {
         const app = window.productionApp;
         const isRaw = this.data.isRaw;
         const isTarget = this.data.isTarget;
-        const itemInfo = app.itemsData.items[this.data.itemId];
+        const isWasteDisposal = this.data.isWasteDisposal || false;
 
-        // Transport help function
+        let itemInfo;
+
+        if (isWasteDisposal) {
+            itemInfo = app.itemsData.items[this.data.originalItemId];
+        } else {
+            itemInfo = app.itemsData.items[this.data.itemId];
+        }
+
+        // Transport helper function
         const createFlowItemHtml = (item, rate) => {
             const imgSrc = item.img ? `${app.projectBaseUrl}images/${item.img}` : `${app.projectBaseUrl}images/default-item.png`;
 
@@ -466,7 +491,7 @@ class ProductionNode {
 
         // Create node element
         const nodeEl = document.createElement('div');
-        nodeEl.className = `node ${isRaw ? 'is-raw' : ''} ${isTarget ? 'is-target' : ''}`;
+        nodeEl.className = `node ${isRaw ? 'is-raw' : ''} ${isTarget ? 'is-target' : ''} ${isWasteDisposal ? 'is-waste-disposal' : ''}`;
         nodeEl.setAttribute('data-node-id', this.data.itemId);
         nodeEl.style.left = `${this.x}px`;
         nodeEl.style.top = `${this.y}px`;
@@ -481,7 +506,33 @@ class ProductionNode {
 
         // Create the new vertical flow summary
         let flowSummaryHtml = '';
-        if (!isRaw && hasRecipe) {
+
+        if (isWasteDisposal) {
+            // For waste disposal nodes, show the input waste item and the machine
+            const recipe = this.data.allRecipes[this.data.selectedRecipeIndex];
+            const building = app.buildingsData.buildings[recipe.buildingId];
+            const wasteItemInfo = app.itemsData.items[this.data.originalItemId];
+
+            const inputElement = createFlowItemHtml(wasteItemInfo, this.data.rate);
+
+            flowSummaryHtml = `
+                <div class="node-flow-container node-flow-container-waste">
+                    <div class="flow-inputs">
+                        ${inputElement}
+                    </div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-output">
+                        <div class="flow-item">
+                            <div class="flow-item-main">
+                                <i class="fas fa-trash flow-item-icon"></i>
+                                <span class="flow-item-rate">${window.localization.t('app.waste_disposal')}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        } else if (!isRaw && hasRecipe && recipe && recipe.ingredients) {
+            // FIX: Added check for recipe and recipe.ingredients
             const recipeTimeInMinutes = recipe.time / app.SECONDS_PER_MINUTE;
             const machinesNeeded = this.data.machineCount;
 
@@ -495,20 +546,51 @@ class ProductionNode {
             // 2. Create product item using the helper function
             const productElement = createFlowItemHtml(itemInfo, this.data.rate);
 
+            // 3. Find and create waste byproducts
+            let wasteOutputsHtml = '';
+            if (recipe.products) {
+                const primaryProduct = recipe.products.find(p => p.item_id === this.data.itemId) || recipe.products[0];
+                
+                const wasteElements = recipe.products
+                    .filter(prod => prod.item_id !== this.data.itemId && window.wasteManager.isWasteItem(prod.item_id))
+                    .map(wasteProd => {
+                        // Calculate the rate of this specific waste byproduct
+                        const wasteRate = this.data.rate * (wasteProd.amount / primaryProduct.amount);
+                        if (wasteRate > 1e-6) { // Only show if there's a non-negligible rate
+                            const wasteItemInfo = app.itemsData.items[wasteProd.item_id];
+                            return createFlowItemHtml(wasteItemInfo, wasteRate);
+                        }
+                        return '';
+                    })
+                    .filter(html => html !== '') // Filter out empty strings
+                    .join('');
+
+                if (wasteElements) {
+                    wasteOutputsHtml = `
+                        <div class="flow-output-waste">
+                            ${wasteElements}
+                        </div>
+                    `;
+                }
+            }
+
             // Assemble the full flow summary
             flowSummaryHtml = `
-                <div class="node-flow-container">
-                    <div class="flow-inputs">
-                        ${ingredientElements}
-                    </div>
-                    <div class="flow-arrow">→</div>
+            <div class="node-flow-container">
+                <div class="flow-inputs">
+                    ${ingredientElements}
+                </div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-outputs-container">
                     <div class="flow-output">
                         ${productElement}
                     </div>
+                    ${wasteOutputsHtml}
                 </div>
+            </div>
             `;
         } else {
-            // For raw materials, use the SAME helper function to show product rate and transport
+            // For raw materials, or items without a valid recipe
             const productElement = createFlowItemHtml(itemInfo, this.data.rate);
 
             flowSummaryHtml = `
@@ -523,34 +605,36 @@ class ProductionNode {
         // Set node HTML
         nodeEl.innerHTML = `
             <div class="node-header">
-                <img src="${window.productionApp.projectBaseUrl}images/${itemInfo.img}" class="node-icon" alt="${window.localization.getItemName(itemInfo)}">
+                <img src="${window.productionApp.projectBaseUrl}images/${isWasteDisposal ? building.img : itemInfo.img}" class="node-icon" alt="${isWasteDisposal ? window.localization.getBuildingName(building) : window.localization.getItemName(itemInfo)}">
                 <div class="node-title-container">
-                    <div class="node-title">${window.localization.getItemName(itemInfo)}</div>
-                    ${localizedType ? `<div class="node-type">${localizedType}</div>` : ''}
+                    <div class="node-title">${isWasteDisposal ? window.localization.getBuildingName(building) : window.localization.getItemName(itemInfo)}</div>
+                    ${!isWasteDisposal && localizedType ? `<div class="node-type">${localizedType}</div>` : ''}
                 </div>
-                <button class="node-delete-btn" data-node-id="${this.data.itemId}" title="Delete node and all dependencies">
-                    <i class="fas fa-times"></i>
-                </button>
+                ${!isWasteDisposal ? `
+                    <button class="node-delete-btn" data-node-id="${this.data.itemId}" title="Delete node and all dependencies">
+                        <i class="fas fa-times"></i>
+                    </button>
+                ` : ''}
             </div>
             ${flowSummaryHtml}
             <div class="node-body">
-                ${hasRecipe ? `
-                    <div class="node-machine">
-                        <img src="${window.productionApp.projectBaseUrl}images/${building.img}" class="machine-icon" alt="${window.localization.getBuildingName(building)}">
-                        <div class="machine-info">
-                            <div class="machine-name">${window.localization.getBuildingName(building)}</div>
-                            <div class="machine-count">${this.data.machineCount.toFixed(2)}x</div>
-                            ${app.showPower.checked ? `<div class="machine-power"><i class="fas fa-bolt"></i> ${(Math.ceil(this.data.machineCount) * building.power).toFixed(0)}</div>` : ''}
-                        </div>
+            ${hasRecipe ? `
+                <div class="node-machine">
+                    <img src="${window.productionApp.projectBaseUrl}images/${building.img}" class="machine-icon" alt="${window.localization.getBuildingName(building)}">
+                    <div class="machine-info">
+                        <div class="machine-name">${window.localization.getBuildingName(building)}</div>
+                        <div class="machine-count">${this.data.machineCount.toFixed(2)}x</div>
+                        ${app.showPower.checked ? `<div class="machine-power"><i class="fas fa-bolt"></i> ${(Math.ceil(this.data.machineCount) * building.power).toFixed(0)}</div>` : ''}
                     </div>
-                    ${this.data.allRecipes.length > 1 ? `
-                        <div class="recipe-selector" data-node-id="${this.data.itemId}">
-                            <span>${window.localization.t('buttons.recipe')}: ${this.data.selectedRecipeIndex + 1} / ${this.data.allRecipes.length}</span>
-                            <i class="fas fa-chevron-down"></i>
-                        </div>
-                    ` : ''}
+                </div>
+                ${this.data.allRecipes.length > 1 ? `
+                    <div class="recipe-selector" data-node-id="${this.data.itemId}">
+                        <span>${window.localization.t('buttons.recipe')}: ${this.data.selectedRecipeIndex + 1} / ${this.data.allRecipes.length}</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
                 ` : ''}
-            </div>
+            ` : ''}
+    </div>
         `;
 
         this.element = nodeEl;
@@ -653,14 +737,19 @@ class ProductionNode {
 
         // Add recipe options
         this.data.allRecipes.forEach((recipe, index) => {
+            const building = app.buildingsData.buildings[recipe.buildingId];
+
             const option = document.createElement('div');
             option.className = 'recipe-option';
-            const building = app.buildingsData.buildings[recipe.buildingId];
+
+            // Check if this recipe is the default for this item
+            const isDefault = window.defaultRecipeManager &&
+                window.defaultRecipeManager.defaultRecipes.get(this.data.itemId) === index;
 
             option.innerHTML = `
                 <div class="recipe-option-header">
                     <img src="${window.productionApp.projectBaseUrl}images/${building.img}" alt="${window.localization.getBuildingName(building)}">
-                    <span>${window.localization.getBuildingName(building)}</span>
+                    <span>${window.localization.getBuildingName(building)}${isDefault ? ' (Default)' : ''}</span>
                 </div>
                 <div class="recipe-option-content">
                     ${this.renderIngredients(recipe.ingredients)}
@@ -671,10 +760,21 @@ class ProductionNode {
 
             // Add click event to select recipe
             option.addEventListener('click', () => {
+                // Update the selected recipe for this node in the app's state
                 app.selectedRecipesMap.set(this.data.itemId, index);
-                // Calculate production with position preservation
+
+                // Update the active tab's data immediately and synchronously
+                if (window.tabsManager && window.tabsManager.activeTabIndex !== undefined) {
+                    const currentTab = window.tabsManager.tabs[window.tabsManager.activeTabIndex];
+                    if (currentTab) {
+                        currentTab.selectedRecipes.set(this.data.itemId, index);
+                        window.tabsManager.saveToStorage();
+                    }
+                }
                 calculateProduction(true);
             });
+
+            // add all
             dropdown.appendChild(option);
         });
 
@@ -705,8 +805,8 @@ class ProductionNode {
      * @returns {string} HTML string for ingredients
      */
     renderIngredients(ingredients) {
+        if (!ingredients || !Array.isArray(ingredients)) return '';
         const app = window.productionApp;
-        if (!ingredients) return '';
         return ingredients.map(ing => {
             const item = app.itemsData.items[ing.item_id];
             const localizedType = window.localization.getItemTypeName(item.type);
@@ -726,8 +826,8 @@ class ProductionNode {
      * @returns {string} HTML string for products
      */
     renderProducts(products) {
+        if (!products || !Array.isArray(products)) return '';
         const app = window.productionApp;
-        if (!products) return '';
         return products.map(prod => {
             const item = app.itemsData.items[prod.item_id];
             const localizedType = window.localization.getItemTypeName(item.type);

@@ -12,7 +12,11 @@
         "per_minute": "/ min",
         "uncraftable": "Uncraftable",
         "current": "(Current)",
-        "meta_description": "Free online production calculator for Arknights: Endfield. Plan your factory chains, calculate resource requirements, and optimize power consumption."
+        "select_item_alert": "Please choose production recipe.",
+        "valid_rate_alert": "Please enter valid production rate.",
+        "all": "All",
+        "meta_description": "Free online production calculator for Arknights: Endfield. Plan your factory chains, calculate resource requirements, and optimize power consumption.",
+        "waste_disposal": "Disposal"
     },
     "buttons": {
         "calculate": "Calculate",
@@ -22,7 +26,8 @@
         "delete": "Delete",
         "cancel": "Cancel",
         "confirm_delete": "Confirm Deletion",
-        "recipe": "Recipe"
+        "recipe": "Recipe",
+        "default_recipes": "Default Recipes"
     },
     "labels": {
         "select_recipe": "Select Recipe",

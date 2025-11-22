@@ -25,7 +25,7 @@ class LocalizationManager {
 
         // Set HTML lang attribute
         document.documentElement.lang = this.currentLanguage;
-        
+
         this.isLoaded = true;
         return this.currentLanguage;
     }
@@ -75,7 +75,7 @@ class LocalizationManager {
         if (typeof value === 'string' || Array.isArray(value)) {
             return value;
         }
-        
+
         return fallback || key;
     }
 
@@ -131,7 +131,7 @@ class LocalizationManager {
 
         const projectBaseUrl = window.productionApp.projectBaseUrl;
         const defaultLanguage = 'en';
-    
+
         let newUrl;
         if (language === defaultLanguage) {
             newUrl = projectBaseUrl.replace(/\/[a-z]{2}\/$/, '/');
@@ -141,7 +141,7 @@ class LocalizationManager {
                 newUrl = `${projectBaseUrl}${language}/`;
             }
         }
-    
+
         window.location.href = newUrl;
     }
 
@@ -158,7 +158,7 @@ class LocalizationManager {
         } catch (error) {
             console.error('Error loading languages:', error);
         }
-        
+
         return { en: 'English' };
     }
 

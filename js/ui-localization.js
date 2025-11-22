@@ -89,6 +89,12 @@ function updateUIWithLocalization() {
 
     document.querySelector('#no-recipe-message p').textContent =
         window.localization.t('app.no_recipe_message');
+
+    // Update default recipes button
+    const defaultRecipesBtn = document.getElementById('default-recipes-btn');
+    if (defaultRecipesBtn) {
+        defaultRecipesBtn.innerHTML = `<i class="fas fa-cog"></i> <span>${window.localization.t('buttons.default_recipes')}</span>`;
+    }
 }
 
 /**

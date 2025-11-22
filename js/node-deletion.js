@@ -93,7 +93,7 @@ function findNodesToDelete(initialNodeId) {
  */
 function deleteNodeAndDependents(nodeId) {
     const app = window.productionApp;
-    
+
     // Find all nodes to delete
     const nodesToDelete = findNodesToDelete(nodeId);
 

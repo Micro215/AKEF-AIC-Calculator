@@ -202,6 +202,13 @@
     flex-shrink: 0;
 }
 
+.flow-outputs-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    min-width: 0;
+}
+
 .flow-item {
     display: flex;
     flex-direction: row;

@@ -8,7 +8,7 @@
  */
 function handleCanvasMouseDown(e) {
     const app = window.productionApp;
-    
+
     // Ignore if clicking on a node, as it will be handled by the node's own listener
     if (e.target.closest('.node')) {
         return;
@@ -27,7 +27,7 @@ function handleCanvasMouseDown(e) {
  */
 function handleMouseMove(e) {
     const app = window.productionApp;
-    
+
     // Handle node dragging
     if (app.isDraggingNode) {
         const deltaX = (e.clientX - app.dragStart.mouseX) / app.canvasTransform.scale;
@@ -42,7 +42,13 @@ function handleMouseMove(e) {
 
         app.isDraggingNode.render();
         if (app.productionGraph) app.productionGraph.render();
-    } 
+
+        // Update global node positions in real-time
+        app.nodePositions.set(app.isDraggingNode.data.itemId, {
+            x: app.isDraggingNode.x,
+            y: app.isDraggingNode.y
+        });
+    }
     // Handle canvas panning
     else if (app.isPanningCanvas) {
         app.canvasTransform.x = e.clientX - app.panStart.x;
@@ -52,15 +58,22 @@ function handleMouseMove(e) {
 }
 
 /**
- * Handle mouse up.
+ * Handle mouse up
  */
 function handleMouseUp() {
     const app = window.productionApp;
-    
+
     // Stop dragging node
     if (app.isDraggingNode) {
         app.isDraggingNode.element.classList.remove('is-dragging');
         app.isDraggingNode.isPinned = false; // Unpin the node so it's affected by forces again
+
+        // Save the position immediately
+        app.nodePositions.set(app.isDraggingNode.data.itemId, {
+            x: app.isDraggingNode.x,
+            y: app.isDraggingNode.y
+        });
+
         app.isDraggingNode = null;
     }
     // Stop panning canvas
@@ -76,7 +89,7 @@ function handleMouseUp() {
  */
 function handleWheel(e) {
     const app = window.productionApp;
-    
+
     // Ignore if hovering over a dropdown or other interactive element
     if (e.target.closest('.recipe-dropdown, .modal')) {
         return;
@@ -125,7 +138,7 @@ function handleTouchStart(e) {
 
     if (targetElement && targetElement.closest('.node')) {
         const nodeElement = targetElement.closest('.node');
-        const nodeId = nodeElement.dataset.nodeId; 
+        const nodeId = nodeElement.dataset.nodeId;
         const node = app.productionGraph.nodes.get(nodeId);
 
         if (node) {
@@ -137,7 +150,7 @@ function handleTouchStart(e) {
             node.element.classList.add('is-dragging');
             node.isPinned = true;
         }
-    } 
+    }
 
     else {
         app.isPanningCanvas = true;
@@ -174,7 +187,7 @@ function handleTouchMove(e) {
 
     if (e.touches.length === 1) {
         const touch = e.touches[0];
-        
+
         if (app.isDraggingNode) {
             const deltaX = (touch.clientX - app.dragStart.mouseX) / app.canvasTransform.scale;
             const deltaY = (touch.clientY - app.dragStart.mouseY) / app.canvasTransform.scale;
@@ -186,7 +199,13 @@ function handleTouchMove(e) {
 
             app.isDraggingNode.render();
             if (app.productionGraph) app.productionGraph.render();
-        } 
+
+            // Update global node positions in real-time
+            app.nodePositions.set(app.isDraggingNode.data.itemId, {
+                x: app.isDraggingNode.x,
+                y: app.isDraggingNode.y
+            });
+        }
         else if (app.isPanningCanvas) {
             app.canvasTransform.x = touch.clientX - app.panStart.x;
             app.canvasTransform.y = touch.clientY - app.panStart.y;
@@ -196,9 +215,9 @@ function handleTouchMove(e) {
 }
 
 /**
- * Handle touch end.
- * Resets all interaction states.
- * @param {TouchEvent} e - The touch event.
+ * Handle touch end
+ * Resets all interaction states
+ * @param {TouchEvent} e - The touch event
  */
 function handleTouchEnd(e) {
     const app = window.productionApp;
@@ -206,6 +225,13 @@ function handleTouchEnd(e) {
     if (app.isDraggingNode) {
         app.isDraggingNode.element.classList.remove('is-dragging');
         app.isDraggingNode.isPinned = false;
+
+        // Save the position immediately
+        app.nodePositions.set(app.isDraggingNode.data.itemId, {
+            x: app.isDraggingNode.x,
+            y: app.isDraggingNode.y
+        });
+
         app.isDraggingNode = null;
     }
 
@@ -236,9 +262,9 @@ function getTouchDistance(touches) {
 
 /**
  * Applies zoom to the canvas, centered on a specific point.
- * @param {number} centerX - The X coordinate of the zoom center (relative to the viewport).
- * @param {number} centerY - The Y coordinate of the zoom center (relative to the viewport).
- * @param {number} scaleDelta - The scale factor (e.g., 1.1 for zoom in, 0.9 for zoom out).
+ * @param {number} centerX - The X coordinate of the zoom center.
+ * @param {number} centerY - The Y coordinate of the zoom center.
+ * @param {number} scaleDelta - The scale factor.
  */
 function applyZoom(centerX, centerY, scaleDelta) {
     const app = window.productionApp;

@@ -2,7 +2,7 @@
  * Calculate production based on selected item and target rate
  * @param {boolean} preservePositions - Whether to preserve node positions
  */
-function calculateProduction(preservePositions = false) {
+function calculateProduction(preservePositions = false, positionsToRestore = null) {
     const app = window.productionApp;
 
     // Validate inputs
@@ -16,9 +16,14 @@ function calculateProduction(preservePositions = false) {
         return;
     }
 
-    // Save current node positions if requested
-    if (preservePositions && app.productionGraph) {
-        saveNodePositions();
+    // Save current recipes before calculation
+    const currentRecipes = new Map(app.selectedRecipesMap);
+
+    // Use passed positions if provided
+    if (preservePositions && positionsToRestore && positionsToRestore.size > 0) {
+        app.nodePositions = new Map(positionsToRestore);
+    } else if (preservePositions) {
+        app.nodePositions.clear();
     }
 
     // Show loading state
@@ -54,23 +59,46 @@ function calculateProduction(preservePositions = false) {
 
         populateNeedsMap(itemIndexMap, solutionVector);
 
-        // Create and render the production graph
-        app.productionGraph = new ProductionGraph(app.graphSvg, app.nodesContainer, app.allNeedsMap);
+        // Get waste edges from the manager and pass them to the graph
+        const wasteDisposalEdges = window.wasteManager.processDisposal(app.allNeedsMap);
 
-        // Restore positions if requested and available
-        if (preservePositions && app.nodePositions.size > 0) {
-            restoreNodePositions();
+        // Calculate the hierarchical levels for layout, now that disposal nodes exist
+        calculateLevels(app.currentTargetItem.id);
+
+        // Create and render the production graph
+        app.productionGraph = new ProductionGraph(app.graphSvg, app.nodesContainer, app.allNeedsMap, wasteDisposalEdges);
+
+        // Restore recipes after calculation
+        app.selectedRecipesMap = currentRecipes;
+
+        // Apply positions after creating the production graph
+        if (preservePositions && positionsToRestore && positionsToRestore.size > 0) {
+            // Create a new map with only positions that match current nodes
+            const validPositions = new Map();
+            app.productionGraph.nodes.forEach((node, itemId) => {
+                const savedPosition = positionsToRestore.get(itemId);
+                if (savedPosition) {
+                    validPositions.set(itemId, savedPosition);
+                    // Apply the position directly to the node object
+                    node.x = savedPosition.x;
+                    node.y = savedPosition.y;
+                }
+            });
+
+            // Update the global map for consistency
+            app.nodePositions = validPositions;
         }
 
         renderGraph();
         updateTotalPower();
         showLoading(false);
+
+        document.dispatchEvent(new CustomEvent('productionCalculated'));
     }, 100);
 }
 
 /**
- * Discovers all items required for the target item by traversing ingredients only.
- * This is a safe and efficient way to build the list of items for the system of equations.
+ * Discovers all items required for the target item by traversing ingredients and products.
  * @param {string} rootItemId - The ID of the item to start from.
  * @returns {Set<string>} A set of all item IDs in the production chain.
  */
@@ -91,11 +119,19 @@ function discoverAllItems(rootItemId) {
         const recipes = findRecipesForItem(itemId);
         if (recipes) {
             const recipe = recipes[app.selectedRecipesMap.get(itemId) ?? 0];
-            if (recipe && recipe.ingredients) {
-                recipe.ingredients.forEach(ing => stack.push(ing.item_id));
+            if (recipe) {
+                // Traverse ingredients
+                if (recipe.ingredients) {
+                    recipe.ingredients.forEach(ing => stack.push(ing.item_id));
+                }
+                // Traverse ALL products to capture byproducts
+                if (recipe.products) {
+                    recipe.products.forEach(prod => stack.push(prod.item_id));
+                }
             }
         }
     }
+
     return discoveredItems;
 }
 
@@ -232,6 +268,11 @@ function calculateLevels(targetItemId) {
         // Add the item to the current path to detect cycles on deeper levels.
         visitedPath.add(itemId);
 
+        // Handle waste disposal nodes
+        if (itemId.startsWith('disposal_')) {
+            return;
+        }
+
         const itemData = app.allNeedsMap.get(itemId);
         if (itemData && itemData.allRecipes && itemData.allRecipes.length > 0) {
             const recipe = itemData.allRecipes[itemData.selectedRecipeIndex];
@@ -270,6 +311,7 @@ function populateNeedsMap(itemIndexMap, solutionVector) {
         indexItemMap.set(index, itemId);
     });
 
+    // First pass: Populate map with primary products calculated by the linear system
     for (let i = 0; i < solutionVector.length; i++) {
         const itemId = indexItemMap.get(i);
         const rate = solutionVector[i];
@@ -278,20 +320,25 @@ function populateNeedsMap(itemIndexMap, solutionVector) {
 
         const allRecipes = findRecipesForItem(itemId);
         const selectedIndex = app.selectedRecipesMap.get(itemId) ?? 0;
-        const selectedRecipe = allRecipes ? allRecipes[selectedIndex] : null;
-        const isRaw = !allRecipes || allRecipes.length === 0 || !selectedRecipe || !selectedRecipe.ingredients || selectedRecipe.ingredients.length === 0;
-        
+        const selectedRecipe = allRecipes && allRecipes.length > 0 ? allRecipes[selectedIndex] : null;
+
+        const isRaw = !selectedRecipe || !selectedRecipe.ingredients || selectedRecipe.ingredients.length === 0;
+
         let machineCount = 0;
         if (selectedRecipe) {
             const recipeTimeInMinutes = selectedRecipe.time / app.SECONDS_PER_MINUTE;
-            const product = selectedRecipe.products.find(p => p.item_id === itemId) || selectedRecipe.products[0];
-            machineCount = rate / (product.amount / recipeTimeInMinutes);
+            if (selectedRecipe.products && selectedRecipe.products.length > 0) {
+                const product = selectedRecipe.products.find(p => p.item_id === itemId) || selectedRecipe.products[0];
+                if (product && product.amount > 0) {
+                    machineCount = rate / (product.amount / recipeTimeInMinutes);
+                }
+            }
         }
 
         // Calculate transport requirements
         let transportType = 'belt'; // Default to belt
         let transportCount = 0;
-        
+
         if (app.itemsData.items[itemId] && app.itemsData.items[itemId].transport_type) {
             transportType = app.itemsData.items[itemId].transport_type;
         }
@@ -315,24 +362,82 @@ function populateNeedsMap(itemIndexMap, solutionVector) {
         });
     }
 
-    // After populating the map, calculate the hierarchical levels for layout
-    calculateLevels(app.currentTargetItem.id);
-}
+   // Second pass: Calculate and add byproducts to the map
+    const processedRecipes = new Set(); // Avoid processing the same recipe multiple times
+    app.allNeedsMap.forEach((itemData, itemId) => {
+        // Skip raw resources or items that aren't being produced
+        if (itemData.isRaw || itemData.machineCount <= 0) {
+            return;
+        }
 
-/**
- * Save current positions of all nodes
- */
-function saveNodePositions() {
-    const app = window.productionApp;
-    if (!app.productionGraph || !app.productionGraph.nodes) return;
+        const recipe = itemData.allRecipes[itemData.selectedRecipeIndex];
+        if (!recipe || !recipe.products || processedRecipes.has(recipe.id)) {
+            return;
+        }
 
-    app.nodePositions.clear();
-    app.productionGraph.nodes.forEach((node, itemId) => {
-        app.nodePositions.set(itemId, {
-            x: node.x,
-            y: node.y
-        });
+        processedRecipes.add(recipe.id);
+        const primaryProduct = recipe.products.find(p => p.item_id === itemId);
+
+        if (!primaryProduct) return;
+
+        // Check that products is an array before calling forEach
+        if (Array.isArray(recipe.products)) {
+            recipe.products.forEach(product => {
+                // Skip the primary product, we already have it
+                if (product.item_id === itemId) return;
+
+                // Check if it's a waste item and record it
+                if (window.wasteManager && window.wasteManager.isWasteItem(product.item_id)) {
+                    const byproductRate = itemData.rate * (product.amount / primaryProduct.amount);
+                    window.wasteManager.recordWaste(product.item_id, byproductRate);
+                    return; // Don't create a node for the waste item itself
+                }
+
+                // Calculate the byproduct rate based on the primary product's rate
+                const byproductRate = itemData.rate * (product.amount / primaryProduct.amount);
+
+                // Check if the byproduct already exists in the map
+                const existingByproductData = app.allNeedsMap.get(product.item_id);
+
+                if (existingByproductData) {
+                    // If it exists, add to its rate. It might be produced by multiple recipes.
+                    existingByproductData.rate += byproductRate;
+                } else {
+                    // If it's a new byproduct, create an entry for it.
+                    const byproductRecipes = findRecipesForItem(product.item_id);
+                    const isByproductRaw = !byproductRecipes || byproductRecipes.length === 0;
+
+                    // Calculate transport for the new byproduct
+                    let transportType = 'belt';
+                    let transportCount = 0;
+                    if (app.itemsData.items[product.item_id] && app.itemsData.items[product.item_id].transport_type) {
+                        transportType = app.itemsData.items[product.item_id].transport_type;
+                    }
+                    if (app.transportData && app.transportData[transportType]) {
+                        const transportSpeed = app.transportData[transportType].speed;
+                        transportCount = byproductRate / transportSpeed;
+                    }
+
+                    app.allNeedsMap.set(product.item_id, {
+                        itemId: product.item_id,
+                        rate: byproductRate,
+                        level: 0, // Will be updated by calculateLevels
+                        isRaw: isByproductRaw,
+                        isTarget: false,
+                        isByproduct: true, // Flag this as a byproduct
+                        allRecipes: byproductRecipes || [],
+                        selectedRecipeIndex: 0,
+                        machineCount: 0, // Byproducts don't require machines themselves
+                        transportType: transportType,
+                        transportCount: transportCount
+                    });
+                }
+            });
+        }
     });
+
+    // Calculate the hierarchical levels for layout
+    calculateLevels(app.currentTargetItem.id);
 }
 
 /**
@@ -357,6 +462,16 @@ function restoreNodePositions() {
 function renderGraph() {
     const app = window.productionApp;
     if (!app.productionGraph) return;
+
+    // Ensure waste disposal nodes are properly handled
+    app.allNeedsMap.forEach((itemData, itemId) => {
+        if (itemId.startsWith('disposal_')) {
+            // Ensure waste disposal nodes have the correct properties
+            itemData.isWasteDisposal = true;
+            itemData.originalItemId = itemId.replace('disposal_', '');
+        }
+    });
+
     app.productionGraph.applyLayout('hierarchical');
 }
 
@@ -369,8 +484,13 @@ function updateTotalPower() {
 
     let totalPower = 0;
     app.allNeedsMap.forEach(itemData => {
+        // Skip byproducts, as they don't consume power directly
+        if (itemData.isByproduct) {
+            return;
+        }
+    
         if (itemData.isRaw && !app.showRawMaterials.checked) return;
-
+    
         if (itemData.machineCount > 0) {
             const recipe = itemData.allRecipes[itemData.selectedRecipeIndex];
             if (recipe) {
@@ -406,7 +526,6 @@ function resetApp() {
     app.currentTargetItem = null;
     app.selectedItemName.textContent = window.localization.t('app.choose_recipe');
     app.allNeedsMap.clear();
-    app.selectedRecipesMap.clear();
     app.nodePositions.clear();
     app.canvasTransform = { x: 0, y: 0, scale: 1 };
 
@@ -416,10 +535,57 @@ function resetApp() {
 }
 
 /**
+ * Reset the entire application and clear all cached data
+ */
+function clearApp() {
+    // Set flag to prevent beforeunload from saving data
+    window.isResetting = true;
+
+    // Clear all localStorage data
+    localStorage.clear();
+    
+    // Reload the page to get a clean state
+    window.location.reload();
+}
+
+/**
  * Show or hide loading message
  * @param {boolean} show - Whether to show the loading message
  */
 function showLoading(show) {
     const app = window.productionApp;
     app.loadingMessage.style.display = show ? 'flex' : 'none';
+}
+
+/**
+ * Restore saved positions to nodes
+ */
+function restoreNodePositions() {
+    const app = window.productionApp;
+
+    if (!app.productionGraph || !app.productionGraph.nodes) {
+        return 0;
+    }
+
+    if (app.nodePositions.size === 0) {
+        return 0;
+    }
+
+    let positionsRestored = 0;
+    let positionsMatched = 0;
+    let positionsNotMatched = 0;
+
+    app.productionGraph.nodes.forEach((node, itemId) => {
+        const savedPosition = app.nodePositions.get(itemId);
+        if (savedPosition && typeof savedPosition.x === 'number' && typeof savedPosition.y === 'number') {
+            node.x = savedPosition.x;
+            node.y = savedPosition.y;
+            positionsRestored++;
+            positionsMatched++;
+        } else {
+            positionsNotMatched++;
+        }
+    });
+
+    return positionsRestored;
 }

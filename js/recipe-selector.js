@@ -3,7 +3,7 @@
  */
 function renderRecipeCategories() {
     const app = window.productionApp;
-    
+
     // Clear and rebuild categories
     app.allCategories.clear();
     getAllItems().forEach(item => {
@@ -130,6 +130,8 @@ function selectRecipe(item) {
     app.currentTargetItem = item;
     app.selectedItemName.textContent = window.localization.getItemName(item);
     app.recipeSelectorModal.classList.remove('is-active');
+
+    calculateProduction();
 }
 
 /**
