@@ -5,7 +5,7 @@ class WasteManager {
     constructor() {
         this.wasteItems = new Set();
         // Add a map to store discovered waste items and their rates during a calculation
-        this.discoveredWaste = new Map(); 
+        this.discoveredWaste = new Map();
     }
 
     /**
@@ -17,7 +17,7 @@ class WasteManager {
                 console.error('ProductionApp is not initialized');
                 return false;
             }
-            
+
             const response = await fetch(`${window.productionApp.projectBaseUrl}db/waste.json`);
             if (response.ok) {
                 const wasteItems = await response.json();
@@ -100,7 +100,7 @@ class WasteManager {
             const disposalRecipe = disposalRecipes[0];
             const recipeTimeInMinutes = disposalRecipe.time / window.productionApp.SECONDS_PER_MINUTE;
             const wasteIngredient = disposalRecipe.ingredients.find(ing => ing.item_id === wasteItemId);
-            
+
             if (!wasteIngredient || wasteIngredient.amount <= 0) {
                 console.error(`Invalid ingredient data for disposal of ${wasteItemId}`);
                 return;
@@ -135,7 +135,7 @@ class WasteManager {
 
         // Clear the discovered waste for the next calculation
         this.discoveredWaste.clear();
-        
+
         return edgesToAdd;
     }
 }

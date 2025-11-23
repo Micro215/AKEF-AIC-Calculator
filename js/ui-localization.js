@@ -101,6 +101,12 @@ function updateUIWithLocalization() {
     if (physicsSimulationCheckmark && physicsSimulationCheckmark.nextSibling) {
         physicsSimulationCheckmark.nextSibling.textContent = ` ${window.localization.t('app.physics_simulation')}`;
     }
+
+    // Show Alternative Recipes checkbox
+    const showAlternativeRecipesLabel = document.querySelector('label[for="show-alternative-recipes"]');
+    if (showAlternativeRecipesLabel) {
+        showAlternativeRecipesLabel.insertAdjacentHTML('beforeend', window.localization.t('app.show_alternative_recipes'));
+    }
 }
 
 /**

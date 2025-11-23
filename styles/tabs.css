@@ -202,3 +202,8 @@
     align-items: center;
     gap: 0.5rem;
 }
+
+.tabs-list .tab .tab-name-input {
+    user-select: text !important;
+    cursor: text;
+}

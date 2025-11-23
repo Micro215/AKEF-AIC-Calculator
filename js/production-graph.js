@@ -10,7 +10,7 @@ class ProductionGraph {
      */
     constructor(svg, container, allNeedsMap, wasteEdges = []) {
         const app = window.productionApp;
-    
+
         this.svg = svg;
         this.container = container;
         this.nodes = new Map();
@@ -18,7 +18,7 @@ class ProductionGraph {
         this.animationFrameId = null;
         this.isSimulating = false;
         this.settlingFrames = 0;
-    
+
         // --- Create all nodes from the map ---
         // This includes production nodes, raw materials, AND disposal nodes
         const filteredData = Array.from(allNeedsMap.values()).filter(itemData => {
@@ -26,24 +26,24 @@ class ProductionGraph {
             if (itemData.isRaw && !app.showRawMaterials.checked) return false;
             return true;
         });
-    
+
         filteredData.forEach(itemData => {
             const node = new ProductionNode(itemData, this.container, this);
             this.nodes.set(itemData.itemId, node);
         });
-    
+
         // --- Create all edges ---
-    
+
         // 1. Add the pre-calculated waste disposal edges
         this.edges.push(...wasteEdges);
-    
+
         // 2. Create regular production edges
         allNeedsMap.forEach(itemData => {
             // Skip disposal nodes, raw materials, and items without recipes
             if (itemData.isWasteDisposal || itemData.isRaw || !itemData.allRecipes || itemData.allRecipes.length === 0) {
                 return;
             }
-    
+
             const recipe = itemData.allRecipes[itemData.selectedRecipeIndex];
             if (recipe && recipe.ingredients) {
                 const recipeTimeInMinutes = recipe.time / app.SECONDS_PER_MINUTE;
@@ -104,7 +104,9 @@ class ProductionGraph {
         }
 
         // Start the continuous simulation
-        this.startSimulation();
+        if (window.productionApp.physicsSimulation.checked) {
+            this.startSimulation();
+        }
     }
 
     /**
@@ -328,40 +330,48 @@ class ProductionGraph {
         defs.appendChild(marker);
         this.svg.appendChild(defs);
 
-        // Get current scale for calculations
-        const scale = app.canvasTransform.scale || 1;
-
         // Draw edges
         this.edges.forEach(edge => {
             const sourceNode = this.nodes.get(edge.source);
             const targetNode = this.nodes.get(edge.target);
             if (!sourceNode || !targetNode) return;
-        
-            // Get node dimensions and positions
+
+            // Get the current scale
+            const scale = app.canvasTransform.scale || 1;
+
+            // Get the true, unscaled dimensions of the nodes.
             const sourceRect = sourceNode.element.getBoundingClientRect();
             const targetRect = targetNode.element.getBoundingClientRect();
-        
-            const sourceWidth = sourceRect.width / scale;
-            const sourceHeight = sourceRect.height / scale;
-            const targetWidth = targetRect.width / scale;
-            const targetHeight = targetRect.height / scale;
 
-            // The previous special case for waste disposal is removed.
-            const sourceCenterX = sourceNode.x + (sourceWidth / 2);
-            const sourceCenterY = sourceNode.y + (sourceHeight / 2);
-            const targetCenterX = targetNode.x + (targetWidth / 2);
-            const targetCenterY = targetNode.y + (targetHeight / 2);
-        
+            // Check if the node is currently being dragged to get its scale factor.
+            const DRAG_SCALE = 1.05; // This must match the CSS value
+
+            const isSourceDragging = sourceNode.element.classList.contains('is-dragging');
+            const sourceDragScale = isSourceDragging ? DRAG_SCALE : 1;
+            const sourceWidth = sourceRect.width / scale / sourceDragScale;
+            const sourceHeight = sourceRect.height / scale / sourceDragScale;
+
+            const isTargetDragging = targetNode.element.classList.contains('is-dragging');
+            const targetDragScale = isTargetDragging ? DRAG_SCALE : 1;
+            const targetWidth = targetRect.width / scale / targetDragScale;
+            const targetHeight = targetRect.height / scale / targetDragScale;
+
+            // Use logical positions (node.x, node.y) which are the source of truth.
+            const sourceCenterX = sourceNode.x + sourceWidth / 2;
+            const sourceCenterY = sourceNode.y + sourceHeight / 2;
+            const targetCenterX = targetNode.x + targetWidth / 2;
+            const targetCenterY = targetNode.y + targetHeight / 2;
+
             const connectionPoints = this.getConnectionPoints(
                 sourceCenterX, sourceCenterY, sourceWidth, sourceHeight,
                 targetCenterX, targetCenterY, targetWidth, targetHeight
             );
-        
+
             const startX = connectionPoints.startX;
             const startY = connectionPoints.startY;
             const endX = connectionPoints.endX;
             const endY = connectionPoints.endY;
-        
+
             // Create the SVG path element for the edge
             const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
             const d = `M ${startX} ${startY} L ${endX} ${endY}`;

@@ -116,7 +116,6 @@ class ProductionNode {
                 </div>
             `;
         } else if (!isRaw && hasRecipe && recipe && recipe.ingredients) {
-            // FIX: Added check for recipe and recipe.ingredients
             const recipeTimeInMinutes = recipe.time / app.SECONDS_PER_MINUTE;
             const machinesNeeded = this.data.machineCount;
 
@@ -134,7 +133,7 @@ class ProductionNode {
             let wasteOutputsHtml = '';
             if (recipe.products) {
                 const primaryProduct = recipe.products.find(p => p.item_id === this.data.itemId) || recipe.products[0];
-                
+
                 const wasteElements = recipe.products
                     .filter(prod => prod.item_id !== this.data.itemId && window.wasteManager.isWasteItem(prod.item_id))
                     .map(wasteProd => {

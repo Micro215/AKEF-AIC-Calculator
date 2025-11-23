@@ -50,6 +50,9 @@ class TabsManager {
      */
     setupEventListeners() {
         this.addTabBtn.addEventListener('click', () => this.addTab());
+
+        // Add drag and drop functionality to tabs
+        this.setupTabDragging();
     }
 
     /**
@@ -281,6 +284,93 @@ class TabsManager {
     }
 
     /**
+     * Setup drag and drop functionality for tabs
+     */
+    setupTabDragging() {
+        let draggedTab = null;
+        let draggedIndex = null;
+
+        this.tabsList.addEventListener('dragstart', (e) => {
+            const tabElement = e.target.closest('.tab');
+            if (!tabElement) return;
+
+            // Find the input field for the tab name within the tab element
+            const nameInputElement = tabElement.querySelector('.tab-name-input');
+
+            if (nameInputElement && nameInputElement.style.display !== 'none') {
+                e.preventDefault(); // Prevent the default drag behavior
+                return; // Exit the listener
+            }
+
+            draggedTab = tabElement;
+            draggedIndex = parseInt(draggedTab.getAttribute('data-tab-index'));
+            e.dataTransfer.effectAllowed = 'move';
+            e.dataTransfer.setData('text/html', draggedTab.innerHTML);
+        });
+
+        this.tabsList.addEventListener('dragover', (e) => {
+            if (e.preventDefault) {
+                e.preventDefault();
+            }
+            e.dataTransfer.dropEffect = 'move';
+
+            const afterElement = getDragAfterElement(this.tabsList, e.clientX);
+            if (afterElement == null) {
+                this.tabsList.appendChild(draggedTab);
+            } else {
+                this.tabsList.insertBefore(draggedTab, afterElement);
+            }
+
+            return false;
+        });
+
+        this.tabsList.addEventListener('drop', (e) => {
+            if (e.stopPropagation) {
+                e.stopPropagation();
+            }
+
+            if (draggedTab !== e.target && e.target.classList.contains('tab')) {
+                const dropIndex = parseInt(e.target.getAttribute('data-tab-index'));
+
+                // Reorder tabs in the array
+                const [removed] = this.tabs.splice(draggedIndex, 1);
+                this.tabs.splice(dropIndex, 0, removed);
+
+                // Update active tab index if needed
+                if (this.activeTabIndex === draggedIndex) {
+                    this.activeTabIndex = dropIndex;
+                } else if (draggedIndex < this.activeTabIndex && dropIndex >= this.activeTabIndex) {
+                    this.activeTabIndex--;
+                } else if (draggedIndex > this.activeTabIndex && dropIndex <= this.activeTabIndex) {
+                    this.activeTabIndex++;
+                }
+
+                // Re-render tabs to update indices
+                this.renderTabs();
+                this.saveToStorage();
+            }
+
+            return false;
+        });
+
+        // Helper function to determine where to insert the dragged element
+        function getDragAfterElement(container, x) {
+            const draggableElements = [...container.querySelectorAll('.tab:not(.dragging)')];
+
+            return draggableElements.reduce((closest, child) => {
+                const box = child.getBoundingClientRect();
+                const offset = x - box.left - box.width / 2;
+
+                if (offset < 0 && offset > closest.offset) {
+                    return { offset: offset, element: child };
+                } else {
+                    return closest;
+                }
+            }, { offset: Number.NEGATIVE_INFINITY }).element;
+        }
+    }
+
+    /**
      * Render the tabs in the UI
      */
     renderTabs() {
@@ -290,6 +380,7 @@ class TabsManager {
             const tabElement = document.createElement('div');
             tabElement.className = `tab ${index === this.activeTabIndex ? 'active' : ''}`;
             tabElement.setAttribute('data-tab-index', index);
+            tabElement.draggable = true;
 
             const tabContent = document.createElement('div');
             tabContent.className = 'tab-content';
@@ -352,6 +443,8 @@ class TabsManager {
 
             // Double-click or edit button to enable editing mode
             const enableEditing = () => {
+                tabElement.draggable = false;
+
                 tabNameDisplay.style.display = 'none';
                 tabNameInput.style.display = 'block';
                 tabNameInput.focus();
@@ -370,6 +463,8 @@ class TabsManager {
                 nameText.textContent = tab.name;
                 tabNameDisplay.style.display = 'block';
                 tabNameInput.style.display = 'none';
+
+                tabElement.draggable = true;
             };
 
             // Event handlers for span
@@ -392,7 +487,7 @@ class TabsManager {
                 clickTimeout = setTimeout(() => {
                     this.switchToTab(parseInt(tabElement.getAttribute('data-tab-index')));
                     clickTimeout = null;
-                }, 200);
+                }, 250);
             });
 
             tabNameDisplay.addEventListener('dblclick', (e) => {

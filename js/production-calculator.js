@@ -26,12 +26,25 @@ function calculateProduction(preservePositions = false, positionsToRestore = nul
         app.nodePositions.clear();
     }
 
-    // Show loading state
-    showLoading(true);
-    app.noRecipeMessage.style.display = 'none';
+    // Save current node positions before resetting the graph
+    if (preservePositions && app.productionGraph && app.productionGraph.nodes) {
+        if (!positionsToRestore) {
+            positionsToRestore = new Map();
+            app.productionGraph.nodes.forEach((node, itemId) => {
+                positionsToRestore.set(itemId, {
+                    x: node.x,
+                    y: node.y
+                });
+            });
+        }
+    }
 
     // Reset graph
     resetGraph();
+
+    // Show loading state
+    showLoading(true);
+    app.noRecipeMessage.style.display = 'none';
 
     // Calculate with a small delay to allow UI to update
     setTimeout(() => {
@@ -67,6 +80,11 @@ function calculateProduction(preservePositions = false, positionsToRestore = nul
 
         // Create and render the production graph
         app.productionGraph = new ProductionGraph(app.graphSvg, app.nodesContainer, app.allNeedsMap, wasteDisposalEdges);
+
+        // Apply display settings now that the graph is guaranteed to exist
+        if (app.applyDisplaySettings) {
+            app.applyDisplaySettings();
+        }
 
         // Restore recipes after calculation
         app.selectedRecipesMap = currentRecipes;
@@ -362,7 +380,7 @@ function populateNeedsMap(itemIndexMap, solutionVector) {
         });
     }
 
-   // Second pass: Calculate and add byproducts to the map
+    // Second pass: Calculate and add byproducts to the map
     const processedRecipes = new Set(); // Avoid processing the same recipe multiple times
     app.allNeedsMap.forEach((itemData, itemId) => {
         // Skip raw resources or items that aren't being produced
@@ -473,6 +491,9 @@ function renderGraph() {
     });
 
     app.productionGraph.applyLayout('hierarchical');
+
+    // Force a render to update the DOM with the final node positions
+    app.productionGraph.render();
 }
 
 /**
@@ -488,9 +509,9 @@ function updateTotalPower() {
         if (itemData.isByproduct) {
             return;
         }
-    
+
         if (itemData.isRaw && !app.showRawMaterials.checked) return;
-    
+
         if (itemData.machineCount > 0) {
             const recipe = itemData.allRecipes[itemData.selectedRecipeIndex];
             if (recipe) {
@@ -543,7 +564,7 @@ function clearApp() {
 
     // Clear all localStorage data
     localStorage.clear();
-    
+
     // Reload the page to get a clean state
     window.location.reload();
 }

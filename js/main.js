@@ -34,6 +34,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         totalPowerEl: document.getElementById('total-power'),
         languageSelect: document.getElementById('language-select'),
         physicsSimulation: document.getElementById('physics-simulation'),
+        showAlternativeRecipes: document.getElementById('show-alternative-recipes'),
 
         // --- GLOBAL STATE VARIABLES ---
         itemsData: {},
@@ -94,7 +95,10 @@ document.addEventListener('DOMContentLoaded', async () => {
      * Initialize the application by loading data and setting up event listeners
      */
     async function initializeApp(language) {
-        // Initialize localization first
+        // Load user preferences from localStorage after all elements are ready
+        loadDisplaySettings();
+
+        // Initialize localization
         await window.localization.init(language);
 
         // Update UI with localized strings
@@ -144,6 +148,8 @@ document.addEventListener('DOMContentLoaded', async () => {
             // Set up event listeners after data is loaded
             setupEventListeners();
 
+            app.applyDisplaySettings = applyDisplaySettings;
+
             // Re-enable controls after successful load
             app.itemSelectorBtn.disabled = false;
             app.calculateBtn.disabled = false;
@@ -167,7 +173,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             if (window.isResetting) {
                 return;
             }
-            
+
             if (window.tabsManager && window.tabsManager.activeTabIndex !== undefined) {
                 window.tabsManager.saveCurrentTabData();
             }
@@ -206,11 +212,11 @@ document.addEventListener('DOMContentLoaded', async () => {
                 if (window.tabsManager && window.tabsManager.saveCurrentTabData) {
                     window.tabsManager.saveCurrentTabData();
                 }
-        
+
                 app.productionGraph.stopSimulation();
                 resetGraph();
                 app.productionGraph = new ProductionGraph(app.graphSvg, app.nodesContainer, app.allNeedsMap);
-        
+
                 if (window.tabsManager && window.tabsManager.activeTabIndex !== undefined) {
                     const currentTab = window.tabsManager.tabs[window.tabsManager.activeTabIndex];
                     if (currentTab && currentTab.nodePositions.size > 0) {
@@ -218,15 +224,16 @@ document.addEventListener('DOMContentLoaded', async () => {
                         const restored = restoreNodePositions();
                     }
                 }
-        
+
                 renderGraph();
                 updateTotalPower();
-                
+
                 // Start simulation only if the checkbox is checked
                 if (app.physicsSimulation.checked) {
                     app.productionGraph.startSimulation();
                 }
             }
+            saveDisplaySettings();
         });
 
         app.showPower.addEventListener('change', () => {
@@ -238,6 +245,33 @@ document.addEventListener('DOMContentLoaded', async () => {
                     window.tabsManager.saveCurrentTabData();
                 }
             }
+            saveDisplaySettings();
+        });
+
+        app.showAlternativeRecipes.addEventListener('change', () => {
+            // Toggle a class on the graph container to control visibility
+            app.graphContainer.classList.toggle('hide-alternative-recipes', !app.showAlternativeRecipes.checked);
+
+            if (window.tabsManager && window.tabsManager.saveCurrentTabData) {
+                window.tabsManager.saveCurrentTabData();
+            }
+            saveDisplaySettings();
+        });
+
+        // Physics simulation control
+        app.physicsSimulation.addEventListener('change', () => {
+            if (app.productionGraph) {
+                if (app.physicsSimulation.checked) {
+                    app.productionGraph.startSimulation();
+                } else {
+                    app.productionGraph.stopSimulation();
+                }
+
+                if (window.tabsManager && window.tabsManager.saveCurrentTabData) {
+                    window.tabsManager.saveCurrentTabData();
+                }
+            }
+            saveDisplaySettings();
         });
 
         // Graph interaction
@@ -333,21 +367,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             updateItemSelectorIcon();
         });
-
-        // Physics simulation control
-        app.physicsSimulation.addEventListener('change', () => {
-            if (app.productionGraph) {
-                if (app.physicsSimulation.checked) {
-                    app.productionGraph.startSimulation();
-                } else {
-                    app.productionGraph.stopSimulation();
-                }
-
-                if (window.tabsManager && window.tabsManager.saveCurrentTabData) {
-                    window.tabsManager.saveCurrentTabData();
-                }
-            }
-        });
     }
 
     // --- HELPERS ---
@@ -434,6 +453,62 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (recipeIconElement) {
             recipeIconElement.remove();
         }
+    }
+
+    /**
+     * Save display settings to localStorage
+     */
+    function saveDisplaySettings() {
+        const settings = {
+            showRawMaterials: app.showRawMaterials.checked,
+            showPower: app.showPower.checked,
+            showAlternativeRecipes: app.showAlternativeRecipes.checked,
+            physicsSimulation: app.physicsSimulation.checked
+        };
+        localStorage.setItem('akef-display-settings', JSON.stringify(settings));
+    }
+
+    /**
+     * Load display settings from localStorage
+     */
+    function loadDisplaySettings() {
+        try {
+            const savedSettings = localStorage.getItem('akef-display-settings');
+            if (savedSettings) {
+                const settings = JSON.parse(savedSettings);
+                
+                // Apply saved settings to the checkboxes
+                if (settings.showRawMaterials !== undefined) app.showRawMaterials.checked = settings.showRawMaterials;
+                if (settings.showPower !== undefined) app.showPower.checked = settings.showPower;
+                if (settings.showAlternativeRecipes !== undefined) app.showAlternativeRecipes.checked = settings.showAlternativeRecipes;
+                if (settings.physicsSimulation !== undefined) app.physicsSimulation.checked = settings.physicsSimulation;
+            }
+        } catch (error) {
+            console.error('Error loading display settings:', error);
+        }
+    }
+
+    /**
+     * Apply the current state of display settings to the UI
+     */
+    function applyDisplaySettings() {
+        const app = window.productionApp;
+
+        // Apply alternative recipes visibility
+        if (app.graphContainer) {
+            app.graphContainer.classList.toggle('hide-alternative-recipes', !app.showAlternativeRecipes.checked);
+        }
+
+        // Apply physics simulation state
+        if (app.productionGraph) {
+            if (app.physicsSimulation.checked) {
+                app.productionGraph.startSimulation();
+            } else {
+                app.productionGraph.stopSimulation();
+            }
+        }
+
+        // Note: "Show Raw Materials" and "Show Power" are handled by a full recalculation,
     }
 
     // --- START THE APP ---
