@@ -65,9 +65,8 @@ class WasteManager {
         const edgesToAdd = [];
 
         this.discoveredWaste.forEach((wasteRate, wasteItemId) => {
-            // Find the production node that creates this waste byproduct
-            let producerNodeId = null;
-            let producerLevel = 0;
+            // Find ALL production nodes that create this waste byproduct
+            const producerNodes = [];
             allNeedsMap.forEach((producerData, producerId) => {
                 if (producerData.isRaw || producerId === wasteItemId) {
                     return;
@@ -77,14 +76,15 @@ class WasteManager {
                 if (recipe && recipe.products) {
                     const isWasteInProducts = recipe.products.some(p => p.item_id === wasteItemId);
                     if (isWasteInProducts) {
-                        producerNodeId = producerId;
-                        producerLevel = producerData.level;
-                        return; // Found it, exit the inner loop
+                        producerNodes.push({
+                            nodeId: producerId,
+                            level: producerData.level
+                        });
                     }
                 }
             });
 
-            if (!producerNodeId) {
+            if (producerNodes.length === 0) {
                 console.warn(`Could not find a producer for waste item: ${wasteItemId}`);
                 return;
             }
@@ -114,7 +114,7 @@ class WasteManager {
                 itemId: disposalNodeId,
                 originalItemId: wasteItemId,
                 rate: wasteRate,
-                level: producerLevel + 1, // Set level based on producer
+                level: producerNodes[0].level + 1, // Set level based on the first producer
                 isRaw: false,
                 isTarget: false,
                 isWasteDisposal: true,
@@ -125,11 +125,13 @@ class WasteManager {
                 transportCount: 0
             });
 
-            // Create the edge object and add it to our list
-            edgesToAdd.push({
-                source: producerNodeId,
-                target: disposalNodeId,
-                amount: wasteRate
+            // Create edges from ALL producer nodes to the waste disposal node
+            producerNodes.forEach(producer => {
+                edgesToAdd.push({
+                    source: producer.nodeId,
+                    target: disposalNodeId,
+                    amount: wasteRate
+                });
             });
         });
 

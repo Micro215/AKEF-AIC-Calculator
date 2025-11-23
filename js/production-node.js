@@ -188,10 +188,10 @@ class ProductionNode {
         // Set node HTML
         nodeEl.innerHTML = `
             <div class="node-header">
-                <img src="${window.productionApp.projectBaseUrl}images/${isWasteDisposal ? building.img : itemInfo.img}" class="node-icon" alt="${isWasteDisposal ? window.localization.getBuildingName(building) : window.localization.getItemName(itemInfo)}">
+                <img src="${window.productionApp.projectBaseUrl}images/${itemInfo.img}" class="node-icon" alt="${window.localization.getItemName(itemInfo)}">
                 <div class="node-title-container">
-                    <div class="node-title">${isWasteDisposal ? window.localization.getBuildingName(building) : window.localization.getItemName(itemInfo)}</div>
-                    ${!isWasteDisposal && localizedType ? `<div class="node-type">${localizedType}</div>` : ''}
+                    <div class="node-title">${window.localization.getItemName(itemInfo)}</div>
+                    ${`<div class="node-type">${localizedType}</div>`}
                 </div>
                 ${!isWasteDisposal ? `
                     <button class="node-delete-btn" data-node-id="${this.data.itemId}" title="Delete node and all dependencies">

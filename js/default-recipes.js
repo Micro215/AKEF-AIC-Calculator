@@ -41,6 +41,11 @@ class DefaultRecipeManager {
         const itemsWithMultipleRecipes = [];
 
         allItems.forEach(item => {
+            // Skip waste items when building the list of items with multiple recipes
+            if (window.wasteManager && window.wasteManager.isWasteItem(item.id)) {
+                return;
+            }
+
             const recipes = findRecipesForItem(item.id);
             if (recipes && recipes.length > 1) {
                 itemsWithMultipleRecipes.push(item);

@@ -20,10 +20,11 @@ class ProductionGraph {
         this.settlingFrames = 0;
 
         // --- Create all nodes from the map ---
-        // This includes production nodes, raw materials, AND disposal nodes
+        // Filter out raw materials AND waste disposal nodes if the setting is off
         const filteredData = Array.from(allNeedsMap.values()).filter(itemData => {
             if (itemData.isTarget) return true;
             if (itemData.isRaw && !app.showRawMaterials.checked) return false;
+            if (itemData.isWasteDisposal && !app.showRawMaterials.checked) return false;
             return true;
         });
 
@@ -34,8 +35,10 @@ class ProductionGraph {
 
         // --- Create all edges ---
 
-        // 1. Add the pre-calculated waste disposal edges
-        this.edges.push(...wasteEdges);
+        // 1. Add waste disposal edges only if raw materials are shown
+        if (app.showRawMaterials.checked) {
+            this.edges.push(...wasteEdges);
+        }
 
         // 2. Create regular production edges
         allNeedsMap.forEach(itemData => {
@@ -347,7 +350,7 @@ class ProductionGraph {
             const DRAG_SCALE = 1.05; // This must match the CSS value
 
             const isSourceDragging = sourceNode.element.classList.contains('is-dragging');
-            const sourceDragScale = isSourceDragging ? DRAG_SCALE : 1;
+            const sourceDragScale = isSourceDragging && !this.isSimulating ? DRAG_SCALE : 1;
             const sourceWidth = sourceRect.width / scale / sourceDragScale;
             const sourceHeight = sourceRect.height / scale / sourceDragScale;
 

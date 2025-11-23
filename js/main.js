@@ -208,30 +208,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         // Display options
         app.showRawMaterials.addEventListener('change', () => {
-            if (app.productionGraph) {
-                if (window.tabsManager && window.tabsManager.saveCurrentTabData) {
-                    window.tabsManager.saveCurrentTabData();
-                }
-
-                app.productionGraph.stopSimulation();
-                resetGraph();
-                app.productionGraph = new ProductionGraph(app.graphSvg, app.nodesContainer, app.allNeedsMap);
-
-                if (window.tabsManager && window.tabsManager.activeTabIndex !== undefined) {
-                    const currentTab = window.tabsManager.tabs[window.tabsManager.activeTabIndex];
-                    if (currentTab && currentTab.nodePositions.size > 0) {
-                        app.nodePositions = new Map(currentTab.nodePositions);
-                        const restored = restoreNodePositions();
-                    }
-                }
-
-                renderGraph();
-                updateTotalPower();
-
-                // Start simulation only if the checkbox is checked
-                if (app.physicsSimulation.checked) {
-                    app.productionGraph.startSimulation();
-                }
+            // Force a full recalculation to correctly show/hide waste nodes and their edges.
+            if (window.productionApp.currentTargetItem) {
+                calculateProduction(true);
             }
             saveDisplaySettings();
         });
@@ -415,44 +394,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         iconElement.src = `${app.projectBaseUrl}images/${itemInfo.img}`;
         iconElement.alt = window.localization.getItemName(itemInfo);
         iconElement.title = window.localization.getItemName(itemInfo);
-
-        // Handle recipe icon
-        updateRecipeIcon(app, iconElement);
-    }
-
-    // Helper function to update the recipe icon
-    function updateRecipeIcon(app, itemIconElement) {
-        let recipeIconElement = app.itemSelectorBtn.querySelector('.item-recipe-icon');
-
-        // Check if we have a selected recipe for this item
-        if (app.selectedRecipesMap && app.selectedRecipesMap.has(app.currentTargetItem.id)) {
-            const recipeIndex = app.selectedRecipesMap.get(app.currentTargetItem.id);
-            const recipes = findRecipesForItem(app.currentTargetItem.id);
-
-            if (recipes && recipes[recipeIndex]) {
-                const recipe = recipes[recipeIndex];
-                const building = app.buildingsData.buildings[recipe.buildingId];
-
-                if (building && building.img) {
-                    if (!recipeIconElement) {
-                        recipeIconElement = document.createElement('img');
-                        recipeIconElement.className = 'item-recipe-icon';
-                        recipeIconElement.style.marginLeft = '5px';
-                        itemIconElement.parentNode.insertBefore(recipeIconElement, itemIconElement.nextSibling);
-                    }
-
-                    recipeIconElement.src = `${app.projectBaseUrl}images/${building.img}`;
-                    recipeIconElement.alt = window.localization.getBuildingName(building);
-                    recipeIconElement.title = window.localization.getBuildingName(building);
-                    return; // Exit early if we've successfully updated the recipe icon
-                }
-            }
-        }
-
-        // Remove recipe icon if we don't have a valid recipe
-        if (recipeIconElement) {
-            recipeIconElement.remove();
-        }
     }
 
     /**
@@ -466,6 +407,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             physicsSimulation: app.physicsSimulation.checked
         };
         localStorage.setItem('akef-display-settings', JSON.stringify(settings));
+        app.productionGraph.render();
     }
 
     /**
