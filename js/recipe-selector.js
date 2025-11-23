@@ -47,6 +47,31 @@ function handleRecipeSearch() {
 }
 
 /**
+ * Clear recipe search input
+ */
+function setupRecipeSearchClearButton() {
+    const searchInput = document.getElementById('recipe-search-input');
+    const clearBtn = document.getElementById('recipe-search-clear-btn');
+    
+    if (searchInput && clearBtn) {
+        // Show/hide clear button based on input content
+        searchInput.addEventListener('input', () => {
+            clearBtn.style.display = searchInput.value ? 'block' : 'none';
+        });
+        
+        // Clear search when button is clicked
+        clearBtn.addEventListener('click', () => {
+            searchInput.value = '';
+            clearBtn.style.display = 'none';
+            handleRecipeSearch();
+        });
+        
+        // Initially hide the clear button
+        clearBtn.style.display = 'none';
+    }
+}
+
+/**
  * Render the recipe grid based on current filters
  */
 function renderRecipeGrid() {

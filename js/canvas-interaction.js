@@ -128,7 +128,7 @@ function handleTouchStart(e) {
     const touch = e.touches[0];
     const targetElement = document.elementFromPoint(touch.clientX, touch.clientY);
 
-    if (targetElement && targetElement.closest('.recipe-selector, .node-delete-btn, .recipe-dropdown, .modal')) {
+    if (targetElement && targetElement.closest('.recipe-selector, .node-delete-btn, .recipe-dropdown, .modal, .reset-positions-btn')) {
         return;
     }
 

@@ -1,54 +1,79 @@
-# Arknights: Endfield AIC Calculator
+# AKEF-AIC Calculator
 
-A web-based calculator to visualize and plan production chains in Arknights: Endfield. This tool helps you determine the exact number of machines, raw materials, and power required to achieve your desired production rate for any item.
+A production chain calculator for Arknights: Endfield.
 
+This tool helps you plan and optimize your factory layouts by visualizing the entire production chain, from raw materials to the final product. Calculate the exact resource flow per minute and identify every step in the manufacturing process.
 
-## About
+**Live Demo:** [https://micro215.github.io/AKEF-AIC-Calculator/](https://micro215.github.io/AKEF-AIC-Calculator/)
 
-In Arknights: Endfield, managing your AIC efficiently is key to progressing. This calculator simplifies the planning process by allowing you to:
+![Calculator Screenshot](previews/preview-en.png)
 
-1.  Select any craftable item and set a target production rate.
-2.  Automatically calculate the entire production tree, including all intermediate products and raw materials.
-3.  Visualize the chain in an interactive graph, making it easy to understand complex dependencies.
-4.  Get a summary of the total power consumption for your production line.
+## Key Features
 
-Whether you're planning a small-scale operation or a massive factory, this tool provides the clarity you need to optimize your resource management.
+- **Visual Chain Editor:** Intuitive graph-based interface to see the entire production tree at a glance.
+- **Real-time Calculation:** Automatically calculates the resource requirements per minute for any production scale.
+- **Node Management:** Easily remove any node and its entire production sub-tree to test alternative layouts.
+- **Multi-Project Planning:** Use tabs to work on and compare different production chains simultaneously.
+- **Session Persistence:** Your work is automatically saved in the browser, so you can close the tab and come back later without losing progress.
+- **Production Scaling:** Adjust the desired output (items per minute) to see how resource demands change.
+- **Clean & Focused UI:** A distraction-free interface designed for quick analysis and planning.
 
-## Features
+## How to Use
 
--   **Interactive Graph Visualization**: See your entire production chain laid out in a clean, hierarchical graph.
--   **Automated Production Chain Calculation**: Automatically calculates the required machines and materials for any desired output rate.
--   **Drag-and-Drop Interface**: Rearrange nodes by dragging them to customize the graph layout.
--   **Canvas Pan and Zoom**: Navigate large production chains with ease using mouse panning and scroll wheel zooming.
--   **Multiple Recipe Support**: For items with multiple crafting recipes, easily switch between them to find the most efficient method.
--   **Node Deletion with Dependency Resolution**: Delete a production node and automatically remove any unique ingredient chains that are no longer needed.
--   **Power Consumption Summary**: Get a real-time calculation of the total power required for your current production setup.
--   **Customizable Display Options**: Toggle the visibility of raw materials and power consumption to focus on what matters to you.
--   **Search and Filtering**: Quickly find any item in the recipe database with the search bar and category filters.
--   **Mobile Support**: You can plan your production using your mobile device.
+### 1. Setting Up Your Production Plan
 
-## Usage
+First, you need to choose what you want to produce and set your target output.
 
-1.  **Select a Recipe**: Click the "Choose a recipe..." button to open the item selector. You can search by name or filter by category.
-2.  **Set Target Rate**: Enter the number of items you want to produce per minute in the "Target Rate" input field.
-3.  **Calculate**: Click the "Calculate" button to generate the production chain graph.
-4.  **Interact with the Graph**:
-    - **Pan**: Click and drag on an empty area of the graph to move around.
-    - **Zoom**: Use your mouse scroll wheel to zoom in and out.
-    - **Move Nodes**: Click and drag any production node to rearrange it.
-5.  **Switch Recipes**: If a node has multiple recipes (indicated by "Recipe: X / Y"), click on that section to see and select alternative production methods.
-6.  **Delete Nodes**: Click the `×` button on a node to remove it and its unique dependencies.
-7.  **Customize View**: Use the "Display Options" checkboxes in the control panel to show or hide raw materials and power consumption details.
+-   Click the **"Select Recipe"** button on the left panel. This will open a modal window where you can search, browse by category, and select your desired end product.
+-   Once selected, set your production target in the **"Target Speed"** field (e.g., items per minute). The full production chain will be generated automatically.
+
+### 2. Analyzing and Modifying the Chain
+
+With the chain generated, you can analyze its components and make adjustments.
+
+-   **Analyze Nodes:** Each node displays the item's image, name, type, required input/output resources, and the crafting machine needed.
+-   **Change Recipes:** If a component has alternative recipes, a dropdown will appear on its node. Select a different recipe to modify the chain.
+-   **Recalculate Rates:** After changing recipes, click the **"Calculate"** button to update all production rates and resource requirements across the entire chain.
+-   **Remove Components:** You can remove any node, which will also delete its entire production sub-tree. This is useful for testing alternative layouts or excluding certain steps.
+
+### 3. Managing Multiple Projects
+
+You can work on several different production plans at the same time using tabs.
+
+-   The tabs are located at the top of the main panel. You can create new tabs, rename them by double-clicking, and drag them to reorder.
+
+### 4. Customizing the View and Defaults
+
+Tailor the calculator's display to your needs and set your preferred recipes.
+
+-   **Display Options:** Below the main controls, find toggles to show/hide raw materials, energy consumption per node, alternative recipe dropdowns, and a physics simulation for the graph. The total energy consumption for the current plan is displayed here.
+-   **Set Default Recipes:** Click the **"Default Recipes"** button to open a window where you can set your preferred crafting alternatives for any item. These defaults will be used whenever a new chain is generated.
+
+### 5. Navigating the Graph
+
+-   **Pan:** Click and drag on an empty area of the background to move the view around.
+-   **Zoom:** Use your mouse wheel or trackpad gesture to zoom in and out.
+-   **Rearrange:** Click and drag individual nodes to organize the graph layout for better clarity.
+
+## Tech Stack
+
+This is a client-side web application built with:
+- HTML5
+- CSS3
+- Vanilla JavaScript (no frameworks)
 
 ## Planned
 
--   Rewrite README and User manual
+- Code refactoring
 
-##  Credits
+## Contributing
 
--   Created by **Bilzebuba**
--   *Arknights: Endfield* and all related assets are the property of **Hypergryph**. This is a fan-made tool.
+Found a bug, have a suggestion, or want to contribute a translation? Feel free to open an issue on the [Issues page](https://github.com/Micro215/AKEF-AIC-Calculator/issues).
 
 ## License
 
-Distributed under the MIT License. See `LICENSE` for more information.
+This project is licensed under the MIT License.
+
+## Disclaimer
+
+This is an unofficial fan-made tool. All game data, assets, and item names are the property of Hypergryph. This calculator is based on information from the Arknights: Endfield CBT and is subject to change upon official release.

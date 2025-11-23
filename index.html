@@ -12,7 +12,7 @@
     <meta name="description" content="Free online production calculator for Arknights: Endfield.">
 
     <!-- SEO: Meta Keywords -->
-    <meta name="keywords" content="Arknights Endfield, calculator, production">
+    <meta name="keywords" content="Arknights Endfield, Endfield, AKEF, calculator, production calculator, factory calculator, crafting calculator, planner, tool, AIC Calculator, production, factory, crafting, recipes, chains, manufacturing">
 
     <!-- SEO: Open Graph / Facebook -->
     <meta property="og:type" content="website">
@@ -27,9 +27,6 @@
     <meta property="twitter:title" content="Arknights: Endfield Production Calculator">
     <meta property="twitter:description" content="Free online production calculator for Arknights: Endfield.">
     <meta property="twitter:image" content="https://micro215.github.io/AKEF-AIC-Calculator/previews/preview-en.png">
-
-    <!-- SEO: Yandex Verification -->
-    <!-- Yandex dont wanna index subdomen without main bruh... google one love -->
 
     <!-- SEO: Google Site Verification -->
     <meta name="google-site-verification" content="AMBlEj9Y6OwIQS_EM6HzUtnjM90_MurFRIe83a_3aLc" />
@@ -50,10 +47,12 @@
     <link rel="stylesheet" href="styles/tabs.css">
     <link rel="stylesheet" href="styles/default-recipes.css">
     <link rel="stylesheet" href="styles/waste-disposal.css">
+    <link rel="stylesheet" href="styles/production-summary.css">
 
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 
 <body>
@@ -74,7 +73,7 @@
                     </select>
                 </div>
                 <button id="reset-btn" class="btn btn-icon" aria-label="Clear Cache" title="Clear Cache">
-                    <i class="fas fa-redo-alt"></i>
+                    <i class="fas fa-trash"></i>
                 </button>
                 <button id="help-btn" class="btn btn-icon" aria-label="Help"><i
                         class="fas fa-question-circle"></i></button>
@@ -178,11 +177,19 @@
                             <span id="total-power-label" class="stat-label">Total Power</span>
                         </div>
                     </div>
+                    <button id="production-summary-btn" class="btn btn-secondary">
+                        <i class="fas fa-sitemap"></i>
+                        <span>Production Summary</span>
+                    </button>
                 </div>
             </aside>
 
             <!-- Graph container for production chain visualization -->
             <section id="graph-container" class="graph-container" aria-label="Production chain graph">
+                <button id="reset-positions-btn" class="reset-positions-btn" title="Reset Node Positions">
+                    <i class="fas fa-redo-alt"></i>
+                </button>
+
                 <svg id="graph-svg" class="graph-svg">
                     <defs>
                         <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
@@ -237,6 +244,9 @@
                         <i class="fas fa-search" aria-hidden="true"></i>
                         <input type="text" id="recipe-search-input" placeholder="Search for a recipe..."
                             aria-label="Search recipes">
+                        <button id="recipe-search-clear-btn" class="btn btn-icon search-clear-btn" aria-label="Clear search">
+                            <i class="fas fa-times"></i>
+                        </button>
                     </div>
                 </div>
                 <div class="recipe-categories">
@@ -308,6 +318,19 @@
         </div>
     </div>
 
+    <!-- Production Summary Modal -->
+    <div id="production-summary-modal" class="modal">
+        <div class="modal-content production-summary-content">
+            <div class="modal-header">
+                <h2>Production Summary</h2>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="production-summary-container"></div>
+            </div>
+        </div>
+    </div>
+
     <!-- SEO: Structured Data (JSON-LD) -->
     <script type="application/ld+json" id="structured-data">
     {
@@ -344,6 +367,7 @@
     <script src="js/production-node.js"></script>
     <script src="js/node-deletion.js"></script>
     <script src="js/canvas-interaction.js"></script>
+    <script src="js/production-summary.js"></script>
     <script src="js/main.js"></script>
 </body>
 

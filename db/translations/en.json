@@ -18,7 +18,11 @@
         "meta_description": "Free online production calculator for Arknights: Endfield. Plan your factory chains, calculate resource requirements, and optimize power consumption.",
         "waste_disposal": "Disposal",
         "physics_simulation": "Physics Simulation",
-        "show_alternative_recipes": "Show Alternative Recipes"
+        "show_alternative_recipes": "Show Alternative Recipes",
+        "production_summary": "Production Summary",
+        "production_chain": "Production Chain",
+        "no_production_data": "No production data available. Please calculate a production chain first.",
+        "shared_items_needed": "Shared Items Needed"
     },
     "buttons": {
         "calculate": "Calculate",
@@ -29,7 +33,8 @@
         "cancel": "Cancel",
         "confirm_delete": "Confirm Deletion",
         "recipe": "Recipe",
-        "default_recipes": "Default Recipes"
+        "default_recipes": "Default Recipes",
+        "production_summary": "Production Summary"
     },
     "labels": {
         "select_recipe": "Select Recipe",
@@ -43,13 +48,13 @@
     "help": {
         "title": "How to Use",
         "steps": [
-            "Use the search bar to find and select an item you want to produce.",
-            "Enter the desired production rate (items per minute).",
-            "Click \"Calculate\" to generate the production chain.",
-            "Drag nodes to rearrange the graph.",
-            "Click and drag on the background to pan the view.",
-            "Scroll to zoom in and out.",
-            "Click on a machine's recipe to switch between alternatives."
+            "Click the 'Select Recipe' button on the left panel. In the modal window, find and select your desired end product.",
+            "Set your production target in the 'Target Speed' field. The production chain will be generated automatically.",
+            "To change a component's recipe, click the dropdown on its node and select an alternative. After making changes, click the 'Calculate' button to update all rates.",
+            "Use the tabs at the top to create, rename, and reorder multiple production plans. You can drag tabs to change their order.",
+            "Below the main controls, toggle display options like raw materials, energy, alternative recipes, and physics simulation. The total energy consumption is shown here.",
+            "To set global defaults, click the 'Default Recipes' button. This opens a window to choose preferred recipes for items with alternatives.",
+            "Drag nodes to rearrange the graph. Click and drag the background to pan, and scroll to zoom."
         ],
         "note": "<strong>P.S.</strong> If you have some bugs try reload page with Ctrl+F5. If it doesn't work send issue to <strong>bilzebuba</strong> at Discord or Telegram.",
         "created_by": "Created by Bilzebuba"

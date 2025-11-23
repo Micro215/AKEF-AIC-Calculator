@@ -127,7 +127,7 @@
                             "ingredients": [
                                 {
                                     "item_id": "clean_water",
-                                    "amount": 0.01
+                                    "amount":  0.00001
                                 }
                             ],
                             "products": [
@@ -143,7 +143,7 @@
                             "ingredients": [
                                 {
                                     "item_id": "clean_water",
-                                    "amount": 0.01
+                                    "amount":  0.00001
                                 }
                             ],
                             "products": [
@@ -159,7 +159,7 @@
                             "ingredients": [
                                 {
                                     "item_id": "clean_water",
-                                    "amount": 0.01
+                                    "amount":  0.00001
                                 }
                             ],
                             "products": [
@@ -175,7 +175,7 @@
                             "ingredients": [
                                 {
                                     "item_id": "clean_water",
-                                    "amount": 0.01
+                                    "amount":  0.00001
                                 }
                             ],
                             "products": [

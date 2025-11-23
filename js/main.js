@@ -178,6 +178,21 @@ document.addEventListener('DOMContentLoaded', async () => {
                 window.tabsManager.saveCurrentTabData();
             }
         });
+
+        // Initialize ProductionSummaryManager
+        const productionSummaryManager = new window.ProductionSummaryManager();
+        window.productionSummaryManager = productionSummaryManager;
+
+        // Setup clear button for recipe search
+        setupRecipeSearchClearButton();
+        
+        // Also call it when the modal is opened
+        const itemSelectorBtn = document.getElementById('item-selector-btn');
+        if (itemSelectorBtn) {
+            itemSelectorBtn.addEventListener('click', () => {
+                setupRecipeSearchClearButton();
+            });
+        }
     }
 
     // --- EVENT LISTENERS SETUP ---
@@ -346,6 +361,14 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             updateItemSelectorIcon();
         });
+
+        // Reset positions button in graph container
+        const resetPositionsBtn = document.getElementById('reset-positions-btn');
+        if (resetPositionsBtn) {
+            resetPositionsBtn.addEventListener('click', () => {
+                resetNodePositions();
+            });
+        }
     }
 
     // --- HELPERS ---
@@ -451,6 +474,37 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
 
         // Note: "Show Raw Materials" and "Show Power" are handled by a full recalculation,
+    }
+
+    /**
+     * Reset node positions
+     */
+    function resetNodePositions() {
+        const app = window.productionApp;
+        
+        if (!app.productionGraph || !app.productionGraph.nodes) {
+            console.log('No production graph to reset');
+            return;
+        }
+        
+        // Clear all node positions
+        app.productionGraph.nodes.forEach(node => {
+            node.x = 0;
+            node.y = 0;
+            node.vx = 0;
+            node.vy = 0;
+        });
+        
+        // Apply hierarchical layout
+        app.productionGraph.applyLayout('hierarchical');
+        
+        // Save the new positions to current tab
+        if (window.tabsManager && window.tabsManager.saveCurrentTabData) {
+            window.tabsManager.saveCurrentTabData();
+        }
+        
+        // Render the graph with new positions
+        app.productionGraph.render();
     }
 
     // --- START THE APP ---

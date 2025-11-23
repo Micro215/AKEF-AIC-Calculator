@@ -107,6 +107,18 @@ function updateUIWithLocalization() {
     if (showAlternativeRecipesLabel) {
         showAlternativeRecipesLabel.insertAdjacentHTML('beforeend', window.localization.t('app.show_alternative_recipes'));
     }
+
+    // Update production summary button
+    const summaryBtnText = document.getElementById('production-summary-btn-text');
+    if (summaryBtnText) {
+        summaryBtnText.textContent = window.localization.t('buttons.production_summary');
+    }
+
+    // Update production summary modal
+    const summaryTitle = document.getElementById('production-summary-title');
+    if (summaryTitle) {
+        summaryTitle.textContent = window.localization.t('app.production_summary');
+    }
 }
 
 /**

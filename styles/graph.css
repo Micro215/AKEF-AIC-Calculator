@@ -35,3 +35,57 @@
 .graph-container.hide-alternative-recipes .recipe-selector {
     display: none;
 }
+
+.reset-positions-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    min-height: 44px;
+    background-color: var(--node-bg);
+    border: 1px solid var(--node-border);
+    border-radius: 8px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    transition: all var(--transition-speed);
+    box-shadow: 0 2px 8px var(--shadow-medium);
+    touch-action: manipulation;
+    pointer-events: auto;
+}
+
+.reset-positions-btn:hover {
+    background-color: var(--accent-blue);
+    border-color: var(--accent-blue);
+    color: white;
+    transform: scale(1.05);
+}
+
+.reset-positions-btn:active {
+    transform: scale(0.95);
+}
+
+.reset-positions-btn i {
+    font-size: 16px;
+}
+
+@media (max-width: 768px) {
+    .reset-positions-btn {
+        width: 48px;
+        height: 48px;
+        min-width: 48px;
+        min-height: 48px;
+        top: 15px;
+        right: 15px;
+        z-index: 1001;
+    }
+    
+    .reset-positions-btn i {
+        font-size: 20px;
+    }
+}

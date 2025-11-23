@@ -12,7 +12,7 @@
     <meta name="description" content="Бесплатный онлайн-калькулятор производства для Arknights: Endfield.">
 
     <!-- SEO: Meta Keywords -->
-    <meta name="keywords" content="Arknights Endfield, калькулятор, производство">
+    <meta name="keywords" content="Аркнайтс Эндфилд, Эндфилд, калькулятор, калькулятор производства, калькулятор завода, калькулятор крафта, планировщик, инструмент, AIC калькулятор, производство, завод, крафт, рецепты, цепочки, сборка">
 
     <!-- SEO: Open Graph / Facebook -->
     <meta property="og:type" content="website">
@@ -27,9 +27,6 @@
     <meta property="twitter:title" content="Калькулятор производства Arknights: Endfield">
     <meta property="twitter:description" content="Бесплатный онлайн-калькулятор производства для Arknights: Endfield.">
     <meta property="twitter:image" content="https://micro215.github.io/AKEF-AIC-Calculator/previews/preview-ru.png">
-
-    <!-- SEO: Yandex Verification -->
-    <!-- Yandex dont wanna index subdomen without main bruh... google one love -->
 
     <!-- SEO: Google Site Verification -->
     <meta name="google-site-verification" content="AMBlEj9Y6OwIQS_EM6HzUtnjM90_MurFRIe83a_3aLc" />
@@ -50,10 +47,12 @@
     <link rel="stylesheet" href="../styles/tabs.css">
     <link rel="stylesheet" href="../styles/default-recipes.css">
     <link rel="stylesheet" href="../styles/waste-disposal.css">
+    <link rel="stylesheet" href="../styles/production-summary.css">
 
     <link rel="shortcut icon" type="image/x-icon" href="../favicon.ico">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 
 <body>
@@ -72,8 +71,8 @@
                         <!-- Language options will be populated by JavaScript -->
                     </select>
                 </div>
-                <button id="reset-btn" class="btn btn-icon" aria-label="Clear Cache" title="Очистить кэш">
-                    <i class="fas fa-redo-alt"></i>
+                <button id="reset-btn" class="btn btn-icon" aria-label="Очистить кэш" title="Очистить кэш">
+                    <i class="fas fa-trash"></i>
                 </button>
                 <button id="help-btn" class="btn btn-icon" aria-label="Помощь"><i
                         class="fas fa-question-circle"></i></button>
@@ -88,7 +87,7 @@
                 <div class="tabs-list" id="tabs-list">
                     <!-- Tabs will be populated by JavaScript -->
                 </div>
-                <button id="add-tab-btn" class="btn btn-icon" aria-label="Add new tab">
+                <button id="add-tab-btn" class="btn btn-icon" aria-label="Добавить вкладку">
                     <i class="fas fa-plus"></i>
                 </button>
             </div>
@@ -174,11 +173,19 @@
                             <span id="total-power-label" class="stat-label">Общee энергопотребление</span>
                         </div>
                     </div>
+                    <button id="production-summary-btn" class="btn btn-secondary">
+                        <i class="fas fa-sitemap"></i>
+                        <span>Сводка производства</span>
+                    </button>
                 </div>
             </aside>
 
             <!-- Graph container for production chain visualization -->
             <section id="graph-container" class="graph-container" aria-label="Граф производственной цепочки">
+                <button id="reset-positions-btn" class="reset-positions-btn" title="Сброс цепочки">
+                    <i class="fas fa-redo-alt"></i>
+                </button>
+
                 <svg id="graph-svg" class="graph-svg">
                     <defs>
                         <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
@@ -235,6 +242,9 @@
                         <input type="text" id="recipe-search-input" placeholder="Поиск рецепта..."
                             aria-label="Поиск рецептов">
                     </div>
+                    <button id="recipe-search-clear-btn" class="btn btn-icon search-clear-btn" aria-label="Очистить поиск">
+                        <i class="fas fa-times"></i>
+                    </button>
                 </div>
                 <div class="recipe-categories">
                     <div class="category-tabs" role="tablist">
@@ -305,6 +315,19 @@
         </div>
     </div>
 
+    <!-- Production Summary Modal -->
+    <div id="production-summary-modal" class="modal">
+        <div class="modal-content production-summary-content">
+            <div class="modal-header">
+                <h2>Сводка Производства</h2>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="production-summary-container"></div>
+            </div>
+        </div>
+    </div>
+
     <!-- SEO: Structured Data (JSON-LD) -->
     <script type="application/ld+json" id="structured-data">
     {
@@ -341,6 +364,7 @@
     <script src="../js/production-node.js"></script>
     <script src="../js/node-deletion.js"></script>
     <script src="../js/canvas-interaction.js"></script>
+    <script src="../js/production-summary.js"></script>
     <script src="../js/main.js"></script>
 </body>
 

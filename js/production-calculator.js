@@ -81,11 +81,6 @@ function calculateProduction(preservePositions = false, positionsToRestore = nul
         // Create and render the production graph
         app.productionGraph = new ProductionGraph(app.graphSvg, app.nodesContainer, app.allNeedsMap, wasteDisposalEdges);
 
-        // Apply display settings now that the graph is guaranteed to exist
-        if (app.applyDisplaySettings) {
-            app.applyDisplaySettings();
-        }
-
         // Restore recipes after calculation
         app.selectedRecipesMap = currentRecipes;
 
@@ -105,6 +100,13 @@ function calculateProduction(preservePositions = false, positionsToRestore = nul
 
             // Update the global map for consistency
             app.nodePositions = validPositions;
+        } else {
+            app.productionGraph.applyLayout('hierarchical');
+        }
+
+        // Apply display settings now that the graph is guaranteed to exist
+        if (app.applyDisplaySettings) {
+            app.applyDisplaySettings();
         }
 
         renderGraph();

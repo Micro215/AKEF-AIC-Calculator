@@ -70,8 +70,8 @@ class ProductionGraph {
             node.x !== 0 || node.y !== 0
         );
 
-        // If nodes already have positions, don't reposition them
-        if (hasPreservedPositions) {
+        // If nodes already have positions, don't reposition them unless forced
+        if (hasPreservedPositions && type !== 'force') {
             this.settlingFrames = 40;
         } else {
             // Group nodes by level for initial positioning
@@ -85,7 +85,7 @@ class ProductionGraph {
             // Sort levels
             const sortedLevels = Array.from(levels.keys()).sort((a, b) => a - b);
             const nodeWidth = 240;
-            const levelHeight = 200; // More space to prevent initial overlap
+            const levelHeight = 200;
 
             // Position nodes level by level
             sortedLevels.forEach((level, index) => {
@@ -95,13 +95,13 @@ class ProductionGraph {
                 let startX = (svgWidth - totalWidth) / 2;
                 if (startX < 10) startX = 10;
 
-                nodes.forEach(node => {
-                    node.x = startX + Math.random() * 50 - 25; // Add some randomness
+                nodes.forEach((node, nodeIndex) => {
+                    // Position nodes with proper spacing
+                    node.x = startX + (nodeIndex * nodeWidth);
                     node.y = index * levelHeight + 100;
-                    // Initialize velocity for the simulation
+                    // Initialize velocity for simulation
                     node.vx = 0;
                     node.vy = 0;
-                    startX += nodeWidth;
                 });
             });
         }
