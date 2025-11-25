@@ -1,7 +1,14 @@
 /**
  * Update UI elements with localized strings
  */
-function updateUIWithLocalization() {
+export function updateUIWithLocalization() {
+    console.log("Update UI With Localization")
+
+    if (!window.localization) {
+        console.log("Localization not loaded");
+        return;
+    }
+
     // Update page title
     document.title = `${window.localization.t('app.title')} | ${window.localization.t('app.subtitle')}`;
 
@@ -119,32 +126,4 @@ function updateUIWithLocalization() {
     if (summaryTitle) {
         summaryTitle.textContent = window.localization.t('app.production_summary');
     }
-}
-
-/**
- * Setup language selector with available languages
- */
-async function setupLanguageSelector() {
-    const app = window.productionApp;
-    const languages = await window.localization.getAvailableLanguages();
-
-    // Clear existing options
-    app.languageSelect.innerHTML = '';
-
-    // Add language options
-    Object.entries(languages).forEach(([code, name]) => {
-        const option = document.createElement('option');
-        option.value = code;
-        option.textContent = name;
-        if (code === window.localization.currentLanguage) {
-            option.selected = true;
-        }
-        app.languageSelect.appendChild(option);
-    });
-
-    // Add change event listener
-    app.languageSelect.addEventListener('change', async (e) => {
-        const newLanguage = e.target.value;
-        await window.localization.setLanguage(newLanguage);
-    });
 }

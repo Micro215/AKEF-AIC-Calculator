@@ -1,4 +1,10 @@
 {
-    "ru": " 🇷🇺 Русский",
-    "en": " 🇺🇸 English"
+    "ru": {
+        "icon": "fi fi-ru",
+        "name": "Русский"
+    },
+    "en": {
+        "icon": "fi fi-gb",
+        "name": "English"
+    }
 }

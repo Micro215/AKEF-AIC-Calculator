@@ -64,8 +64,6 @@ This is a client-side web application built with:
 
 ## Planned
 
-- Code refactoring
-
 ## Contributing
 
 Found a bug, have a suggestion, or want to contribute a translation? Feel free to open an issue on the [Issues page](https://github.com/Micro215/AKEF-AIC-Calculator/issues).

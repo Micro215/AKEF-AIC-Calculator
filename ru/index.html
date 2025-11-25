@@ -53,6 +53,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet"href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.3.2/css/flag-icons.min.css"/>
 </head>
 
 <body>
@@ -66,20 +67,20 @@
             <h1><i class="fas fa-sitemap" aria-hidden="true"></i> <span id="app-title">Калькулятор производства
                     Arknights: Endfield</span></h1>
             <div class="header-controls">
-                <div class="language-selector">
-                    <select id="language-select" class="language-select">
-                        <!-- Language options will be populated by JavaScript -->
-                    </select>
+                <div id="language-selector" class="language-selector">
+                    <!-- Language options will be populated by JavaScript -->
                 </div>
-                <button id="reset-btn" class="btn btn-icon" aria-label="Очистить кэш" title="Очистить кэш">
-                    <i class="fas fa-trash"></i>
-                </button>
-                <button id="help-btn" class="btn btn-icon" aria-label="Помощь"><i
-                        class="fas fa-question-circle"></i></button>
-                <a id="github-btn" class="btn btn-icon" href="https://github.com/Micro215/AKEF-AIC-Calculator"
-                    target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-                    <i class="fa-brands fa-github"></i>
-                </a>
+                <div class="header-buttons">
+                    <button id="reset-btn" class="btn btn-icon" aria-label="Очистить кэш" title="Очистить кэш">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                    <button id="help-btn" class="btn btn-icon" aria-label="Помощь"><i
+                            class="fas fa-question-circle"></i></button>
+                    <a id="github-btn" class="btn btn-icon" href="https://github.com/Micro215/AKEF-AIC-Calculator"
+                        target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                        <i class="fa-brands fa-github"></i>
+                    </a>
+                </div>
             </div>
         </header>
         <div class="tabs-container">
@@ -328,6 +329,23 @@
         </div>
     </div>
 
+    <!-- Clear Cache Modal -->
+    <div id="clear-cache-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Вы хотите очистить весь кэш?</h2>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Это действие очистить все ваши данные.</p>
+            </div>
+            <div class="modal-footer">
+                <button id="clear-cache-clear-btn" class="btn btn-danger">Очистить</button>
+                <button id="clear-cache-cancel-btn" class="btn">Отмена</button>
+            </div>
+        </div>
+    </div>
+
     <!-- SEO: Structured Data (JSON-LD) -->
     <script type="application/ld+json" id="structured-data">
     {
@@ -351,21 +369,7 @@
     </script>
 
     <!-- Add JS files -->
-    <script src="../js/localization.js"></script>
-    <script src="../js/ui-localization.js"></script>
-    <script src="../js/data-loader.js"></script>
-    <script src="../js/recipe-selector.js"></script>
-    <script src="../js/default-recipes.js"></script>
-    <script src="../js/recipe-finder.js"></script>
-    <script src="../js/tabs-manager.js"></script>
-    <script src="../js/waste-manager.js"></script>
-    <script src="../js/production-calculator.js"></script>
-    <script src="../js/production-graph.js"></script>
-    <script src="../js/production-node.js"></script>
-    <script src="../js/node-deletion.js"></script>
-    <script src="../js/canvas-interaction.js"></script>
-    <script src="../js/production-summary.js"></script>
-    <script src="../js/main.js"></script>
+    <script type="module" src="../src/main.js"></script>
 </body>
 
 </html>

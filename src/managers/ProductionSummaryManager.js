@@ -1,46 +1,68 @@
 /**
- * Production Summary
+ * Manages the production summary modal, which displays a detailed breakdown
+ * of the entire production chain, including shared components and waste disposal.
  */
-class ProductionSummaryManager {
+export class ProductionSummaryManager {
     constructor() {
+        // Cache DOM elements for the modal and its content.
         this.modal = document.getElementById('production-summary-modal');
         this.container = document.getElementById('production-summary-container');
         this.openBtn = document.getElementById('production-summary-btn');
         this.closeBtn = this.modal.querySelector('.modal-close');
-
         this.setupEvents();
+        console.debug("[managers.ProductionSummaryManager] Initialized.");
     }
 
+    /**
+     * Sets up event listeners for opening and closing the modal.
+     */
     setupEvents() {
         this.openBtn.addEventListener('click', () => this.show());
+        console.debug("[managers.ProductionSummaryManager] Event listener attached to open button.");
         this.closeBtn.addEventListener('click', () => this.hide());
+        console.debug("[managers.ProductionSummaryManager] Event listener attached to close button.");
         this.modal.addEventListener('click', (e) => {
             if (e.target === this.modal) this.hide();
         });
+        console.debug("[managers.ProductionSummaryManager] Event listener attached to modal background for closing.");
     }
 
+    /**
+     * Displays the production summary modal.
+     * Renders the content if production data is available.
+     */
     show() {
-        const app = window.productionApp;
-        if (!app.allNeedsMap || app.allNeedsMap.size === 0) {
-            alert(window.localization.t('app.no_production_data'));
+        console.log("[managers.ProductionSummaryManager] Showing production summary.");
+        // Check if there is any production data to display.
+        if (!window.datas.allNeedsMap || window.datas.allNeedsMap.size === 0) {
+            const message = window.localization.t('app.no_production_data');
+            alert(message);
+            console.warn("[managers.ProductionSummaryManager] No production data available to display. Alerting user.");
             return;
         }
         this.render();
         this.modal.classList.add('is-active');
     }
 
+    /**
+     * Hides the production summary modal.
+     */
     hide() {
+        console.debug("[managers.ProductionSummaryManager] Hiding production summary modal.");
         this.modal.classList.remove('is-active');
     }
 
+    /**
+     * Renders the content of the production summary.
+     */
     render() {
-        const app = window.productionApp;
+        console.log("[managers.ProductionSummaryManager] Rendering production summary content.");
         this.container.innerHTML = '';
-
-        // Analyze production data
+        // Analyze the production data to structure it for rendering.
         const analysis = this.analyzeProduction();
+        console.debug("[managers.ProductionSummaryManager] Production analysis complete:", analysis);
 
-        // Render main production tree
+        // Render the main production tree if it exists.
         if (analysis.mainTree) {
             this.container.appendChild(this.renderSection(
                 window.localization.t('app.production_chain'),
@@ -48,27 +70,31 @@ class ProductionSummaryManager {
             ));
         }
 
-        // Render shared items
+        // Render the section for shared components if any exist.
         if (analysis.sharedItems.length > 0) {
             this.container.appendChild(this.renderSharedItems(analysis.sharedItems));
         }
 
-        // Render waste disposal
+        // Render the section for waste items if any exist.
         if (analysis.wasteItems.length > 0) {
             this.container.appendChild(this.renderWasteSection(analysis.wasteItems));
         }
     }
 
+    /**
+     * Analyzes the production data to build a tree, find shared items, and identify waste.
+     * @returns {Object} An object containing the main production tree, shared items, and waste items.
+     */
     analyzeProduction() {
-        const app = window.productionApp;
+        // Create a map to track how many times each item is used as an ingredient across all recipes.
         const itemUsage = new Map();
-
-        // Count item usage
-        app.allNeedsMap.forEach((data, id) => {
+        window.datas.allNeedsMap.forEach((data, id) => {
             itemUsage.set(id, { count: 0, data });
         });
+        console.debug("[managers.ProductionSummaryManager.analyzeProduction] Initialized itemUsage map.", itemUsage);
 
-        app.allNeedsMap.forEach((data, id) => {
+        // Iterate through all selected recipes to count ingredient usage.
+        window.datas.allNeedsMap.forEach((data, id) => {
             if (data.allRecipes?.length > 0) {
                 const recipe = data.allRecipes[data.selectedRecipeIndex];
                 if (recipe?.ingredients) {
@@ -79,16 +105,18 @@ class ProductionSummaryManager {
                 }
             }
         });
+        console.debug("[managers.ProductionSummaryManager.analyzeProduction] Updated itemUsage counts.", itemUsage);
 
-        // Build main tree
-        const targetId = app.currentTargetItem?.id;
+        const targetId = window.datas.currentTargetItem?.id;
+        // Build the main production tree starting from the target item.
         const mainTree = targetId ? this.buildTree(targetId, new Set()) : null;
+        console.debug("[managers.ProductionSummaryManager.analyzeProduction] Built main production tree.", mainTree);
 
-        // Collect shared items
+        // Identify items that are used as ingredients in more than one recipe (shared components).
         const sharedItems = [];
         itemUsage.forEach((usage, id) => {
             if (usage.count > 1 && id !== targetId) {
-                const item = app.itemsData.items[id];
+                const item = window.datas.itemsData.items[id];
                 if (item) {
                     sharedItems.push({
                         id,
@@ -99,29 +127,43 @@ class ProductionSummaryManager {
                 }
             }
         });
+        console.debug("[managers.ProductionSummaryManager.analyzeProduction] Identified shared items.", sharedItems);
 
-        // Collect waste items
+        // Collect all items that are managed by waste disposal recipes.
         const wasteItems = [];
-        app.allNeedsMap.forEach((data, id) => {
+        window.datas.allNeedsMap.forEach((data, id) => {
             if (data.isWasteDisposal) {
                 wasteItems.push(data);
             }
         });
+        console.debug("[managers.ProductionSummaryManager.analyzeProduction] Identified waste items.", wasteItems);
 
         return { mainTree, sharedItems, wasteItems };
     }
 
+    /**
+     * Recursively builds a tree structure representing the production chain for a given item.
+     * @param {string} itemId - The ID of the item to build the tree for.
+     * @param {Set} visited - A set of visited item IDs to prevent infinite loops.
+     * @returns {Object|null} A tree node object or null if the item is not found or already visited.
+     */
     buildTree(itemId, visited) {
-        const app = window.productionApp;
-        if (visited.has(itemId)) return null;
+        console.debug(`[managers.ProductionSummaryManager.buildTree] Building tree for item: ${itemId}`);
+        // Prevent infinite loops by checking if the item has already been visited in the current path.
+        if (visited.has(itemId)) {
+            console.warn(`[managers.ProductionSummaryManager.buildTree] Circular dependency detected for item: ${itemId}. Skipping.`);
+            return null;
+        }
         visited.add(itemId);
 
-        const data = app.allNeedsMap.get(itemId);
+        // Retrieve the production data for the current item ID.
+        const data = window.datas.allNeedsMap.get(itemId);
         if (!data) return null;
 
-        const item = app.itemsData.items[itemId];
+        const item = window.datas.itemsData.items[itemId];
         if (!item) return null;
 
+        // Create a node object representing the current item in the production chain.
         const node = {
             id: itemId,
             name: window.localization.getItemName(item),
@@ -132,15 +174,14 @@ class ProductionSummaryManager {
             children: []
         };
 
-        // Add recipe info
+        // If the item is not a raw material, it has a recipe. Process the recipe details.
         if (!data.isRaw && data.allRecipes?.length > 0) {
             const recipe = data.allRecipes[data.selectedRecipeIndex];
-            const building = app.buildingsData.buildings[recipe.buildingId];
+            const building = window.datas.buildingsData.buildings[recipe.buildingId];
 
             if (building) {
                 const machineCount = data.machineCount;
-                const recipeTimeInMinutes = recipe.time / app.SECONDS_PER_MINUTE;
-
+                const recipeTimeInMinutes = recipe.time / 60;
                 node.recipe = {
                     building: {
                         name: window.localization.getBuildingName(building),
@@ -159,7 +200,7 @@ class ProductionSummaryManager {
                     }))
                 };
 
-                // Add children
+                // Recursively call buildTree for each ingredient to build the child nodes.
                 recipe.ingredients.forEach(ing => {
                     const child = this.buildTree(ing.item_id, new Set(visited));
                     if (child) {
@@ -173,38 +214,52 @@ class ProductionSummaryManager {
         return node;
     }
 
+    /**
+     * Creates a section element with a header and content.
+     * @param {string} title - The title for the section header.
+     * @param {HTMLElement} content - The content element to append.
+     * @returns {HTMLElement} The created section element.
+     */
     renderSection(title, content) {
         const section = document.createElement('div');
         section.className = 'summary-section';
-
         const header = document.createElement('h3');
         header.className = 'summary-section-header';
         header.textContent = title;
         section.appendChild(header);
-
         section.appendChild(content);
         return section;
     }
 
-    renderTree(node, level = 0) {
+    /**
+     * Renders the entire production tree starting from the root node.
+     * @param {Object} node - The root node of the tree.
+     * @returns {HTMLElement} The rendered tree element.
+     */
+    renderTree(node) {
         const tree = document.createElement('div');
         tree.className = 'summary-tree';
-
-        this.renderTreeNode(tree, node, level, true);
+        this.renderTreeNode(tree, node, 0, true);
         return tree;
     }
 
+    /**
+     * Renders a single node and its children in the production tree.
+     * @param {HTMLElement} container - The container element to append the node to.
+     * @param {Object} node - The node object to render.
+     * @param {number} level - The current depth level in the tree (for indentation).
+     * @param {boolean} isLast - Whether this node is the last child of its parent.
+     */
     renderTreeNode(container, node, level, isLast = false) {
-        // Create main line with level class
+        console.debug(`[managers.ProductionSummaryManager.renderTreeNode] Rendering node: ${node.name} at level ${level}`);
+        // Create the main visual line for the tree node.
         const line = document.createElement('div');
         line.className = `tree-line level-${level}`;
-
-        // Add content (no more indent span needed)
         const content = document.createElement('span');
         content.className = 'tree-content';
 
-        // Add toggle if has children
         let childrenContainer = null;
+        // Add a toggle button if the node has children.
         if (node.children?.length > 0) {
             const toggle = document.createElement('span');
             toggle.className = 'tree-toggle expanded';
@@ -212,47 +267,41 @@ class ProductionSummaryManager {
             content.appendChild(toggle);
         }
 
-        // Icon
+        // Render the item's icon, name, and production rate.
         const icon = document.createElement('img');
-        icon.src = `${window.productionApp.projectBaseUrl}images/${node.icon}`;
+        icon.src = `${window.projectBaseUrl}images/${node.icon}`;
         icon.className = 'tree-icon';
         icon.alt = node.name;
         content.appendChild(icon);
 
-        // Name
         const name = document.createElement('span');
         name.className = 'tree-name';
         name.textContent = node.name;
         content.appendChild(name);
 
-        // Rate
         const rate = document.createElement('span');
         rate.className = 'tree-rate';
         rate.textContent = `${node.rate.toFixed(1)} ${window.localization.t('app.per_minute')}`;
         content.appendChild(rate);
 
-        // Transport
+        // Calculate and render the required transport method (e.g., conveyor belt).
         const transport = this.getTransport(node.id, node.rate);
         if (transport) content.appendChild(transport);
 
-        // Machine info
+        // Render the machine(s) and recipe details for non-raw items.
         if (node.recipe?.building) {
             const machine = document.createElement('span');
             machine.className = 'tree-machine';
-
             const machineIcon = document.createElement('img');
-            machineIcon.src = `${window.productionApp.projectBaseUrl}images/${node.recipe.building.icon}`;
+            machineIcon.src = `${window.projectBaseUrl}images/${node.recipe.building.icon}`;
             machineIcon.className = 'tree-machine-icon';
             machineIcon.alt = node.recipe.building.name;
             machine.appendChild(machineIcon);
-
-            // Calculate actual machines needed for this node's production
             const actualMachines = this.calculateMachineCount(node);
             machine.appendChild(document.createTextNode(`${actualMachines.toFixed(2)}x ${node.recipe.building.name}`));
             content.appendChild(machine);
         }
 
-        // Add crafting inline
         if (node.recipe && !node.isRaw) {
             const craftInline = this.renderCraftingInline(node.recipe);
             content.appendChild(craftInline);
@@ -261,70 +310,67 @@ class ProductionSummaryManager {
         line.appendChild(content);
         container.appendChild(line);
 
-        // Add children container
+        // Recursively render all child nodes.
         if (node.children?.length > 0) {
             childrenContainer = document.createElement('div');
             childrenContainer.className = 'tree-children';
-
             node.children.forEach((child, index) => {
                 this.renderTreeNode(childrenContainer, child, level + 1, index === node.children.length - 1);
             });
-
             container.appendChild(childrenContainer);
         }
     }
 
+    /**
+     * Calculates the number of machines required for a given node.
+     * @param {Object} node - The node object.
+     * @returns {number} The calculated machine count.
+     */
     calculateMachineCount(node) {
-        const app = window.productionApp;
-        const data = app.allNeedsMap.get(node.id);
+        const data = window.datas.allNeedsMap.get(node.id);
         if (!data) return 0;
-
-        // For non-raw items, use calculated machine count
         if (!data.isRaw && data.allRecipes?.length > 0) {
-            return data.machineCount;
+            const count = data.machineCount;
+            console.debug(`[managers.ProductionSummaryManager.calculateMachineCount] For item ${node.id}, machine count is ${count}`);
+            return count;
         }
-
-        // For raw materials, no machines needed
         return 0;
     }
 
+    /**
+     * Renders an inline representation of a recipe (ingredients -> products).
+     * @param {Object} recipe - The recipe object to render.
+     * @returns {HTMLElement} The rendered recipe element.
+     */
     renderCraftingInline(recipe) {
         const craftInline = document.createElement('div');
         craftInline.className = 'tree-craft-inline';
-
         const flow = document.createElement('div');
         flow.className = 'tree-craft-flow';
 
-        // Add ingredients
         recipe.ingredients.forEach(ing => {
             const item = document.createElement('span');
             item.className = 'tree-craft-item';
-
             const icon = document.createElement('img');
-            icon.src = `${window.productionApp.projectBaseUrl}images/${window.productionApp.itemsData.items[ing.id].img}`;
+            icon.src = `${window.projectBaseUrl}images/${window.datas.itemsData.items[ing.id].img}`;
             icon.className = 'tree-craft-icon';
             item.appendChild(icon);
-
             item.appendChild(document.createTextNode(`${ing.rate.toFixed(1)} ${window.localization.t('app.per_minute')}`));
             flow.appendChild(item);
         });
 
-        // Add arrow
         const arrow = document.createElement('span');
         arrow.className = 'tree-arrow';
         arrow.textContent = '→';
         flow.appendChild(arrow);
 
-        // Add products
         recipe.products.forEach(prod => {
             const item = document.createElement('span');
             item.className = 'tree-craft-item';
-
             const icon = document.createElement('img');
-            icon.src = `${window.productionApp.projectBaseUrl}images/${window.productionApp.itemsData.items[prod.id].img}`;
+            icon.src = `${window.projectBaseUrl}images/${window.datas.itemsData.items[prod.id].img}`;
             icon.className = 'tree-craft-icon';
             item.appendChild(icon);
-
             item.appendChild(document.createTextNode(`${prod.rate.toFixed(1)} ${window.localization.t('app.per_minute')}`));
             flow.appendChild(item);
         });
@@ -333,36 +379,42 @@ class ProductionSummaryManager {
         return craftInline;
     }
 
+    /**
+     * Renders the section for items that are shared between multiple production lines.
+     * @param {Array} items - An array of shared item objects.
+     * @returns {HTMLElement} The rendered shared items section.
+     */
     renderSharedItems(items) {
         const section = document.createElement('div');
         section.className = 'shared-items';
-        
         const header = document.createElement('div');
         header.className = 'shared-items-header';
         header.textContent = window.localization.t('app.shared_items_needed');
         section.appendChild(header);
-        
+
         items.forEach(item => {
             const elem = document.createElement('span');
             elem.className = 'shared-item';
-            
             const icon = document.createElement('img');
-            icon.src = `${window.productionApp.projectBaseUrl}images/${item.icon}`;
+            icon.src = `${window.projectBaseUrl}images/${item.icon}`;
             icon.className = 'shared-icon';
             elem.appendChild(icon);
-
             const countText = `${item.name} (${item.count}x)`;
             elem.appendChild(document.createTextNode(countText));
             section.appendChild(elem);
         });
-        
+
         return section;
     }
 
+    /**
+     * Renders the section for items that are being disposed of as waste.
+     * @param {Array} items - An array of waste item data objects.
+     * @returns {HTMLElement} The rendered waste section.
+     */
     renderWasteSection(items) {
         const section = document.createElement('div');
         section.className = 'waste-section';
-
         const header = document.createElement('div');
         header.className = 'waste-header';
         header.textContent = window.localization.t('app.waste_disposal');
@@ -371,50 +423,40 @@ class ProductionSummaryManager {
         items.forEach(item => {
             const wasteItem = document.createElement('div');
             wasteItem.className = 'waste-item';
-
-            // Create content container similar to regular nodes
             const content = document.createElement('span');
             content.className = 'tree-content';
 
-            // Icon
             const icon = document.createElement('img');
-            icon.src = `${window.productionApp.projectBaseUrl}images/${window.productionApp.itemsData.items[item.originalItemId].img}`;
+            icon.src = `${window.projectBaseUrl}images/${window.datas.itemsData.items[item.originalItemId].img}`;
             icon.className = 'tree-icon';
-            icon.alt = window.localization.getItemName(window.productionApp.itemsData.items[item.originalItemId]);
+            icon.alt = window.localization.getItemName(window.datas.itemsData.items[item.originalItemId]);
             content.appendChild(icon);
 
-            // Name
             const name = document.createElement('span');
             name.className = 'tree-name';
-            name.textContent = window.localization.getItemName(window.productionApp.itemsData.items[item.originalItemId]);
+            name.textContent = window.localization.getItemName(window.datas.itemsData.items[item.originalItemId]);
             content.appendChild(name);
 
-            // Rate
             const rate = document.createElement('span');
             rate.className = 'tree-rate';
             rate.textContent = `${item.rate.toFixed(1)} ${window.localization.t('app.per_minute')}`;
             content.appendChild(rate);
 
-            // Transport
             const transport = this.getTransport(item.originalItemId, item.rate);
             if (transport) content.appendChild(transport);
 
-            // Machine info - Check if waste item has building information
             if (item.allRecipes && item.allRecipes.length > 0) {
-                const recipe = item.allRecipes[0]; // Waste disposal typically has only one recipe
-                const building = window.productionApp.buildingsData.buildings[recipe.buildingId];
+                const recipe = item.allRecipes[0];
+                const building = window.datas.buildingsData.buildings[recipe.buildingId];
 
                 if (building) {
                     const machine = document.createElement('span');
                     machine.className = 'tree-machine';
-
                     const machineIcon = document.createElement('img');
-                    machineIcon.src = `${window.productionApp.projectBaseUrl}images/${building.img}`;
+                    machineIcon.src = `${window.projectBaseUrl}images/${building.img}`;
                     machineIcon.className = 'tree-machine-icon';
                     machineIcon.alt = window.localization.getBuildingName(building);
                     machine.appendChild(machineIcon);
-
-                    // Use machineCount from waste item data
                     const machineCount = item.machineCount || 1;
                     machine.appendChild(document.createTextNode(`${machineCount.toFixed(2)}x ${window.localization.getBuildingName(building)}`));
                     content.appendChild(machine);
@@ -428,44 +470,51 @@ class ProductionSummaryManager {
         return section;
     }
 
+    /**
+     * Toggles the visual expansion/collapse state of a tree node and its children.
+     * @param {HTMLElement} toggle - The toggle button element.
+     * @param {HTMLElement} childrenContainer - The container element for the children.
+     */
     toggleNode(toggle, childrenContainer) {
         const isExpanded = toggle.classList.contains('expanded');
-
         if (isExpanded) {
             toggle.classList.remove('expanded');
             toggle.classList.add('collapsed');
             childrenContainer.classList.add('collapsed');
+            console.debug("[managers.ProductionSummaryManager.toggleNode] Collapsed node.");
         } else {
             toggle.classList.remove('collapsed');
             toggle.classList.add('expanded');
             childrenContainer.classList.remove('collapsed');
+            console.debug("[managers.ProductionSummaryManager.toggleNode] Expanded node.");
         }
     }
 
+    /**
+     * Calculates and creates an element for the transport method required for an item's flow rate.
+     * @param {string} itemId - The ID of the item.
+     * @param {number} rate - The flow rate of the item (items per minute).
+     * @returns {HTMLElement|null} The transport element or null if no transport is needed.
+     */
     getTransport(itemId, rate) {
-        const app = window.productionApp;
-        const item = app.itemsData.items[itemId];
+        const item = window.datas.itemsData.items[itemId];
         if (!item) return null;
-
         const type = item.transport_type || 'belt';
-        const info = app.transportData[type];
+        const info = window.datas.transportData[type];
         if (!info?.img) return null;
+
+        const transportCount = rate / info.speed;
+        console.debug(`[managers.ProductionSummaryManager.getTransport] For item ${itemId}, transport count is ${transportCount.toFixed(1)} (${type}).`);
 
         const transport = document.createElement('span');
         transport.className = 'tree-transport';
-
         const transportIcon = document.createElement('img');
-        transportIcon.src = `${app.projectBaseUrl}images/${info.img}`;
+        transportIcon.src = `${window.projectBaseUrl}images/${info.img}`;
         transportIcon.className = 'tree-transport-icon';
         transportIcon.alt = 'transport';
         transport.appendChild(transportIcon);
-
-        const transportText = document.createTextNode(`${(rate / info.speed).toFixed(1)}`);
+        const transportText = document.createTextNode(`${transportCount.toFixed(1)}`);
         transport.appendChild(transportText);
-
         return transport;
     }
 }
-
-// Initialize
-window.ProductionSummaryManager = ProductionSummaryManager;

@@ -1,12 +1,13 @@
 /* ==============================================
-   Language Selector
+   Custom Language Selector
    ============================================== */
 .language-selector {
     position: relative;
     margin-right: 0.5rem;
 }
 
-.language-select {
+/* The main button that replaces the old <select> */
+.language-button {
     background-color: var(--bg-tertiary);
     border: 1px solid var(--border-color);
     border-radius: 6px;
@@ -16,18 +17,83 @@
     cursor: pointer;
     transition: all var(--transition-speed);
     min-width: 80px;
+
+    /* Flexbox for aligning icon, text, and arrow */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
 }
 
-.language-select:hover {
+.language-button:hover {
     background-color: var(--border-color);
 }
 
-.language-select:focus {
+.language-button:focus {
     outline: none;
     border-color: var(--accent-blue);
 }
 
-.language-select option {
+.language-arrow {
+    color: var(--text-secondary);
+    font-size: 0.8em;
+    transition: transform var(--transition-speed);
+}
+
+.language-selector.is-open .language-arrow {
+    transform: rotate(180deg);
+}
+
+/* The dropdown list container */
+.language-options {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    min-width: 100%;
     background-color: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    margin-top: 0.25rem;
+    list-style: none;
+    padding: 0.25rem 0;
+    box-shadow: 0 4px 12px var(--shadow-medium);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all var(--transition-speed);
+}
+
+.language-selector.is-open .language-options {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* Individual language options in the dropdown */
+.language-option {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    cursor: pointer;
     color: var(--text-primary);
+    transition: background-color var(--transition-speed);
+}
+
+.language-option:hover {
+    background-color: var(--border-color);
+}
+
+.language-option.is-active {
+    background-color: var(--accent-blue);
+    color: white;
+}
+
+/* Styling for the flag icons */
+.language-flag,
+.language-option-flag {
+    font-size: 1em;
+    width: 1.2em;
+    text-align: center;
 }

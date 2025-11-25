@@ -6,6 +6,10 @@
         display: flex;
     }
 
+    .app-header {
+        flex-wrap: wrap;
+    }
+
     .control-panel {
         position: fixed;
         left: -320px;
@@ -39,9 +43,10 @@
         font-size: 1rem;
     }
 
-    .node-delete-btn {
-        opacity: 1;
-        transform: scale(1.1);
+    .node .node-delete-btn,
+    .node:hover .node-delete-btn {
+        opacity: 0.8;
+        transform: scale(1.15);
         background-color: var(--text-secondary);
     }
 }

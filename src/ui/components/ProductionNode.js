@@ -1,59 +1,69 @@
+import { isMobileDevice, showDeleteConfirmation } from "../../utils/AppUtils.js";
+import { calculateProduction } from "../../services/ProductionCalculator.js";
+import { showMobileRecipeSelector } from "../views/RecipeSelector.js";
+
 /**
- * Class representing a production node
+ * Represents a single node in the production graph.
+ * This class handles the creation, rendering, and user interactions for a node,
+ * which can represent a raw material, a production building, or a waste disposal facility.
  */
-class ProductionNode {
+export class ProductionNode {
     /**
-     * Create a new production node
-     * @param {Object} data - Node data
-     * @param {HTMLElement} container - Container element
-     * @param {ProductionGraph} graph - Parent graph
+     * Initializes a new ProductionNode instance.
+     * @param {Object} data - The data object for the node, containing production details.
+     * @param {HTMLElement} container - The DOM element that will contain this node.
+     * @param {ProductionGraph} graph - The parent ProductionGraph instance this node belongs to.
      */
     constructor(data, container, graph) {
-        const app = window.productionApp;
-
         this.data = data;
         this.container = container;
         this.graph = graph;
-        this.element = null;
-        this.x = 0;
-        this.y = 0;
-        this.vx = 0; // Velocity X
-        this.vy = 0; // Velocity Y
-        this.isPinned = false; // Is the node being dragged?
+        this.element = null; // Will hold the DOM element for the node
+        this.x = 0; // Node's X coordinate
+        this.y = 0; // Node's Y coordinate
+        this.vx = 0; // Node's velocity on the X-axis (for physics simulation)
+        this.vy = 0; // Node's velocity on the Y-axis (for physics simulation)
+        this.isPinned = false; // Flag to indicate if the node is being dragged (pinned in place)
         this.create();
     }
 
     /**
-     * Create the node element
+     * Creates the DOM element for the node and populates it with data.
+     * This is a complex method that handles different node types (raw, target, waste).
      */
     create() {
-        const app = window.productionApp;
         const isRaw = this.data.isRaw;
         const isTarget = this.data.isTarget;
         const isWasteDisposal = this.data.isWasteDisposal || false;
+        console.debug(`[ui.components.ProductionNode.create] Creating node for item: ${this.data.itemId}, isRaw: ${isRaw}, isTarget: ${isTarget}, isWaste: ${isWasteDisposal}`);
 
+        // Determine the item information, handling the special case for waste disposal nodes
         let itemInfo;
-
         if (isWasteDisposal) {
-            itemInfo = app.itemsData.items[this.data.originalItemId];
+            itemInfo = window.datas.itemsData.items[this.data.originalItemId];
         } else {
-            itemInfo = app.itemsData.items[this.data.itemId];
+            itemInfo = window.datas.itemsData.items[this.data.itemId];
         }
 
-        // Transport helper function
+        /**
+         * Helper function to generate HTML for an item flow (input/output).
+         * @param {Object} item - The item data object.
+         * @param {number} rate - The flow rate of the item.
+         * @returns {string} The generated HTML string.
+         */
         const createFlowItemHtml = (item, rate) => {
-            const imgSrc = item.img ? `${app.projectBaseUrl}images/${item.img}` : `${app.projectBaseUrl}images/default-item.png`;
-
+            const imgSrc = item.img ? `${window.projectBaseUrl}images/${item.img}` : `${window.projectBaseUrl}images/default-item.png`;
             let transportType = item.transport_type || 'belt';
             let transportCount = 0;
             let transportImgSrc = '';
 
-            if (app.transportData && app.transportData[transportType]) {
-                const transportSpeed = app.transportData[transportType].speed;
+            // Calculate transport requirements if data is available
+            if (window.datas.transportData && window.datas.transportData[transportType]) {
+                const transportSpeed = window.datas.transportData[transportType].speed;
                 transportCount = rate / transportSpeed;
-                const transportInfo = app.transportData[transportType];
+                const transportInfo = window.datas.transportData[transportType];
                 if (transportInfo && transportInfo.img) {
-                    transportImgSrc = `${app.projectBaseUrl}images/${transportInfo.img}`;
+                    transportImgSrc = `${window.projectBaseUrl}images/${transportInfo.img}`;
                 }
             }
 
@@ -73,37 +83,31 @@ class ProductionNode {
             `;
         };
 
-        // Create node element
+        // Create the main node element
         const nodeEl = document.createElement('div');
         nodeEl.className = `node ${isRaw ? 'is-raw' : ''} ${isTarget ? 'is-target' : ''} ${isWasteDisposal ? 'is-waste-disposal' : ''}`;
         nodeEl.setAttribute('data-node-id', this.data.itemId);
         nodeEl.style.left = `${this.x}px`;
         nodeEl.style.top = `${this.y}px`;
 
-        // Get recipe information
+        // Check if the node has a recipe (i.e., is a production building)
         const hasRecipe = this.data.allRecipes && this.data.allRecipes.length > 0;
         const recipe = hasRecipe ? this.data.allRecipes[this.data.selectedRecipeIndex] : null;
-        const building = recipe ? app.buildingsData.buildings[recipe.buildingId] : null;
-
-        // Get localized item type for display
+        const building = recipe ? window.datas.buildingsData.buildings[recipe.buildingId] : null;
         const localizedType = window.localization.getItemTypeName(itemInfo.type);
 
-        // Create the new vertical flow summary
         let flowSummaryHtml = '';
 
+        // --- Special Case: Waste Disposal Node ---
         if (isWasteDisposal) {
-            // For waste disposal nodes, show the input waste item and the machine
             const recipe = this.data.allRecipes[this.data.selectedRecipeIndex];
-            const building = app.buildingsData.buildings[recipe.buildingId];
-            const wasteItemInfo = app.itemsData.items[this.data.originalItemId];
-
+            const building = window.datas.buildingsData.buildings[recipe.buildingId];
+            const wasteItemInfo = window.datas.itemsData.items[this.data.originalItemId];
             const inputElement = createFlowItemHtml(wasteItemInfo, this.data.rate);
 
             flowSummaryHtml = `
                 <div class="node-flow-container node-flow-container-waste">
-                    <div class="flow-inputs">
-                        ${inputElement}
-                    </div>
+                    <div class="flow-inputs">${inputElement}</div>
                     <div class="flow-arrow">→</div>
                     <div class="flow-output">
                         <div class="flow-item">
@@ -115,83 +119,71 @@ class ProductionNode {
                     </div>
                 </div>
             `;
-        } else if (!isRaw && hasRecipe && recipe && recipe.ingredients) {
-            const recipeTimeInMinutes = recipe.time / app.SECONDS_PER_MINUTE;
+        }
+        // --- Standard Production Node ---
+        else if (!isRaw && hasRecipe && recipe && recipe.ingredients) {
+            const recipeTimeInMinutes = recipe.time / 60;
             const machinesNeeded = this.data.machineCount;
 
-            // 1. Create ingredient items using the helper function
+            // Generate HTML for all ingredients
             const ingredientElements = recipe.ingredients.map(ing => {
-                const item = app.itemsData.items[ing.item_id];
+                const item = window.datas.itemsData.items[ing.item_id];
                 const consumptionRate = (ing.amount / recipeTimeInMinutes) * machinesNeeded;
                 return createFlowItemHtml(item, consumptionRate);
             }).join('');
 
-            // 2. Create product item using the helper function
+            // Generate HTML for the primary product
             const productElement = createFlowItemHtml(itemInfo, this.data.rate);
 
-            // 3. Find and create waste byproducts
             let wasteOutputsHtml = '';
+            // Generate HTML for any waste byproducts
             if (recipe.products) {
                 const primaryProduct = recipe.products.find(p => p.item_id === this.data.itemId) || recipe.products[0];
-
                 const wasteElements = recipe.products
                     .filter(prod => prod.item_id !== this.data.itemId && window.wasteManager.isWasteItem(prod.item_id))
                     .map(wasteProd => {
-                        // Calculate the rate of this specific waste byproduct
                         const wasteRate = this.data.rate * (wasteProd.amount / primaryProduct.amount);
-                        if (wasteRate > 1e-6) { // Only show if there's a non-negligible rate
-                            const wasteItemInfo = app.itemsData.items[wasteProd.item_id];
+                        if (wasteRate > 1e-6) {
+                            const wasteItemInfo = window.datas.itemsData.items[wasteProd.item_id];
                             return createFlowItemHtml(wasteItemInfo, wasteRate);
                         }
                         return '';
                     })
-                    .filter(html => html !== '') // Filter out empty strings
+                    .filter(html => html !== '')
                     .join('');
-
                 if (wasteElements) {
-                    wasteOutputsHtml = `
-                        <div class="flow-output-waste">
-                            ${wasteElements}
-                        </div>
-                    `;
+                    wasteOutputsHtml = `<div class="flow-output-waste">${wasteElements}</div>`;
                 }
             }
 
-            // Assemble the full flow summary
             flowSummaryHtml = `
             <div class="node-flow-container">
-                <div class="flow-inputs">
-                    ${ingredientElements}
-                </div>
+                <div class="flow-inputs">${ingredientElements}</div>
                 <div class="flow-arrow">→</div>
                 <div class="flow-outputs-container">
-                    <div class="flow-output">
-                        ${productElement}
-                    </div>
+                    <div class="flow-output">${productElement}</div>
                     ${wasteOutputsHtml}
                 </div>
             </div>
             `;
-        } else {
-            // For raw materials, or items without a valid recipe
+        }
+        // --- Raw Material Node ---
+        else {
             const productElement = createFlowItemHtml(itemInfo, this.data.rate);
-
             flowSummaryHtml = `
                 <div class="node-flow-container node-flow-container-raw">
-                    <div class="flow-output">
-                        ${productElement}
-                    </div>
+                    <div class="flow-output">${productElement}</div>
                 </div>
             `;
         }
 
-        // Set node HTML
+        // Assemble the complete HTML for the node
         nodeEl.innerHTML = `
             <div class="node-header">
-                <img src="${window.productionApp.projectBaseUrl}images/${itemInfo.img}" class="node-icon" alt="${window.localization.getItemName(itemInfo)}">
+                <img src="${window.projectBaseUrl}images/${itemInfo.img}" class="node-icon" alt="${window.localization.getItemName(itemInfo)}">
                 <div class="node-title-container">
                     <div class="node-title">${window.localization.getItemName(itemInfo)}</div>
-                    ${`<div class="node-type">${localizedType}</div>`}
+                    <div class="node-type">${localizedType}</div>
                 </div>
                 ${!isWasteDisposal ? `
                     <button class="node-delete-btn" data-node-id="${this.data.itemId}" title="Delete node and all dependencies">
@@ -203,11 +195,11 @@ class ProductionNode {
             <div class="node-body">
             ${hasRecipe ? `
                 <div class="node-machine">
-                    <img src="${window.productionApp.projectBaseUrl}images/${building.img}" class="machine-icon" alt="${window.localization.getBuildingName(building)}">
+                    <img src="${window.projectBaseUrl}images/${building.img}" class="machine-icon" alt="${window.localization.getBuildingName(building)}">
                     <div class="machine-info">
                         <div class="machine-name">${window.localization.getBuildingName(building)}</div>
                         <div class="machine-count">${this.data.machineCount.toFixed(2)}x</div>
-                        ${app.showPower.checked ? `<div class="machine-power"><i class="fas fa-bolt"></i> ${(Math.ceil(this.data.machineCount) * building.power).toFixed(0)}</div>` : ''}
+                        ${window.elements.showPower.checked ? `<div class="machine-power"><i class="fas fa-bolt"></i> ${(Math.ceil(this.data.machineCount) * building.power).toFixed(0)}</div>` : ''}
                     </div>
                 </div>
                 ${this.data.allRecipes.length > 1 ? `
@@ -226,62 +218,56 @@ class ProductionNode {
     }
 
     /**
-     * Update power display in the node
+     * Updates the power consumption display within the node based on the global 'showPower' setting.
      */
     updatePowerDisplay() {
-        const app = window.productionApp;
         if (!this.element) return;
-
         const machineInfo = this.element.querySelector('.machine-info');
         if (!machineInfo) return;
-
-        // Check if power display already exists
         const powerDisplay = machineInfo.querySelector('.machine-power');
 
-        if (app.showPower.checked && !powerDisplay) {
-            // Add power display if it doesn't exist
+        if (window.elements.showPower.checked && !powerDisplay) {
             const hasRecipe = this.data.allRecipes && this.data.allRecipes.length > 0;
             if (hasRecipe) {
                 const recipe = this.data.allRecipes[this.data.selectedRecipeIndex];
-                const building = app.buildingsData.buildings[recipe.buildingId];
+                const building = window.datas.buildingsData.buildings[recipe.buildingId];
                 const powerElement = document.createElement('div');
                 powerElement.className = 'machine-power';
                 powerElement.innerHTML = `<i class="fas fa-bolt"></i> ${(Math.ceil(this.data.machineCount) * building.power).toFixed(0)}`;
                 machineInfo.appendChild(powerElement);
             }
-        } else if (!app.showPower.checked && powerDisplay) {
-            // Remove power display if it exists
+        } else if (!window.elements.showPower.checked && powerDisplay) {
             powerDisplay.remove();
         }
+        console.debug(`[ui.components.ProductionNode.updatePowerDisplay] Power display updated for node ${this.data.itemId}. Visible: ${window.elements.showPower.checked}`);
     }
 
     /**
-     * Set up node interactions
+     * Sets up all event listeners for user interactions with the node.
      */
     setupInteractions() {
-        const app = window.productionApp;
-
-        // Node dragging
+        // --- Dragging functionality ---
         this.element.addEventListener('mousedown', (e) => {
             e.stopPropagation();
-            app.isDraggingNode = this;
-            app.dragStart.mouseX = e.clientX;
-            app.dragStart.mouseY = e.clientY;
-            app.dragStart.nodeX = this.x;
-            app.dragStart.nodeY = this.y;
+            window.datas.draggingNode = this;
+            window.states.dragStart.mouseX = e.clientX;
+            window.states.dragStart.mouseY = e.clientY;
+            window.states.dragStart.nodeX = this.x;
+            window.states.dragStart.nodeY = this.y;
             this.element.classList.add('is-dragging');
-            this.isPinned = true; // Pin the node so it's not affected by forces
+            this.isPinned = true;
         });
 
-        // Recipe selector
+        // --- Recipe selector functionality ---
         const selector = this.element.querySelector('.recipe-selector');
         if (selector) {
             selector.addEventListener('click', (e) => {
                 e.stopPropagation();
-
+                // Show a mobile-friendly view if on a mobile device
                 if (isMobileDevice()) {
                     showMobileRecipeSelector(this.data.itemId);
                 } else {
+                    // Close any other open dropdowns before opening a new one
                     const activeDropdown = document.querySelector('.recipe-dropdown.is-active');
                     if (activeDropdown && activeDropdown.dataset.nodeId === this.data.itemId) {
                         activeDropdown.remove();
@@ -292,46 +278,43 @@ class ProductionNode {
             });
         }
 
-        // Delete button
+        // --- Delete button functionality ---
         const deleteBtn = this.element.querySelector('.node-delete-btn');
         if (deleteBtn) {
             deleteBtn.addEventListener('click', (e) => {
                 e.stopPropagation();
+                // Call a global utility function to show a confirmation dialog
                 showDeleteConfirmation(this.data.itemId);
             });
         }
+        console.debug(`[ui.components.ProductionNode.setupInteractions] Interactions set up for node ${this.data.itemId}`);
     }
 
     /**
-     * Show recipe dropdown
-     * @param {Event} e - Click event
+     * Creates and displays the dropdown for selecting a different recipe.
+     * @param {Event} e - The click event that triggered the dropdown.
      */
     showRecipeDropdown(e) {
-        const app = window.productionApp;
+        // Close any other open dropdowns to avoid UI clutter
+        window.functions.closeAllDropdowns();
 
-        // Remove any existing dropdowns
-        document.querySelectorAll('.recipe-dropdown.is-active').forEach(d => d.remove());
-
-        // Create dropdown
         const dropdown = document.createElement('div');
         dropdown.className = 'recipe-dropdown';
-
         dropdown.dataset.nodeId = this.data.itemId;
 
-        // Add recipe options
+        // Populate the dropdown with all available recipes for this node's item
         this.data.allRecipes.forEach((recipe, index) => {
-            const building = app.buildingsData.buildings[recipe.buildingId];
-
+            const building = window.datas.buildingsData.buildings[recipe.buildingId];
             const option = document.createElement('div');
             option.className = 'recipe-option';
 
-            // Check if this recipe is the default for this item
+            // Check if this recipe is the user's default for this item
             const isDefault = window.defaultRecipeManager &&
                 window.defaultRecipeManager.defaultRecipes.get(this.data.itemId) === index;
 
             option.innerHTML = `
                 <div class="recipe-option-header">
-                    <img src="${window.productionApp.projectBaseUrl}images/${building.img}" alt="${window.localization.getBuildingName(building)}">
+                    <img src="${window.projectBaseUrl}images/${building.img}" alt="${window.localization.getBuildingName(building)}">
                     <span>${window.localization.getBuildingName(building)}${isDefault ? ' (Default)' : ''}</span>
                 </div>
                 <div class="recipe-option-content">
@@ -341,38 +324,35 @@ class ProductionNode {
                 </div>
             `;
 
-            // Add click event to select recipe
+            // Add a click listener to select the recipe
             option.addEventListener('click', () => {
-                // Update the selected recipe for this node in the app's state
-                app.selectedRecipesMap.set(this.data.itemId, index);
-
-                // Update the active tab's data immediately and synchronously
-                if (window.tabsManager && window.tabsManager.activeTabIndex !== undefined) {
-                    const currentTab = window.tabsManager.tabs[window.tabsManager.activeTabIndex];
+                // Update the selected recipe in the global map
+                window.datas.selectedRecipesMap.set(this.data.itemId, index);
+                // Also update the recipe for the current tab if tabs are active
+                if (window.tabs && window.tabs.activeTabIndex !== undefined) {
+                    const currentTab = window.tabs.tabs[window.tabs.activeTabIndex];
                     if (currentTab) {
                         currentTab.selectedRecipes.set(this.data.itemId, index);
-                        window.tabsManager.saveToStorage();
+                        window.tabs.saveToStorage();
                     }
                 }
+                // Recalculate the entire production graph with the new recipe
                 calculateProduction(true);
             });
-
-            // add all
             dropdown.appendChild(option);
         });
 
-        // Add dropdown to container
-        app.graphContainer.appendChild(dropdown);
+        // Add the dropdown to the graph container and position it
+        window.elements.graphContainer.appendChild(dropdown);
 
-        // Position dropdown
         const rect = e.target.getBoundingClientRect();
-        const containerRect = app.graphContainer.getBoundingClientRect();
+        const containerRect = window.elements.graphContainer.getBoundingClientRect();
 
         dropdown.style.left = `${rect.left - containerRect.left}px`;
         dropdown.style.top = `${rect.bottom - containerRect.top}px`;
         dropdown.classList.add('is-active');
 
-        // Close dropdown when clicking outside
+        // Set up a listener to close the dropdown when clicking outside
         const closeDropdown = (e) => {
             if (!dropdown.contains(e.target)) {
                 dropdown.remove();
@@ -380,23 +360,22 @@ class ProductionNode {
             }
         };
         setTimeout(() => document.addEventListener('click', closeDropdown), 100);
+        console.debug(`[ui.components.ProductionNode.showRecipeDropdown] Dropdown shown for node ${this.data.itemId}`);
     }
 
     /**
-     * Render ingredients for recipe dropdown
-     * @param {Array} ingredients - Array of ingredients
-     * @returns {string} HTML string for ingredients
+     * Helper function to generate HTML for a list of ingredients.
+     * @param {Array} ingredients - Array of ingredient objects.
+     * @returns {string} The generated HTML string.
      */
     renderIngredients(ingredients) {
         if (!ingredients || !Array.isArray(ingredients)) return '';
-        const app = window.productionApp;
         return ingredients.map(ing => {
-            const item = app.itemsData.items[ing.item_id];
+            const item = window.datas.itemsData.items[ing.item_id];
             const localizedType = window.localization.getItemTypeName(item.type);
-
             return `
                 <div class="recipe-component">
-                    <img src="${window.productionApp.projectBaseUrl}images/${item.img}" title="${window.localization.getItemName(item)}: ${ing.amount}">
+                    <img src="${window.projectBaseUrl}images/${item.img}" title="${window.localization.getItemName(item)}: ${ing.amount}">
                     ${localizedType ? `<div class="component-category">${localizedType}</div>` : ''}
                 </div>
             `;
@@ -404,20 +383,18 @@ class ProductionNode {
     }
 
     /**
-     * Render products for recipe dropdown
-     * @param {Array} products - Array of products
-     * @returns {string} HTML string for products
+     * Helper function to generate HTML for a list of products.
+     * @param {Array} products - Array of product objects.
+     * @returns {string} The generated HTML string.
      */
     renderProducts(products) {
         if (!products || !Array.isArray(products)) return '';
-        const app = window.productionApp;
         return products.map(prod => {
-            const item = app.itemsData.items[prod.item_id];
+            const item = window.datas.itemsData.items[prod.item_id];
             const localizedType = window.localization.getItemTypeName(item.type);
-
             return `
                 <div class="recipe-component">
-                    <img src="${window.productionApp.projectBaseUrl}images/${item.img}" title="${window.localization.getItemName(item)}: ${prod.amount}">
+                    <img src="${window.projectBaseUrl}images/${item.img}" title="${window.localization.getItemName(item)}: ${prod.amount}">
                     ${localizedType ? `<div class="component-category">${localizedType}</div>` : ''}
                 </div>
             `;
@@ -425,9 +402,11 @@ class ProductionNode {
     }
 
     /**
-     * Render the node at its current position
+     * Renders the node at its current (x, y) coordinates.
+     * This is called during dragging and physics simulation.
      */
     render() {
+        if (!this.element) return;
         this.element.style.left = `${this.x}px`;
         this.element.style.top = `${this.y}px`;
     }

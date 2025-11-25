@@ -11,7 +11,7 @@
         "total_power": "Total Power",
         "per_minute": "/ min",
         "uncraftable": "Uncraftable",
-        "current": "(Current)",
+        "current": "Current",
         "select_item_alert": "Please choose production recipe.",
         "valid_rate_alert": "Please enter valid production rate.",
         "all": "All",
@@ -22,7 +22,8 @@
         "production_summary": "Production Summary",
         "production_chain": "Production Chain",
         "no_production_data": "No production data available. Please calculate a production chain first.",
-        "shared_items_needed": "Shared Items Needed"
+        "shared_items_needed": "Shared Items Needed",
+        "production": "Production"
     },
     "buttons": {
         "calculate": "Calculate",
