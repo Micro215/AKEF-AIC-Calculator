@@ -213,8 +213,8 @@ export class DefaultRecipeManager {
         return ingredients.map(ing => {
             const item = window.datas.itemsData.items[ing.item_id];
             return `
-                <div class="akef-recipe-component" data-amount="${ing.amount}">
-                    <img src="${window.projectBaseUrl}images/${item.img}" title="${window.localization.getItemName(item)}: ${ing.amount}">
+                <div class="akef-recipe-component" data-amount="${ing.amount.toFixed(0)}">
+                    <img src="${window.projectBaseUrl}images/${item.img}" title="${window.localization.getItemName(item)}: ${ing.amount.toFixed(0)}">
                 </div>
             `;
         }).join('');
