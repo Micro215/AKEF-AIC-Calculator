@@ -3,7 +3,8 @@
     "arms_insp_kit": {
       "name_en": "Arms INSP Kit",
       "type": "progression_materials",
-      "img": "Arms_INSP_Kit.png"
+      "img": "Arms_INSP_Kit.png",
+      "name_ru": "Тест-Компонент Для Оружия"
     },
     "arms_insp_set": {
       "name_en": "Arms INSP Set",
@@ -13,12 +14,14 @@
     "arms_inspector": {
       "name_en": "Arms Inspector",
       "type": "progression_materials",
-      "img": "Arms_Inspector.png"
+      "img": "Arms_Inspector.png",
+      "name_ru": "Тестер Оружия"
     },
     "cast_die": {
       "name_en": "Cast Die",
       "type": "progression_materials",
-      "img": "Cast_Die.png"
+      "img": "Cast_Die.png",
+      "name_ru": "Литейная Форма"
     },
     "compact_script_i": {
       "name_en": "Compact Script I",
@@ -48,7 +51,8 @@
     "protodisk": {
       "name_en": "Protodisk",
       "type": "progression_materials",
-      "img": "Protodisk.png"
+      "img": "Protodisk.png",
+      "name_ru": "Протодиск"
     },
     "protohedron": {
       "name_en": "Protohedron",
@@ -68,7 +72,8 @@
     "protoprism": {
       "name_en": "Protoprism",
       "type": "progression_materials",
-      "img": "Protoprism.png"
+      "img": "Protoprism.png",
+      "name_ru": "Протопризма"
     },
     "protoset": {
       "name_en": "Protoset",
@@ -78,12 +83,14 @@
     "aketine": {
       "name_en": "Aketine",
       "type": "naturals",
-      "img": "Aketine.png"
+      "img": "Aketine.png",
+      "name_ru": "Акетин"
     },
     "aketine_seed": {
       "name_en": "Aketine Seed",
       "type": "naturals",
-      "img": "Aketine_Seed.png"
+      "img": "Aketine_Seed.png",
+      "name_ru": "Семя Акетина"
     },
     "amber_rice": {
       "name_en": "Amber Rice",
@@ -98,38 +105,45 @@
     "amethyst_ore": {
       "name_en": "Amethyst Ore",
       "type": "naturals",
-      "img": "Amethyst_Ore.png"
+      "img": "Amethyst_Ore.png",
+      "name_ru": "Аметистовая Руда"
     },
     "buckflower": {
       "name_en": "Buckflower",
       "type": "naturals",
-      "img": "Buckflower.png"
+      "img": "Buckflower.png",
+      "name_ru": "Гречецвет"
     },
     "buckflower_seed": {
       "name_en": "Buckflower Seed",
       "type": "naturals",
-      "img": "Buckflower_Seed.png"
+      "img": "Buckflower_Seed.png",
+      "name_ru": "Семя Гречесцвета"
     },
     "citrome": {
       "name_en": "Citrome",
       "type": "naturals",
-      "img": "Citrome.png"
+      "img": "Citrome.png",
+      "name_ru": "Цитром"
     },
     "citrome_seed": {
       "name_en": "Citrome Seed",
       "type": "naturals",
-      "img": "Citrome_Seed.png"
+      "img": "Citrome_Seed.png",
+      "name_ru": "Семя Цитрома"
     },
     "clean_water": {
       "name_en": "Clean Water",
       "type": "naturals",
       "img": "Clean_Water.png",
-      "transport_type": "pipe"
+      "transport_type": "pipe",
+      "name_ru": "Чистая Вода"
     },
     "cuprium_ore": {
       "name_en": "Cuprium Ore",
       "type": "naturals",
-      "img": "Cuprium_Ore.png"
+      "img": "Cuprium_Ore.png",
+      "name_ru": "Куприевая Руда"
     },
     "cyanite_ore": {
       "name_en": "Cyanite Ore",
@@ -139,7 +153,8 @@
     "ferrium_ore": {
       "name_en": "Ferrium Ore",
       "type": "naturals",
-      "img": "Ferrium_Ore.png"
+      "img": "Ferrium_Ore.png",
+      "name_ru": "Ферриевая Руда"
     },
     "firebuckle": {
       "name_en": "Firebuckle",
@@ -164,7 +179,8 @@
     "originium_ore": {
       "name_en": "Originium Ore",
       "type": "naturals",
-      "img": "Originium_Ore.png"
+      "img": "Originium_Ore.png",
+      "name_ru": "Ориджиниевая Руда"
     },
     "redjade_ginseng": {
       "name_en": "Redjade Ginseng",
@@ -179,12 +195,14 @@
     "reed_rye": {
       "name_en": "Reed Rye",
       "type": "naturals",
-      "img": "Reed_Rye.png"
+      "img": "Reed_Rye.png",
+      "name_ru": "Тростниковая Рожь"
     },
     "reed_rye_seed": {
       "name_en": "Reed Rye Seed",
       "type": "naturals",
-      "img": "Reed_Rye_Seed.png"
+      "img": "Reed_Rye_Seed.png",
+      "name_ru": "Семя Тростниковой Ржи"
     },
     "sandleaf": {
       "name_en": "Sandleaf",
@@ -220,12 +238,14 @@
     "umbraline": {
       "name_en": "Umbraline",
       "type": "naturals",
-      "img": "Umbraline.png"
+      "img": "Umbraline.png",
+      "name_ru": "Умбралин"
     },
     "wood": {
       "name_en": "Wood",
       "type": "naturals",
-      "img": "Wood.png"
+      "img": "Wood.png",
+      "name_ru": "Дерево"
     },
     "yazhen": {
       "name_en": "Yazhen",
@@ -240,7 +260,8 @@
     "aggagrit": {
       "name_en": "Aggagrit",
       "type": "gatherables",
-      "img": "Aggagrit.png"
+      "img": "Aggagrit.png",
+      "name_ru": "Аггагрит"
     },
     "aggagrit_block": {
       "name_en": "Aggagrit Block",
@@ -265,12 +286,14 @@
     "fillet": {
       "name_en": "Fillet",
       "type": "gatherables",
-      "img": "Fillet.png"
+      "img": "Fillet.png",
+      "name_ru": "Стейк"
     },
     "glowbug": {
       "name_en": "Glowbug",
       "type": "gatherables",
-      "img": "Glowbug.png"
+      "img": "Glowbug.png",
+      "name_ru": "Светожук"
     },
     "grass_chaff": {
       "name_en": "Grass Chaff",
@@ -385,7 +408,8 @@
     "red_bolete": {
       "name_en": "Red Bolete",
       "type": "valuables",
-      "img": "Red_Bolete.png"
+      "img": "Red_Bolete.png",
+      "name_ru": "Красный Гриб"
     },
     "red_bolete_mycelia": {
       "name_en": "Red Bolete Mycelia",
@@ -425,42 +449,50 @@
     "aketine_powder": {
       "name_en": "Aketine Powder",
       "type": "aic_products",
-      "img": "Aketine_Powder.png"
+      "img": "Aketine_Powder.png",
+      "name_ru": "Молотый Акетин"
     },
     "amethyst_bottle": {
       "name_en": "Amethyst Bottle",
       "type": "aic_products",
-      "img": "Amethyst_Bottle.png"
+      "img": "Amethyst_Bottle.png",
+      "name_ru": "Аметистовая Бутылка"
     },
     "amethyst_component": {
       "name_en": "Amethyst Component",
       "type": "aic_products",
-      "img": "Amethyst_Component.png"
+      "img": "Amethyst_Component.png",
+      "name_ru": "Аметистовый Компонент"
     },
     "amethyst_fiber": {
       "name_en": "Amethyst Fiber",
       "type": "aic_products",
-      "img": "Amethyst_Fiber.png"
+      "img": "Amethyst_Fiber.png",
+      "name_ru": "Аметистовое Волокно"
     },
     "amethyst_part": {
       "name_en": "Amethyst Part",
       "type": "aic_products",
-      "img": "Amethyst_Part.png"
+      "img": "Amethyst_Part.png",
+      "name_ru": "Аметистовая Деталь"
     },
     "amethyst_powder": {
       "name_en": "Amethyst Powder",
       "type": "aic_products",
-      "img": "Amethyst_Powder.png"
+      "img": "Amethyst_Powder.png",
+      "name_ru": "Молотый Аметист"
     },
     "carbon": {
       "name_en": "Carbon",
       "type": "aic_products",
-      "img": "Carbon.png"
+      "img": "Carbon.png",
+      "name_ru": "Углерод"
     },
     "carbon_powder": {
       "name_en": "Carbon Powder",
       "type": "aic_products",
-      "img": "Carbon_Powder.png"
+      "img": "Carbon_Powder.png",
+      "name_ru": "Молотый Углерод"
     },
     "cryston_bottle": {
       "name_en": "Cryston Bottle",
@@ -490,27 +522,32 @@
     "cuprium": {
       "name_en": "Cuprium",
       "type": "aic_products",
-      "img": "Cuprium.png"
+      "img": "Cuprium.png",
+      "name_ru": "Куприй"
     },
     "cuprium_component": {
       "name_en": "Cuprium Component",
       "type": "aic_products",
-      "img": "Cuprium_Component.png"
+      "img": "Cuprium_Component.png",
+      "name_ru": "Куприевый Компонент"
     },
     "cuprium_jar": {
       "name_en": "Cuprium Jar",
       "type": "aic_products",
-      "img": "Cuprium_Jar.png"
+      "img": "Cuprium_Jar.png",
+      "name_ru": "Куприевая Банка"
     },
     "cuprium_part": {
       "name_en": "Cuprium Part",
       "type": "aic_products",
-      "img": "Cuprium_Part.png"
+      "img": "Cuprium_Part.png",
+      "name_ru": "Куприевая Деталь"
     },
     "cuprium_powder": {
       "name_en": "Cuprium Powder",
       "type": "aic_products",
-      "img": "Cuprium_Powder.png"
+      "img": "Cuprium_Powder.png",
+      "name_ru": "Молотый Куприй"
     },
     "dense_carbon_powder": {
       "name_en": "Dense Carbon Powder",
@@ -535,32 +572,38 @@
     "ferrium": {
       "name_en": "Ferrium",
       "type": "aic_products",
-      "img": "Ferrium.png"
+      "img": "Ferrium.png",
+      "name_ru": "Феррий"
     },
     "ferrium_bottle": {
       "name_en": "Ferrium Bottle",
       "type": "aic_products",
-      "img": "Ferrium_Bottle.png"
+      "img": "Ferrium_Bottle.png",
+      "name_ru": "Ферриевая Бутылка"
     },
     "ferrium_component": {
       "name_en": "Ferrium Component",
       "type": "aic_products",
-      "img": "Ferrium_Component.png"
+      "img": "Ferrium_Component.png",
+      "name_ru": "Ферриевый Компонент"
     },
     "ferrium_part": {
       "name_en": "Ferrium Part",
       "type": "aic_products",
-      "img": "Ferrium_Part.png"
+      "img": "Ferrium_Part.png",
+      "name_ru": "Ферриевая Деталь"
     },
     "ferrium_powder": {
       "name_en": "Ferrium Powder",
       "type": "aic_products",
-      "img": "Ferrium_Powder.png"
+      "img": "Ferrium_Powder.png",
+      "name_ru": "Молотый Феррий"
     },
     "glowbug_powder": {
       "name_en": "Glowbug Powder",
       "type": "aic_products",
-      "img": "Glowbug_Powder.png"
+      "img": "Glowbug_Powder.png",
+      "name_ru": "Молотый Светожук"
     },
     "ground_buckflower_powder": {
       "name_en": "Ground Buckflower Powder",
@@ -575,7 +618,8 @@
     "hc_battery": {
       "name_en": "HC Battery",
       "type": "aic_products",
-      "img": "HC_Battery.png"
+      "img": "HC_Battery.png",
+      "name_ru": "Батарея БЕ"
     },
     "jincao_solution": {
       "name_en": "Jincao Solution",
@@ -586,22 +630,26 @@
     "lc_battery": {
       "name_en": "LC Battery",
       "type": "aic_products",
-      "img": "LC_Battery.png"
+      "img": "LC_Battery.png",
+      "name_ru": "Батарея МЕ"
     },
     "originium_powder": {
       "name_en": "Originium Powder",
       "type": "aic_products",
-      "img": "Originium_Powder.png"
+      "img": "Originium_Powder.png",
+      "name_ru": "Молотый Ориджиний"
     },
     "origocrust": {
       "name_en": "Origocrust",
       "type": "aic_products",
-      "img": "Origocrust.png"
+      "img": "Origocrust.png",
+      "name_ru": "Ориджеода"
     },
     "origocrust_powder": {
       "name_en": "Origocrust Powder",
       "type": "aic_products",
-      "img": "Origocrust_Powder.png"
+      "img": "Origocrust_Powder.png",
+      "name_ru": "Молотая Ориджеода"
     },
     "packed_origocrust": {
       "name_en": "Packed Origocrust",
@@ -621,7 +669,8 @@
     "sc_battery": {
       "name_en": "SC Battery",
       "type": "aic_products",
-      "img": "SC_Battery.png"
+      "img": "SC_Battery.png",
+      "name_ru": "Батарея СЕ"
     },
     "scorchbug_powder": {
       "name_en": "Scorchbug Powder",
@@ -636,22 +685,26 @@
     "steel": {
       "name_en": "Steel",
       "type": "aic_products",
-      "img": "Steel.png"
+      "img": "Steel.png",
+      "name_ru": "Сталь"
     },
     "steel_bottle": {
       "name_en": "Steel Bottle",
       "type": "aic_products",
-      "img": "Steel_Bottle.png"
+      "img": "Steel_Bottle.png",
+      "name_ru": "Стальная Бутылка"
     },
     "steel_jar": {
       "name_en": "Steel Jar",
       "type": "aic_products",
-      "img": "Steel_Jar.png"
+      "img": "Steel_Jar.png",
+      "name_ru": "Стальная Банка"
     },
     "steel_part": {
       "name_en": "Steel Part",
       "type": "aic_products",
-      "img": "Steel_Part.png"
+      "img": "Steel_Part.png",
+      "name_ru": "Стальная Деталь"
     },
     "yazhen_solution": {
       "name_en": "Yazhen Solution",
@@ -692,22 +745,26 @@
     "buck_capsule_a": {
       "name_en": "Buck Capsule (A)",
       "type": "usables",
-      "img": "Buck_Capsule_(A).png"
+      "img": "Buck_Capsule_(A).png",
+      "name_ru": "Гречекапсула (A)"
     },
     "buck_capsule_b": {
       "name_en": "Buck Capsule (B)",
       "type": "usables",
-      "img": "Buck_Capsule_(B).png"
+      "img": "Buck_Capsule_(B).png",
+      "name_ru": "Гречекапсула (B)"
     },
     "buck_capsule_c": {
       "name_en": "Buck Capsule (C)",
       "type": "usables",
-      "img": "Buck_Capsule_(C).png"
+      "img": "Buck_Capsule_(C).png",
+      "name_ru": "Гречекапсула (C)"
     },
     "buckflower_powder": {
       "name_en": "Buckflower Powder",
       "type": "usables",
-      "img": "Buckflower_Powder.png"
+      "img": "Buckflower_Powder.png",
+      "name_ru": "Молотый Гречецвет"
     },
     "buckpill_l": {
       "name_en": "Buckpill (L)",
@@ -732,17 +789,20 @@
     "canned_citrome_a": {
       "name_en": "Canned Citrome (A)",
       "type": "usables",
-      "img": "Canned_Citrome_(A).png"
+      "img": "Canned_Citrome_(A).png",
+      "name_ru": "Консервированный Цитром (A)"
     },
     "canned_citrome_b": {
       "name_en": "Canned Citrome (B)",
       "type": "usables",
-      "img": "Canned_Citrome_(B).png"
+      "img": "Canned_Citrome_(B).png",
+      "name_ru": "Консервированный Цитром (B)"
     },
     "canned_citrome_c": {
       "name_en": "Canned Citrome (C)",
       "type": "usables",
-      "img": "Canned_Citrome_(C).png"
+      "img": "Canned_Citrome_(C).png",
+      "name_ru": "Консервированный Цитром (C)"
     },
     "cartilage_tack": {
       "name_en": "Cartilage Tack",
@@ -767,7 +827,8 @@
     "citrome_powder": {
       "name_en": "Citrome Powder",
       "type": "usables",
-      "img": "Citrome_Powder.png"
+      "img": "Citrome_Powder.png",
+      "name_ru": "Молотый Цитром"
     },
     "citrome_pudding": {
       "name_en": "Citrome Pudding",
@@ -857,7 +918,8 @@
     "industrial_explosive": {
       "name_en": "Industrial Explosive",
       "type": "usables",
-      "img": "Industrial_Explosive.png"
+      "img": "Industrial_Explosive.png",
+      "name_ru": "Промышленная Взрывчатка"
     },
     "jincao_drink": {
       "name_en": "Jincao Drink",
@@ -992,12 +1054,14 @@
     "aerospace_material_i": {
       "name_en": "Aerospace Material I",
       "type": "functionals",
-      "img": "Aerospace_Material_I.png"
+      "img": "Aerospace_Material_I.png",
+      "name_ru": "Аэрокосмический Материал I"
     },
     "aerospace_material_ii": {
       "name_en": "Aerospace Material II",
       "type": "functionals",
-      "img": "Aerospace_Material_II.png"
+      "img": "Aerospace_Material_II.png",
+      "name_ru": "Аэрокосмический Материал II"
     },
     "algorithm_expansion_chip": {
       "name_en": "Algorithm Expansion Chip",

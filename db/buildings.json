@@ -1,2124 +1,2136 @@
 {
-    "buildings": {
-        "portable_originium_rig": {
-            "name_en": "Portable Originium Rig",
-            "type": "resourcing_facilities",
-            "img": "Portable_Originium_Rig.png",
-            "tier": 1,
-            "power": 0,
-            "description": "The Portable Originium Rig mines Originium Ore and uses a fraction of it to power itself. It does not need to be connected to the power grid to keep mining Originium Ore. You must return to Portable Originium Rigs regularly to manually gather the mined Originium Ore. The Portable Originium Rig will stop mining when its Originium Ore storage cache is full.",
-            "modes": {
-                "solid": {
-                    "name": "Solid Mode",
-                    "recipes": [
-                        {
-                            "time": 1.5,
-                            "ingredients": null,
-                            "products": [
-                                {
-                                    "item_id": "originium_ore",
-                                    "amount": 1
-                                }
-                            ],
-                            "id": "originium_ore_solid_recipe"
-                        }
-                    ]
+  "buildings": {
+    "portable_originium_rig": {
+      "name_en": "Portable Originium Rig",
+      "type": "resourcing_facilities",
+      "img": "Portable_Originium_Rig.png",
+      "tier": 1,
+      "power": 0,
+      "description": "The Portable Originium Rig mines Originium Ore and uses a fraction of it to power itself. It does not need to be connected to the power grid to keep mining Originium Ore. You must return to Portable Originium Rigs regularly to manually gather the mined Originium Ore. The Portable Originium Rig will stop mining when its Originium Ore storage cache is full.",
+      "modes": {
+        "solid": {
+          "name": "Solid Mode",
+          "recipes": [
+            {
+              "time": 1.5,
+              "ingredients": null,
+              "products": [
+                {
+                  "item_id": "originium_ore",
+                  "amount": 1
                 }
+              ],
+              "id": "originium_ore_solid_recipe"
             }
-        },
-        "electric_mining_rig": {
-            "name_en": "Electric Mining Rig",
-            "type": "resourcing_facilities",
-            "img": "Electric_Mining_Rig.png",
-            "tier": 2,
-            "power": 5,
-            "description": "The Electric Mining Rig can mine higher tier minerals but can start mining when it is within the power supply radius of an Electric Pylon connected to the power grid. The Electric Mining Rig has belt-free transfer features that automatically deliver mined ores from its cache to the Depot.",
-            "modes": {
-                "solid": {
-                    "name": "Solid Mode",
-                    "recipes": [
-                        {
-                            "time": 1.5,
-                            "ingredients": null,
-                            "products": [
-                                {
-                                    "item_id": "originium_ore",
-                                    "amount": 1
-                                }
-                            ],
-                            "id": "originium_ore_solid_recipe"
-                        },
-                        {
-                            "time": 1.5,
-                            "ingredients": null,
-                            "products": [
-                                {
-                                    "item_id": "amethyst_ore",
-                                    "amount": 1
-                                }
-                            ],
-                            "id": "amethyst_ore_solid_recipe"
-                        }
-                    ]
-                }
-            }
-        },
-        "electric_mining_rig_mk_ii": {
-            "name_en": "Electric Mining Rig Mk II",
-            "type": "resourcing_facilities",
-            "img": "Electric_Mining_Rig_Mk_II.png",
-            "tier": 3,
-            "power": 10,
-            "description": "The Electric Mining Rig Mk II is an improved version of the Electric Mining Rig. It is capable of mining harder minerals such as Ferrium Ore.",
-            "modes": {
-                "solid": {
-                    "name": "Solid Mode",
-                    "recipes": [
-                        {
-                            "time": 1.5,
-                            "ingredients": null,
-                            "products": [
-                                {
-                                    "item_id": "originium_ore",
-                                    "amount": 1
-                                }
-                            ],
-                            "id": "originium_ore_solid_recipe"
-                        },
-                        {
-                            "time": 1.5,
-                            "ingredients": null,
-                            "products": [
-                                {
-                                    "item_id": "amethyst_ore",
-                                    "amount": 1
-                                }
-                            ],
-                            "id": "amethyst_ore_solid_recipe"
-                        },
-                        {
-                            "time": 1.5,
-                            "ingredients": null,
-                            "products": [
-                                {
-                                    "item_id": "ferrium_ore",
-                                    "amount": 1
-                                }
-                            ],
-                            "id": "ferrium_ore_solid_recipe"
-                        }
-                    ]
-                }
-            }
-        },
-        "hydro_mining_rig": {
-            "name_en": "Hydro Mining Rig",
-            "type": "resourcing_facilities",
-            "img": "Hydro_Mining_Rig.png",
-            "tier": 3,
-            "power": 0,
-            "description": "The Hydro Mining Rig can mine high tier minerals such as Cuprium Ore. The Hydro Mining Rig does not need to be connected to the power grid to work, but requires a pipeline connection that supplies it with Clean Water.",
-            "modes": {
-                "fluid": {
-                    "name": "Fluid Mode",
-                    "recipes": [
-                        {
-                            "time": 1.5,
-                            "ingredients": [
-                                {
-                                    "item_id": "clean_water",
-                                    "amount":  0.00001
-                                }
-                            ],
-                            "products": [
-                                {
-                                    "item_id": "originium_ore",
-                                    "amount": 1
-                                }
-                            ],
-                            "id": "originium_ore_solid_recipe"
-                        },
-                        {
-                            "time": 1.5,
-                            "ingredients": [
-                                {
-                                    "item_id": "clean_water",
-                                    "amount":  0.00001
-                                }
-                            ],
-                            "products": [
-                                {
-                                    "item_id": "amethyst_ore",
-                                    "amount": 1
-                                }
-                            ],
-                            "id": "amethyst_ore_solid_recipe"
-                        },
-                        {
-                            "time": 1.5,
-                            "ingredients": [
-                                {
-                                    "item_id": "clean_water",
-                                    "amount":  0.00001
-                                }
-                            ],
-                            "products": [
-                                {
-                                    "item_id": "ferrium_ore",
-                                    "amount": 1
-                                }
-                            ],
-                            "id": "ferrium_ore_solid_recipe"
-                        },
-                        {
-                            "time": 1.5,
-                            "ingredients": [
-                                {
-                                    "item_id": "clean_water",
-                                    "amount":  0.00001
-                                }
-                            ],
-                            "products": [
-                                {
-                                    "item_id": "cuprium_ore",
-                                    "amount": 1
-                                }
-                            ],
-                            "id": "cuprium_ore_fluid_recipe"
-                        }
-                    ]
-                }
-            }
-        },
-        "fluid_pump": {
-            "name_en": "Fluid Pump",
-            "type": "resourcing_facilities",
-            "img": "Fluid_Pump.png",
-            "tier": 2,
-            "power": 10,
-            "description": "The Fluid Pump must be placed near lakes or other water bodies. The pump inlet must be within the water body itself. Use Electric Pylons to power Fluid Pumps and pump in and acquire fluids at a stable rate.",
-            "modes": {
-                "fluid": {
-                    "name": "Fluid Mode",
-                    "recipes": [
-                        {
-                            "time": 1,
-                            "ingredients": null,
-                            "products": [
-                                {
-                                    "item_id": "jincao_solution",
-                                    "amount": 1
-                                }
-                            ],
-                            "id": "jincao_solution_fluid_recipe"
-                        },
-                        {
-                            "time": 1,
-                            "ingredients": null,
-                            "products": [
-                                {
-                                    "item_id": "yazhen_solution",
-                                    "amount": 1
-                                }
-                            ],
-                            "id": "yazhen_solution_fluid_recipe"
-                        },
-                        {
-                            "time": 1,
-                            "ingredients": null,
-                            "products": [
-                                {
-                                    "item_id": "sewage",
-                                    "amount": 1
-                                }
-                            ],
-                            "id": "sewage_fluid_recipe"
-                        },
-                        {
-                            "time": 1,
-                            "ingredients": null,
-                            "products": [
-                                {
-                                    "item_id": "clean_water",
-                                    "amount": 1
-                                }
-                            ],
-                            "id": "clean_water_fluid_recipe"
-                        }
-                    ]
-                }
-            }
-        },
-        "refining_unit": {
-            "name_en": "Refining Unit",
-            "type": "Processing",
-            "img": "Refining_Unit.png",
-            "tier": 1,
-            "power": 5,
-            "description": "AIC facilities can process different materials to produce various industrial materials and products. Refining Units can refine. Typical product: Origocrust, made by placing Originium Ore in the Refining Unit.",
-            "modes": {
-                "solid": {
-                    "name": "Solid Mode",
-                    "recipes": [
-                        {
-                            "time": 2,
-                            "ingredients": [
-                                {
-                                    "item_id": "dense_carbon_powder",
-                                    "amount": 1
-                                }
-                            ],
-                            "products": [
-                                {
-                                    "item_id": "stabilized_carbon",
-                                    "amount": 1
-                                }
-                            ],
-                            "id": "stabilized_carbon_solid_recipe"
-                        },
-                        {
-                            "time": 2,
-                            "ingredients": [
-                                {
-                                    "item_id": "ground_buckflower_powder",
-                                    "amount": 1
-                                }
-                            ],
-                            "products": [
-                                {
-                                    "item_id": "dense_carbon_powder",
-                                    "amount": 1
-                                }
-                            ],
-                            "id": "dense_carbon_powder_solid_recipe"
-                        },
-                        {
-                            "time": 2,
-                            "ingredients": [
-                                {
-                                    "item_id": "ground_citrome_powder",
-                                    "amount": 1
-                                }
-                            ],
-                            "products": [
-                                {
-                                    "item_id": "dense_carbon_powder",
-                                    "amount": 1
-                                }
-                            ],
-                            "id": "dense_carbon_powder_solid_recipe"
-                        },
-                        {
-                            "time": 2,
-                            "ingredients": [
-                                {
-                                    "item_id": "buckflower",
-                                    "amount": 1
-                                }
-                            ],
-                            "products": [
-                                {
-                                    "item_id": "carbon",
-                                    "amount": 1
-                                }
-                            ],
-                            "id": "carbon_solid_recipe"
-                        },
-                        {
-                            "time": 2,
-                            "ingredients": [
-                                {
-                                    "item_id": "citrome",
-                                    "amount": 1
-                                }
-                            ],
-                            "products": [
-                                {
-                                    "item_id": "carbon",
-                                    "amount": 1
-                                }
-                            ],
-                            "id": "carbon_solid_recipe"
-                        },
-                        {
-                            "time": 2,
-                            "ingredients": [
-                                {
-                                    "item_id": "sandleaf",
-                                    "amount": 3
-                                }
-                            ],
-                            "products": [
-                                {
-                                    "item_id": "carbon",
-                                    "amount": 1
-                                }
-                            ],
-                            "id": "carbon_solid_recipe"
-                        },
-                        {
-                            "time": 2,
-                            "ingredients": [
-                                {
-                                    "item_id": "wood",
-                                    "amount": 1
-                                }
-                            ],
-                            "products": [
-                                {
-                                    "item_id": "carbon",
-                                    "amount": 1
-                                }
-                            ],
-                            "id": "carbon_solid_recipe"
-                        },
-                        {
-                            "time": 2,
-                            "ingredients": [
-                                {
-                                    "item_id": "jincao",
-                                    "amount": 1
-                                }
-                            ],
-                            "products": [
-                                {
-                                    "item_id": "carbon",
-                                    "amount": 1
-                                }
-                            ],
-                            "id": "carbon_solid_recipe"
-                        },
-                        {
-                            "time": 2,
-                            "ingredients": [
-                                {
-                                    "item_id": "yazhen",
-                                    "amount": 1
-                                }
-                            ],
-                            "products": [
-                                {
-                                    "item_id": "carbon",
-                                    "amount": 1
-                                }
-                            ],
-                            "id": "carbon_solid_recipe"
-                        },
-                        {
-                            "time": 2,
-                            "ingredients": [
-                                {
-                                    "item_id": "buckflower_powder",
-                                    "amount": 1
-                                }
-                            ],
-                            "products": [
-                                {
-                                    "item_id": "carbon_powder",
-                                    "amount": 1
-                                }
-                            ],
-                            "id": "carbon_powder_solid_recipe"
-                        },
-                        {
-                            "time": 2,
-                            "ingredients": [
-                                {
-                                    "item_id": "citrome_powder",
-                                    "amount": 1
-                                }
-                            ],
-                            "products": [
-                                {
-                                    "item_id": "carbon_powder",
-                                    "amount": 1
-                                }
-                            ],
-                            "id": "carbon_powder_solid_recipe"
-                        },
-                        {
-                            "time": 2,
-                            "ingredients": [
-                                {
-                                    "item_id": "sandleaf_powder",
-                                    "amount": 3
-                                }
-                            ],
-                            "products": [
-                                {
-                                    "item_id": "carbon_powder",
-                                    "amount": 1
-                                }
-                            ],
-                            "id": "carbon_powder_solid_recipe"
-                        },
-                        {
-                            "time": 2,
-                            "ingredients": [
-                                {
-                                    "item_id": "jincao_powder",
-                                    "amount": 1
-                                }
-                            ],
-                            "products": [
-                                {
-                                    "item_id": "carbon_powder",
-                                    "amount": 1
-                                }
-                            ],
-                            "id": "carbon_powder_solid_recipe"
-                        },
-                        {
-                            "time": 2,
-                            "ingredients": [
-                                {
-                                    "item_id": "yazhen_powder",
-                                    "amount": 1
-                                }
-                            ],
-                            "products": [
-                                {
-                                    "item_id": "carbon_powder",
-                                    "amount": 1
-                                }
-                            ],
-                            "id": "carbon_powder_solid_recipe"
-                        },
-                        {
-                            "time": 2,
-                            "ingredients": [
-                                {
-                                    "item_id": "dense_origocrust_powder",
-                                    "amount": 1
-                                }
-                            ],
-                            "products": [
-                                {
-                                    "item_id": "packed_origocrust",
-                                    "amount": 1
-                                }
-                            ],
-                            "id": "packed_origocrust_solid_recipe"
-                        },
-                        {
-                            "time": 2,
-                            "ingredients": [
-                                {
-                                    "item_id": "dense_originium_powder",
-                                    "amount": 1
-                                }
-                            ],
-                            "products": [
-                                {
-                                    "item_id": "dense_origocrust_powder",
-                                    "amount": 1
-                                }
-                            ],
-                            "id": "dense_origocrust_powder_solid_recipe"
-                        },
-                        {
-                            "time": 2,
-                            "ingredients": [
-                                {
-                                    "item_id": "originium_powder",
-                                    "amount": 1
-                                }
-                            ],
-                            "products": [
-                                {
-                                    "item_id": "origocrust_powder",
-                                    "amount": 1
-                                }
-                            ],
-                            "id": "origocrust_powder_solid_recipe"
-                        },
-                        {
-                            "time": 2,
-                            "ingredients": [
-                                {
-                                    "item_id": "originium_ore",
-                                    "amount": 1
-                                }
-                            ],
-                            "products": [
-                                {
-                                    "item_id": "origocrust",
-                                    "amount": 1
-                                }
-                            ],
-                            "id": "origocrust_solid_recipe"
-                        },
-                        {
-                            "time": 2,
-                            "ingredients": [
-                                {
-                                    "item_id": "origocrust_powder",
-                                    "amount": 1
-                                }
-                            ],
-                            "products": [
-                                {
-                                    "item_id": "origocrust",
-                                    "amount": 1
-                                }
-                            ],
-                            "id": "origocrust_solid_recipe"
-                        },
-                        {
-                            "time": 2,
-                            "ingredients": [
-                                {
-                                    "item_id": "dense_ferrium_powder",
-                                    "amount": 1
-                                }
-                            ],
-                            "products": [
-                                {
-                                    "item_id": "steel",
-                                    "amount": 1
-                                }
-                            ],
-                            "id": "steel_solid_recipe"
-                        },
-                        {
-                            "time": 2,
-                            "ingredients": [
-                                {
-                                    "item_id": "ferrium_ore",
-                                    "amount": 1
-                                }
-                            ],
-                            "products": [
-                                {
-                                    "item_id": "ferrium",
-                                    "amount": 1
-                                }
-                            ],
-                            "id": "ferrium_solid_recipe"
-                        },
-                        {
-                            "time": 2,
-                            "ingredients": [
-                                {
-                                    "item_id": "ferrium_powder",
-                                    "amount": 1
-                                }
-                            ],
-                            "products": [
-                                {
-                                    "item_id": "ferrium",
-                                    "amount": 1
-                                }
-                            ],
-                            "id": "ferrium_solid_recipe"
-                        },
-                        {
-                            "time": 2,
-                            "ingredients": [
-                                {
-                                    "item_id": "cryston_powder",
-                                    "amount": 1
-                                }
-                            ],
-                            "products": [
-                                {
-                                    "item_id": "cryston_fiber",
-                                    "amount": 1
-                                }
-                            ],
-                            "id": "cryston_fiber_solid_recipe"
-                        },
-                        {
-                            "time": 2,
-                            "ingredients": [
-                                {
-                                    "item_id": "amethyst_ore",
-                                    "amount": 1
-                                }
-                            ],
-                            "products": [
-                                {
-                                    "item_id": "amethyst_fiber",
-                                    "amount": 1
-                                }
-                            ],
-                            "id": "amethyst_fiber_solid_recipe"
-                        },
-                        {
-                            "time": 2,
-                            "ingredients": [
-                                {
-                                    "item_id": "amethyst_powder",
-                                    "amount": 1
-                                }
-                            ],
-                            "products": [
-                                {
-                                    "item_id": "amethyst_fiber",
-                                    "amount": 1
-                                }
-                            ],
-                            "id": "amethyst_fiber_solid_recipe"
-                        }
-                    ]
-                },
-                "fluid": {
-                    "name": "Fluid Mode",
-                    "recipes": [
-                        {
-                            "time": 2,
-                            "ingredients": [
-                                {
-                                    "item_id": "cuprium_ore",
-                                    "amount": 1
-                                },
-                                {
-                                    "item_id": "clean_water",
-                                    "amount": 1
-                                }
-                            ],
-                            "products": [
-                                {
-                                    "item_id": "cuprium",
-                                    "amount": 1
-                                },
-                                {
-                                    "item_id": "sewage",
-                                    "amount": 1
-                                }
-                            ],
-                            "id": "cuprium_fluid_recipe"
-                        },
-                        {
-                            "time": 2,
-                            "ingredients": [
-                                {
-                                    "item_id": "ferrium_ore",
-                                    "amount": 1
-                                },
-                                {
-                                    "item_id": "clean_water",
-                                    "amount": 1
-                                }
-                            ],
-                            "products": [
-                                {
-                                    "item_id": "ferrium",
-                                    "amount": 2
-                                },
-                                {
-                                    "item_id": "sewage",
-                                    "amount": 1
-                                }
-                            ],
-                            "id": "ferrium_fluid_recipe"
-                        }
-                    ]
-                }
-            }
-        },
-        "shreading_unit": {
-            "name_en": "Shredding Unit",
-            "type": "Processing",
-            "img": "Shredding_Unit.png",
-            "tier": 1,
-            "power": 10,
-            "description": "Shredding Units can shred materials into powder. Typical product: Originium Powder, made by placing Originium Ore in the Shredding Unit.",
-            "modes": {
-                "solid": {
-                    "name": "Solid Mode",
-                    "recipes": [
-                        {
-                            "time": 2,
-                            "ingredients": [
-                                {
-                                    "item_id": "carbon",
-                                    "amount": 1
-                                }
-                            ],
-                            "products": [
-                                {
-                                    "item_id": "carbon_powder",
-                                    "amount": 1
-                                }
-                            ],
-                            "id": "carbon_powder_solid_recipe"
-                        },
-                        {
-                            "time": 2,
-                            "ingredients": [
-                                {
-                                    "item_id": "origocrust",
-                                    "amount": 1
-                                }
-                            ],
-                            "products": [
-                                {
-                                    "item_id": "origocrust_powder",
-                                    "amount": 1
-                                }
-                            ],
-                            "id": "origocrust_powder_solid_recipe"
-                        },
-                        {
-                            "time": 2,
-                            "ingredients": [
-                                {
-                                    "item_id": "ferrium",
-                                    "amount": 1
-                                }
-                            ],
-                            "products": [
-                                {
-                                    "item_id": "ferrium_powder",
-                                    "amount": 1
-                                }
-                            ],
-                            "id": "ferrium_powder_solid_recipe"
-                        },
-                        {
-                            "time": 2,
-                            "ingredients": [
-                                {
-                                    "item_id": "originium_ore",
-                                    "amount": 1
-                                }
-                            ],
-                            "products": [
-                                {
-                                    "item_id": "originium_powder",
-                                    "amount": 1
-                                }
-                            ],
-                            "id": "originium_powder_solid_recipe"
-                        },
-                        {
-                            "time": 2,
-                            "ingredients": [
-                                {
-                                    "item_id": "aketine",
-                                    "amount": 1
-                                }
-                            ],
-                            "products": [
-                                {
-                                    "item_id": "aketine_powder",
-                                    "amount": 2
-                                }
-                            ],
-                            "id": "aketine_powder_solid_recipe"
-                        },
-                        {
-                            "time": 2,
-                            "ingredients": [
-                                {
-                                    "item_id": "jincao",
-                                    "amount": 1
-                                }
-                            ],
-                            "products": [
-                                {
-                                    "item_id": "jincao_powder",
-                                    "amount": 2
-                                }
-                            ],
-                            "id": "jincao_powder_solid_recipe"
-                        },
-                        {
-                            "time": 2,
-                            "ingredients": [
-                                {
-                                    "item_id": "yazhen",
-                                    "amount": 1
-                                }
-                            ],
-                            "products": [
-                                {
-                                    "item_id": "yazhen_powder",
-                                    "amount": 2
-                                }
-                            ],
-                            "id": "yazhen_powder_solid_recipe"
-                        },
-                        {
-                            "time": 2,
-                            "ingredients": [
-                                {
-                                    "item_id": "buckflower",
-                                    "amount": 1
-                                }
-                            ],
-                            "products": [
-                                {
-                                    "item_id": "buckflower_powder",
-                                    "amount": 2
-                                }
-                            ],
-                            "id": "buckflower_powder_solid_recipe"
-                        },
-                        {
-                            "time": 2,
-                            "ingredients": [
-                                {
-                                    "item_id": "citrome",
-                                    "amount": 1
-                                }
-                            ],
-                            "products": [
-                                {
-                                    "item_id": "citrome_powder",
-                                    "amount": 2
-                                }
-                            ],
-                            "id": "citrome_powder_solid_recipe"
-                        },
-                        {
-                            "time": 2,
-                            "ingredients": [
-                                {
-                                    "item_id": "sandleaf",
-                                    "amount": 1
-                                }
-                            ],
-                            "products": [
-                                {
-                                    "item_id": "sandleaf_powder",
-                                    "amount": 3
-                                }
-                            ],
-                            "id": "sandleaf_powder_solid_recipe"
-                        },
-                        {
-                            "time": 2,
-                            "ingredients": [
-                                {
-                                    "item_id": "amethyst_fiber",
-                                    "amount": 1
-                                }
-                            ],
-                            "products": [
-                                {
-                                    "item_id": "amethyst_powder",
-                                    "amount": 1
-                                }
-                            ],
-                            "id": "amethyst_powder_solid_recipe"
-                        }
-                    ]
-                }
-            }
-        },
-        "fitting_unit": {
-            "name_en": "Fitting Unit",
-            "type": "Processing",
-            "img": "Fitting_Unit.png",
-            "tier": 2,
-            "power": 10,
-            "description": "The Fitting Unit can process materials with the [Fit] tag to produce facility construction materials or other things. Typical product: Amethyst Part, made by placing Amethyst Fiber in the Fitting Unit.",
-            "modes": {
-                "solid": {
-                    "name": "Solid Mode",
-                    "recipes": [
-                        {
-                            "time": 2,
-                            "ingredients": [
-                                {
-                                    "item_id": "cuprium",
-                                    "amount": 1
-                                }
-                            ],
-                            "products": [
-                                {
-                                    "item_id": "cuprium_part",
-                                    "amount": 1
-                                }
-                            ],
-                            "id": "cuprium_part_solid_recipe"
-                        },
-                        {
-                            "time": 2,
-                            "ingredients": [
-                                {
-                                    "item_id": "amethyst_fiber",
-                                    "amount": 1
-                                }
-                            ],
-                            "products": [
-                                {
-                                    "item_id": "amethyst_part",
-                                    "amount": 1
-                                }
-                            ],
-                            "id": "amethyst_part_solid_recipe"
-                        },
-                        {
-                            "time": 2,
-                            "ingredients": [
-                                {
-                                    "item_id": "cryston_fiber",
-                                    "amount": 1
-                                }
-                            ],
-                            "products": [
-                                {
-                                    "item_id": "cryston_part",
-                                    "amount": 1
-                                }
-                            ],
-                            "id": "cryston_part_solid_recipe"
-                        },
-                        {
-                            "time": 2,
-                            "ingredients": [
-                                {
-                                    "item_id": "ferrium",
-                                    "amount": 1
-                                }
-                            ],
-                            "products": [
-                                {
-                                    "item_id": "ferrium_part",
-                                    "amount": 1
-                                }
-                            ],
-                            "id": "ferrium_part_solid_recipe"
-                        },
-                        {
-                            "time": 2,
-                            "ingredients": [
-                                {
-                                    "item_id": "steel",
-                                    "amount": 1
-                                }
-                            ],
-                            "products": [
-                                {
-                                    "item_id": "steel_part",
-                                    "amount": 1
-                                }
-                            ],
-                            "id": "steel_part_solid_recipe"
-                        }
-                    ]
-                }
-            }
-        },
-        "moulding_unit": {
-            "name_en": "Moulding Unit",
-            "type": "Processing",
-            "img": "Moulding_Unit.png",
-            "tier": 2,
-            "power": 10,
-            "description": "The Moulding Unit can process materials with the [Mould] tag to make materials for making medication and food production. Typical product: Amethyst Bottle, made by placing Amethyst Fiber in the Moulding Unit.",
-            "modes": {
-                "fluid": {
-                    "name": "Fluid Mode",
-                    "recipes": [
-                        {
-                            "time": 2,
-                            "ingredients": [
-                                {
-                                    "item_id": "cuprium",
-                                    "amount": 2
-                                },
-                                {
-                                    "item_id": "clean_water",
-                                    "amount": 1
-                                }
-                            ],
-                            "products": [
-                                {
-                                    "item_id": "cuprium_jar",
-                                    "amount": 1
-                                },
-                                {
-                                    "item_id": "sewage",
-                                    "amount": 1
-                                }
-                            ],
-                            "id": "cuprium_jar_fluid_recipe"
-                        },
-                        {
-                            "time": 2,
-                            "ingredients": [
-                                {
-                                    "item_id": "steel",
-                                    "amount": 2
-                                },
-                                {
-                                    "item_id": "clean_water",
-                                    "amount": 1
-                                }
-                            ],
-                            "products": [
-                                {
-                                    "item_id": "steel_jar",
-                                    "amount": 1
-                                },
-                                {
-                                    "item_id": "sewage",
-                                    "amount": 1
-                                }
-                            ],
-                            "id": "steel_jar_fluid_recipe"
-                        }
-                    ]
-                },
-                "solid": {
-                    "name": "Solid Mode",
-                    "recipes": [
-                        {
-                            "time": 2,
-                            "ingredients": [
-                                {
-                                    "item_id": "amethyst_fiber",
-                                    "amount": 2
-                                }
-                            ],
-                            "products": [
-                                {
-                                    "item_id": "amethyst_bottle",
-                                    "amount": 1
-                                }
-                            ],
-                            "id": "amethyst_bottle_solid_recipe"
-                        },
-                        {
-                            "time": 2,
-                            "ingredients": [
-                                {
-                                    "item_id": "cryston_fiber",
-                                    "amount": 2
-                                }
-                            ],
-                            "products": [
-                                {
-                                    "item_id": "cryston_bottle",
-                                    "amount": 1
-                                }
-                            ],
-                            "id": "cryston_bottle_solid_recipe"
-                        },
-                        {
-                            "time": 2,
-                            "ingredients": [
-                                {
-                                    "item_id": "ferrium",
-                                    "amount": 2
-                                }
-                            ],
-                            "products": [
-                                {
-                                    "item_id": "ferrium_bottle",
-                                    "amount": 1
-                                }
-                            ],
-                            "id": "ferrium_bottle_solid_recipe"
-                        },
-                        {
-                            "time": 2,
-                            "ingredients": [
-                                {
-                                    "item_id": "steel",
-                                    "amount": 2
-                                }
-                            ],
-                            "products": [
-                                {
-                                    "item_id": "steel_bottle",
-                                    "amount": 1
-                                }
-                            ],
-                            "id": "steel_bottle_solid_recipe"
-                        }
-                    ]
-                }
-            }
-        },
-        "planting_unit": {
-            "name_en": "Planting Unit",
-            "type": "Processing",
-            "img": "Planting_Unit.png",
-            "tier": 3,
-            "power": 10,
-            "description": "The Planting Unit can grow seeds of common plants and raise them to maturity. Typical product: Buckflower, grown from Buckflower Seeds placed in the Planting Unit.",
-            "modes": {
-                "solid": {
-                    "name": "Solid Mode",
-                    "recipes": [
-                        {
-                            "time": 2,
-                            "ingredients": [
-                                {
-                                    "item_id": "aketine_seed",
-                                    "amount": 1
-                                }
-                            ],
-                            "products": [
-                                {
-                                    "item_id": "aketine",
-                                    "amount": 1
-                                }
-                            ],
-                            "id": "aketine_solid_recipe"
-                        },
-                        {
-                            "time": 2,
-                            "ingredients": [
-                                {
-                                    "item_id": "buckflower_seed",
-                                    "amount": 1
-                                }
-                            ],
-                            "products": [
-                                {
-                                    "item_id": "buckflower",
-                                    "amount": 1
-                                }
-                            ],
-                            "id": "buckflower_solid_recipe"
-                        },
-                        {
-                            "time": 2,
-                            "ingredients": [
-                                {
-                                    "item_id": "citrome_seed",
-                                    "amount": 1
-                                }
-                            ],
-                            "products": [
-                                {
-                                    "item_id": "citrome",
-                                    "amount": 1
-                                }
-                            ],
-                            "id": "citrome_solid_recipe"
-                        },
-                        {
-                            "time": 2,
-                            "ingredients": [
-                                {
-                                    "item_id": "sandleaf_seed",
-                                    "amount": 1
-                                }
-                            ],
-                            "products": [
-                                {
-                                    "item_id": "sandleaf",
-                                    "amount": 1
-                                }
-                            ],
-                            "id": "sandleaf_solid_recipe"
-                        }
-                    ]
-                },
-                "fluid": {
-                    "name": "Fluid Mode",
-                    "recipes": [
-                        {
-                            "time": 2,
-                            "ingredients": [
-                                {
-                                    "item_id": "jincao_seed",
-                                    "amount": 1
-                                },
-                                {
-                                    "item_id": "clean_water",
-                                    "amount": 1
-                                }
-                            ],
-                            "products": [
-                                {
-                                    "item_id": "jincao",
-                                    "amount": 1
-                                }
-                            ],
-                            "id": "jincao_fluid_recipe"
-                        },
-                        {
-                            "time": 2,
-                            "ingredients": [
-                                {
-                                    "item_id": "yazhen_seed",
-                                    "amount": 1
-                                },
-                                {
-                                    "item_id": "clean_water",
-                                    "amount": 1
-                                }
-                            ],
-                            "products": [
-                                {
-                                    "item_id": "yazhen",
-                                    "amount": 1
-                                }
-                            ],
-                            "id": "yazhen_fluid_recipe"
-                        }
-                    ]
-                }
-            }
-        },
-        "seed_picking_unit": {
-            "name_en": "Seed-Picking Unit",
-            "type": "Processing",
-            "img": "Seed-Picking_Unit.png",
-            "tier": 3,
-            "power": 10,
-            "description": "The Seed-Picking Unit can pick seeds from common plants. Typical product: Buckflower Seed, picked from Buckflowers placed in the Seed-Picking Unit.",
-            "modes": {
-                "solid": {
-                    "name": "Solid Mode",
-                    "recipes": [
-                        {
-                            "time": 2,
-                            "ingredients": [
-                                {
-                                    "item_id": "aketine",
-                                    "amount": 1
-                                }
-                            ],
-                            "products": [
-                                {
-                                    "item_id": "aketine_seed",
-                                    "amount": 2
-                                }
-                            ],
-                            "id": "aketine_seed_solid_recipe"
-                        },
-                        {
-                            "time": 2,
-                            "ingredients": [
-                                {
-                                    "item_id": "jincao",
-                                    "amount": 1
-                                }
-                            ],
-                            "products": [
-                                {
-                                    "item_id": "jincao_seed",
-                                    "amount": 2
-                                }
-                            ],
-                            "id": "jincao_seed_solid_recipe"
-                        },
-                        {
-                            "time": 2,
-                            "ingredients": [
-                                {
-                                    "item_id": "yazhen",
-                                    "amount": 1
-                                }
-                            ],
-                            "products": [
-                                {
-                                    "item_id": "yazhen_seed",
-                                    "amount": 2
-                                }
-                            ],
-                            "id": "yazhen_seed_solid_recipe"
-                        },
-                        {
-                            "time": 2,
-                            "ingredients": [
-                                {
-                                    "item_id": "buckflower",
-                                    "amount": 1
-                                }
-                            ],
-                            "products": [
-                                {
-                                    "item_id": "buckflower_seed",
-                                    "amount": 2
-                                }
-                            ],
-                            "id": "buckflower_seed_solid_recipe"
-                        },
-                        {
-                            "time": 2,
-                            "ingredients": [
-                                {
-                                    "item_id": "citrome",
-                                    "amount": 1
-                                }
-                            ],
-                            "products": [
-                                {
-                                    "item_id": "citrome_seed",
-                                    "amount": 2
-                                }
-                            ],
-                            "id": "citrome_seed_solid_recipe"
-                        },
-                        {
-                            "time": 2,
-                            "ingredients": [
-                                {
-                                    "item_id": "sandleaf",
-                                    "amount": 1
-                                }
-                            ],
-                            "products": [
-                                {
-                                    "item_id": "sandleaf_seed",
-                                    "amount": 2
-                                }
-                            ],
-                            "id": "sandleaf_seed_solid_recipe"
-                        },
-                        {
-                            "time": 2,
-                            "ingredients": [
-                                {
-                                    "item_id": "reed_rye",
-                                    "amount": 1
-                                }
-                            ],
-                            "products": [
-                                {
-                                    "item_id": "reed_rye_seed",
-                                    "amount": 2
-                                }
-                            ],
-                            "id": "reed_rye_seed_solid_recipe"
-                        },
-                        {
-                            "time": 2,
-                            "ingredients": [
-                                {
-                                    "item_id": "tartpepper",
-                                    "amount": 1
-                                }
-                            ],
-                            "products": [
-                                {
-                                    "item_id": "tartpepper_seed",
-                                    "amount": 2
-                                }
-                            ],
-                            "id": "tartpepper_seed_solid_recipe"
-                        },
-                        {
-                            "time": 2,
-                            "ingredients": [
-                                {
-                                    "item_id": "redjade_ginseng",
-                                    "amount": 1
-                                }
-                            ],
-                            "products": [
-                                {
-                                    "item_id": "redjade_ginseng_seed",
-                                    "amount": 2
-                                }
-                            ],
-                            "id": "redjade_ginseng_seed_solid_recipe"
-                        },
-                        {
-                            "time": 2,
-                            "ingredients": [
-                                {
-                                    "item_id": "amber_rice",
-                                    "amount": 1
-                                }
-                            ],
-                            "products": [
-                                {
-                                    "item_id": "amber_rice_seed",
-                                    "amount": 2
-                                }
-                            ],
-                            "id": "amber_rice_seed_solid_recipe"
-                        }
-                    ]
-                }
-            }
-        },
-        "water_treatment_unit": {
-            "name_en": "Water Treatment Unit",
-            "type": "Processing",
-            "img": "Water_Treatment_Unit.png",
-            "tier": 3,
-            "power": 30,
-            "description": "The Water Treatment Unit can slowly remediate and purify Sewage and generates no pollution. Sewage must be treated or it will clog the facility.",
-            "modes": {
-                "fluid": {
-                    "name": "Fluid Mode",
-                    "recipes": [
-                        {
-                            "time": 6,
-                            "ingredients": [
-                                {
-                                    "item_id": "sewage",
-                                    "amount": 1
-                                }
-                            ],
-                            "products": null,
-                            "id": "water_treatment_fluid_recipe"
-                        }
-                    ]
-                }
-            }
-        },
-        "gearing_unit": {
-            "name_en": "Gearing Unit",
-            "type": "Assembly",
-            "img": "Gearing_Unit.png",
-            "tier": 1,
-            "power": 10,
-            "description": "The Gearing Unit can process materials with the [Inlay] tag to produce materials for gear assembly. Typical product: Amethyst Component, made by placing Origocrust and Amethyst Part in the Gearing Unit.",
-            "modes": {
-                "solid": {
-                    "name": "Solid Mode",
-                    "recipes": [
-                        {
-                            "time": 10,
-                            "ingredients": [
-                                {
-                                    "item_id": "origocrust",
-                                    "amount": 5
-                                },
-                                {
-                                    "item_id": "amethyst_fiber",
-                                    "amount": 5
-                                }
-                            ],
-                            "products": [
-                                {
-                                    "item_id": "amethyst_component",
-                                    "amount": 1
-                                }
-                            ],
-                            "id": "amethyst_component_solid_recipe"
-                        },
-                        {
-                            "time": 10,
-                            "ingredients": [
-                                {
-                                    "item_id": "origocrust",
-                                    "amount": 10
-                                },
-                                {
-                                    "item_id": "ferrium",
-                                    "amount": 10
-                                }
-                            ],
-                            "products": [
-                                {
-                                    "item_id": "ferrium_component",
-                                    "amount": 1
-                                }
-                            ],
-                            "id": "ferrium_component_solid_recipe"
-                        },
-                        {
-                            "time": 10,
-                            "ingredients": [
-                                {
-                                    "item_id": "packed_origocrust",
-                                    "amount": 10
-                                },
-                                {
-                                    "item_id": "cryston_fiber",
-                                    "amount": 10
-                                }
-                            ],
-                            "products": [
-                                {
-                                    "item_id": "cryston_component",
-                                    "amount": 1
-                                }
-                            ],
-                            "id": "cryston_component_solid_recipe"
-                        },
-                        {
-                            "time": 10,
-                            "ingredients": [
-                                {
-                                    "item_id": "packed_origocrust",
-                                    "amount": 10
-                                },
-                                {
-                                    "item_id": "cuprium",
-                                    "amount": 5
-                                }
-                            ],
-                            "products": [
-                                {
-                                    "item_id": "cuprium_component",
-                                    "amount": 1
-                                }
-                            ],
-                            "id": "cuprium_component_solid_recipe"
-                        }
-                    ]
-                }
-            }
-        },
-        "filling_unit": {
-            "name_en": "Filling Unit",
-            "type": "Assembly",
-            "img": "Filling_Unit.png",
-            "tier": 3,
-            "power": 10,
-            "description": "The Filling Unit can process materials with the [Fill] tag to produce various medication or processed foods. Typical product: Buck Capsule (C), made by placing Amethyst Bottle and Buckflower Powder in the Filling Unit.",
-            "modes": {
-                "solid": {
-                    "name": "Solid Mode",
-                    "recipes": [
-                        {
-                            "time": 10,
-                            "ingredients": [
-                                {
-                                    "item_id": "amethyst_bottle",
-                                    "amount": 5
-                                },
-                                {
-                                    "item_id": "citrome_powder",
-                                    "amount": 5
-                                }
-                            ],
-                            "products": [
-                                {
-                                    "item_id": "canned_citrome_c",
-                                    "amount": 1
-                                }
-                            ],
-                            "id": "canned_citrome_c_solid_recipe"
-                        },
-                        {
-                            "time": 10,
-                            "ingredients": [
-                                {
-                                    "item_id": "ferrium_bottle",
-                                    "amount": 10
-                                },
-                                {
-                                    "item_id": "citrome_powder",
-                                    "amount": 10
-                                }
-                            ],
-                            "products": [
-                                {
-                                    "item_id": "canned_citrome_b",
-                                    "amount": 1
-                                }
-                            ],
-                            "id": "canned_citrome_b_solid_recipe"
-                        },
-                        {
-                            "time": 10,
-                            "ingredients": [
-                                {
-                                    "item_id": "steel_bottle",
-                                    "amount": 10
-                                },
-                                {
-                                    "item_id": "ground_citrome_powder",
-                                    "amount": 10
-                                }
-                            ],
-                            "products": [
-                                {
-                                    "item_id": "canned_citrome_a",
-                                    "amount": 1
-                                }
-                            ],
-                            "id": "canned_citrome_a_solid_recipe"
-                        },
-                        {
-                            "time": 10,
-                            "ingredients": [
-                                {
-                                    "item_id": "amethyst_bottle",
-                                    "amount": 5
-                                },
-                                {
-                                    "item_id": "buckflower_powder",
-                                    "amount": 5
-                                }
-                            ],
-                            "products": [
-                                {
-                                    "item_id": "buck_capsule_c",
-                                    "amount": 1
-                                }
-                            ],
-                            "id": "buck_capsule_c_solid_recipe"
-                        },
-                        {
-                            "time": 10,
-                            "ingredients": [
-                                {
-                                    "item_id": "ferrium_bottle",
-                                    "amount": 10
-                                },
-                                {
-                                    "item_id": "buckflower_powder",
-                                    "amount": 10
-                                }
-                            ],
-                            "products": [
-                                {
-                                    "item_id": "buck_capsule_b",
-                                    "amount": 1
-                                }
-                            ],
-                            "id": "buck_capsule_b_solid_recipe"
-                        },
-                        {
-                            "time": 10,
-                            "ingredients": [
-                                {
-                                    "item_id": "steel_bottle",
-                                    "amount": 10
-                                },
-                                {
-                                    "item_id": "ground_buckflower_powder",
-                                    "amount": 10
-                                }
-                            ],
-                            "products": [
-                                {
-                                    "item_id": "buck_capsule_a",
-                                    "amount": 1
-                                }
-                            ],
-                            "id": "buck_capsule_a_solid_recipe"
-                        }
-                    ]
-                },
-                "fluid": {
-                    "name": "Fluid Mode",
-                    "recipes": [
-                        {
-                            "time": 10,
-                            "ingredients": [
-                                {
-                                    "item_id": "steel_bottle",
-                                    "amount": 10
-                                },
-                                {
-                                    "item_id": "jincao_solution",
-                                    "amount": 5
-                                }
-                            ],
-                            "products": [
-                                {
-                                    "item_id": "jincao_drink",
-                                    "amount": 1
-                                }
-                            ],
-                            "id": "jincao_drink_fluid_recipe"
-                        },
-                        {
-                            "time": 10,
-                            "ingredients": [
-                                {
-                                    "item_id": "steel_jar",
-                                    "amount": 5
-                                },
-                                {
-                                    "item_id": "jincao_solution",
-                                    "amount": 5
-                                }
-                            ],
-                            "products": [
-                                {
-                                    "item_id": "jincao_drink",
-                                    "amount": 1
-                                }
-                            ],
-                            "id": "jincao_drink_fluid_recipe"
-                        },
-                        {
-                            "time": 10,
-                            "ingredients": [
-                                {
-                                    "item_id": "cuprium_jar",
-                                    "amount": 10
-                                },
-                                {
-                                    "item_id": "jincao_solution",
-                                    "amount": 10
-                                }
-                            ],
-                            "products": [
-                                {
-                                    "item_id": "jincao_tea",
-                                    "amount": 1
-                                }
-                            ],
-                            "id": "jincao_tea_fluid_recipe"
-                        },
-                        {
-                            "time": 10,
-                            "ingredients": [
-                                {
-                                    "item_id": "steel_bottle",
-                                    "amount": 10
-                                },
-                                {
-                                    "item_id": "yazhen_solution",
-                                    "amount": 5
-                                }
-                            ],
-                            "products": [
-                                {
-                                    "item_id": "yazhen_syringe_c",
-                                    "amount": 1
-                                }
-                            ],
-                            "id": "yazhen_syringe_c_fluid_recipe"
-                        },
-                        {
-                            "time": 10,
-                            "ingredients": [
-                                {
-                                    "item_id": "steel_jar",
-                                    "amount": 5
-                                },
-                                {
-                                    "item_id": "yazhen_solution",
-                                    "amount": 5
-                                }
-                            ],
-                            "products": [
-                                {
-                                    "item_id": "yazhen_syringe_c",
-                                    "amount": 1
-                                }
-                            ],
-                            "id": "yazhen_syringe_c_fluid_recipe"
-                        },
-                        {
-                            "time": 10,
-                            "ingredients": [
-                                {
-                                    "item_id": "cuprium_jar",
-                                    "amount": 10
-                                },
-                                {
-                                    "item_id": "yazhen_solution",
-                                    "amount": 10
-                                }
-                            ],
-                            "products": [
-                                {
-                                    "item_id": "yazhen_syringe_a",
-                                    "amount": 1
-                                }
-                            ],
-                            "id": "yazhen_syringe_a_fluid_recipe"
-                        }
-                    ]
-                }
-            }
-        },
-        "packaging_unit": {
-            "name_en": "Packaging Unit",
-            "type": "Assembly",
-            "img": "Packaging_Unit.png",
-            "tier": 3,
-            "power": 30,
-            "description": "The Packaging Unit can process materials with the [Package] tag to make explosives or batteries. Typical product 1: LC Battery, made by placing Amethyst Part and Originium Powder in the Packaging Unit. Typical product 2: Industrial Explosive, made by placing Amethyst Part and Aketine Powder in the Packaging Unit.",
-            "modes": {
-                "solid": {
-                    "name": "Solid Mode",
-                    "recipes": [
-                        {
-                            "time": 10,
-                            "ingredients": [
-                                {
-                                    "item_id": "amethyst_part",
-                                    "amount": 5
-                                },
-                                {
-                                    "item_id": "originium_powder",
-                                    "amount": 10
-                                }
-                            ],
-                            "products": [
-                                {
-                                    "item_id": "lc_battery",
-                                    "amount": 1
-                                }
-                            ],
-                            "id": "lc_battery_solid_recipe"
-                        },
-                        {
-                            "time": 10,
-                            "ingredients": [
-                                {
-                                    "item_id": "ferrium_part",
-                                    "amount": 10
-                                },
-                                {
-                                    "item_id": "originium_powder",
-                                    "amount": 20
-                                }
-                            ],
-                            "products": [
-                                {
-                                    "item_id": "sc_battery",
-                                    "amount": 1
-                                }
-                            ],
-                            "id": "sc_battery_solid_recipe"
-                        },
-                        {
-                            "time": 10,
-                            "ingredients": [
-                                {
-                                    "item_id": "steel_part",
-                                    "amount": 10
-                                },
-                                {
-                                    "item_id": "dense_originium_powder",
-                                    "amount": 20
-                                }
-                            ],
-                            "products": [
-                                {
-                                    "item_id": "hc_battery",
-                                    "amount": 1
-                                }
-                            ],
-                            "id": "hc_battery_solid_recipe"
-                        },
-                        {
-                            "time": 10,
-                            "ingredients": [
-                                {
-                                    "item_id": "amethyst_part",
-                                    "amount": 5
-                                },
-                                {
-                                    "item_id": "aketine_powder",
-                                    "amount": 1
-                                }
-                            ],
-                            "products": [
-                                {
-                                    "item_id": "industrial_explosive",
-                                    "amount": 1
-                                }
-                            ],
-                            "id": "industrial_explosive_solid_recipe"
-                        }
-                    ]
-                }
-            }
-        },
-        "grinding_unit": {
-            "name_en": "Grinding Unit",
-            "type": "Assembly",
-            "img": "Grinding_Unit.png",
-            "tier": 4,
-            "power": 20,
-            "description": "The Grinding Unit can process materials with the [Grind] tag to make dense and finer powders with the help of grinding materials. Typical product: Dense Ferrium Powder, made by placing Ferrium Powder and Sandleaf Powder in the Grinding Unit.",
-            "modes": {
-                "solid": {
-                    "name": "Solid Mode",
-                    "recipes": [
-                        {
-                            "time": 2,
-                            "ingredients": [
-                                {
-                                    "item_id": "carbon_powder",
-                                    "amount": 2
-                                },
-                                {
-                                    "item_id": "sandleaf_powder",
-                                    "amount": 1
-                                }
-                            ],
-                            "products": [
-                                {
-                                    "item_id": "dense_carbon_powder",
-                                    "amount": 1
-                                }
-                            ],
-                            "id": "dense_carbon_powder_solid_recipe"
-                        },
-                        {
-                            "time": 2,
-                            "ingredients": [
-                                {
-                                    "item_id": "origocrust_powder",
-                                    "amount": 2
-                                },
-                                {
-                                    "item_id": "sandleaf_powder",
-                                    "amount": 1
-                                }
-                            ],
-                            "products": [
-                                {
-                                    "item_id": "dense_origocrust_powder",
-                                    "amount": 1
-                                }
-                            ],
-                            "id": "dense_origocrust_powder_solid_recipe"
-                        },
-                        {
-                            "time": 2,
-                            "ingredients": [
-                                {
-                                    "item_id": "ferrium_powder",
-                                    "amount": 2
-                                },
-                                {
-                                    "item_id": "sandleaf_powder",
-                                    "amount": 1
-                                }
-                            ],
-                            "products": [
-                                {
-                                    "item_id": "dense_ferrium_powder",
-                                    "amount": 1
-                                }
-                            ],
-                            "id": "dense_ferrium_powder_solid_recipe"
-                        },
-                        {
-                            "time": 2,
-                            "ingredients": [
-                                {
-                                    "item_id": "originium_powder",
-                                    "amount": 2
-                                },
-                                {
-                                    "item_id": "sandleaf_powder",
-                                    "amount": 1
-                                }
-                            ],
-                            "products": [
-                                {
-                                    "item_id": "dense_originium_powder",
-                                    "amount": 1
-                                }
-                            ],
-                            "id": "dense_originium_powder_solid_recipe"
-                        },
-                        {
-                            "time": 2,
-                            "ingredients": [
-                                {
-                                    "item_id": "buckflower_powder",
-                                    "amount": 2
-                                },
-                                {
-                                    "item_id": "sandleaf_powder",
-                                    "amount": 1
-                                }
-                            ],
-                            "products": [
-                                {
-                                    "item_id": "ground_buckflower_powder",
-                                    "amount": 1
-                                }
-                            ],
-                            "id": "ground_buckflower_powder_solid_recipe"
-                        },
-                        {
-                            "time": 2,
-                            "ingredients": [
-                                {
-                                    "item_id": "citrome_powder",
-                                    "amount": 2
-                                },
-                                {
-                                    "item_id": "sandleaf_powder",
-                                    "amount": 1
-                                }
-                            ],
-                            "products": [
-                                {
-                                    "item_id": "ground_citrome_powder",
-                                    "amount": 1
-                                }
-                            ],
-                            "id": "ground_citrome_powder_solid_recipe"
-                        },
-                        {
-                            "time": 2,
-                            "ingredients": [
-                                {
-                                    "item_id": "amethyst_powder",
-                                    "amount": 2
-                                },
-                                {
-                                    "item_id": "sandleaf_powder",
-                                    "amount": 1
-                                }
-                            ],
-                            "products": [
-                                {
-                                    "item_id": "cryston_powder",
-                                    "amount": 1
-                                }
-                            ],
-                            "id": "cryston_powder_solid_recipe"
-                        }
-                    ]
-                }
-            }
-        },
-        "reactor_crucible": {
-            "name_en": "Reactor Crucible",
-            "type": "Assembly",
-            "img": "Reactor_Crucible.png",
-            "tier": 3,
-            "power": 10,
-            "description": "The Reactor Crucible can perform reactions or dissolve solids to make solutions. Typical product: Jincao Solution, made by placing Clean Water and Jincao Powder in the Reactor Crucible.",
-            "modes": {
-                "fluid": {
-                    "name": "Fluid Mode",
-                    "recipes": [
-                        {
-                            "time": 2,
-                            "ingredients": [
-                                {
-                                    "item_id": "jincao_powder",
-                                    "amount": 1
-                                },
-                                {
-                                    "item_id": "clean_water",
-                                    "amount": 1
-                                }
-                            ],
-                            "products": [
-                                {
-                                    "item_id": "jincao_solution",
-                                    "amount": 1
-                                }
-                            ],
-                            "id": "jincao_solution_fluid_recipe"
-                        },
-                        {
-                            "time": 2,
-                            "ingredients": [
-                                {
-                                    "item_id": "yazhen_powder",
-                                    "amount": 1
-                                },
-                                {
-                                    "item_id": "clean_water",
-                                    "amount": 1
-                                }
-                            ],
-                            "products": [
-                                {
-                                    "item_id": "yazhen_solution",
-                                    "amount": 1
-                                }
-                            ],
-                            "id": "yazhen_solution_fluid_recipe"
-                        }
-                    ]
-                }
-            }
+          ]
         }
+      },
+      "name_ru": "Портативная Ориджиниева Установка"
+    },
+    "electric_mining_rig": {
+      "name_en": "Electric Mining Rig",
+      "type": "resourcing_facilities",
+      "img": "Electric_Mining_Rig.png",
+      "tier": 2,
+      "power": 5,
+      "description": "The Electric Mining Rig can mine higher tier minerals but can start mining when it is within the power supply radius of an Electric Pylon connected to the power grid. The Electric Mining Rig has belt-free transfer features that automatically deliver mined ores from its cache to the Depot.",
+      "modes": {
+        "solid": {
+          "name": "Solid Mode",
+          "recipes": [
+            {
+              "time": 1.5,
+              "ingredients": null,
+              "products": [
+                {
+                  "item_id": "originium_ore",
+                  "amount": 1
+                }
+              ],
+              "id": "originium_ore_solid_recipe"
+            },
+            {
+              "time": 1.5,
+              "ingredients": null,
+              "products": [
+                {
+                  "item_id": "amethyst_ore",
+                  "amount": 1
+                }
+              ],
+              "id": "amethyst_ore_solid_recipe"
+            }
+          ]
+        }
+      },
+      "name_ru": "Добывающая Электроустановка"
+    },
+    "electric_mining_rig_mk_ii": {
+      "name_en": "Electric Mining Rig Mk II",
+      "type": "resourcing_facilities",
+      "img": "Electric_Mining_Rig_Mk_II.png",
+      "tier": 3,
+      "power": 10,
+      "description": "The Electric Mining Rig Mk II is an improved version of the Electric Mining Rig. It is capable of mining harder minerals such as Ferrium Ore.",
+      "modes": {
+        "solid": {
+          "name": "Solid Mode",
+          "recipes": [
+            {
+              "time": 1.5,
+              "ingredients": null,
+              "products": [
+                {
+                  "item_id": "originium_ore",
+                  "amount": 1
+                }
+              ],
+              "id": "originium_ore_solid_recipe"
+            },
+            {
+              "time": 1.5,
+              "ingredients": null,
+              "products": [
+                {
+                  "item_id": "amethyst_ore",
+                  "amount": 1
+                }
+              ],
+              "id": "amethyst_ore_solid_recipe"
+            },
+            {
+              "time": 1.5,
+              "ingredients": null,
+              "products": [
+                {
+                  "item_id": "ferrium_ore",
+                  "amount": 1
+                }
+              ],
+              "id": "ferrium_ore_solid_recipe"
+            }
+          ]
+        }
+      },
+      "name_ru": "Добывающая Электроустановка Мк II"
+    },
+    "hydro_mining_rig": {
+      "name_en": "Hydro Mining Rig",
+      "type": "resourcing_facilities",
+      "img": "Hydro_Mining_Rig.png",
+      "tier": 3,
+      "power": 0,
+      "description": "The Hydro Mining Rig can mine high tier minerals such as Cuprium Ore. The Hydro Mining Rig does not need to be connected to the power grid to work, but requires a pipeline connection that supplies it with Clean Water.",
+      "modes": {
+        "fluid": {
+          "name": "Fluid Mode",
+          "recipes": [
+            {
+              "time": 1.5,
+              "ingredients": [
+                {
+                  "item_id": "clean_water",
+                  "amount": 0.00001
+                }
+              ],
+              "products": [
+                {
+                  "item_id": "originium_ore",
+                  "amount": 1
+                }
+              ],
+              "id": "originium_ore_solid_recipe"
+            },
+            {
+              "time": 1.5,
+              "ingredients": [
+                {
+                  "item_id": "clean_water",
+                  "amount": 0.00001
+                }
+              ],
+              "products": [
+                {
+                  "item_id": "amethyst_ore",
+                  "amount": 1
+                }
+              ],
+              "id": "amethyst_ore_solid_recipe"
+            },
+            {
+              "time": 1.5,
+              "ingredients": [
+                {
+                  "item_id": "clean_water",
+                  "amount": 0.00001
+                }
+              ],
+              "products": [
+                {
+                  "item_id": "ferrium_ore",
+                  "amount": 1
+                }
+              ],
+              "id": "ferrium_ore_solid_recipe"
+            },
+            {
+              "time": 1.5,
+              "ingredients": [
+                {
+                  "item_id": "clean_water",
+                  "amount": 0.00001
+                }
+              ],
+              "products": [
+                {
+                  "item_id": "cuprium_ore",
+                  "amount": 1
+                }
+              ],
+              "id": "cuprium_ore_fluid_recipe"
+            }
+          ]
+        }
+      }
+    },
+    "fluid_pump": {
+      "name_en": "Fluid Pump",
+      "type": "resourcing_facilities",
+      "img": "Fluid_Pump.png",
+      "tier": 2,
+      "power": 10,
+      "description": "The Fluid Pump must be placed near lakes or other water bodies. The pump inlet must be within the water body itself. Use Electric Pylons to power Fluid Pumps and pump in and acquire fluids at a stable rate.",
+      "modes": {
+        "fluid": {
+          "name": "Fluid Mode",
+          "recipes": [
+            {
+              "time": 1,
+              "ingredients": null,
+              "products": [
+                {
+                  "item_id": "jincao_solution",
+                  "amount": 1
+                }
+              ],
+              "id": "jincao_solution_fluid_recipe"
+            },
+            {
+              "time": 1,
+              "ingredients": null,
+              "products": [
+                {
+                  "item_id": "yazhen_solution",
+                  "amount": 1
+                }
+              ],
+              "id": "yazhen_solution_fluid_recipe"
+            },
+            {
+              "time": 1,
+              "ingredients": null,
+              "products": [
+                {
+                  "item_id": "sewage",
+                  "amount": 1
+                }
+              ],
+              "id": "sewage_fluid_recipe"
+            },
+            {
+              "time": 1,
+              "ingredients": null,
+              "products": [
+                {
+                  "item_id": "clean_water",
+                  "amount": 1
+                }
+              ],
+              "id": "clean_water_fluid_recipe"
+            }
+          ]
+        }
+      }
+    },
+    "refining_unit": {
+      "name_en": "Refining Unit",
+      "type": "Processing",
+      "img": "Refining_Unit.png",
+      "tier": 1,
+      "power": 5,
+      "description": "AIC facilities can process different materials to produce various industrial materials and products. Refining Units can refine. Typical product: Origocrust, made by placing Originium Ore in the Refining Unit.",
+      "modes": {
+        "solid": {
+          "name": "Solid Mode",
+          "recipes": [
+            {
+              "time": 2,
+              "ingredients": [
+                {
+                  "item_id": "dense_carbon_powder",
+                  "amount": 1
+                }
+              ],
+              "products": [
+                {
+                  "item_id": "stabilized_carbon",
+                  "amount": 1
+                }
+              ],
+              "id": "stabilized_carbon_solid_recipe"
+            },
+            {
+              "time": 2,
+              "ingredients": [
+                {
+                  "item_id": "ground_buckflower_powder",
+                  "amount": 1
+                }
+              ],
+              "products": [
+                {
+                  "item_id": "dense_carbon_powder",
+                  "amount": 1
+                }
+              ],
+              "id": "dense_carbon_powder_solid_recipe"
+            },
+            {
+              "time": 2,
+              "ingredients": [
+                {
+                  "item_id": "ground_citrome_powder",
+                  "amount": 1
+                }
+              ],
+              "products": [
+                {
+                  "item_id": "dense_carbon_powder",
+                  "amount": 1
+                }
+              ],
+              "id": "dense_carbon_powder_solid_recipe"
+            },
+            {
+              "time": 2,
+              "ingredients": [
+                {
+                  "item_id": "buckflower",
+                  "amount": 1
+                }
+              ],
+              "products": [
+                {
+                  "item_id": "carbon",
+                  "amount": 1
+                }
+              ],
+              "id": "carbon_solid_recipe"
+            },
+            {
+              "time": 2,
+              "ingredients": [
+                {
+                  "item_id": "citrome",
+                  "amount": 1
+                }
+              ],
+              "products": [
+                {
+                  "item_id": "carbon",
+                  "amount": 1
+                }
+              ],
+              "id": "carbon_solid_recipe"
+            },
+            {
+              "time": 2,
+              "ingredients": [
+                {
+                  "item_id": "sandleaf",
+                  "amount": 3
+                }
+              ],
+              "products": [
+                {
+                  "item_id": "carbon",
+                  "amount": 1
+                }
+              ],
+              "id": "carbon_solid_recipe"
+            },
+            {
+              "time": 2,
+              "ingredients": [
+                {
+                  "item_id": "wood",
+                  "amount": 1
+                }
+              ],
+              "products": [
+                {
+                  "item_id": "carbon",
+                  "amount": 1
+                }
+              ],
+              "id": "carbon_solid_recipe"
+            },
+            {
+              "time": 2,
+              "ingredients": [
+                {
+                  "item_id": "jincao",
+                  "amount": 1
+                }
+              ],
+              "products": [
+                {
+                  "item_id": "carbon",
+                  "amount": 1
+                }
+              ],
+              "id": "carbon_solid_recipe"
+            },
+            {
+              "time": 2,
+              "ingredients": [
+                {
+                  "item_id": "yazhen",
+                  "amount": 1
+                }
+              ],
+              "products": [
+                {
+                  "item_id": "carbon",
+                  "amount": 1
+                }
+              ],
+              "id": "carbon_solid_recipe"
+            },
+            {
+              "time": 2,
+              "ingredients": [
+                {
+                  "item_id": "buckflower_powder",
+                  "amount": 1
+                }
+              ],
+              "products": [
+                {
+                  "item_id": "carbon_powder",
+                  "amount": 1
+                }
+              ],
+              "id": "carbon_powder_solid_recipe"
+            },
+            {
+              "time": 2,
+              "ingredients": [
+                {
+                  "item_id": "citrome_powder",
+                  "amount": 1
+                }
+              ],
+              "products": [
+                {
+                  "item_id": "carbon_powder",
+                  "amount": 1
+                }
+              ],
+              "id": "carbon_powder_solid_recipe"
+            },
+            {
+              "time": 2,
+              "ingredients": [
+                {
+                  "item_id": "sandleaf_powder",
+                  "amount": 3
+                }
+              ],
+              "products": [
+                {
+                  "item_id": "carbon_powder",
+                  "amount": 1
+                }
+              ],
+              "id": "carbon_powder_solid_recipe"
+            },
+            {
+              "time": 2,
+              "ingredients": [
+                {
+                  "item_id": "jincao_powder",
+                  "amount": 1
+                }
+              ],
+              "products": [
+                {
+                  "item_id": "carbon_powder",
+                  "amount": 1
+                }
+              ],
+              "id": "carbon_powder_solid_recipe"
+            },
+            {
+              "time": 2,
+              "ingredients": [
+                {
+                  "item_id": "yazhen_powder",
+                  "amount": 1
+                }
+              ],
+              "products": [
+                {
+                  "item_id": "carbon_powder",
+                  "amount": 1
+                }
+              ],
+              "id": "carbon_powder_solid_recipe"
+            },
+            {
+              "time": 2,
+              "ingredients": [
+                {
+                  "item_id": "dense_origocrust_powder",
+                  "amount": 1
+                }
+              ],
+              "products": [
+                {
+                  "item_id": "packed_origocrust",
+                  "amount": 1
+                }
+              ],
+              "id": "packed_origocrust_solid_recipe"
+            },
+            {
+              "time": 2,
+              "ingredients": [
+                {
+                  "item_id": "dense_originium_powder",
+                  "amount": 1
+                }
+              ],
+              "products": [
+                {
+                  "item_id": "dense_origocrust_powder",
+                  "amount": 1
+                }
+              ],
+              "id": "dense_origocrust_powder_solid_recipe"
+            },
+            {
+              "time": 2,
+              "ingredients": [
+                {
+                  "item_id": "originium_powder",
+                  "amount": 1
+                }
+              ],
+              "products": [
+                {
+                  "item_id": "origocrust_powder",
+                  "amount": 1
+                }
+              ],
+              "id": "origocrust_powder_solid_recipe"
+            },
+            {
+              "time": 2,
+              "ingredients": [
+                {
+                  "item_id": "originium_ore",
+                  "amount": 1
+                }
+              ],
+              "products": [
+                {
+                  "item_id": "origocrust",
+                  "amount": 1
+                }
+              ],
+              "id": "origocrust_solid_recipe"
+            },
+            {
+              "time": 2,
+              "ingredients": [
+                {
+                  "item_id": "origocrust_powder",
+                  "amount": 1
+                }
+              ],
+              "products": [
+                {
+                  "item_id": "origocrust",
+                  "amount": 1
+                }
+              ],
+              "id": "origocrust_solid_recipe"
+            },
+            {
+              "time": 2,
+              "ingredients": [
+                {
+                  "item_id": "dense_ferrium_powder",
+                  "amount": 1
+                }
+              ],
+              "products": [
+                {
+                  "item_id": "steel",
+                  "amount": 1
+                }
+              ],
+              "id": "steel_solid_recipe"
+            },
+            {
+              "time": 2,
+              "ingredients": [
+                {
+                  "item_id": "ferrium_ore",
+                  "amount": 1
+                }
+              ],
+              "products": [
+                {
+                  "item_id": "ferrium",
+                  "amount": 1
+                }
+              ],
+              "id": "ferrium_solid_recipe"
+            },
+            {
+              "time": 2,
+              "ingredients": [
+                {
+                  "item_id": "ferrium_powder",
+                  "amount": 1
+                }
+              ],
+              "products": [
+                {
+                  "item_id": "ferrium",
+                  "amount": 1
+                }
+              ],
+              "id": "ferrium_solid_recipe"
+            },
+            {
+              "time": 2,
+              "ingredients": [
+                {
+                  "item_id": "cryston_powder",
+                  "amount": 1
+                }
+              ],
+              "products": [
+                {
+                  "item_id": "cryston_fiber",
+                  "amount": 1
+                }
+              ],
+              "id": "cryston_fiber_solid_recipe"
+            },
+            {
+              "time": 2,
+              "ingredients": [
+                {
+                  "item_id": "amethyst_ore",
+                  "amount": 1
+                }
+              ],
+              "products": [
+                {
+                  "item_id": "amethyst_fiber",
+                  "amount": 1
+                }
+              ],
+              "id": "amethyst_fiber_solid_recipe"
+            },
+            {
+              "time": 2,
+              "ingredients": [
+                {
+                  "item_id": "amethyst_powder",
+                  "amount": 1
+                }
+              ],
+              "products": [
+                {
+                  "item_id": "amethyst_fiber",
+                  "amount": 1
+                }
+              ],
+              "id": "amethyst_fiber_solid_recipe"
+            }
+          ]
+        },
+        "fluid": {
+          "name": "Fluid Mode",
+          "recipes": [
+            {
+              "time": 2,
+              "ingredients": [
+                {
+                  "item_id": "cuprium_ore",
+                  "amount": 1
+                },
+                {
+                  "item_id": "clean_water",
+                  "amount": 1
+                }
+              ],
+              "products": [
+                {
+                  "item_id": "cuprium",
+                  "amount": 1
+                },
+                {
+                  "item_id": "sewage",
+                  "amount": 1
+                }
+              ],
+              "id": "cuprium_fluid_recipe"
+            },
+            {
+              "time": 2,
+              "ingredients": [
+                {
+                  "item_id": "ferrium_ore",
+                  "amount": 1
+                },
+                {
+                  "item_id": "clean_water",
+                  "amount": 1
+                }
+              ],
+              "products": [
+                {
+                  "item_id": "ferrium",
+                  "amount": 2
+                },
+                {
+                  "item_id": "sewage",
+                  "amount": 1
+                }
+              ],
+              "id": "ferrium_fluid_recipe"
+            }
+          ]
+        }
+      },
+      "name_ru": "Модуль очистки"
+    },
+    "shreading_unit": {
+      "name_en": "Shredding Unit",
+      "type": "Processing",
+      "img": "Shredding_Unit.png",
+      "tier": 1,
+      "power": 10,
+      "description": "Shredding Units can shred materials into powder. Typical product: Originium Powder, made by placing Originium Ore in the Shredding Unit.",
+      "modes": {
+        "solid": {
+          "name": "Solid Mode",
+          "recipes": [
+            {
+              "time": 2,
+              "ingredients": [
+                {
+                  "item_id": "carbon",
+                  "amount": 1
+                }
+              ],
+              "products": [
+                {
+                  "item_id": "carbon_powder",
+                  "amount": 1
+                }
+              ],
+              "id": "carbon_powder_solid_recipe"
+            },
+            {
+              "time": 2,
+              "ingredients": [
+                {
+                  "item_id": "origocrust",
+                  "amount": 1
+                }
+              ],
+              "products": [
+                {
+                  "item_id": "origocrust_powder",
+                  "amount": 1
+                }
+              ],
+              "id": "origocrust_powder_solid_recipe"
+            },
+            {
+              "time": 2,
+              "ingredients": [
+                {
+                  "item_id": "ferrium",
+                  "amount": 1
+                }
+              ],
+              "products": [
+                {
+                  "item_id": "ferrium_powder",
+                  "amount": 1
+                }
+              ],
+              "id": "ferrium_powder_solid_recipe"
+            },
+            {
+              "time": 2,
+              "ingredients": [
+                {
+                  "item_id": "originium_ore",
+                  "amount": 1
+                }
+              ],
+              "products": [
+                {
+                  "item_id": "originium_powder",
+                  "amount": 1
+                }
+              ],
+              "id": "originium_powder_solid_recipe"
+            },
+            {
+              "time": 2,
+              "ingredients": [
+                {
+                  "item_id": "aketine",
+                  "amount": 1
+                }
+              ],
+              "products": [
+                {
+                  "item_id": "aketine_powder",
+                  "amount": 2
+                }
+              ],
+              "id": "aketine_powder_solid_recipe"
+            },
+            {
+              "time": 2,
+              "ingredients": [
+                {
+                  "item_id": "jincao",
+                  "amount": 1
+                }
+              ],
+              "products": [
+                {
+                  "item_id": "jincao_powder",
+                  "amount": 2
+                }
+              ],
+              "id": "jincao_powder_solid_recipe"
+            },
+            {
+              "time": 2,
+              "ingredients": [
+                {
+                  "item_id": "yazhen",
+                  "amount": 1
+                }
+              ],
+              "products": [
+                {
+                  "item_id": "yazhen_powder",
+                  "amount": 2
+                }
+              ],
+              "id": "yazhen_powder_solid_recipe"
+            },
+            {
+              "time": 2,
+              "ingredients": [
+                {
+                  "item_id": "buckflower",
+                  "amount": 1
+                }
+              ],
+              "products": [
+                {
+                  "item_id": "buckflower_powder",
+                  "amount": 2
+                }
+              ],
+              "id": "buckflower_powder_solid_recipe"
+            },
+            {
+              "time": 2,
+              "ingredients": [
+                {
+                  "item_id": "citrome",
+                  "amount": 1
+                }
+              ],
+              "products": [
+                {
+                  "item_id": "citrome_powder",
+                  "amount": 2
+                }
+              ],
+              "id": "citrome_powder_solid_recipe"
+            },
+            {
+              "time": 2,
+              "ingredients": [
+                {
+                  "item_id": "sandleaf",
+                  "amount": 1
+                }
+              ],
+              "products": [
+                {
+                  "item_id": "sandleaf_powder",
+                  "amount": 3
+                }
+              ],
+              "id": "sandleaf_powder_solid_recipe"
+            },
+            {
+              "time": 2,
+              "ingredients": [
+                {
+                  "item_id": "amethyst_fiber",
+                  "amount": 1
+                }
+              ],
+              "products": [
+                {
+                  "item_id": "amethyst_powder",
+                  "amount": 1
+                }
+              ],
+              "id": "amethyst_powder_solid_recipe"
+            }
+          ]
+        }
+      },
+      "name_ru": "Модуль Перемалывания"
+    },
+    "fitting_unit": {
+      "name_en": "Fitting Unit",
+      "type": "Processing",
+      "img": "Fitting_Unit.png",
+      "tier": 2,
+      "power": 10,
+      "description": "The Fitting Unit can process materials with the [Fit] tag to produce facility construction materials or other things. Typical product: Amethyst Part, made by placing Amethyst Fiber in the Fitting Unit.",
+      "modes": {
+        "solid": {
+          "name": "Solid Mode",
+          "recipes": [
+            {
+              "time": 2,
+              "ingredients": [
+                {
+                  "item_id": "cuprium",
+                  "amount": 1
+                }
+              ],
+              "products": [
+                {
+                  "item_id": "cuprium_part",
+                  "amount": 1
+                }
+              ],
+              "id": "cuprium_part_solid_recipe"
+            },
+            {
+              "time": 2,
+              "ingredients": [
+                {
+                  "item_id": "amethyst_fiber",
+                  "amount": 1
+                }
+              ],
+              "products": [
+                {
+                  "item_id": "amethyst_part",
+                  "amount": 1
+                }
+              ],
+              "id": "amethyst_part_solid_recipe"
+            },
+            {
+              "time": 2,
+              "ingredients": [
+                {
+                  "item_id": "cryston_fiber",
+                  "amount": 1
+                }
+              ],
+              "products": [
+                {
+                  "item_id": "cryston_part",
+                  "amount": 1
+                }
+              ],
+              "id": "cryston_part_solid_recipe"
+            },
+            {
+              "time": 2,
+              "ingredients": [
+                {
+                  "item_id": "ferrium",
+                  "amount": 1
+                }
+              ],
+              "products": [
+                {
+                  "item_id": "ferrium_part",
+                  "amount": 1
+                }
+              ],
+              "id": "ferrium_part_solid_recipe"
+            },
+            {
+              "time": 2,
+              "ingredients": [
+                {
+                  "item_id": "steel",
+                  "amount": 1
+                }
+              ],
+              "products": [
+                {
+                  "item_id": "steel_part",
+                  "amount": 1
+                }
+              ],
+              "id": "steel_part_solid_recipe"
+            }
+          ]
+        }
+      },
+      "name_ru": "Модуль Штамповки?"
+    },
+    "moulding_unit": {
+      "name_en": "Moulding Unit",
+      "type": "Processing",
+      "img": "Moulding_Unit.png",
+      "tier": 2,
+      "power": 10,
+      "description": "The Moulding Unit can process materials with the [Mould] tag to make materials for making medication and food production. Typical product: Amethyst Bottle, made by placing Amethyst Fiber in the Moulding Unit.",
+      "modes": {
+        "fluid": {
+          "name": "Fluid Mode",
+          "recipes": [
+            {
+              "time": 2,
+              "ingredients": [
+                {
+                  "item_id": "cuprium",
+                  "amount": 2
+                },
+                {
+                  "item_id": "clean_water",
+                  "amount": 1
+                }
+              ],
+              "products": [
+                {
+                  "item_id": "cuprium_jar",
+                  "amount": 1
+                },
+                {
+                  "item_id": "sewage",
+                  "amount": 1
+                }
+              ],
+              "id": "cuprium_jar_fluid_recipe"
+            },
+            {
+              "time": 2,
+              "ingredients": [
+                {
+                  "item_id": "steel",
+                  "amount": 2
+                },
+                {
+                  "item_id": "clean_water",
+                  "amount": 1
+                }
+              ],
+              "products": [
+                {
+                  "item_id": "steel_jar",
+                  "amount": 1
+                },
+                {
+                  "item_id": "sewage",
+                  "amount": 1
+                }
+              ],
+              "id": "steel_jar_fluid_recipe"
+            }
+          ]
+        },
+        "solid": {
+          "name": "Solid Mode",
+          "recipes": [
+            {
+              "time": 2,
+              "ingredients": [
+                {
+                  "item_id": "amethyst_fiber",
+                  "amount": 2
+                }
+              ],
+              "products": [
+                {
+                  "item_id": "amethyst_bottle",
+                  "amount": 1
+                }
+              ],
+              "id": "amethyst_bottle_solid_recipe"
+            },
+            {
+              "time": 2,
+              "ingredients": [
+                {
+                  "item_id": "cryston_fiber",
+                  "amount": 2
+                }
+              ],
+              "products": [
+                {
+                  "item_id": "cryston_bottle",
+                  "amount": 1
+                }
+              ],
+              "id": "cryston_bottle_solid_recipe"
+            },
+            {
+              "time": 2,
+              "ingredients": [
+                {
+                  "item_id": "ferrium",
+                  "amount": 2
+                }
+              ],
+              "products": [
+                {
+                  "item_id": "ferrium_bottle",
+                  "amount": 1
+                }
+              ],
+              "id": "ferrium_bottle_solid_recipe"
+            },
+            {
+              "time": 2,
+              "ingredients": [
+                {
+                  "item_id": "steel",
+                  "amount": 2
+                }
+              ],
+              "products": [
+                {
+                  "item_id": "steel_bottle",
+                  "amount": 1
+                }
+              ],
+              "id": "steel_bottle_solid_recipe"
+            }
+          ]
+        }
+      },
+      "name_ru": "Модуль Формовки"
+    },
+    "planting_unit": {
+      "name_en": "Planting Unit",
+      "type": "Processing",
+      "img": "Planting_Unit.png",
+      "tier": 3,
+      "power": 10,
+      "description": "The Planting Unit can grow seeds of common plants and raise them to maturity. Typical product: Buckflower, grown from Buckflower Seeds placed in the Planting Unit.",
+      "modes": {
+        "solid": {
+          "name": "Solid Mode",
+          "recipes": [
+            {
+              "time": 2,
+              "ingredients": [
+                {
+                  "item_id": "aketine_seed",
+                  "amount": 1
+                }
+              ],
+              "products": [
+                {
+                  "item_id": "aketine",
+                  "amount": 1
+                }
+              ],
+              "id": "aketine_solid_recipe"
+            },
+            {
+              "time": 2,
+              "ingredients": [
+                {
+                  "item_id": "buckflower_seed",
+                  "amount": 1
+                }
+              ],
+              "products": [
+                {
+                  "item_id": "buckflower",
+                  "amount": 1
+                }
+              ],
+              "id": "buckflower_solid_recipe"
+            },
+            {
+              "time": 2,
+              "ingredients": [
+                {
+                  "item_id": "citrome_seed",
+                  "amount": 1
+                }
+              ],
+              "products": [
+                {
+                  "item_id": "citrome",
+                  "amount": 1
+                }
+              ],
+              "id": "citrome_solid_recipe"
+            },
+            {
+              "time": 2,
+              "ingredients": [
+                {
+                  "item_id": "sandleaf_seed",
+                  "amount": 1
+                }
+              ],
+              "products": [
+                {
+                  "item_id": "sandleaf",
+                  "amount": 1
+                }
+              ],
+              "id": "sandleaf_solid_recipe"
+            }
+          ]
+        },
+        "fluid": {
+          "name": "Fluid Mode",
+          "recipes": [
+            {
+              "time": 2,
+              "ingredients": [
+                {
+                  "item_id": "jincao_seed",
+                  "amount": 1
+                },
+                {
+                  "item_id": "clean_water",
+                  "amount": 1
+                }
+              ],
+              "products": [
+                {
+                  "item_id": "jincao",
+                  "amount": 1
+                }
+              ],
+              "id": "jincao_fluid_recipe"
+            },
+            {
+              "time": 2,
+              "ingredients": [
+                {
+                  "item_id": "yazhen_seed",
+                  "amount": 1
+                },
+                {
+                  "item_id": "clean_water",
+                  "amount": 1
+                }
+              ],
+              "products": [
+                {
+                  "item_id": "yazhen",
+                  "amount": 1
+                }
+              ],
+              "id": "yazhen_fluid_recipe"
+            }
+          ]
+        }
+      },
+      "name_ru": "Модуль Посадки"
+    },
+    "seed_picking_unit": {
+      "name_en": "Seed-Picking Unit",
+      "type": "Processing",
+      "img": "Seed-Picking_Unit.png",
+      "tier": 3,
+      "power": 10,
+      "description": "The Seed-Picking Unit can pick seeds from common plants. Typical product: Buckflower Seed, picked from Buckflowers placed in the Seed-Picking Unit.",
+      "modes": {
+        "solid": {
+          "name": "Solid Mode",
+          "recipes": [
+            {
+              "time": 2,
+              "ingredients": [
+                {
+                  "item_id": "aketine",
+                  "amount": 1
+                }
+              ],
+              "products": [
+                {
+                  "item_id": "aketine_seed",
+                  "amount": 2
+                }
+              ],
+              "id": "aketine_seed_solid_recipe"
+            },
+            {
+              "time": 2,
+              "ingredients": [
+                {
+                  "item_id": "jincao",
+                  "amount": 1
+                }
+              ],
+              "products": [
+                {
+                  "item_id": "jincao_seed",
+                  "amount": 2
+                }
+              ],
+              "id": "jincao_seed_solid_recipe"
+            },
+            {
+              "time": 2,
+              "ingredients": [
+                {
+                  "item_id": "yazhen",
+                  "amount": 1
+                }
+              ],
+              "products": [
+                {
+                  "item_id": "yazhen_seed",
+                  "amount": 2
+                }
+              ],
+              "id": "yazhen_seed_solid_recipe"
+            },
+            {
+              "time": 2,
+              "ingredients": [
+                {
+                  "item_id": "buckflower",
+                  "amount": 1
+                }
+              ],
+              "products": [
+                {
+                  "item_id": "buckflower_seed",
+                  "amount": 2
+                }
+              ],
+              "id": "buckflower_seed_solid_recipe"
+            },
+            {
+              "time": 2,
+              "ingredients": [
+                {
+                  "item_id": "citrome",
+                  "amount": 1
+                }
+              ],
+              "products": [
+                {
+                  "item_id": "citrome_seed",
+                  "amount": 2
+                }
+              ],
+              "id": "citrome_seed_solid_recipe"
+            },
+            {
+              "time": 2,
+              "ingredients": [
+                {
+                  "item_id": "sandleaf",
+                  "amount": 1
+                }
+              ],
+              "products": [
+                {
+                  "item_id": "sandleaf_seed",
+                  "amount": 2
+                }
+              ],
+              "id": "sandleaf_seed_solid_recipe"
+            },
+            {
+              "time": 2,
+              "ingredients": [
+                {
+                  "item_id": "reed_rye",
+                  "amount": 1
+                }
+              ],
+              "products": [
+                {
+                  "item_id": "reed_rye_seed",
+                  "amount": 2
+                }
+              ],
+              "id": "reed_rye_seed_solid_recipe"
+            },
+            {
+              "time": 2,
+              "ingredients": [
+                {
+                  "item_id": "tartpepper",
+                  "amount": 1
+                }
+              ],
+              "products": [
+                {
+                  "item_id": "tartpepper_seed",
+                  "amount": 2
+                }
+              ],
+              "id": "tartpepper_seed_solid_recipe"
+            },
+            {
+              "time": 2,
+              "ingredients": [
+                {
+                  "item_id": "redjade_ginseng",
+                  "amount": 1
+                }
+              ],
+              "products": [
+                {
+                  "item_id": "redjade_ginseng_seed",
+                  "amount": 2
+                }
+              ],
+              "id": "redjade_ginseng_seed_solid_recipe"
+            },
+            {
+              "time": 2,
+              "ingredients": [
+                {
+                  "item_id": "amber_rice",
+                  "amount": 1
+                }
+              ],
+              "products": [
+                {
+                  "item_id": "amber_rice_seed",
+                  "amount": 2
+                }
+              ],
+              "id": "amber_rice_seed_solid_recipe"
+            }
+          ]
+        }
+      },
+      "name_ru": "Модуль Сбора Семян"
+    },
+    "water_treatment_unit": {
+      "name_en": "Water Treatment Unit",
+      "type": "Processing",
+      "img": "Water_Treatment_Unit.png",
+      "tier": 3,
+      "power": 30,
+      "description": "The Water Treatment Unit can slowly remediate and purify Sewage and generates no pollution. Sewage must be treated or it will clog the facility.",
+      "modes": {
+        "fluid": {
+          "name": "Fluid Mode",
+          "recipes": [
+            {
+              "time": 6,
+              "ingredients": [
+                {
+                  "item_id": "sewage",
+                  "amount": 1
+                }
+              ],
+              "products": null,
+              "id": "water_treatment_fluid_recipe"
+            }
+          ]
+        }
+      }
+    },
+    "gearing_unit": {
+      "name_en": "Gearing Unit",
+      "type": "Assembly",
+      "img": "Gearing_Unit.png",
+      "tier": 1,
+      "power": 10,
+      "description": "The Gearing Unit can process materials with the [Inlay] tag to produce materials for gear assembly. Typical product: Amethyst Component, made by placing Origocrust and Amethyst Part in the Gearing Unit.",
+      "modes": {
+        "solid": {
+          "name": "Solid Mode",
+          "recipes": [
+            {
+              "time": 10,
+              "ingredients": [
+                {
+                  "item_id": "origocrust",
+                  "amount": 5
+                },
+                {
+                  "item_id": "amethyst_fiber",
+                  "amount": 5
+                }
+              ],
+              "products": [
+                {
+                  "item_id": "amethyst_component",
+                  "amount": 1
+                }
+              ],
+              "id": "amethyst_component_solid_recipe"
+            },
+            {
+              "time": 10,
+              "ingredients": [
+                {
+                  "item_id": "origocrust",
+                  "amount": 10
+                },
+                {
+                  "item_id": "ferrium",
+                  "amount": 10
+                }
+              ],
+              "products": [
+                {
+                  "item_id": "ferrium_component",
+                  "amount": 1
+                }
+              ],
+              "id": "ferrium_component_solid_recipe"
+            },
+            {
+              "time": 10,
+              "ingredients": [
+                {
+                  "item_id": "packed_origocrust",
+                  "amount": 10
+                },
+                {
+                  "item_id": "cryston_fiber",
+                  "amount": 10
+                }
+              ],
+              "products": [
+                {
+                  "item_id": "cryston_component",
+                  "amount": 1
+                }
+              ],
+              "id": "cryston_component_solid_recipe"
+            },
+            {
+              "time": 10,
+              "ingredients": [
+                {
+                  "item_id": "packed_origocrust",
+                  "amount": 10
+                },
+                {
+                  "item_id": "cuprium",
+                  "amount": 5
+                }
+              ],
+              "products": [
+                {
+                  "item_id": "cuprium_component",
+                  "amount": 1
+                }
+              ],
+              "id": "cuprium_component_solid_recipe"
+            }
+          ]
+        }
+      },
+      "name_ru": "Модуль Снаряжения"
+    },
+    "filling_unit": {
+      "name_en": "Filling Unit",
+      "type": "Assembly",
+      "img": "Filling_Unit.png",
+      "tier": 3,
+      "power": 10,
+      "description": "The Filling Unit can process materials with the [Fill] tag to produce various medication or processed foods. Typical product: Buck Capsule (C), made by placing Amethyst Bottle and Buckflower Powder in the Filling Unit.",
+      "modes": {
+        "solid": {
+          "name": "Solid Mode",
+          "recipes": [
+            {
+              "time": 10,
+              "ingredients": [
+                {
+                  "item_id": "amethyst_bottle",
+                  "amount": 5
+                },
+                {
+                  "item_id": "citrome_powder",
+                  "amount": 5
+                }
+              ],
+              "products": [
+                {
+                  "item_id": "canned_citrome_c",
+                  "amount": 1
+                }
+              ],
+              "id": "canned_citrome_c_solid_recipe"
+            },
+            {
+              "time": 10,
+              "ingredients": [
+                {
+                  "item_id": "ferrium_bottle",
+                  "amount": 10
+                },
+                {
+                  "item_id": "citrome_powder",
+                  "amount": 10
+                }
+              ],
+              "products": [
+                {
+                  "item_id": "canned_citrome_b",
+                  "amount": 1
+                }
+              ],
+              "id": "canned_citrome_b_solid_recipe"
+            },
+            {
+              "time": 10,
+              "ingredients": [
+                {
+                  "item_id": "steel_bottle",
+                  "amount": 10
+                },
+                {
+                  "item_id": "ground_citrome_powder",
+                  "amount": 10
+                }
+              ],
+              "products": [
+                {
+                  "item_id": "canned_citrome_a",
+                  "amount": 1
+                }
+              ],
+              "id": "canned_citrome_a_solid_recipe"
+            },
+            {
+              "time": 10,
+              "ingredients": [
+                {
+                  "item_id": "amethyst_bottle",
+                  "amount": 5
+                },
+                {
+                  "item_id": "buckflower_powder",
+                  "amount": 5
+                }
+              ],
+              "products": [
+                {
+                  "item_id": "buck_capsule_c",
+                  "amount": 1
+                }
+              ],
+              "id": "buck_capsule_c_solid_recipe"
+            },
+            {
+              "time": 10,
+              "ingredients": [
+                {
+                  "item_id": "ferrium_bottle",
+                  "amount": 10
+                },
+                {
+                  "item_id": "buckflower_powder",
+                  "amount": 10
+                }
+              ],
+              "products": [
+                {
+                  "item_id": "buck_capsule_b",
+                  "amount": 1
+                }
+              ],
+              "id": "buck_capsule_b_solid_recipe"
+            },
+            {
+              "time": 10,
+              "ingredients": [
+                {
+                  "item_id": "steel_bottle",
+                  "amount": 10
+                },
+                {
+                  "item_id": "ground_buckflower_powder",
+                  "amount": 10
+                }
+              ],
+              "products": [
+                {
+                  "item_id": "buck_capsule_a",
+                  "amount": 1
+                }
+              ],
+              "id": "buck_capsule_a_solid_recipe"
+            }
+          ]
+        },
+        "fluid": {
+          "name": "Fluid Mode",
+          "recipes": [
+            {
+              "time": 10,
+              "ingredients": [
+                {
+                  "item_id": "steel_bottle",
+                  "amount": 10
+                },
+                {
+                  "item_id": "jincao_solution",
+                  "amount": 5
+                }
+              ],
+              "products": [
+                {
+                  "item_id": "jincao_drink",
+                  "amount": 1
+                }
+              ],
+              "id": "jincao_drink_fluid_recipe"
+            },
+            {
+              "time": 10,
+              "ingredients": [
+                {
+                  "item_id": "steel_jar",
+                  "amount": 5
+                },
+                {
+                  "item_id": "jincao_solution",
+                  "amount": 5
+                }
+              ],
+              "products": [
+                {
+                  "item_id": "jincao_drink",
+                  "amount": 1
+                }
+              ],
+              "id": "jincao_drink_fluid_recipe"
+            },
+            {
+              "time": 10,
+              "ingredients": [
+                {
+                  "item_id": "cuprium_jar",
+                  "amount": 10
+                },
+                {
+                  "item_id": "jincao_solution",
+                  "amount": 10
+                }
+              ],
+              "products": [
+                {
+                  "item_id": "jincao_tea",
+                  "amount": 1
+                }
+              ],
+              "id": "jincao_tea_fluid_recipe"
+            },
+            {
+              "time": 10,
+              "ingredients": [
+                {
+                  "item_id": "steel_bottle",
+                  "amount": 10
+                },
+                {
+                  "item_id": "yazhen_solution",
+                  "amount": 5
+                }
+              ],
+              "products": [
+                {
+                  "item_id": "yazhen_syringe_c",
+                  "amount": 1
+                }
+              ],
+              "id": "yazhen_syringe_c_fluid_recipe"
+            },
+            {
+              "time": 10,
+              "ingredients": [
+                {
+                  "item_id": "steel_jar",
+                  "amount": 5
+                },
+                {
+                  "item_id": "yazhen_solution",
+                  "amount": 5
+                }
+              ],
+              "products": [
+                {
+                  "item_id": "yazhen_syringe_c",
+                  "amount": 1
+                }
+              ],
+              "id": "yazhen_syringe_c_fluid_recipe"
+            },
+            {
+              "time": 10,
+              "ingredients": [
+                {
+                  "item_id": "cuprium_jar",
+                  "amount": 10
+                },
+                {
+                  "item_id": "yazhen_solution",
+                  "amount": 10
+                }
+              ],
+              "products": [
+                {
+                  "item_id": "yazhen_syringe_a",
+                  "amount": 1
+                }
+              ],
+              "id": "yazhen_syringe_a_fluid_recipe"
+            }
+          ]
+        }
+      },
+      "name_ru": "Модуль Наполнения"
+    },
+    "packaging_unit": {
+      "name_en": "Packaging Unit",
+      "type": "Assembly",
+      "img": "Packaging_Unit.png",
+      "tier": 3,
+      "power": 30,
+      "description": "The Packaging Unit can process materials with the [Package] tag to make explosives or batteries. Typical product 1: LC Battery, made by placing Amethyst Part and Originium Powder in the Packaging Unit. Typical product 2: Industrial Explosive, made by placing Amethyst Part and Aketine Powder in the Packaging Unit.",
+      "modes": {
+        "solid": {
+          "name": "Solid Mode",
+          "recipes": [
+            {
+              "time": 10,
+              "ingredients": [
+                {
+                  "item_id": "amethyst_part",
+                  "amount": 5
+                },
+                {
+                  "item_id": "originium_powder",
+                  "amount": 10
+                }
+              ],
+              "products": [
+                {
+                  "item_id": "lc_battery",
+                  "amount": 1
+                }
+              ],
+              "id": "lc_battery_solid_recipe"
+            },
+            {
+              "time": 10,
+              "ingredients": [
+                {
+                  "item_id": "ferrium_part",
+                  "amount": 10
+                },
+                {
+                  "item_id": "originium_powder",
+                  "amount": 20
+                }
+              ],
+              "products": [
+                {
+                  "item_id": "sc_battery",
+                  "amount": 1
+                }
+              ],
+              "id": "sc_battery_solid_recipe"
+            },
+            {
+              "time": 10,
+              "ingredients": [
+                {
+                  "item_id": "steel_part",
+                  "amount": 10
+                },
+                {
+                  "item_id": "dense_originium_powder",
+                  "amount": 20
+                }
+              ],
+              "products": [
+                {
+                  "item_id": "hc_battery",
+                  "amount": 1
+                }
+              ],
+              "id": "hc_battery_solid_recipe"
+            },
+            {
+              "time": 10,
+              "ingredients": [
+                {
+                  "item_id": "amethyst_part",
+                  "amount": 5
+                },
+                {
+                  "item_id": "aketine_powder",
+                  "amount": 1
+                }
+              ],
+              "products": [
+                {
+                  "item_id": "industrial_explosive",
+                  "amount": 1
+                }
+              ],
+              "id": "industrial_explosive_solid_recipe"
+            }
+          ]
+        }
+      },
+      "name_ru": "Модуль Упаковки"
+    },
+    "grinding_unit": {
+      "name_en": "Grinding Unit",
+      "type": "Assembly",
+      "img": "Grinding_Unit.png",
+      "tier": 4,
+      "power": 20,
+      "description": "The Grinding Unit can process materials with the [Grind] tag to make dense and finer powders with the help of grinding materials. Typical product: Dense Ferrium Powder, made by placing Ferrium Powder and Sandleaf Powder in the Grinding Unit.",
+      "modes": {
+        "solid": {
+          "name": "Solid Mode",
+          "recipes": [
+            {
+              "time": 2,
+              "ingredients": [
+                {
+                  "item_id": "carbon_powder",
+                  "amount": 2
+                },
+                {
+                  "item_id": "sandleaf_powder",
+                  "amount": 1
+                }
+              ],
+              "products": [
+                {
+                  "item_id": "dense_carbon_powder",
+                  "amount": 1
+                }
+              ],
+              "id": "dense_carbon_powder_solid_recipe"
+            },
+            {
+              "time": 2,
+              "ingredients": [
+                {
+                  "item_id": "origocrust_powder",
+                  "amount": 2
+                },
+                {
+                  "item_id": "sandleaf_powder",
+                  "amount": 1
+                }
+              ],
+              "products": [
+                {
+                  "item_id": "dense_origocrust_powder",
+                  "amount": 1
+                }
+              ],
+              "id": "dense_origocrust_powder_solid_recipe"
+            },
+            {
+              "time": 2,
+              "ingredients": [
+                {
+                  "item_id": "ferrium_powder",
+                  "amount": 2
+                },
+                {
+                  "item_id": "sandleaf_powder",
+                  "amount": 1
+                }
+              ],
+              "products": [
+                {
+                  "item_id": "dense_ferrium_powder",
+                  "amount": 1
+                }
+              ],
+              "id": "dense_ferrium_powder_solid_recipe"
+            },
+            {
+              "time": 2,
+              "ingredients": [
+                {
+                  "item_id": "originium_powder",
+                  "amount": 2
+                },
+                {
+                  "item_id": "sandleaf_powder",
+                  "amount": 1
+                }
+              ],
+              "products": [
+                {
+                  "item_id": "dense_originium_powder",
+                  "amount": 1
+                }
+              ],
+              "id": "dense_originium_powder_solid_recipe"
+            },
+            {
+              "time": 2,
+              "ingredients": [
+                {
+                  "item_id": "buckflower_powder",
+                  "amount": 2
+                },
+                {
+                  "item_id": "sandleaf_powder",
+                  "amount": 1
+                }
+              ],
+              "products": [
+                {
+                  "item_id": "ground_buckflower_powder",
+                  "amount": 1
+                }
+              ],
+              "id": "ground_buckflower_powder_solid_recipe"
+            },
+            {
+              "time": 2,
+              "ingredients": [
+                {
+                  "item_id": "citrome_powder",
+                  "amount": 2
+                },
+                {
+                  "item_id": "sandleaf_powder",
+                  "amount": 1
+                }
+              ],
+              "products": [
+                {
+                  "item_id": "ground_citrome_powder",
+                  "amount": 1
+                }
+              ],
+              "id": "ground_citrome_powder_solid_recipe"
+            },
+            {
+              "time": 2,
+              "ingredients": [
+                {
+                  "item_id": "amethyst_powder",
+                  "amount": 2
+                },
+                {
+                  "item_id": "sandleaf_powder",
+                  "amount": 1
+                }
+              ],
+              "products": [
+                {
+                  "item_id": "cryston_powder",
+                  "amount": 1
+                }
+              ],
+              "id": "cryston_powder_solid_recipe"
+            }
+          ]
+        }
+      }
+    },
+    "reactor_crucible": {
+      "name_en": "Reactor Crucible",
+      "type": "Assembly",
+      "img": "Reactor_Crucible.png",
+      "tier": 3,
+      "power": 10,
+      "description": "The Reactor Crucible can perform reactions or dissolve solids to make solutions. Typical product: Jincao Solution, made by placing Clean Water and Jincao Powder in the Reactor Crucible.",
+      "modes": {
+        "fluid": {
+          "name": "Fluid Mode",
+          "recipes": [
+            {
+              "time": 2,
+              "ingredients": [
+                {
+                  "item_id": "jincao_powder",
+                  "amount": 1
+                },
+                {
+                  "item_id": "clean_water",
+                  "amount": 1
+                }
+              ],
+              "products": [
+                {
+                  "item_id": "jincao_solution",
+                  "amount": 1
+                }
+              ],
+              "id": "jincao_solution_fluid_recipe"
+            },
+            {
+              "time": 2,
+              "ingredients": [
+                {
+                  "item_id": "yazhen_powder",
+                  "amount": 1
+                },
+                {
+                  "item_id": "clean_water",
+                  "amount": 1
+                }
+              ],
+              "products": [
+                {
+                  "item_id": "yazhen_solution",
+                  "amount": 1
+                }
+              ],
+              "id": "yazhen_solution_fluid_recipe"
+            }
+          ]
+        }
+      }
     }
+  }
 }
