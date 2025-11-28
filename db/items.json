@@ -9,7 +9,8 @@
     "arms_insp_set": {
       "name_en": "Arms INSP Set",
       "type": "progression_materials",
-      "img": "Arms_INSP_Set.png"
+      "img": "Arms_INSP_Set.png",
+      "name_ru": "Тест-Набор Для Оружия"
     },
     "arms_inspector": {
       "name_en": "Arms Inspector",
@@ -26,17 +27,20 @@
     "compact_script_i": {
       "name_en": "Compact Script I",
       "type": "progression_materials",
-      "img": "Compact_Script_I.png"
+      "img": "Compact_Script_I.png",
+      "name_ru": "Базовые Записи Боя"
     },
     "compact_script_ii": {
       "name_en": "Compact Script II",
       "type": "progression_materials",
-      "img": "Compact_Script_II.png"
+      "img": "Compact_Script_II.png",
+      "name_ru": "Промежуточные Записи Боя"
     },
     "compact_script_iii": {
       "name_en": "Compact Script III",
       "type": "progression_materials",
-      "img": "Compact_Script_III.png"
+      "img": "Compact_Script_III.png",
+      "name_ru": "Подробные Записи Боя"
     },
     "essence_softener": {
       "name_en": "Essence Softener",
@@ -118,7 +122,7 @@
       "name_en": "Buckflower Seed",
       "type": "naturals",
       "img": "Buckflower_Seed.png",
-      "name_ru": "Семя Гречесцвета"
+      "name_ru": "Семя Гречецвета"
     },
     "citrome": {
       "name_en": "Citrome",
@@ -159,7 +163,8 @@
     "firebuckle": {
       "name_en": "Firebuckle",
       "type": "naturals",
-      "img": "Firebuckle.png"
+      "img": "Firebuckle.png",
+      "name_ru": "Огнегреч"
     },
     "fluffed_jincao": {
       "name_en": "Fluffed Jincao",
@@ -245,7 +250,7 @@
       "name_en": "Wood",
       "type": "naturals",
       "img": "Wood.png",
-      "name_ru": "Дерево"
+      "name_ru": "Деревесина"
     },
     "yazhen": {
       "name_en": "Yazhen",
@@ -378,7 +383,8 @@
     "kalkodendra": {
       "name_en": "Kalkodendra",
       "type": "valuables",
-      "img": "Kalkodendra.png"
+      "img": "Kalkodendra.png",
+      "name_ru": "Калкодендра"
     },
     "kalkodendra_tuber": {
       "name_en": "Kalkodendra Tuber",
@@ -388,17 +394,20 @@
     "kalkonyx": {
       "name_en": "Kalkonyx",
       "type": "valuables",
-      "img": "Kalkonyx.png"
+      "img": "Kalkonyx.png",
+      "name_ru": "Кальценикс"
     },
     "kalkonyx_seed": {
       "name_en": "Kalkonyx Seed",
       "type": "valuables",
-      "img": "Kalkonyx_Seed.png"
+      "img": "Kalkonyx_Seed.png",
+      "name_ru": "Семя Кальценикс"
     },
     "pink_bolete": {
       "name_en": "Pink Bolete",
       "type": "valuables",
-      "img": "Pink_Bolete.png"
+      "img": "Pink_Bolete.png",
+      "name_ru": "Розовый Гриб"
     },
     "pink_bolete_mycelia": {
       "name_en": "Pink Bolete Mycelia",
@@ -720,7 +729,8 @@
     "arts_vial": {
       "name_en": "Arts Vial",
       "type": "usables",
-      "img": "Arts_Vial.png"
+      "img": "Arts_Vial.png",
+      "name_ru": "Пузырек Искусств"
     },
     "ashpin_remedy": {
       "name_en": "Ashpin Remedy",
@@ -873,7 +883,8 @@
     "firebuckle_powder": {
       "name_en": "Firebuckle Powder",
       "type": "usables",
-      "img": "Firebuckle_Powder.png"
+      "img": "Firebuckle_Powder.png",
+      "name_ru": "Молотый Огнегреч"
     },
     "firestove_rice": {
       "name_en": "Firestove Rice",
@@ -1071,12 +1082,14 @@
     "basic_aic_index": {
       "name_en": "Basic AIC Index",
       "type": "functionals",
-      "img": "Basic_AIC_Index.png"
+      "img": "Basic_AIC_Index.png",
+      "name_ru": "Стандартный Индекс АПК"
     },
     "basic_expansion_core": {
       "name_en": "Basic Expansion Core",
       "type": "functionals",
-      "img": "Basic_Expansion_Core.png"
+      "img": "Basic_Expansion_Core.png",
+      "name_ru": "Стандартное Ядро Расширения"
     },
     "jinlong_aic_index": {
       "name_en": "Jinlong AIC Index",
@@ -1096,7 +1109,8 @@
     "valley_convention_certificate": {
       "name_en": "Valley Convention Certificate",
       "type": "functionals",
-      "img": "Valley_Convention_Certificate.png"
+      "img": "Valley_Convention_Certificate.png",
+      "name_ru": "Облигация Долины"
     }
   }
 }
