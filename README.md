@@ -65,6 +65,8 @@ This is a client-side web application built with:
 ## Planned
 
 - Move the project to react
+- Update RU Localization (in process)
+- Update Icons (i think in CBT2 Fitting Unit and Parts have different models and icons)
 
 ## Contributing
 
