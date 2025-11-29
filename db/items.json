@@ -1,89 +1,5 @@
 {
   "items": {
-    "arms_insp_kit": {
-      "name_en": "Arms INSP Kit",
-      "type": "progression_materials",
-      "img": "Arms_INSP_Kit.png",
-      "name_ru": "Тест-Компонент Для Оружия"
-    },
-    "arms_insp_set": {
-      "name_en": "Arms INSP Set",
-      "type": "progression_materials",
-      "img": "Arms_INSP_Set.png",
-      "name_ru": "Тест-Набор Для Оружия"
-    },
-    "arms_inspector": {
-      "name_en": "Arms Inspector",
-      "type": "progression_materials",
-      "img": "Arms_Inspector.png",
-      "name_ru": "Тестер Оружия"
-    },
-    "cast_die": {
-      "name_en": "Cast Die",
-      "type": "progression_materials",
-      "img": "Cast_Die.png",
-      "name_ru": "Литейная Форма"
-    },
-    "compact_script_i": {
-      "name_en": "Compact Script I",
-      "type": "progression_materials",
-      "img": "Compact_Script_I.png",
-      "name_ru": "Базовые Записи Боя"
-    },
-    "compact_script_ii": {
-      "name_en": "Compact Script II",
-      "type": "progression_materials",
-      "img": "Compact_Script_II.png",
-      "name_ru": "Промежуточные Записи Боя"
-    },
-    "compact_script_iii": {
-      "name_en": "Compact Script III",
-      "type": "progression_materials",
-      "img": "Compact_Script_III.png",
-      "name_ru": "Подробные Записи Боя"
-    },
-    "essence_softener": {
-      "name_en": "Essence Softener",
-      "type": "progression_materials",
-      "img": "Essence_Softener.png"
-    },
-    "heavy_cast_die": {
-      "name_en": "Heavy Cast Die",
-      "type": "progression_materials",
-      "img": "Heavy_Cast_Die.png"
-    },
-    "protodisk": {
-      "name_en": "Protodisk",
-      "type": "progression_materials",
-      "img": "Protodisk.png",
-      "name_ru": "Протодиск"
-    },
-    "protohedron": {
-      "name_en": "Protohedron",
-      "type": "progression_materials",
-      "img": "Protohedron.png"
-    },
-    "protolog_i": {
-      "name_en": "Protolog I",
-      "type": "progression_materials",
-      "img": "Protolog_I.png"
-    },
-    "protolog_ii": {
-      "name_en": "Protolog II",
-      "type": "progression_materials",
-      "img": "Protolog_II.png"
-    },
-    "protoprism": {
-      "name_en": "Protoprism",
-      "type": "progression_materials",
-      "img": "Protoprism.png",
-      "name_ru": "Протопризма"
-    },
-    "protoset": {
-      "name_en": "Protoset",
-      "type": "progression_materials",
-      "img": "Protoset.png"
-    },
     "aketine": {
       "name_en": "Aketine",
       "type": "naturals",
@@ -149,11 +65,6 @@
       "img": "Cuprium_Ore.png",
       "name_ru": "Куприевая Руда"
     },
-    "cyanite_ore": {
-      "name_en": "Cyanite Ore",
-      "type": "naturals",
-      "img": "Cyanite_Ore.png"
-    },
     "ferrium_ore": {
       "name_en": "Ferrium Ore",
       "type": "naturals",
@@ -165,11 +76,6 @@
       "type": "naturals",
       "img": "Firebuckle.png",
       "name_ru": "Огнегреч"
-    },
-    "fluffed_jincao": {
-      "name_en": "Fluffed Jincao",
-      "type": "naturals",
-      "img": "Fluffed_Jincao.png"
     },
     "jincao": {
       "name_en": "Jincao",
@@ -235,22 +141,11 @@
       "type": "naturals",
       "img": "Tartpepper_Seed.png"
     },
-    "thorny_yazhen": {
-      "name_en": "Thorny Yazhen",
-      "type": "naturals",
-      "img": "Thorny_Yazhen.png"
-    },
     "umbraline": {
       "name_en": "Umbraline",
       "type": "naturals",
       "img": "Umbraline.png",
       "name_ru": "Умбралин"
-    },
-    "wood": {
-      "name_en": "Wood",
-      "type": "naturals",
-      "img": "Wood.png",
-      "name_ru": "Деревесина"
     },
     "yazhen": {
       "name_en": "Yazhen",
@@ -261,199 +156,6 @@
       "name_en": "Yazhen Seed",
       "type": "naturals",
       "img": "Yazhen_Seed.png"
-    },
-    "aggagrit": {
-      "name_en": "Aggagrit",
-      "type": "gatherables",
-      "img": "Aggagrit.png",
-      "name_ru": "Аггагрит"
-    },
-    "aggagrit_block": {
-      "name_en": "Aggagrit Block",
-      "type": "gatherables",
-      "img": "Aggagrit_Block.png"
-    },
-    "aggagrit_cluster": {
-      "name_en": "Aggagrit Cluster",
-      "type": "gatherables",
-      "img": "Aggagrit_Cluster.png"
-    },
-    "cartilage_bit": {
-      "name_en": "Cartilage Bit",
-      "type": "gatherables",
-      "img": "Cartilage_Bit.png"
-    },
-    "chitin_bit": {
-      "name_en": "Chitin Bit",
-      "type": "gatherables",
-      "img": "Chitin_Bit.png"
-    },
-    "fillet": {
-      "name_en": "Fillet",
-      "type": "gatherables",
-      "img": "Fillet.png",
-      "name_ru": "Стейк"
-    },
-    "glowbug": {
-      "name_en": "Glowbug",
-      "type": "gatherables",
-      "img": "Glowbug.png",
-      "name_ru": "Светожук"
-    },
-    "grass_chaff": {
-      "name_en": "Grass Chaff",
-      "type": "gatherables",
-      "img": "Grass_Chaff.png"
-    },
-    "hollow_bone": {
-      "name_en": "Hollow Bone",
-      "type": "gatherables",
-      "img": "Hollow_Bone.png"
-    },
-    "hollow_bonechip": {
-      "name_en": "Hollow Bonechip",
-      "type": "gatherables",
-      "img": "Hollow_Bonechip.png"
-    },
-    "scorchbug": {
-      "name_en": "Scorchbug",
-      "type": "gatherables",
-      "img": "Scorchbug.png"
-    },
-    "soaked_wood": {
-      "name_en": "Soaked Wood",
-      "type": "gatherables",
-      "img": "Soaked_Wood.png"
-    },
-    "soaked_woodchip": {
-      "name_en": "Soaked Woodchip",
-      "type": "gatherables",
-      "img": "Soaked_Woodchip.png"
-    },
-    "auronyx": {
-      "name_en": "Auronyx",
-      "type": "valuables",
-      "img": "Auronyx.png"
-    },
-    "auronyx_seed": {
-      "name_en": "Auronyx Seed",
-      "type": "valuables",
-      "img": "Auronyx_Seed.png"
-    },
-    "blighted_jadeleaf": {
-      "name_en": "Blighted Jadeleaf",
-      "type": "valuables",
-      "img": "Blighted_Jadeleaf.png"
-    },
-    "blighted_jadeleaf_tuber": {
-      "name_en": "Blighted Jadeleaf Tuber",
-      "type": "valuables",
-      "img": "Blighted_Jadeleaf_Tuber.png"
-    },
-    "bloodcap": {
-      "name_en": "Bloodcap",
-      "type": "valuables",
-      "img": "Bloodcap.png"
-    },
-    "bloodcap_mycelia": {
-      "name_en": "Bloodcap Mycelia",
-      "type": "valuables",
-      "img": "Bloodcap_Mycelia.png"
-    },
-    "chrysodendra": {
-      "name_en": "Chrysodendra",
-      "type": "valuables",
-      "img": "Chrysodendra.png"
-    },
-    "chrysodendra_tuber": {
-      "name_en": "Chrysodendra Tuber",
-      "type": "valuables",
-      "img": "Chrysodendra_Tuber.png"
-    },
-    "igneosite": {
-      "name_en": "Igneosite",
-      "type": "valuables",
-      "img": "Igneosite.png"
-    },
-    "igneosite_seed": {
-      "name_en": "Igneosite Seed",
-      "type": "valuables",
-      "img": "Igneosite_Seed.png"
-    },
-    "kalkodendra": {
-      "name_en": "Kalkodendra",
-      "type": "valuables",
-      "img": "Kalkodendra.png",
-      "name_ru": "Калкодендра"
-    },
-    "kalkodendra_tuber": {
-      "name_en": "Kalkodendra Tuber",
-      "type": "valuables",
-      "img": "Kalkodendra_Tuber.png"
-    },
-    "kalkonyx": {
-      "name_en": "Kalkonyx",
-      "type": "valuables",
-      "img": "Kalkonyx.png",
-      "name_ru": "Кальценикс"
-    },
-    "kalkonyx_seed": {
-      "name_en": "Kalkonyx Seed",
-      "type": "valuables",
-      "img": "Kalkonyx_Seed.png",
-      "name_ru": "Семя Кальценикс"
-    },
-    "pink_bolete": {
-      "name_en": "Pink Bolete",
-      "type": "valuables",
-      "img": "Pink_Bolete.png",
-      "name_ru": "Розовый Гриб"
-    },
-    "pink_bolete_mycelia": {
-      "name_en": "Pink Bolete Mycelia",
-      "type": "valuables",
-      "img": "Pink_Bolete_Mycelia.png"
-    },
-    "red_bolete": {
-      "name_en": "Red Bolete",
-      "type": "valuables",
-      "img": "Red_Bolete.png",
-      "name_ru": "Красный Гриб"
-    },
-    "red_bolete_mycelia": {
-      "name_en": "Red Bolete Mycelia",
-      "type": "valuables",
-      "img": "Red_Bolete_Mycelia.png"
-    },
-    "ruby_bolete": {
-      "name_en": "Ruby Bolete",
-      "type": "valuables",
-      "img": "Ruby_Bolete.png"
-    },
-    "ruby_bolete_mycelia": {
-      "name_en": "Ruby Bolete Mycelia",
-      "type": "valuables",
-      "img": "Ruby_Bolete_Mycelia.png"
-    },
-    "umbronyx": {
-      "name_en": "Umbronyx",
-      "type": "valuables",
-      "img": "Umbronyx.png"
-    },
-    "umbronyx_seed": {
-      "name_en": "Umbronyx Seed",
-      "type": "valuables",
-      "img": "Umbronyx_Seed.png"
-    },
-    "vitrodendra": {
-      "name_en": "Vitrodendra",
-      "type": "valuables",
-      "img": "Vitrodendra.png"
-    },
-    "vitrodendra_tuber": {
-      "name_en": "Vitrodendra Tuber",
-      "type": "valuables",
-      "img": "Vitrodendra_Tuber.png"
     },
     "aketine_powder": {
       "name_en": "Aketine Powder",
@@ -608,12 +310,6 @@
       "img": "Ferrium_Powder.png",
       "name_ru": "Молотый Феррий"
     },
-    "glowbug_powder": {
-      "name_en": "Glowbug Powder",
-      "type": "aic_products",
-      "img": "Glowbug_Powder.png",
-      "name_ru": "Молотый Светожук"
-    },
     "ground_buckflower_powder": {
       "name_en": "Ground Buckflower Powder",
       "type": "aic_products",
@@ -665,11 +361,6 @@
       "type": "aic_products",
       "img": "Packed_Origocrust.png"
     },
-    "plant_matter": {
-      "name_en": "Plant Matter",
-      "type": "aic_products",
-      "img": "Plant_Matter.png"
-    },
     "sandleaf_powder": {
       "name_en": "Sandleaf Powder",
       "type": "aic_products",
@@ -684,7 +375,8 @@
     "scorchbug_powder": {
       "name_en": "Scorchbug Powder",
       "type": "aic_products",
-      "img": "Scorchbug_Powder.png"
+      "img": "Scorchbug_Powder.png",
+      "name_ru": "Молотый Огнежук"
     },
     "stabilized_carbon": {
       "name_en": "Stabilized Carbon",
@@ -721,37 +413,6 @@
       "img": "Yazhen_Solution.png",
       "transport_type": "pipe"
     },
-    "arts_tube": {
-      "name_en": "Arts Tube",
-      "type": "usables",
-      "img": "Arts_Tube.png"
-    },
-    "arts_vial": {
-      "name_en": "Arts Vial",
-      "type": "usables",
-      "img": "Arts_Vial.png",
-      "name_ru": "Пузырек Искусств"
-    },
-    "ashpin_remedy": {
-      "name_en": "Ashpin Remedy",
-      "type": "usables",
-      "img": "Ashpin_Remedy.png"
-    },
-    "bizarro_chili": {
-      "name_en": "Bizarro Chili",
-      "type": "usables",
-      "img": "Bizarro_Chili.png"
-    },
-    "bizarrotack": {
-      "name_en": "Bizarrotack",
-      "type": "usables",
-      "img": "Bizarrotack.png"
-    },
-    "blanched_remedy": {
-      "name_en": "Blanched Remedy",
-      "type": "usables",
-      "img": "Blanched_Remedy.png"
-    },
     "buck_capsule_a": {
       "name_en": "Buck Capsule (A)",
       "type": "usables",
@@ -776,26 +437,6 @@
       "img": "Buckflower_Powder.png",
       "name_ru": "Молотый Гречецвет"
     },
-    "buckpill_l": {
-      "name_en": "Buckpill (L)",
-      "type": "usables",
-      "img": "Buckpill_(L).png"
-    },
-    "buckpill_rf.": {
-      "name_en": "Buckpill (Rf.)",
-      "type": "usables",
-      "img": "Buckpill_(Rf.).png"
-    },
-    "buckpill_s": {
-      "name_en": "Buckpill (S)",
-      "type": "usables",
-      "img": "Buckpill_(S).png"
-    },
-    "bugtack": {
-      "name_en": "Bugtack",
-      "type": "usables",
-      "img": "Bugtack.png"
-    },
     "canned_citrome_a": {
       "name_en": "Canned Citrome (A)",
       "type": "usables",
@@ -814,117 +455,11 @@
       "img": "Canned_Citrome_(C).png",
       "name_ru": "Консервированный Цитром (C)"
     },
-    "cartilage_tack": {
-      "name_en": "Cartilage Tack",
-      "type": "usables",
-      "img": "Cartilage_Tack.png"
-    },
-    "citrobucky_mix": {
-      "name_en": "Citrobucky Mix",
-      "type": "usables",
-      "img": "Citrobucky_Mix.png"
-    },
-    "citrome_jam": {
-      "name_en": "Citrome Jam",
-      "type": "usables",
-      "img": "Citrome_Jam.png"
-    },
-    "citrome_jelly": {
-      "name_en": "Citrome Jelly",
-      "type": "usables",
-      "img": "Citrome_Jelly.png"
-    },
     "citrome_powder": {
       "name_en": "Citrome Powder",
       "type": "usables",
       "img": "Citrome_Powder.png",
       "name_ru": "Молотый Цитром"
-    },
-    "citrome_pudding": {
-      "name_en": "Citrome Pudding",
-      "type": "usables",
-      "img": "Citrome_Pudding.png"
-    },
-    "citromix": {
-      "name_en": "Citromix",
-      "type": "usables",
-      "img": "Citromix.png"
-    },
-    "citromix_l": {
-      "name_en": "Citromix (L)",
-      "type": "usables",
-      "img": "Citromix_(L).png"
-    },
-    "citromix_rf.": {
-      "name_en": "Citromix (Rf.)",
-      "type": "usables",
-      "img": "Citromix_(Rf.).png"
-    },
-    "citromix_s": {
-      "name_en": "Citromix (S)",
-      "type": "usables",
-      "img": "Citromix_(S).png"
-    },
-    "coarse_flatbread": {
-      "name_en": "Coarse Flatbread",
-      "type": "usables",
-      "img": "Coarse_Flatbread.png"
-    },
-    "corrective_remedy": {
-      "name_en": "Corrective Remedy",
-      "type": "usables",
-      "img": "Corrective_Remedy.png"
-    },
-    "fillet_confit": {
-      "name_en": "Fillet Confit",
-      "type": "usables",
-      "img": "Fillet_Confit.png"
-    },
-    "firebuckle_powder": {
-      "name_en": "Firebuckle Powder",
-      "type": "usables",
-      "img": "Firebuckle_Powder.png",
-      "name_ru": "Молотый Огнегреч"
-    },
-    "firestove_rice": {
-      "name_en": "Firestove Rice",
-      "type": "usables",
-      "img": "Firestove_Rice.png"
-    },
-    "firetack": {
-      "name_en": "Firetack",
-      "type": "usables",
-      "img": "Firetack.png"
-    },
-    "fluffed_jincao_powder": {
-      "name_en": "Fluffed Jincao Powder",
-      "type": "usables",
-      "img": "Fluffed_Jincao_Powder.png"
-    },
-    "fortifying_infusion": {
-      "name_en": "Fortifying Infusion",
-      "type": "usables",
-      "img": "Fortifying_Infusion.png"
-    },
-    "garden_fried_rice": {
-      "name_en": "Garden Fried Rice",
-      "type": "usables",
-      "img": "Garden_Fried_Rice.png"
-    },
-    "garden_stir_fry": {
-      "name_en": "Garden Stir-Fry",
-      "type": "usables",
-      "img": "Garden_Stir-Fry.png"
-    },
-    "ginseng_meat_stew": {
-      "name_en": "Ginseng Meat Stew",
-      "type": "usables",
-      "img": "Ginseng_Meat_Stew.png"
-    },
-    "hot_crunchy_ribs": {
-      "name_en": "Hot Crunchy Ribs",
-      "type": "usables",
-      "img": "Hot_Crunchy_Ribs.png"
     },
     "industrial_explosive": {
       "name_en": "Industrial Explosive",
@@ -937,11 +472,6 @@
       "type": "usables",
       "img": "Jincao_Drink.png"
     },
-    "jincao_infusion": {
-      "name_en": "Jincao Infusion",
-      "type": "usables",
-      "img": "Jincao_Infusion.png"
-    },
     "jincao_powder": {
       "name_en": "Jincao Powder",
       "type": "usables",
@@ -952,105 +482,10 @@
       "type": "usables",
       "img": "Jincao_Tea.png"
     },
-    "jincao_tisane": {
-      "name_en": "Jincao Tisane",
-      "type": "usables",
-      "img": "Jincao_Tisane.png"
-    },
-    "kunst_tube": {
-      "name_en": "Kunst Tube",
-      "type": "usables",
-      "img": "Kunst_Tube.png"
-    },
-    "kunst_vial": {
-      "name_en": "Kunst Vial",
-      "type": "usables",
-      "img": "Kunst_Vial.png"
-    },
-    "meat_stir_fry": {
-      "name_en": "Meat Stir-Fry",
-      "type": "usables",
-      "img": "Meat_Stir-Fry.png"
-    },
-    "mossfield_pie": {
-      "name_en": "Mossfield Pie",
-      "type": "usables",
-      "img": "Mossfield_Pie.png"
-    },
-    "perplexing_medication": {
-      "name_en": "Perplexing Medication",
-      "type": "usables",
-      "img": "Perplexing_Medication.png"
-    },
-    "preserve_stew": {
-      "name_en": "Preserve Stew",
-      "type": "usables",
-      "img": "Preserve_Stew.png"
-    },
-    "savory_fillet": {
-      "name_en": "Savory Fillet",
-      "type": "usables",
-      "img": "Savory_Fillet.png"
-    },
-    "savory_tangbao": {
-      "name_en": "Savory Tangbao",
-      "type": "usables",
-      "img": "Savory_Tangbao.png"
-    },
-    "savory_tangmian": {
-      "name_en": "Savory Tangmian",
-      "type": "usables",
-      "img": "Savory_Tangmian.png"
-    },
-    "sensory_remedy": {
-      "name_en": "Sensory Remedy",
-      "type": "usables",
-      "img": "Sensory_Remedy.png"
-    },
-    "smoked_riceball": {
-      "name_en": "Smoked Riceball",
-      "type": "usables",
-      "img": "Smoked_Riceball.png"
-    },
-    "tartpepper_pickle": {
-      "name_en": "Tartpepper Pickle",
-      "type": "usables",
-      "img": "Tartpepper_Pickle.png"
-    },
-    "tartpepper_salad": {
-      "name_en": "Tartpepper Salad",
-      "type": "usables",
-      "img": "Tartpepper_Salad.png"
-    },
-    "thorny_yazhen_powder": {
-      "name_en": "Thorny Yazhen Powder",
-      "type": "usables",
-      "img": "Thorny_Yazhen_Powder.png"
-    },
-    "valley_graybread": {
-      "name_en": "Valley Graybread",
-      "type": "usables",
-      "img": "Valley_Graybread.png"
-    },
-    "wuling_fried_rice": {
-      "name_en": "Wuling Fried Rice",
-      "type": "usables",
-      "img": "Wuling_Fried_Rice.png"
-    },
     "yazhen_powder": {
       "name_en": "Yazhen Powder",
       "type": "usables",
       "img": "Yazhen_Powder.png"
-    },
-    "yazhen_spray_l": {
-      "name_en": "Yazhen Spray (L)",
-      "type": "usables",
-      "img": "Yazhen_Spray_(L).png"
-    },
-    "yazhen_spray_s": {
-      "name_en": "Yazhen Spray (S)",
-      "type": "usables",
-      "img": "Yazhen_Spray_(S).png"
     },
     "yazhen_syringe_a": {
       "name_en": "Yazhen Syringe (A)",
@@ -1061,56 +496,6 @@
       "name_en": "Yazhen Syringe (C)",
       "type": "usables",
       "img": "Yazhen_Syringe_(C).png"
-    },
-    "aerospace_material_i": {
-      "name_en": "Aerospace Material I",
-      "type": "functionals",
-      "img": "Aerospace_Material_I.png",
-      "name_ru": "Аэрокосмический Материал I"
-    },
-    "aerospace_material_ii": {
-      "name_en": "Aerospace Material II",
-      "type": "functionals",
-      "img": "Aerospace_Material_II.png",
-      "name_ru": "Аэрокосмический Материал II"
-    },
-    "algorithm_expansion_chip": {
-      "name_en": "Algorithm Expansion Chip",
-      "type": "functionals",
-      "img": "Algorithm_Expansion_Chip.png"
-    },
-    "basic_aic_index": {
-      "name_en": "Basic AIC Index",
-      "type": "functionals",
-      "img": "Basic_AIC_Index.png",
-      "name_ru": "Стандартный Индекс АПК"
-    },
-    "basic_expansion_core": {
-      "name_en": "Basic Expansion Core",
-      "type": "functionals",
-      "img": "Basic_Expansion_Core.png",
-      "name_ru": "Стандартное Ядро Расширения"
-    },
-    "jinlong_aic_index": {
-      "name_en": "Jinlong AIC Index",
-      "type": "functionals",
-      "img": "Jinlong_AIC_Index.png"
-    },
-    "jinlong_convention_certificate": {
-      "name_en": "Jinlong Convention Certificate",
-      "type": "functionals",
-      "img": "Jinlong_Convention_Certificate.png"
-    },
-    "jinlong_expansion_core": {
-      "name_en": "Jinlong Expansion Core",
-      "type": "functionals",
-      "img": "Jinlong_Expansion_Core.png"
-    },
-    "valley_convention_certificate": {
-      "name_en": "Valley Convention Certificate",
-      "type": "functionals",
-      "img": "Valley_Convention_Certificate.png",
-      "name_ru": "Облигация Долины"
     }
   }
 }
