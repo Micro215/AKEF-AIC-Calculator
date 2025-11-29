@@ -12,16 +12,6 @@
       "img": "Aketine_Seed.png",
       "name_ru": "Семя Акетина"
     },
-    "amber_rice": {
-      "name_en": "Amber Rice",
-      "type": "naturals",
-      "img": "Amber_Rice.png"
-    },
-    "amber_rice_seed": {
-      "name_en": "Amber Rice Seed",
-      "type": "naturals",
-      "img": "Amber_Rice_Seed.png"
-    },
     "amethyst_ore": {
       "name_en": "Amethyst Ore",
       "type": "naturals",
@@ -71,12 +61,6 @@
       "img": "Ferrium_Ore.png",
       "name_ru": "Ферриевая Руда"
     },
-    "firebuckle": {
-      "name_en": "Firebuckle",
-      "type": "naturals",
-      "img": "Firebuckle.png",
-      "name_ru": "Огнегреч"
-    },
     "jincao": {
       "name_en": "Jincao",
       "type": "naturals",
@@ -93,28 +77,6 @@
       "img": "Originium_Ore.png",
       "name_ru": "Ориджиниевая Руда"
     },
-    "redjade_ginseng": {
-      "name_en": "Redjade Ginseng",
-      "type": "naturals",
-      "img": "Redjade_Ginseng.png"
-    },
-    "redjade_ginseng_seed": {
-      "name_en": "Redjade Ginseng Seed",
-      "type": "naturals",
-      "img": "Redjade_Ginseng_Seed.png"
-    },
-    "reed_rye": {
-      "name_en": "Reed Rye",
-      "type": "naturals",
-      "img": "Reed_Rye.png",
-      "name_ru": "Тростниковая Рожь"
-    },
-    "reed_rye_seed": {
-      "name_en": "Reed Rye Seed",
-      "type": "naturals",
-      "img": "Reed_Rye_Seed.png",
-      "name_ru": "Семя Тростниковой Ржи"
-    },
     "sandleaf": {
       "name_en": "Sandleaf",
       "type": "naturals",
@@ -130,22 +92,6 @@
       "type": "naturals",
       "img": "Sewage.png",
       "transport_type": "pipe"
-    },
-    "tartpepper": {
-      "name_en": "Tartpepper",
-      "type": "naturals",
-      "img": "Tartpepper.png"
-    },
-    "tartpepper_seed": {
-      "name_en": "Tartpepper Seed",
-      "type": "naturals",
-      "img": "Tartpepper_Seed.png"
-    },
-    "umbraline": {
-      "name_en": "Umbraline",
-      "type": "naturals",
-      "img": "Umbraline.png",
-      "name_ru": "Умбралин"
     },
     "yazhen": {
       "name_en": "Yazhen",
@@ -371,12 +317,6 @@
       "type": "aic_products",
       "img": "SC_Battery.png",
       "name_ru": "Батарея СЕ"
-    },
-    "scorchbug_powder": {
-      "name_en": "Scorchbug Powder",
-      "type": "aic_products",
-      "img": "Scorchbug_Powder.png",
-      "name_ru": "Молотый Огнежук"
     },
     "stabilized_carbon": {
       "name_en": "Stabilized Carbon",
