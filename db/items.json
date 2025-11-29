@@ -80,12 +80,14 @@
     "sandleaf": {
       "name_en": "Sandleaf",
       "type": "naturals",
-      "img": "Sandleaf.png"
+      "img": "Sandleaf.png",
+      "name_ru": "Песчанолист"
     },
     "sandleaf_seed": {
       "name_en": "Sandleaf Seed",
       "type": "naturals",
-      "img": "Sandleaf_Seed.png"
+      "img": "Sandleaf_Seed.png",
+      "name_ru": "Семя Песчанолиста"
     },
     "sewage": {
       "name_en": "Sewage",
@@ -154,27 +156,32 @@
     "cryston_bottle": {
       "name_en": "Cryston Bottle",
       "type": "aic_products",
-      "img": "Cryston_Bottle.png"
+      "img": "Cryston_Bottle.png",
+      "name_ru": "Кристоновая Бутылка"
     },
     "cryston_component": {
       "name_en": "Cryston Component",
       "type": "aic_products",
-      "img": "Cryston_Component.png"
+      "img": "Cryston_Component.png",
+      "name_ru": "Кристоновый Компонент"
     },
     "cryston_fiber": {
       "name_en": "Cryston Fiber",
       "type": "aic_products",
-      "img": "Cryston_Fiber.png"
+      "img": "Cryston_Fiber.png",
+      "name_ru": "Кристоновое Волокно"
     },
     "cryston_part": {
       "name_en": "Cryston Part",
       "type": "aic_products",
-      "img": "Cryston_Part.png"
+      "img": "Cryston_Part.png",
+      "name_ru": "Кристоновая Деталь"
     },
     "cryston_powder": {
       "name_en": "Cryston Powder",
       "type": "aic_products",
-      "img": "Cryston_Powder.png"
+      "img": "Cryston_Powder.png",
+      "name_ru": "Молотый Кристон"
     },
     "cuprium": {
       "name_en": "Cuprium",
@@ -209,22 +216,26 @@
     "dense_carbon_powder": {
       "name_en": "Dense Carbon Powder",
       "type": "aic_products",
-      "img": "Dense_Carbon_Powder.png"
+      "img": "Dense_Carbon_Powder.png",
+      "name_ru": "Мелкомолотый Углерод"
     },
     "dense_ferrium_powder": {
       "name_en": "Dense Ferrium Powder",
       "type": "aic_products",
-      "img": "Dense_Ferrium_Powder.png"
+      "img": "Dense_Ferrium_Powder.png",
+      "name_ru": "Мелкомолотый Феррий"
     },
     "dense_originium_powder": {
       "name_en": "Dense Originium Powder",
       "type": "aic_products",
-      "img": "Dense_Originium_Powder.png"
+      "img": "Dense_Originium_Powder.png",
+      "name_ru": "Мелкомолотый Ориджиний"
     },
     "dense_origocrust_powder": {
       "name_en": "Dense Origocrust Powder",
       "type": "aic_products",
-      "img": "Dense_Origocrust_Powder.png"
+      "img": "Dense_Origocrust_Powder.png",
+      "name_ru": "Мелкомолотая Ориджеода"
     },
     "ferrium": {
       "name_en": "Ferrium",
@@ -259,12 +270,14 @@
     "ground_buckflower_powder": {
       "name_en": "Ground Buckflower Powder",
       "type": "aic_products",
-      "img": "Ground_Buckflower_Powder.png"
+      "img": "Ground_Buckflower_Powder.png",
+      "name_ru": "Измельченный Молотый Гречецвет"
     },
     "ground_citrome_powder": {
       "name_en": "Ground Citrome Powder",
       "type": "aic_products",
-      "img": "Ground_Citrome_Powder.png"
+      "img": "Ground_Citrome_Powder.png",
+      "name_ru": "Измельченный Молотый Цитром"
     },
     "hc_battery": {
       "name_en": "HC Battery",
@@ -310,7 +323,8 @@
     "sandleaf_powder": {
       "name_en": "Sandleaf Powder",
       "type": "aic_products",
-      "img": "Sandleaf_Powder.png"
+      "img": "Sandleaf_Powder.png",
+      "name_ru": "Молотый Песчанолист"
     },
     "sc_battery": {
       "name_en": "SC Battery",

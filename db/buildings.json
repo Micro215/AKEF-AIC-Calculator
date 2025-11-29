@@ -2075,7 +2075,8 @@
             }
           ]
         }
-      }
+      },
+      "name_ru": "Модуль Измельчения"
     },
     "reactor_crucible": {
       "name_en": "Reactor Crucible",
