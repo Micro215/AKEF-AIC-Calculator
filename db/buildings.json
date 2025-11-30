@@ -363,22 +363,6 @@
               "time": 2,
               "ingredients": [
                 {
-                  "item_id": "wood",
-                  "amount": 1
-                }
-              ],
-              "products": [
-                {
-                  "item_id": "carbon",
-                  "amount": 1
-                }
-              ],
-              "id": "carbon_solid_recipe"
-            },
-            {
-              "time": 2,
-              "ingredients": [
-                {
                   "item_id": "jincao",
                   "amount": 1
                 }
