@@ -437,7 +437,7 @@ export class TabsManager {
 
             // Add item icon if the tab has a target item
             if (tab.targetItem && window.datas && window.datas.itemsData) {
-                const itemInfo = window.datas.itemsData.items[tab.targetItem.id];
+                const itemInfo = window.datas.itemsData[tab.targetItem.id];
                 if (itemInfo && itemInfo.img) {
                     const itemIcon = document.createElement('img');
                     itemIcon.className = 'tab-item-icon';
@@ -452,13 +452,13 @@ export class TabsManager {
                         const recipes = this.findRecipesForItem(tab.targetItem.id);
                         if (recipes && recipes[recipeIndex]) {
                             const recipe = recipes[recipeIndex];
-                            const building = window.datas.buildingsData.buildings[recipe.buildingId];
+                            const building = window.datas.buildingsData[recipe.buildingId];
                             if (building && building.img) {
                                 const recipeIcon = document.createElement('img');
                                 recipeIcon.className = 'tab-recipe-icon';
                                 recipeIcon.src = `${window.projectBaseUrl}images/${building.img}`;
-                                recipeIcon.alt = window.localization.getBuildingName(building);
-                                recipeIcon.setAttribute('title', window.localization.getBuildingName(building));
+                                recipeIcon.alt = window.localization.getItemName(building);
+                                recipeIcon.setAttribute('title', window.localization.getItemName(building));
                                 tabNameDisplay.appendChild(recipeIcon);
                             }
                         }
@@ -577,7 +577,7 @@ export class TabsManager {
      */
     findRecipesForItem(itemId) {
         if (!window.datas || !window.datas.itemsData) return null;
-        const itemData = window.datas.itemsData.items[itemId];
+        const itemData = window.datas.itemsData[itemId];
         if (!itemData || !itemData.recipes) return null;
         return itemData.recipes.map(recipeId => window.datas.itemsData.recipes[recipeId]).filter(r => r);
     }

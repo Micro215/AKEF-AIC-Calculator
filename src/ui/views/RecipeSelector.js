@@ -9,13 +9,18 @@ import { calculateProduction } from "../../services/ProductionCalculator.js";
 
 /**
  * Renders the recipe category tabs and sets up their click handlers.
- * It dynamically builds the "All" tab and tabs for each discovered item category.
+ * It dynamically builds the "All" tab and tabs for each discovered item category
+ * that contains at least one craftable item.
  */
 export function renderRecipeCategories() {
     console.log("[ui.views.RecipeSelector.renderRecipeCategories] Rendering recipe categories.");
-    // Clear and rebuild the set of all available categories from the full item list.
+
+    // First, get all items and filter to keep only those that have recipes.
+    const craftableItems = getAllItems().filter(item => findRecipesForItem(item.id) !== null);
+
+    // Clear and rebuild the set of categories from the list of craftable items only.
     window.datas.allCategories.clear();
-    getAllItems().forEach(item => {
+    craftableItems.forEach(item => {
         if (item.type) {
             window.datas.allCategories.add(item.type);
         }
@@ -24,7 +29,7 @@ export function renderRecipeCategories() {
     // Create the "All" category tab, which is always active by default.
     window.elements.categoryTabs.innerHTML = `<button class="category-tab active" data-category="all">${window.localization.t('app.all')}</button>`;
 
-    // Create a tab for each unique category found.
+    // Create a tab for each unique category found among craftable items.
     window.datas.allCategories.forEach(category => {
         const tab = document.createElement('button');
         tab.className = 'category-tab';
@@ -109,7 +114,13 @@ export function renderRecipeGrid() {
             return itemName && itemName.toLowerCase().includes(searchQuery);
         });
     }
-    console.debug(`[ui.views.RecipeSelector.renderRecipeGrid] Filtered by search '${searchQuery}'. Final count: ${filteredItems.length}`);
+    console.debug(`[ui.views.RecipeSelector.renderRecipeGrid] Filtered by search '${searchQuery}'. Count: ${filteredItems.length}`);
+
+    filteredItems = filteredItems.filter(item => {
+        const hasRecipe = findRecipesForItem(item.id) !== null;
+        return hasRecipe;
+    });
+    console.debug(`[ui.views.RecipeSelector.renderRecipeGrid] Filtered items without recipes. Final count: ${filteredItems.length}`);
 
     // Clear the existing grid content.
     window.elements.recipeGrid.innerHTML = '';
@@ -135,16 +146,6 @@ export function renderRecipeGrid() {
         const itemEl = document.createElement('div');
         itemEl.className = 'recipe-item';
 
-        // Check if the item has any production recipes.
-        const hasRecipe = findRecipesForItem(item.id) !== null;
-
-        if (!hasRecipe) {
-            // Add a special class for raw materials that cannot be crafted.
-            itemEl.classList.add('is-raw-item');
-            // Add a tooltip to indicate it's uncraftable.
-            itemEl.title = window.localization.t('app.uncraftable');
-        }
-
         // Set the image source, with a fallback to a default icon.
         const imgSrc = item.img ? `${window.projectBaseUrl}images/${item.img}` : `${window.projectBaseUrl}images/default-item.png`;
 
@@ -153,14 +154,11 @@ export function renderRecipeGrid() {
             <div class="recipe-item-info">
                 <div class="recipe-item-name">${window.localization.getItemName(item)}</div>
                 <div class="recipe-item-type">${window.localization.getItemTypeName(item.type)}</div>
-                ${!hasRecipe ? `<div class="recipe-item-status">${window.localization.t('app.uncraftable')}</div>` : ''}
             </div>
         `;
 
-        // Only add a click listener for items that can be crafted (have recipes).
-        if (hasRecipe) {
-            itemEl.addEventListener('click', () => selectRecipe(item));
-        }
+        // Add a click listener for items.
+        itemEl.addEventListener('click', () => selectRecipe(item));
 
         window.elements.recipeGrid.appendChild(itemEl);
     });
@@ -218,13 +216,13 @@ export function showMobileRecipeSelector(nodeId) {
         option.className = 'recipe-option-mobile';
         option.setAttribute('tabindex', '0');
 
-        const building = window.datas.buildingsData.buildings[recipe.buildingId];
+        const building = window.datas.buildingsData[recipe.buildingId];
         const isSelected = index === nodeData.selectedRecipeIndex;
 
         option.innerHTML = `
             <div class="recipe-option-header">
-                <img src="${window.projectBaseUrl}images/${building.img}" alt="${window.localization.getBuildingName(building)}">
-                <span>${window.localization.getBuildingName(building)} ${isSelected ? "(" + window.localization.t('app.current' + ")") : ''}</span>
+                <img src="${window.projectBaseUrl}images/${building.img}" alt="${window.localization.getItemName(building)}">
+                <span>${window.localization.getItemName(building)} ${isSelected ? "(" + window.localization.t('app.current' + ")") : ''}</span>
             </div>
             <div class="recipe-option-content">
                 ${nodeInstance.renderIngredients(recipe.ingredients)}

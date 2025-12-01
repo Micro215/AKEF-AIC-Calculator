@@ -1,14 +1,8 @@
 {
-    "belt": {
-        "name_en": "Conveyor Belt",
-        "name_ru": "Конвеерная лента",
-        "speed": 30,
-        "img": "Belt.png"
+    "item_log_belt_01": {
+        "speed": 30
     },
-    "pipe": {
-        "name_en": "Pipe",
-        "name_ru": "Труба",
-        "speed": 240,
-        "img": "Pipe.png"
+    "item_log_pipe_01": {
+        "speed": 240
     }
 }

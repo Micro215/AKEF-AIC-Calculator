@@ -74,7 +74,7 @@ export function updateTotalPower() {
             const recipe = itemData.allRecipes[itemData.selectedRecipeIndex];
             if (recipe) {
                 // Get the power consumption of the building from the recipe.
-                const power = window.datas.buildingsData.buildings[recipe.buildingId].power || 0;
+                const power = window.datas.buildingsData[recipe.buildingId].power || 0;
                 // Add the machine's total power (number of machines * power per machine).
                 totalPower += Math.ceil(itemData.machineCount) * power;
             }
@@ -95,7 +95,7 @@ export function showDeleteConfirmation(itemId) {
     const deleteItemName = document.getElementById('delete-item-name');
 
     // Find the item's data to get its localized name for the confirmation message.
-    const item = window.datas.itemsData.items[itemId];
+    const item = window.datas.itemsData[itemId];
     if (item) {
         // Set the name in the confirmation modal.
         deleteItemName.textContent = window.localization.getItemName(item);

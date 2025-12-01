@@ -150,7 +150,7 @@ export class WasteManager {
                 allRecipes: disposalRecipes,
                 selectedRecipeIndex: 0,
                 machineCount: machinesNeeded,
-                transportType: 'belt',
+                transportType: 'item_log_belt_01',
                 transportCount: 0
             });
             console.log(`[managers.WasteManager] Created disposal node "${disposalNodeId}" for waste item "${wasteItemId}".`);

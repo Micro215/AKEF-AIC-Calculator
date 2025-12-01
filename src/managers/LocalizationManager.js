@@ -66,10 +66,29 @@ export class LocalizationManager {
                     throw new Error("Fallback English translation file could not be loaded.");
                 }
             }
+
+            const itemsTransaltionUrl = `${getProjectBaseUrl()}db/I18n/I18nTextTable_${this.currentLanguage}.json`;
+            console.debug(`[managers.LocalizationManager] Attempting to load items translations from: ${translationUrl}`);
+            const response_2 = await fetch(itemsTransaltionUrl);
+            if (response_2.ok) {
+                this.itemsTranslations = await response_2.json();
+                console.log(`[managers.LocalizationManager] Successfully loaded items translations for "${this.currentLanguage}".`);
+            } else {
+                // If the requested language file is not found, issue a warning and fall back to English.
+                console.warn(`[managers.LocalizationManager] Translation file for "${this.currentLanguage}" not found (status: ${response.status}). Falling back to English.`);
+                const fallbackResponse = await fetch(`${getProjectBaseUrl()}db/I18n/I18nTextTable_en.json`);
+                if (fallbackResponse.ok) {
+                    this.itemsTranslations = await fallbackResponse.json();
+                    this.currentLanguage = 'en'; // Update current language to reflect the fallback.
+                    console.log("[managers.LocalizationManager] Successfully loaded fallback English translations.");
+                } else {
+                    throw new Error("Fallback English translation file could not be loaded.");
+                }
+            }
         } catch (error) {
             console.error('[managers.LocalizationManager] Error loading translations:', error);
             // In case of a network error or other issue, ensure translations is an empty object to prevent further errors.
-            this.translations = {};
+            this.itemsTranslations = {};
         }
     }
 
@@ -117,31 +136,7 @@ export class LocalizationManager {
      */
     getItemName(item) {
         if (!item) return '';
-        // Prioritize the language-specific name, then fall back to English, then a generic 'name' property.
-        const nameKey = `name_${this.currentLanguage}`;
-        return item[nameKey] || item.name_en || item.name || '';
-    }
-
-    /**
-     * Gets the localized name for a building object.
-     * @param {Object} building - The building object.
-     * @returns {string} The localized building name.
-     */
-    getBuildingName(building) {
-        if (!building) return '';
-        const nameKey = `name_${this.currentLanguage}`;
-        return building[nameKey] || building.name_en || building.name || '';
-    }
-
-    /**
-     * Gets the localized name for a building mode object.
-     * @param {Object} mode - The building mode object.
-     * @returns {string} The localized mode name.
-     */
-    getModeName(mode) {
-        if (!mode) return '';
-        const nameKey = `name_${this.currentLanguage}`;
-        return mode[nameKey] || mode.name_en || mode.name || '';
+        return this.itemsTranslations[item.name_map] || '';
     }
 
     /**
@@ -208,17 +203,6 @@ export class LocalizationManager {
         // Fallback to English if the list cannot be loaded.
         console.warn("[managers.LocalizationManager] Could not load languages.json, falling back to { en: 'English' }.");
         return { en: 'English' };
-    }
-
-    /**
-     * Gets the localized name for a transport object.
-     * @param {Object} transport - The transport object.
-     * @returns {string} The localized transport name.
-     */
-    getTransportName(transport) {
-        if (!transport) return '';
-        const nameKey = `name_${this.currentLanguage}`;
-        return transport[nameKey] || transport.name_en || transport.name || '';
     }
 }
 

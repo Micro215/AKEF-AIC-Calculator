@@ -78,7 +78,6 @@ export class DefaultRecipeManager {
                 // Determine the currently selected default recipe for this item.
                 const defaultRecipeIndex = this.defaultRecipes.get(item.id) ?? 0;
                 const defaultRecipe = recipes[defaultRecipeIndex];
-                const defaultBuilding = window.datas.buildingsData.buildings[defaultRecipe.buildingId];
 
                 // Populate the header with item icon, name, and the current default recipe.
                 itemHeader.innerHTML = `
@@ -86,7 +85,7 @@ export class DefaultRecipeManager {
                         <img src="${window.projectBaseUrl}images/${item.img}" alt="${window.localization.getItemName(item)}">
                         <div class="akef-recipe-header-info">
                             <span class="akef-recipe-item-name">${window.localization.getItemName(item)}</span>
-                            <span class="akef-recipe-current-default">${window.localization.t('app.current')}: ${window.localization.getBuildingName(defaultBuilding)} <img src="${window.projectBaseUrl}images/${defaultBuilding.img}" alt="${window.localization.getBuildingName(defaultBuilding)}" class="akef-current-building-icon"></span>
+                            <span class="akef-recipe-current-default">${window.localization.t('app.current')}: ${window.localization.getItemName(window.datas.itemsData[defaultRecipe.buildingId])} <img src="${window.projectBaseUrl}images/${window.datas.itemsData[defaultRecipe.buildingId].img}" alt="${window.localization.getItemName(window.datas.itemsData[defaultRecipe.buildingId])}" class="akef-current-building-icon"></span>
                         </div>
                     </div>
                     <i class="fas fa-chevron-down akef-recipe-chevron"></i>
@@ -98,7 +97,7 @@ export class DefaultRecipeManager {
 
                 // Create a selectable option for each recipe.
                 recipes.forEach((recipe, index) => {
-                    const building = window.datas.buildingsData.buildings[recipe.buildingId];
+                    // const building = window.datas.buildingsData[recipe.buildingId];
                     const isSelected = this.defaultRecipes.get(item.id) === index;
 
                     const option = document.createElement('div');
@@ -106,8 +105,8 @@ export class DefaultRecipeManager {
                     option.innerHTML = `
                         <div class="akef-recipe-option-header">
                             <input type="radio" name="recipe-${item.id}" value="${index}" ${isSelected ? 'checked' : ''}>
-                            <img src="${window.projectBaseUrl}images/${building.img}" alt="${window.localization.getBuildingName(building)}">
-                            <span>${window.localization.getBuildingName(building)}</span>
+                            <img src="${window.projectBaseUrl}images/${window.datas.itemsData[recipe.buildingId].img}" alt="${window.localization.getItemName(window.datas.itemsData[recipe.buildingId])}">
+                            <span>${window.localization.getItemName(window.datas.itemsData[recipe.buildingId])}</span>
                         </div>
                         <div class="akef-recipe-option-content">
                             ${this.renderIngredients(recipe.ingredients)}
@@ -127,8 +126,8 @@ export class DefaultRecipeManager {
                         option.classList.add('selected');
                         // Update the header to show the newly selected default.
                         const headerInfo = itemHeader.querySelector('.akef-recipe-current-default');
-                        headerInfo.innerHTML = `${window.localization.t('app.current')}: ${window.localization.getBuildingName(building)}
-                            <img src="${window.projectBaseUrl}images/${building.img}" alt="${window.localization.getBuildingName(building)}"
+                        headerInfo.innerHTML = `${window.localization.t('app.current')}: ${window.localization.getItemName(window.datas.itemsData[recipe.buildingId])}
+                            <img src="${window.projectBaseUrl}images/${window.datas.itemsData[recipe.buildingId].img}" alt="${window.localization.getItemName(window.datas.itemsData[recipe.buildingId])}"
                             class="akef-current-building-icon">
                         `;
                     });
@@ -211,7 +210,7 @@ export class DefaultRecipeManager {
     renderIngredients(ingredients) {
         if (!ingredients) return '';
         return ingredients.map(ing => {
-            const item = window.datas.itemsData.items[ing.item_id];
+            const item = window.datas.itemsData[ing.item_id];
             return `
                 <div class="akef-recipe-component" data-amount="${ing.amount.toFixed(0)}">
                     <img src="${window.projectBaseUrl}images/${item.img}" title="${window.localization.getItemName(item)}: ${ing.amount.toFixed(0)}">
@@ -228,7 +227,7 @@ export class DefaultRecipeManager {
     renderProducts(products) {
         if (!products) return '';
         return products.map(prod => {
-            const item = window.datas.itemsData.items[prod.item_id];
+            const item = window.datas.itemsData[prod.item_id];
             return `
                 <div class="akef-recipe-component" data-amount="${prod.amount}">
                     <img src="${window.projectBaseUrl}images/${item.img}" title="${window.localization.getItemName(item)}: ${prod.amount}">

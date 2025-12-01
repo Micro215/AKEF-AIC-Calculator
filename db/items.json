@@ -1,455 +1,1346 @@
 {
-  "items": {
-    "aketine": {
-      "name_en": "Aketine",
-      "type": "naturals",
-      "img": "Aketine.png",
-      "name_ru": "Акетин"
-    },
-    "aketine_seed": {
-      "name_en": "Aketine Seed",
-      "type": "naturals",
-      "img": "Aketine_Seed.png",
-      "name_ru": "Семя Акетина"
-    },
-    "amethyst_ore": {
-      "name_en": "Amethyst Ore",
-      "type": "naturals",
-      "img": "Amethyst_Ore.png",
-      "name_ru": "Аметистовая Руда"
-    },
-    "buckflower": {
-      "name_en": "Buckflower",
-      "type": "naturals",
-      "img": "Buckflower.png",
-      "name_ru": "Гречецвет"
-    },
-    "buckflower_seed": {
-      "name_en": "Buckflower Seed",
-      "type": "naturals",
-      "img": "Buckflower_Seed.png",
-      "name_ru": "Семя Гречецвета"
-    },
-    "citrome": {
-      "name_en": "Citrome",
-      "type": "naturals",
-      "img": "Citrome.png",
-      "name_ru": "Цитром"
-    },
-    "citrome_seed": {
-      "name_en": "Citrome Seed",
-      "type": "naturals",
-      "img": "Citrome_Seed.png",
-      "name_ru": "Семя Цитрома"
-    },
-    "clean_water": {
-      "name_en": "Clean Water",
-      "type": "naturals",
-      "img": "Clean_Water.png",
-      "transport_type": "pipe",
-      "name_ru": "Чистая Вода"
-    },
-    "cuprium_ore": {
-      "name_en": "Cuprium Ore",
-      "type": "naturals",
-      "img": "Cuprium_Ore.png",
-      "name_ru": "Куприевая Руда"
-    },
-    "ferrium_ore": {
-      "name_en": "Ferrium Ore",
-      "type": "naturals",
-      "img": "Ferrium_Ore.png",
-      "name_ru": "Ферриевая Руда"
-    },
-    "jincao": {
-      "name_en": "Jincao",
-      "type": "naturals",
-      "img": "Jincao.png"
-    },
-    "jincao_seed": {
-      "name_en": "Jincao Seed",
-      "type": "naturals",
-      "img": "Jincao_Seed.png"
-    },
-    "originium_ore": {
-      "name_en": "Originium Ore",
-      "type": "naturals",
-      "img": "Originium_Ore.png",
-      "name_ru": "Ориджиниевая Руда"
-    },
-    "sandleaf": {
-      "name_en": "Sandleaf",
-      "type": "naturals",
-      "img": "Sandleaf.png",
-      "name_ru": "Песчанолист"
-    },
-    "sandleaf_seed": {
-      "name_en": "Sandleaf Seed",
-      "type": "naturals",
-      "img": "Sandleaf_Seed.png",
-      "name_ru": "Семя Песчанолиста"
-    },
-    "sewage": {
-      "name_en": "Sewage",
-      "type": "naturals",
-      "img": "Sewage.png",
-      "transport_type": "pipe"
-    },
-    "yazhen": {
-      "name_en": "Yazhen",
-      "type": "naturals",
-      "img": "Yazhen.png"
-    },
-    "yazhen_seed": {
-      "name_en": "Yazhen Seed",
-      "type": "naturals",
-      "img": "Yazhen_Seed.png"
-    },
-    "aketine_powder": {
-      "name_en": "Aketine Powder",
-      "type": "aic_products",
-      "img": "Aketine_Powder.png",
-      "name_ru": "Молотый Акетин"
-    },
-    "amethyst_bottle": {
-      "name_en": "Amethyst Bottle",
-      "type": "aic_products",
-      "img": "Amethyst_Bottle.png",
-      "name_ru": "Аметистовая Бутылка"
-    },
-    "amethyst_component": {
-      "name_en": "Amethyst Component",
-      "type": "aic_products",
-      "img": "Amethyst_Component.png",
-      "name_ru": "Аметистовый Компонент"
-    },
-    "amethyst_fiber": {
-      "name_en": "Amethyst Fiber",
-      "type": "aic_products",
-      "img": "Amethyst_Fiber.png",
-      "name_ru": "Аметистовое Волокно"
-    },
-    "amethyst_part": {
-      "name_en": "Amethyst Part",
-      "type": "aic_products",
-      "img": "Amethyst_Part.png",
-      "name_ru": "Аметистовая Деталь"
-    },
-    "amethyst_powder": {
-      "name_en": "Amethyst Powder",
-      "type": "aic_products",
-      "img": "Amethyst_Powder.png",
-      "name_ru": "Молотый Аметист"
-    },
-    "carbon": {
-      "name_en": "Carbon",
-      "type": "aic_products",
-      "img": "Carbon.png",
-      "name_ru": "Углерод"
-    },
-    "carbon_powder": {
-      "name_en": "Carbon Powder",
-      "type": "aic_products",
-      "img": "Carbon_Powder.png",
-      "name_ru": "Молотый Углерод"
-    },
-    "cryston_bottle": {
-      "name_en": "Cryston Bottle",
-      "type": "aic_products",
-      "img": "Cryston_Bottle.png",
-      "name_ru": "Кристоновая Бутылка"
-    },
-    "cryston_component": {
-      "name_en": "Cryston Component",
-      "type": "aic_products",
-      "img": "Cryston_Component.png",
-      "name_ru": "Кристоновый Компонент"
-    },
-    "cryston_fiber": {
-      "name_en": "Cryston Fiber",
-      "type": "aic_products",
-      "img": "Cryston_Fiber.png",
-      "name_ru": "Кристоновое Волокно"
-    },
-    "cryston_part": {
-      "name_en": "Cryston Part",
-      "type": "aic_products",
-      "img": "Cryston_Part.png",
-      "name_ru": "Кристоновая Деталь"
-    },
-    "cryston_powder": {
-      "name_en": "Cryston Powder",
-      "type": "aic_products",
-      "img": "Cryston_Powder.png",
-      "name_ru": "Молотый Кристон"
-    },
-    "cuprium": {
-      "name_en": "Cuprium",
-      "type": "aic_products",
-      "img": "Cuprium.png",
-      "name_ru": "Куприй"
-    },
-    "cuprium_component": {
-      "name_en": "Cuprium Component",
-      "type": "aic_products",
-      "img": "Cuprium_Component.png",
-      "name_ru": "Куприевый Компонент"
-    },
-    "cuprium_jar": {
-      "name_en": "Cuprium Jar",
-      "type": "aic_products",
-      "img": "Cuprium_Jar.png",
-      "name_ru": "Куприевая Банка"
-    },
-    "cuprium_part": {
-      "name_en": "Cuprium Part",
-      "type": "aic_products",
-      "img": "Cuprium_Part.png",
-      "name_ru": "Куприевая Деталь"
-    },
-    "cuprium_powder": {
-      "name_en": "Cuprium Powder",
-      "type": "aic_products",
-      "img": "Cuprium_Powder.png",
-      "name_ru": "Молотый Куприй"
-    },
-    "dense_carbon_powder": {
-      "name_en": "Dense Carbon Powder",
-      "type": "aic_products",
-      "img": "Dense_Carbon_Powder.png",
-      "name_ru": "Мелкомолотый Углерод"
-    },
-    "dense_ferrium_powder": {
-      "name_en": "Dense Ferrium Powder",
-      "type": "aic_products",
-      "img": "Dense_Ferrium_Powder.png",
-      "name_ru": "Мелкомолотый Феррий"
-    },
-    "dense_originium_powder": {
-      "name_en": "Dense Originium Powder",
-      "type": "aic_products",
-      "img": "Dense_Originium_Powder.png",
-      "name_ru": "Мелкомолотый Ориджиний"
-    },
-    "dense_origocrust_powder": {
-      "name_en": "Dense Origocrust Powder",
-      "type": "aic_products",
-      "img": "Dense_Origocrust_Powder.png",
-      "name_ru": "Мелкомолотая Ориджеода"
-    },
-    "ferrium": {
-      "name_en": "Ferrium",
-      "type": "aic_products",
-      "img": "Ferrium.png",
-      "name_ru": "Феррий"
-    },
-    "ferrium_bottle": {
-      "name_en": "Ferrium Bottle",
-      "type": "aic_products",
-      "img": "Ferrium_Bottle.png",
-      "name_ru": "Ферриевая Бутылка"
-    },
-    "ferrium_component": {
-      "name_en": "Ferrium Component",
-      "type": "aic_products",
-      "img": "Ferrium_Component.png",
-      "name_ru": "Ферриевый Компонент"
-    },
-    "ferrium_part": {
-      "name_en": "Ferrium Part",
-      "type": "aic_products",
-      "img": "Ferrium_Part.png",
-      "name_ru": "Ферриевая Деталь"
-    },
-    "ferrium_powder": {
-      "name_en": "Ferrium Powder",
-      "type": "aic_products",
-      "img": "Ferrium_Powder.png",
-      "name_ru": "Молотый Феррий"
-    },
-    "ground_buckflower_powder": {
-      "name_en": "Ground Buckflower Powder",
-      "type": "aic_products",
-      "img": "Ground_Buckflower_Powder.png",
-      "name_ru": "Измельченный Молотый Гречецвет"
-    },
-    "ground_citrome_powder": {
-      "name_en": "Ground Citrome Powder",
-      "type": "aic_products",
-      "img": "Ground_Citrome_Powder.png",
-      "name_ru": "Измельченный Молотый Цитром"
-    },
-    "hc_battery": {
-      "name_en": "HC Battery",
-      "type": "aic_products",
-      "img": "HC_Battery.png",
-      "name_ru": "Батарея БЕ"
-    },
-    "jincao_solution": {
-      "name_en": "Jincao Solution",
-      "type": "aic_products",
-      "img": "Jincao_Solution.png",
-      "transport_type": "pipe"
-    },
-    "lc_battery": {
-      "name_en": "LC Battery",
-      "type": "aic_products",
-      "img": "LC_Battery.png",
-      "name_ru": "Батарея МЕ"
-    },
-    "originium_powder": {
-      "name_en": "Originium Powder",
-      "type": "aic_products",
-      "img": "Originium_Powder.png",
-      "name_ru": "Молотый Ориджиний"
-    },
-    "origocrust": {
-      "name_en": "Origocrust",
-      "type": "aic_products",
-      "img": "Origocrust.png",
-      "name_ru": "Ориджеода"
-    },
-    "origocrust_powder": {
-      "name_en": "Origocrust Powder",
-      "type": "aic_products",
-      "img": "Origocrust_Powder.png",
-      "name_ru": "Молотая Ориджеода"
-    },
-    "packed_origocrust": {
-      "name_en": "Packed Origocrust",
-      "type": "aic_products",
-      "img": "Packed_Origocrust.png"
-    },
-    "sandleaf_powder": {
-      "name_en": "Sandleaf Powder",
-      "type": "aic_products",
-      "img": "Sandleaf_Powder.png",
-      "name_ru": "Молотый Песчанолист"
-    },
-    "sc_battery": {
-      "name_en": "SC Battery",
-      "type": "aic_products",
-      "img": "SC_Battery.png",
-      "name_ru": "Батарея СЕ"
-    },
-    "stabilized_carbon": {
-      "name_en": "Stabilized Carbon",
-      "type": "aic_products",
-      "img": "Stabilized_Carbon.png"
-    },
-    "steel": {
-      "name_en": "Steel",
-      "type": "aic_products",
-      "img": "Steel.png",
-      "name_ru": "Сталь"
-    },
-    "steel_bottle": {
-      "name_en": "Steel Bottle",
-      "type": "aic_products",
-      "img": "Steel_Bottle.png",
-      "name_ru": "Стальная Бутылка"
-    },
-    "steel_jar": {
-      "name_en": "Steel Jar",
-      "type": "aic_products",
-      "img": "Steel_Jar.png",
-      "name_ru": "Стальная Банка"
-    },
-    "steel_part": {
-      "name_en": "Steel Part",
-      "type": "aic_products",
-      "img": "Steel_Part.png",
-      "name_ru": "Стальная Деталь"
-    },
-    "yazhen_solution": {
-      "name_en": "Yazhen Solution",
-      "type": "aic_products",
-      "img": "Yazhen_Solution.png",
-      "transport_type": "pipe"
-    },
-    "buck_capsule_a": {
-      "name_en": "Buck Capsule (A)",
-      "type": "usables",
-      "img": "Buck_Capsule_(A).png",
-      "name_ru": "Гречекапсула (A)"
-    },
-    "buck_capsule_b": {
-      "name_en": "Buck Capsule (B)",
-      "type": "usables",
-      "img": "Buck_Capsule_(B).png",
-      "name_ru": "Гречекапсула (B)"
-    },
-    "buck_capsule_c": {
-      "name_en": "Buck Capsule (C)",
-      "type": "usables",
-      "img": "Buck_Capsule_(C).png",
-      "name_ru": "Гречекапсула (C)"
-    },
-    "buckflower_powder": {
-      "name_en": "Buckflower Powder",
-      "type": "usables",
-      "img": "Buckflower_Powder.png",
-      "name_ru": "Молотый Гречецвет"
-    },
-    "canned_citrome_a": {
-      "name_en": "Canned Citrome (A)",
-      "type": "usables",
-      "img": "Canned_Citrome_(A).png",
-      "name_ru": "Консервированный Цитром (A)"
-    },
-    "canned_citrome_b": {
-      "name_en": "Canned Citrome (B)",
-      "type": "usables",
-      "img": "Canned_Citrome_(B).png",
-      "name_ru": "Консервированный Цитром (B)"
-    },
-    "canned_citrome_c": {
-      "name_en": "Canned Citrome (C)",
-      "type": "usables",
-      "img": "Canned_Citrome_(C).png",
-      "name_ru": "Консервированный Цитром (C)"
-    },
-    "citrome_powder": {
-      "name_en": "Citrome Powder",
-      "type": "usables",
-      "img": "Citrome_Powder.png",
-      "name_ru": "Молотый Цитром"
-    },
-    "industrial_explosive": {
-      "name_en": "Industrial Explosive",
-      "type": "usables",
-      "img": "Industrial_Explosive.png",
-      "name_ru": "Промышленная Взрывчатка"
-    },
-    "jincao_drink": {
-      "name_en": "Jincao Drink",
-      "type": "usables",
-      "img": "Jincao_Drink.png"
-    },
-    "jincao_powder": {
-      "name_en": "Jincao Powder",
-      "type": "usables",
-      "img": "Jincao_Powder.png"
-    },
-    "jincao_tea": {
-      "name_en": "Jincao Tea",
-      "type": "usables",
-      "img": "Jincao_Tea.png"
-    },
-    "yazhen_powder": {
-      "name_en": "Yazhen Powder",
-      "type": "usables",
-      "img": "Yazhen_Powder.png"
-    },
-    "yazhen_syringe_a": {
-      "name_en": "Yazhen Syringe (A)",
-      "type": "usables",
-      "img": "Yazhen_Syringe_(A).png"
-    },
-    "yazhen_syringe_c": {
-      "name_en": "Yazhen Syringe (C)",
-      "type": "usables",
-      "img": "Yazhen_Syringe_(C).png"
+    "item_port_dismantler_1": {
+        "id": "item_port_dismantler_1",
+        "name_map": "-7471615084220664785",
+        "img": "item_port_dismantler_1.png",
+        "type": "17",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_liquid_water": {
+        "id": "item_liquid_water",
+        "name_map": "-1255834102264005522",
+        "img": "item_liquid_water.png",
+        "type": "1",
+        "transport_type": "item_log_pipe_01"
+    },
+    "item_log_pipe_conditioner": {
+        "id": "item_log_pipe_conditioner",
+        "name_map": "-5263945381859203705",
+        "img": "item_log_pipe_conditioner.png",
+        "type": "0",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_port_mix_pool_1": {
+        "id": "item_port_mix_pool_1",
+        "name_map": "6581026360281462766",
+        "img": "item_port_mix_pool_1.png",
+        "type": "17",
+        "transport_type": "item_log_belt_01"
+    },
+    "sysbp_tundra_bottled_rec_hp_1_1": {
+        "id": "sysbp_tundra_bottled_rec_hp_1_1",
+        "name_map": "8871010743182987359",
+        "img": "sysbp_tundra_bottled_rec_hp_1_1.png",
+        "type": "0",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_crystal_powder": {
+        "id": "item_crystal_powder",
+        "name_map": "-1476052199689973330",
+        "img": "item_crystal_powder.png",
+        "type": "4",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_plant_bbflower_1": {
+        "id": "item_plant_bbflower_1",
+        "name_map": "-420227815983436668",
+        "img": "item_plant_bbflower_1.png",
+        "type": "2",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_plant_grass_seed_2": {
+        "id": "item_plant_grass_seed_2",
+        "name_map": "-482692724538528126",
+        "img": "item_plant_grass_seed_2.png",
+        "type": "2",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_port_battle_fog_1": {
+        "id": "item_port_battle_fog_1",
+        "name_map": "1175383132782315345",
+        "img": "item_port_battle_fog_1.png",
+        "type": "17",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_proc_bomb_1": {
+        "id": "item_proc_bomb_1",
+        "name_map": "1023926005860307923",
+        "img": "item_proc_bomb_1.png",
+        "type": "5",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_log_connector": {
+        "id": "item_log_connector",
+        "name_map": "-537318491966737329",
+        "img": "item_log_connector.png",
+        "type": "0",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_plant_grass_spc_powder_1": {
+        "id": "item_plant_grass_spc_powder_1",
+        "name_map": "5459258877023452103",
+        "img": "item_plant_grass_spc_powder_1.png",
+        "type": "5",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_plant_grass_1": {
+        "id": "item_plant_grass_1",
+        "name_map": "-6237093157424673683",
+        "img": "item_plant_grass_1.png",
+        "type": "2",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_log_pipe_connector": {
+        "id": "item_log_pipe_connector",
+        "name_map": "4486280435856468017",
+        "img": "item_log_pipe_connector.png",
+        "type": "0",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_port_seedcol_1": {
+        "id": "item_port_seedcol_1",
+        "name_map": "-3906118986879572231",
+        "img": "item_port_seedcol_1.png",
+        "type": "17",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_plant_mushroom_1_2": {
+        "id": "item_plant_mushroom_1_2",
+        "name_map": "7883288047572165048",
+        "img": "item_plant_mushroom_1_2.png",
+        "type": "16",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_log_splitter": {
+        "id": "item_log_splitter",
+        "name_map": "5872340006034245759",
+        "img": "item_log_splitter.png",
+        "type": "0",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_bottled_food_1": {
+        "id": "item_bottled_food_1",
+        "name_map": "9115364125515121323",
+        "img": "item_bottled_food_1.png",
+        "type": "5",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_bottled_food_2": {
+        "id": "item_bottled_food_2",
+        "name_map": "8365259127939049909",
+        "img": "item_bottled_food_2.png",
+        "type": "5",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_bottled_food_3": {
+        "id": "item_bottled_food_3",
+        "name_map": "-5574918281952433743",
+        "img": "item_bottled_food_3.png",
+        "type": "5",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_bottled_food_4": {
+        "id": "item_bottled_food_4",
+        "name_map": "-7688363843752898339",
+        "img": "item_bottled_food_4.png",
+        "type": "5",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_plant_moss_seed_1": {
+        "id": "item_plant_moss_seed_1",
+        "name_map": "8668877530118424539",
+        "img": "item_plant_moss_seed_1.png",
+        "type": "2",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_port_storager_1": {
+        "id": "item_port_storager_1",
+        "name_map": "2974086469168706127",
+        "img": "item_port_storager_1.png",
+        "type": "17",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_bottled_rec_hp_1": {
+        "id": "item_bottled_rec_hp_1",
+        "name_map": "-7996397812364656281",
+        "img": "item_bottled_rec_hp_1.png",
+        "type": "5",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_bottled_rec_hp_2": {
+        "id": "item_bottled_rec_hp_2",
+        "name_map": "-3559160156697802537",
+        "img": "item_bottled_rec_hp_2.png",
+        "type": "5",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_bottled_rec_hp_3": {
+        "id": "item_bottled_rec_hp_3",
+        "name_map": "6267292786988280477",
+        "img": "item_bottled_rec_hp_3.png",
+        "type": "5",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_bottled_rec_hp_4": {
+        "id": "item_bottled_rec_hp_4",
+        "name_map": "1013991778694932151",
+        "img": "item_bottled_rec_hp_4.png",
+        "type": "5",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_port_battle_turret_1": {
+        "id": "item_port_battle_turret_1",
+        "name_map": "5521659598528086856",
+        "img": "item_port_battle_turret_1.png",
+        "type": "17",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_plant_sp_seed_2": {
+        "id": "item_plant_sp_seed_2",
+        "name_map": "2010465890562613674",
+        "img": "item_plant_sp_seed_2.png",
+        "type": "2",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_quartz_enr_powder": {
+        "id": "item_quartz_enr_powder",
+        "name_map": "-9012282945666033619",
+        "img": "item_quartz_enr_powder.png",
+        "type": "4",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_plant_moss_seed_3": {
+        "id": "item_plant_moss_seed_3",
+        "name_map": "7084918386992203960",
+        "img": "item_plant_moss_seed_3.png",
+        "type": "2",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_plant_spcstone_1_1": {
+        "id": "item_plant_spcstone_1_1",
+        "name_map": "-7929149998190383046",
+        "img": "item_plant_spcstone_1_1.png",
+        "type": "16",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_iron_enr": {
+        "id": "item_iron_enr",
+        "name_map": "-7518287441748297764",
+        "img": "item_iron_enr.png",
+        "type": "4",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_carbon_enr": {
+        "id": "item_carbon_enr",
+        "name_map": "-1808556653885083208",
+        "img": "item_carbon_enr.png",
+        "type": "4",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_iron_enr_cmpt": {
+        "id": "item_iron_enr_cmpt",
+        "name_map": "-3264761163333452544",
+        "img": "item_iron_enr_cmpt.png",
+        "type": "4",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_plant_mushroom_2_1": {
+        "id": "item_plant_mushroom_2_1",
+        "name_map": "3532471801652662787",
+        "img": "item_plant_mushroom_2_1.png",
+        "type": "16",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_carbon_enr_powder": {
+        "id": "item_carbon_enr_powder",
+        "name_map": "-3799528170437145697",
+        "img": "item_carbon_enr_powder.png",
+        "type": "4",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_carbon_mtl": {
+        "id": "item_carbon_mtl",
+        "name_map": "-5600586269651665598",
+        "img": "item_carbon_mtl.png",
+        "type": "4",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_carbon_powder": {
+        "id": "item_carbon_powder",
+        "name_map": "-7298700731082901302",
+        "img": "item_carbon_powder.png",
+        "type": "4",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_iron_enr_powder": {
+        "id": "item_iron_enr_powder",
+        "name_map": "6748867266763854804",
+        "img": "item_iron_enr_powder.png",
+        "type": "4",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_port_shaper_1": {
+        "id": "item_port_shaper_1",
+        "name_map": "8052602892457234855",
+        "img": "item_port_shaper_1.png",
+        "type": "17",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_port_travel_pole_1": {
+        "id": "item_port_travel_pole_1",
+        "name_map": "5296460997386584080",
+        "img": "item_port_travel_pole_1.png",
+        "type": "17",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_port_cmpt_mc_1": {
+        "id": "item_port_cmpt_mc_1",
+        "name_map": "-6097051622630256080",
+        "img": "item_port_cmpt_mc_1.png",
+        "type": "17",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_log_belt_01": {
+        "id": "item_log_belt_01",
+        "name_map": "-1486544973969981330",
+        "img": "item_log_belt_01.png",
+        "type": "0",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_port_loader_1": {
+        "id": "item_port_loader_1",
+        "name_map": "-6171050217035206729",
+        "img": "item_port_loader_1.png",
+        "type": "17",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_port_log_hongs_bus": {
+        "id": "item_port_log_hongs_bus",
+        "name_map": "-1526025531220904932",
+        "img": "item_port_log_hongs_bus.png",
+        "type": "17",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_proc_battery_2": {
+        "id": "item_proc_battery_2",
+        "name_map": "6479012288310380581",
+        "img": "item_proc_battery_2.png",
+        "type": "4",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_plant_moss_seed_2": {
+        "id": "item_plant_moss_seed_2",
+        "name_map": "-3012962645987428327",
+        "img": "item_plant_moss_seed_2.png",
+        "type": "2",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_liquid_plant_grass_1": {
+        "id": "item_liquid_plant_grass_1",
+        "name_map": "-5427503457200400107",
+        "img": "item_liquid_plant_grass_1.png",
+        "type": "4",
+        "transport_type": "item_log_pipe_01"
+    },
+    "item_crystal_enr": {
+        "id": "item_crystal_enr",
+        "name_map": "-3309751506230857376",
+        "img": "item_crystal_enr.png",
+        "type": "4",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_crystal_enr_powder": {
+        "id": "item_crystal_enr_powder",
+        "name_map": "-6985715085098810954",
+        "img": "item_crystal_enr_powder.png",
+        "type": "4",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_plant_mushroom_seed_2_2": {
+        "id": "item_plant_mushroom_seed_2_2",
+        "name_map": "2371082145896209210",
+        "img": "item_plant_mushroom_seed_2_2.png",
+        "type": "16",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_crystal_shell": {
+        "id": "item_crystal_shell",
+        "name_map": "1318374701866929698",
+        "img": "item_crystal_shell.png",
+        "type": "4",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_port_power_sta_1": {
+        "id": "item_port_power_sta_1",
+        "name_map": "8063208404906308216",
+        "img": "item_port_power_sta_1.png",
+        "type": "17",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_port_filling_pd_mc_1": {
+        "id": "item_port_filling_pd_mc_1",
+        "name_map": "4843075269036102417",
+        "img": "item_port_filling_pd_mc_1.png",
+        "type": "17",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_equip_script_1": {
+        "id": "item_equip_script_1",
+        "name_map": "2584467465482535817",
+        "img": "item_equip_script_1.png",
+        "type": "4",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_equip_script_2": {
+        "id": "item_equip_script_2",
+        "name_map": "-1006685906357271974",
+        "img": "item_equip_script_2.png",
+        "type": "4",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_equip_script_3": {
+        "id": "item_equip_script_3",
+        "name_map": "-3206983251446454692",
+        "img": "item_equip_script_3.png",
+        "type": "4",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_equip_script_4": {
+        "id": "item_equip_script_4",
+        "name_map": "125199822165080877",
+        "img": "item_equip_script_4.png",
+        "type": "4",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_port_battle_frost_1": {
+        "id": "item_port_battle_frost_1",
+        "name_map": "8652617966085851951",
+        "img": "item_port_battle_frost_1.png",
+        "type": "17",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_port_sp_sub_hub_1": {
+        "id": "item_port_sp_sub_hub_1",
+        "name_map": "-5899523537922841003",
+        "img": "item_port_sp_sub_hub_1.png",
+        "type": "17",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_plant_crylplant_1_3": {
+        "id": "item_plant_crylplant_1_3",
+        "name_map": "-4849817372532757905",
+        "img": "item_plant_crylplant_1_3.png",
+        "type": "16",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_plant_tundra_insect_powder_1": {
+        "id": "item_plant_tundra_insect_powder_1",
+        "name_map": "7864802325283210949",
+        "img": "item_plant_tundra_insect_powder_1.png",
+        "type": "4",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_port_battle_turret_2": {
+        "id": "item_port_battle_turret_2",
+        "name_map": "-8675208177900129529",
+        "img": "item_port_battle_turret_2.png",
+        "type": "17",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_port_battle_medic_1": {
+        "id": "item_port_battle_medic_1",
+        "name_map": "2062822842893073571",
+        "img": "item_port_battle_medic_1.png",
+        "type": "17",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_plant_grass_powder_2": {
+        "id": "item_plant_grass_powder_2",
+        "name_map": "-7097824642630075673",
+        "img": "item_plant_grass_powder_2.png",
+        "type": "5",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_port_planter_1": {
+        "id": "item_port_planter_1",
+        "name_map": "615045745769974288",
+        "img": "item_port_planter_1.png",
+        "type": "17",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_port_sp_hub_1": {
+        "id": "item_port_sp_hub_1",
+        "name_map": "-8746808255750701913",
+        "img": "item_port_sp_hub_1.png",
+        "type": "17",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_glass_bottle": {
+        "id": "item_glass_bottle",
+        "name_map": "2915127895210505089",
+        "img": "item_glass_bottle.png",
+        "type": "4",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_port_miner_2": {
+        "id": "item_port_miner_2",
+        "name_map": "4527293521698898690",
+        "img": "item_port_miner_2.png",
+        "type": "17",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_plant_grass_seed_1": {
+        "id": "item_plant_grass_seed_1",
+        "name_map": "6611595127547683165",
+        "img": "item_plant_grass_seed_1.png",
+        "type": "2",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_quartz_powder": {
+        "id": "item_quartz_powder",
+        "name_map": "87837182759171731",
+        "img": "item_quartz_powder.png",
+        "type": "4",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_plant_moss_2": {
+        "id": "item_plant_moss_2",
+        "name_map": "-19097085106193057",
+        "img": "item_plant_moss_2.png",
+        "type": "2",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_plant_crylplant_1_1": {
+        "id": "item_plant_crylplant_1_1",
+        "name_map": "6837965746256263519",
+        "img": "item_plant_crylplant_1_1.png",
+        "type": "16",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_plant_moss_1": {
+        "id": "item_plant_moss_1",
+        "name_map": "1003658658191640157",
+        "img": "item_plant_moss_1.png",
+        "type": "2",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_log_converger": {
+        "id": "item_log_converger",
+        "name_map": "5831934840545782272",
+        "img": "item_log_converger.png",
+        "type": "0",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_plant_mushroom_1_1": {
+        "id": "item_plant_mushroom_1_1",
+        "name_map": "2940248030534585534",
+        "img": "item_plant_mushroom_1_1.png",
+        "type": "16",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_liquid_xiranite": {
+        "id": "item_liquid_xiranite",
+        "name_map": "-4648104540045367376",
+        "img": "item_liquid_xiranite.png",
+        "type": "4",
+        "transport_type": "item_log_pipe_01"
+    },
+    "item_plant_spcstone_seed_2_1": {
+        "id": "item_plant_spcstone_seed_2_1",
+        "name_map": "3497384690247260706",
+        "img": "item_plant_spcstone_seed_2_1.png",
+        "type": "16",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_originium_enr_powder": {
+        "id": "item_originium_enr_powder",
+        "name_map": "-1147745213577265634",
+        "img": "item_originium_enr_powder.png",
+        "type": "4",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_plant_grass_2": {
+        "id": "item_plant_grass_2",
+        "name_map": "-764211670691849663",
+        "img": "item_plant_grass_2.png",
+        "type": "2",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_port_tools_asm_mc_1": {
+        "id": "item_port_tools_asm_mc_1",
+        "name_map": "-7931605342811332075",
+        "img": "item_port_tools_asm_mc_1.png",
+        "type": "17",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_plant_sp_seed_4": {
+        "id": "item_plant_sp_seed_4",
+        "name_map": "6957498827689940637",
+        "img": "item_plant_sp_seed_4.png",
+        "type": "2",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_iron_powder": {
+        "id": "item_iron_powder",
+        "name_map": "7481152810865844514",
+        "img": "item_iron_powder.png",
+        "type": "4",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_port_power_terminal_1": {
+        "id": "item_port_power_terminal_1",
+        "name_map": "-6195335294248013489",
+        "img": "item_port_power_terminal_1.png",
+        "type": "17",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_plant_bbflower_powder_1": {
+        "id": "item_plant_bbflower_powder_1",
+        "name_map": "-2082391660702340879",
+        "img": "item_plant_bbflower_powder_1.png",
+        "type": "4",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_quartz_enr": {
+        "id": "item_quartz_enr",
+        "name_map": "6348703569209561818",
+        "img": "item_quartz_enr.png",
+        "type": "4",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_liquid_plant_grass_2": {
+        "id": "item_liquid_plant_grass_2",
+        "name_map": "-381702251450790404",
+        "img": "item_liquid_plant_grass_2.png",
+        "type": "4",
+        "transport_type": "item_log_pipe_01"
+    },
+    "item_plant_crylplant_2_2": {
+        "id": "item_plant_crylplant_2_2",
+        "name_map": "597778358199888636",
+        "img": "item_plant_crylplant_2_2.png",
+        "type": "16",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_plant_spcstone_seed_1_1": {
+        "id": "item_plant_spcstone_seed_1_1",
+        "name_map": "-8484720717497861841",
+        "img": "item_plant_spcstone_seed_1_1.png",
+        "type": "16",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_port_dumper_1": {
+        "id": "item_port_dumper_1",
+        "name_map": "-6713821979749922814",
+        "img": "item_port_dumper_1.png",
+        "type": "17",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_plant_crylplant_1_2": {
+        "id": "item_plant_crylplant_1_2",
+        "name_map": "6702706149443192178",
+        "img": "item_plant_crylplant_1_2.png",
+        "type": "16",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_proc_battery_3": {
+        "id": "item_proc_battery_3",
+        "name_map": "2537395868760611370",
+        "img": "item_proc_battery_3.png",
+        "type": "4",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_plant_moss_enr_powder_1": {
+        "id": "item_plant_moss_enr_powder_1",
+        "name_map": "1109334046366064281",
+        "img": "item_plant_moss_enr_powder_1.png",
+        "type": "4",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_glass_cmpt": {
+        "id": "item_glass_cmpt",
+        "name_map": "-838525628342432577",
+        "img": "item_glass_cmpt.png",
+        "type": "4",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_glass_enr_bottle": {
+        "id": "item_glass_enr_bottle",
+        "name_map": "5818151770159173890",
+        "img": "item_glass_enr_bottle.png",
+        "type": "4",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_glass_enr_cmpt": {
+        "id": "item_glass_enr_cmpt",
+        "name_map": "-3293709415278992252",
+        "img": "item_glass_enr_cmpt.png",
+        "type": "4",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_iron_bottle": {
+        "id": "item_iron_bottle",
+        "name_map": "-8999732008652078003",
+        "img": "item_iron_bottle.png",
+        "type": "4",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_log_pipe_converger": {
+        "id": "item_log_pipe_converger",
+        "name_map": "-7852256918556999714",
+        "img": "item_log_pipe_converger.png",
+        "type": "0",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_iron_cmpt": {
+        "id": "item_iron_cmpt",
+        "name_map": "3231317125183590003",
+        "img": "item_iron_cmpt.png",
+        "type": "4",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_iron_enr_bottle": {
+        "id": "item_iron_enr_bottle",
+        "name_map": "-1517327255685776737",
+        "img": "item_iron_enr_bottle.png",
+        "type": "4",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_iron_nugget": {
+        "id": "item_iron_nugget",
+        "name_map": "4482565585843345062",
+        "img": "item_iron_nugget.png",
+        "type": "4",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_iron_ore": {
+        "id": "item_iron_ore",
+        "name_map": "-554680815829661323",
+        "img": "item_iron_ore.png",
+        "type": "1",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_plant_sp_seed_1": {
+        "id": "item_plant_sp_seed_1",
+        "name_map": "-7298740178048373603",
+        "img": "item_plant_sp_seed_1.png",
+        "type": "2",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_plant_tundra_insect_powder_2": {
+        "id": "item_plant_tundra_insect_powder_2",
+        "name_map": "1822817167047710100",
+        "img": "item_plant_tundra_insect_powder_2.png",
+        "type": "4",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_plant_spcstone_2_1": {
+        "id": "item_plant_spcstone_2_1",
+        "name_map": "8193888702706636321",
+        "img": "item_plant_spcstone_2_1.png",
+        "type": "16",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_plant_moss_powder_1": {
+        "id": "item_plant_moss_powder_1",
+        "name_map": "8581497736112857797",
+        "img": "item_plant_moss_powder_1.png",
+        "type": "5",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_port_thickener_1": {
+        "id": "item_port_thickener_1",
+        "name_map": "-3484461437250527901",
+        "img": "item_port_thickener_1.png",
+        "type": "17",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_log_conditioner": {
+        "id": "item_log_conditioner",
+        "name_map": "8302010020143580787",
+        "img": "item_log_conditioner.png",
+        "type": "0",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_log_pipe_01": {
+        "id": "item_log_pipe_01",
+        "name_map": "-7883206362931174258",
+        "img": "item_log_pipe_01.png",
+        "type": "0",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_log_pipe_splitter": {
+        "id": "item_log_pipe_splitter",
+        "name_map": "8545558265099097613",
+        "img": "item_log_pipe_splitter.png",
+        "type": "0",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_plant_spcstone_seed_2_2": {
+        "id": "item_plant_spcstone_seed_2_2",
+        "name_map": "7605482500836699727",
+        "img": "item_plant_spcstone_seed_2_2.png",
+        "type": "16",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_port_battle_laser_1": {
+        "id": "item_port_battle_laser_1",
+        "name_map": "-2101506427022205000",
+        "img": "item_port_battle_laser_1.png",
+        "type": "17",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_plant_mushroom_seed_1_1": {
+        "id": "item_plant_mushroom_seed_1_1",
+        "name_map": "-3502278088989053343",
+        "img": "item_plant_mushroom_seed_1_1.png",
+        "type": "16",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_port_marker_1": {
+        "id": "item_port_marker_1",
+        "name_map": "3146226653675747290",
+        "img": "item_port_marker_1.png",
+        "type": "17",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_originium_ore": {
+        "id": "item_originium_ore",
+        "name_map": "-5417050067654650578",
+        "img": "item_originium_ore.png",
+        "type": "1",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_originium_powder": {
+        "id": "item_originium_powder",
+        "name_map": "-7514907591745826392",
+        "img": "item_originium_powder.png",
+        "type": "4",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_originium_recharge": {
+        "id": "item_originium_recharge",
+        "name_map": "-562766022399429054",
+        "img": "item_originium_recharge.png",
+        "type": "0",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_plant_crylplant_seed_1_2": {
+        "id": "item_plant_crylplant_seed_1_2",
+        "name_map": "1788918885869854227",
+        "img": "item_plant_crylplant_seed_1_2.png",
+        "type": "16",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_port_power_pole_3": {
+        "id": "item_port_power_pole_3",
+        "name_map": "9002114602472303218",
+        "img": "item_port_power_pole_3.png",
+        "type": "17",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_plant_moss_spc_1": {
+        "id": "item_plant_moss_spc_1",
+        "name_map": "-113288790003690434",
+        "img": "item_plant_moss_spc_1.png",
+        "type": "2",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_plant_sp_seed_3": {
+        "id": "item_plant_sp_seed_3",
+        "name_map": "3436365511438450707",
+        "img": "item_plant_sp_seed_3.png",
+        "type": "2",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_plant_sp_1": {
+        "id": "item_plant_sp_1",
+        "name_map": "1921410164402479325",
+        "img": "item_plant_sp_1.png",
+        "type": "2",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_plant_bbflower_seed_1": {
+        "id": "item_plant_bbflower_seed_1",
+        "name_map": "-2910351490497190155",
+        "img": "item_plant_bbflower_seed_1.png",
+        "type": "2",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_plant_crylplant_2_1": {
+        "id": "item_plant_crylplant_2_1",
+        "name_map": "-1186940033040363991",
+        "img": "item_plant_crylplant_2_1.png",
+        "type": "16",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_plant_crylplant_seed_1_1": {
+        "id": "item_plant_crylplant_seed_1_1",
+        "name_map": "8401306951048924808",
+        "img": "item_plant_crylplant_seed_1_1.png",
+        "type": "16",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_plant_crylplant_seed_1_3": {
+        "id": "item_plant_crylplant_seed_1_3",
+        "name_map": "6853744210443393719",
+        "img": "item_plant_crylplant_seed_1_3.png",
+        "type": "16",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_plant_crylplant_seed_2_1": {
+        "id": "item_plant_crylplant_seed_2_1",
+        "name_map": "2518566720788606789",
+        "img": "item_plant_crylplant_seed_2_1.png",
+        "type": "16",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_plant_crylplant_seed_2_2": {
+        "id": "item_plant_crylplant_seed_2_2",
+        "name_map": "4570075129228285462",
+        "img": "item_plant_crylplant_seed_2_2.png",
+        "type": "16",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_plant_grass_powder_1": {
+        "id": "item_plant_grass_powder_1",
+        "name_map": "7327284991815131155",
+        "img": "item_plant_grass_powder_1.png",
+        "type": "5",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_plant_grass_spc_1": {
+        "id": "item_plant_grass_spc_1",
+        "name_map": "-3077052081975524001",
+        "img": "item_plant_grass_spc_1.png",
+        "type": "2",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_plant_grass_spc_2": {
+        "id": "item_plant_grass_spc_2",
+        "name_map": "-6674176778269107131",
+        "img": "item_plant_grass_spc_2.png",
+        "type": "2",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_plant_grass_spc_powder_2": {
+        "id": "item_plant_grass_spc_powder_2",
+        "name_map": "3830209094463027676",
+        "img": "item_plant_grass_spc_powder_2.png",
+        "type": "5",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_plant_moss_3": {
+        "id": "item_plant_moss_3",
+        "name_map": "-8847569985909348640",
+        "img": "item_plant_moss_3.png",
+        "type": "2",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_plant_moss_enr_powder_2": {
+        "id": "item_plant_moss_enr_powder_2",
+        "name_map": "5664509806481276991",
+        "img": "item_plant_moss_enr_powder_2.png",
+        "type": "4",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_plant_moss_powder_2": {
+        "id": "item_plant_moss_powder_2",
+        "name_map": "-7649909152167119302",
+        "img": "item_plant_moss_powder_2.png",
+        "type": "5",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_plant_moss_powder_3": {
+        "id": "item_plant_moss_powder_3",
+        "name_map": "-5506584291104086344",
+        "img": "item_plant_moss_powder_3.png",
+        "type": "4",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_plant_moss_spc_2": {
+        "id": "item_plant_moss_spc_2",
+        "name_map": "-4830792293289454310",
+        "img": "item_plant_moss_spc_2.png",
+        "type": "2",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_plant_moss_spc_powder_1": {
+        "id": "item_plant_moss_spc_powder_1",
+        "name_map": "8075810697125017141",
+        "img": "item_plant_moss_spc_powder_1.png",
+        "type": "5",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_plant_moss_spc_powder_2": {
+        "id": "item_plant_moss_spc_powder_2",
+        "name_map": "5423139856949287555",
+        "img": "item_plant_moss_spc_powder_2.png",
+        "type": "5",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_plant_mushroom_1_3": {
+        "id": "item_plant_mushroom_1_3",
+        "name_map": "-9066309138218893857",
+        "img": "item_plant_mushroom_1_3.png",
+        "type": "16",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_plant_mushroom_2_2": {
+        "id": "item_plant_mushroom_2_2",
+        "name_map": "-4419612081191518835",
+        "img": "item_plant_mushroom_2_2.png",
+        "type": "16",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_plant_mushroom_seed_1_2": {
+        "id": "item_plant_mushroom_seed_1_2",
+        "name_map": "3132766788830281284",
+        "img": "item_plant_mushroom_seed_1_2.png",
+        "type": "16",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_plant_mushroom_seed_1_3": {
+        "id": "item_plant_mushroom_seed_1_3",
+        "name_map": "-3751489974641223984",
+        "img": "item_plant_mushroom_seed_1_3.png",
+        "type": "16",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_plant_mushroom_seed_2_1": {
+        "id": "item_plant_mushroom_seed_2_1",
+        "name_map": "6378698583011342228",
+        "img": "item_plant_mushroom_seed_2_1.png",
+        "type": "16",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_plant_mushroom_spc_2_1": {
+        "id": "item_plant_mushroom_spc_2_1",
+        "name_map": "-3016042128886348062",
+        "img": "item_plant_mushroom_spc_2_1.png",
+        "type": "0",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_proc_battery_1": {
+        "id": "item_proc_battery_1",
+        "name_map": "594715612363527080",
+        "img": "item_proc_battery_1.png",
+        "type": "4",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_plant_sp_2": {
+        "id": "item_plant_sp_2",
+        "name_map": "3220700695902467586",
+        "img": "item_plant_sp_2.png",
+        "type": "2",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_plant_sp_3": {
+        "id": "item_plant_sp_3",
+        "name_map": "-8524326798189090701",
+        "img": "item_plant_sp_3.png",
+        "type": "2",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_plant_sp_4": {
+        "id": "item_plant_sp_4",
+        "name_map": "3027383598905699166",
+        "img": "item_plant_sp_4.png",
+        "type": "2",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_plant_spcstone_1_2": {
+        "id": "item_plant_spcstone_1_2",
+        "name_map": "-8348617894122773819",
+        "img": "item_plant_spcstone_1_2.png",
+        "type": "16",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_plant_spcstone_1_3": {
+        "id": "item_plant_spcstone_1_3",
+        "name_map": "7942082281811106634",
+        "img": "item_plant_spcstone_1_3.png",
+        "type": "16",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_plant_spcstone_2_2": {
+        "id": "item_plant_spcstone_2_2",
+        "name_map": "-6846098380126907894",
+        "img": "item_plant_spcstone_2_2.png",
+        "type": "16",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_plant_spcstone_seed_1_2": {
+        "id": "item_plant_spcstone_seed_1_2",
+        "name_map": "8041329622989935878",
+        "img": "item_plant_spcstone_seed_1_2.png",
+        "type": "16",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_plant_spcstone_seed_1_3": {
+        "id": "item_plant_spcstone_seed_1_3",
+        "name_map": "-798689324883340648",
+        "img": "item_plant_spcstone_seed_1_3.png",
+        "type": "16",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_plant_tundra_impts": {
+        "id": "item_plant_tundra_impts",
+        "name_map": "-8910343369598063982",
+        "img": "item_plant_tundra_impts.png",
+        "type": "4",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_plant_tundra_insect_1": {
+        "id": "item_plant_tundra_insect_1",
+        "name_map": "5957310454964397117",
+        "img": "item_plant_tundra_insect_1.png",
+        "type": "15",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_plant_tundra_insect_2": {
+        "id": "item_plant_tundra_insect_2",
+        "name_map": "-4371563687441064761",
+        "img": "item_plant_tundra_insect_2.png",
+        "type": "15",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_plant_tundra_wood": {
+        "id": "item_plant_tundra_wood",
+        "name_map": "-703979720639386569",
+        "img": "item_plant_tundra_wood.png",
+        "type": "2",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_port_battle_cannon_1": {
+        "id": "item_port_battle_cannon_1",
+        "name_map": "71838237187979309",
+        "img": "item_port_battle_cannon_1.png",
+        "type": "17",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_port_battle_cannon_2": {
+        "id": "item_port_battle_cannon_2",
+        "name_map": "-6245648609853938412",
+        "img": "item_port_battle_cannon_2.png",
+        "type": "17",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_port_winder_1": {
+        "id": "item_port_winder_1",
+        "name_map": "2249475665820059206",
+        "img": "item_port_winder_1.png",
+        "type": "17",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_port_battle_lightning_1": {
+        "id": "item_port_battle_lightning_1",
+        "name_map": "3343085040164272548",
+        "img": "item_port_battle_lightning_1.png",
+        "type": "17",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_port_battle_shockwave_1": {
+        "id": "item_port_battle_shockwave_1",
+        "name_map": "7716426679736600701",
+        "img": "item_port_battle_shockwave_1.png",
+        "type": "17",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_port_battle_sniper_1": {
+        "id": "item_port_battle_sniper_1",
+        "name_map": "6912866244874170352",
+        "img": "item_port_battle_sniper_1.png",
+        "type": "17",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_port_carrier_1": {
+        "id": "item_port_carrier_1",
+        "name_map": "-6516284473488352701",
+        "img": "item_port_carrier_1.png",
+        "type": "17",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_port_furnance_1": {
+        "id": "item_port_furnance_1",
+        "name_map": "-610511413543985075",
+        "img": "item_port_furnance_1.png",
+        "type": "17",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_port_grinder_1": {
+        "id": "item_port_grinder_1",
+        "name_map": "5854226287756461642",
+        "img": "item_port_grinder_1.png",
+        "type": "17",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_port_liquid_storager_1": {
+        "id": "item_port_liquid_storager_1",
+        "name_map": "8577760864758677858",
+        "img": "item_port_liquid_storager_1.png",
+        "type": "17",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_port_log_hongs_bus_source": {
+        "id": "item_port_log_hongs_bus_source",
+        "name_map": "321666033263342621",
+        "img": "item_port_log_hongs_bus_source.png",
+        "type": "17",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_port_miner_1": {
+        "id": "item_port_miner_1",
+        "name_map": "2122651960983327816",
+        "img": "item_port_miner_1.png",
+        "type": "17",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_port_miner_3": {
+        "id": "item_port_miner_3",
+        "name_map": "-4418148934476716878",
+        "img": "item_port_miner_3.png",
+        "type": "17",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_port_power_diffuser_1": {
+        "id": "item_port_power_diffuser_1",
+        "name_map": "-4765302122095746023",
+        "img": "item_port_power_diffuser_1.png",
+        "type": "17",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_port_power_diffuser_2": {
+        "id": "item_port_power_diffuser_2",
+        "name_map": "968488948811110833",
+        "img": "item_port_power_diffuser_2.png",
+        "type": "17",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_port_power_pole_2": {
+        "id": "item_port_power_pole_2",
+        "name_map": "8823892469197919012",
+        "img": "item_port_power_pole_2.png",
+        "type": "17",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_port_power_port_1": {
+        "id": "item_port_power_port_1",
+        "name_map": "-72435429477712272",
+        "img": "item_port_power_port_1.png",
+        "type": "17",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_port_pump_1": {
+        "id": "item_port_pump_1",
+        "name_map": "-4682771872818037184",
+        "img": "item_port_pump_1.png",
+        "type": "17",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_port_squirter_1": {
+        "id": "item_port_squirter_1",
+        "name_map": "-6071784700378349213",
+        "img": "item_port_squirter_1.png",
+        "type": "17",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_port_travel_pole_2": {
+        "id": "item_port_travel_pole_2",
+        "name_map": "621426332508818909",
+        "img": "item_port_travel_pole_2.png",
+        "type": "17",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_port_unloader_1": {
+        "id": "item_port_unloader_1",
+        "name_map": "2134781047434864441",
+        "img": "item_port_unloader_1.png",
+        "type": "17",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_port_xiranite_oven_1": {
+        "id": "item_port_xiranite_oven_1",
+        "name_map": "8996042837153052015",
+        "img": "item_port_xiranite_oven_1.png",
+        "type": "17",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_proc_battery_4": {
+        "id": "item_proc_battery_4",
+        "name_map": "-377329690534775792",
+        "img": "item_proc_battery_4.png",
+        "type": "4",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_quartz_glass": {
+        "id": "item_quartz_glass",
+        "name_map": "1306891213478550137",
+        "img": "item_quartz_glass.png",
+        "type": "4",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_quartz_sand": {
+        "id": "item_quartz_sand",
+        "name_map": "-3933099068640728245",
+        "img": "item_quartz_sand.png",
+        "type": "1",
+        "transport_type": "item_log_belt_01"
+    },
+    "sysbp_tundra_bottled_rec_hp_2_1": {
+        "id": "sysbp_tundra_bottled_rec_hp_2_1",
+        "name_map": "-7339527371402759603",
+        "img": "item_bottled_rec_hp_2.png",
+        "type": "5",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_xiranite_powder": {
+        "id": "item_xiranite_powder",
+        "name_map": "-2993525701193037410",
+        "img": "item_xiranite_powder.png",
+        "type": "4",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_liquid_sewage": {
+        "id": "item_liquid_sewage",
+        "name_map": "custom_item_liquid_sewage",
+        "img": "item_liquid_sewage.png",
+        "type": "1",
+        "transport_type": "item_log_pipe_01"
+    },
+    "item_port_liquid_cleaner_1": {
+        "id": "item_port_liquid_cleaner_1",
+        "name_map": "custom_item_port_liquid_cleaner_1",
+        "img": "item_port_liquid_cleaner_1.png",
+        "type": "17",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_bottled_liquid_plant_grass_2": {
+        "id": "item_bottled_liquid_plant_grass_2",
+        "name_map": "custom_item_bottled_liquid_plant_grass_2",
+        "img": "item_bottled_liquid_plant_grass_2.png",
+        "type": "4",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_bottled_liquid_plant_grass_1": {
+        "id": "item_bottled_liquid_plant_grass_1",
+        "name_map": "custom_item_bottled_liquid_plant_grass_1",
+        "img": "item_bottled_liquid_plant_grass_1.png",
+        "type": "4",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_bottled_liquid_xiranite": {
+        "id": "item_bottled_liquid_xiranite",
+        "name_map": "custom_item_bottled_liquid_xiranite",
+        "img": "item_bottled_liquid_xiranite.png",
+        "type": "4",
+        "transport_type": "item_log_belt_01"
+    },
+    "item_bottled_liquid_water": {
+        "id": "item_bottled_liquid_water",
+        "name_map": "custom_item_bottled_liquid_water",
+        "img": "item_bottled_liquid_water.png",
+        "type": "4",
+        "transport_type": "item_log_belt_01"
     }
-  }
 }

@@ -4,5 +4,5 @@ scripts/
 # Test forlder
 test/
 
-# Items Update
-items-rename/
+# Craft Manager
+craft_manager/

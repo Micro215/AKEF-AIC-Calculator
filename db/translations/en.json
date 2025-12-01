@@ -23,7 +23,8 @@
         "production_chain": "Production Chain",
         "no_production_data": "No production data available. Please calculate a production chain first.",
         "shared_items_needed": "Shared Items Needed",
-        "production": "Production"
+        "production": "Production",
+        "default": "Default"
     },
     "buttons": {
         "calculate": "Calculate",
@@ -65,12 +66,9 @@
         "message": "Are you sure you want to delete \"<strong id=\"delete-item-name\"></strong>\" and all its unique ingredient chains?"
     },
     "types": {
-        "progression_materials": "Progression Materials",
-        "naturals": "Naturals",
-        "gatherables": "Gatherables",
-        "valuables": "Valuables",
-        "aic_products": "AIC Products",
-        "usables": "Usables",
-        "functionals": "Functionals"
+        "1": "Raw",
+        "2": "Naturals",
+        "4": "AIC Products",
+        "5": "Usables"
     }
 }

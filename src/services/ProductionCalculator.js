@@ -290,10 +290,10 @@ function populateNeedsMap(itemIndexMap, solutionVector) {
         }
 
         // Calculate transport requirements (e.g., number of conveyor belts).
-        let transportType = 'belt';
+        let transportType = 'item_log_belt_01';
         let transportCount = 0;
-        if (window.datas.itemsData.items[itemId] && window.datas.itemsData.items[itemId].transport_type) {
-            transportType = window.datas.itemsData.items[itemId].transport_type;
+        if (window.datas.itemsData[itemId] && window.datas.itemsData[itemId].transport_type) {
+            transportType = window.datas.itemsData[itemId].transport_type;
         }
         if (window.datas.transportData && window.datas.transportData[transportType]) {
             const transportSpeed = window.datas.transportData[transportType].speed;
@@ -355,10 +355,10 @@ function populateNeedsMap(itemIndexMap, solutionVector) {
                     const byproductRecipes = findRecipesForItem(product.item_id);
                     const isByproductRaw = !byproductRecipes || byproductRecipes.length === 0;
 
-                    let transportType = 'belt';
+                    let transportType = 'item_log_belt_01';
                     let transportCount = 0;
-                    if (window.datas.itemsData.items[product.item_id] && window.datas.itemsData.items[product.item_id].transport_type) {
-                        transportType = window.datas.itemsData.items[product.item_id].transport_type;
+                    if (window.datas.itemsData[product.item_id] && window.datas.itemsData[product.item_id].transport_type) {
+                        transportType = window.datas.itemsData[product.item_id].transport_type;
                     }
                     if (window.datas.transportData && window.datas.transportData[transportType]) {
                         const transportSpeed = window.datas.transportData[transportType].speed;

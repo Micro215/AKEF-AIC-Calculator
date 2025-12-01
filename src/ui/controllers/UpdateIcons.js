@@ -29,7 +29,7 @@ export function updateItemSelectorIcon() {
     }
 
     // --- Core Logic: Get item information and update/create the icon ---
-    const itemInfo = datas.itemsData.items[datas.currentTargetItem.id];
+    const itemInfo = datas.itemsData[datas.currentTargetItem.id];
     if (!itemInfo || !itemInfo.img) {
         console.warn(`[ui.controllers.UpdateIcons.updateItemSelectorIcon] Item info or image not found for item ID: ${datas.currentTargetItem.id}. Cannot update icon.`);
         return;

@@ -40,20 +40,20 @@ export class ProductionNode {
         // Determine the item information, handling the special case for waste disposal nodes
         let itemInfo;
         if (isWasteDisposal) {
-            itemInfo = window.datas.itemsData.items[this.data.originalItemId];
+            itemInfo = window.datas.itemsData[this.data.originalItemId];
         } else {
-            itemInfo = window.datas.itemsData.items[this.data.itemId];
+            itemInfo = window.datas.itemsData[this.data.itemId];
         }
 
         /**
          * Helper function to generate HTML for an item flow (input/output).
-         * @param {Object} item - The item data object.
+         * @param {Object} item - The item data object from window.datas.itemsData.
          * @param {number} rate - The flow rate of the item.
          * @returns {string} The generated HTML string.
          */
         const createFlowItemHtml = (item, rate) => {
             const imgSrc = item.img ? `${window.projectBaseUrl}images/${item.img}` : `${window.projectBaseUrl}images/default-item.png`;
-            let transportType = item.transport_type || 'belt';
+            let transportType = item.transport_type || 'item_log_belt_01';
             let transportCount = 0;
             let transportImgSrc = '';
 
@@ -61,9 +61,9 @@ export class ProductionNode {
             if (window.datas.transportData && window.datas.transportData[transportType]) {
                 const transportSpeed = window.datas.transportData[transportType].speed;
                 transportCount = rate / transportSpeed;
-                const transportInfo = window.datas.transportData[transportType];
-                if (transportInfo && transportInfo.img) {
-                    transportImgSrc = `${window.projectBaseUrl}images/${transportInfo.img}`;
+                const transportItemInfo = window.datas.itemsData[transportType];
+                if (transportItemInfo && transportItemInfo.img) {
+                    transportImgSrc = `${window.projectBaseUrl}images/${transportItemInfo.img}`;
                 }
             }
 
@@ -93,16 +93,14 @@ export class ProductionNode {
         // Check if the node has a recipe (i.e., is a production building)
         const hasRecipe = this.data.allRecipes && this.data.allRecipes.length > 0;
         const recipe = hasRecipe ? this.data.allRecipes[this.data.selectedRecipeIndex] : null;
-        const building = recipe ? window.datas.buildingsData.buildings[recipe.buildingId] : null;
+        const building = recipe ? window.datas.buildingsData[recipe.buildingId] : null;
         const localizedType = window.localization.getItemTypeName(itemInfo.type);
 
         let flowSummaryHtml = '';
 
         // --- Special Case: Waste Disposal Node ---
         if (isWasteDisposal) {
-            const recipe = this.data.allRecipes[this.data.selectedRecipeIndex];
-            const building = window.datas.buildingsData.buildings[recipe.buildingId];
-            const wasteItemInfo = window.datas.itemsData.items[this.data.originalItemId];
+            const wasteItemInfo = window.datas.itemsData[this.data.originalItemId];
             const inputElement = createFlowItemHtml(wasteItemInfo, this.data.rate);
 
             flowSummaryHtml = `
@@ -127,7 +125,7 @@ export class ProductionNode {
 
             // Generate HTML for all ingredients
             const ingredientElements = recipe.ingredients.map(ing => {
-                const item = window.datas.itemsData.items[ing.item_id];
+                const item = window.datas.itemsData[ing.item_id];
                 const consumptionRate = (ing.amount / recipeTimeInMinutes) * machinesNeeded;
                 return createFlowItemHtml(item, consumptionRate);
             }).join('');
@@ -144,7 +142,7 @@ export class ProductionNode {
                     .map(wasteProd => {
                         const wasteRate = this.data.rate * (wasteProd.amount / primaryProduct.amount);
                         if (wasteRate > 1e-6) {
-                            const wasteItemInfo = window.datas.itemsData.items[wasteProd.item_id];
+                            const wasteItemInfo = window.datas.itemsData[wasteProd.item_id];
                             return createFlowItemHtml(wasteItemInfo, wasteRate);
                         }
                         return '';
@@ -195,9 +193,9 @@ export class ProductionNode {
             <div class="node-body">
             ${hasRecipe ? `
                 <div class="node-machine">
-                    <img src="${window.projectBaseUrl}images/${building.img}" class="machine-icon" alt="${window.localization.getBuildingName(building)}">
+                    <img src="${window.projectBaseUrl}images/${window.datas.itemsData[recipe.buildingId].img}" class="machine-icon" alt="${window.localization.getItemName(window.datas.itemsData[building.id])}">
                     <div class="machine-info">
-                        <div class="machine-name">${window.localization.getBuildingName(building)}</div>
+                        <div class="machine-name">${window.localization.getItemName(window.datas.itemsData[recipe.buildingId])}</div>
                         <div class="machine-count">${this.data.machineCount.toFixed(2)}x</div>
                         ${window.elements.showPower.checked ? `<div class="machine-power"><i class="fas fa-bolt"></i> ${(Math.ceil(this.data.machineCount) * building.power).toFixed(0)}</div>` : ''}
                     </div>
@@ -230,7 +228,7 @@ export class ProductionNode {
             const hasRecipe = this.data.allRecipes && this.data.allRecipes.length > 0;
             if (hasRecipe) {
                 const recipe = this.data.allRecipes[this.data.selectedRecipeIndex];
-                const building = window.datas.buildingsData.buildings[recipe.buildingId];
+                const building = window.datas.buildingsData[recipe.buildingId];
                 const powerElement = document.createElement('div');
                 powerElement.className = 'machine-power';
                 powerElement.innerHTML = `<i class="fas fa-bolt"></i> ${(Math.ceil(this.data.machineCount) * building.power).toFixed(0)}`;
@@ -304,7 +302,6 @@ export class ProductionNode {
 
         // Populate the dropdown with all available recipes for this node's item
         this.data.allRecipes.forEach((recipe, index) => {
-            const building = window.datas.buildingsData.buildings[recipe.buildingId];
             const option = document.createElement('div');
             option.className = 'recipe-option';
 
@@ -314,8 +311,8 @@ export class ProductionNode {
 
             option.innerHTML = `
                 <div class="recipe-option-header">
-                    <img src="${window.projectBaseUrl}images/${building.img}" alt="${window.localization.getBuildingName(building)}">
-                    <span>${window.localization.getBuildingName(building)}${isDefault ? ' (Default)' : ''}</span>
+                    <img src="${window.projectBaseUrl}images/${window.datas.itemsData[recipe.buildingId].img}" alt="${window.localization.getItemName(window.datas.itemsData[recipe.buildingId])}">
+                    <span>${window.localization.getItemName(window.datas.itemsData[recipe.buildingId])}${isDefault ? ` (${window.localization.t('app.default')})` : ''}</span>
                 </div>
                 <div class="recipe-option-content">
                     ${this.renderIngredients(recipe.ingredients)}
@@ -371,7 +368,7 @@ export class ProductionNode {
     renderIngredients(ingredients) {
         if (!ingredients || !Array.isArray(ingredients)) return '';
         return ingredients.map(ing => {
-            const item = window.datas.itemsData.items[ing.item_id];
+            const item = window.datas.itemsData[ing.item_id];
             const localizedType = window.localization.getItemTypeName(item.type);
             return `
                 <div class="recipe-component">
@@ -390,7 +387,7 @@ export class ProductionNode {
     renderProducts(products) {
         if (!products || !Array.isArray(products)) return '';
         return products.map(prod => {
-            const item = window.datas.itemsData.items[prod.item_id];
+            const item = window.datas.itemsData[prod.item_id];
             const localizedType = window.localization.getItemTypeName(item.type);
             return `
                 <div class="recipe-component">

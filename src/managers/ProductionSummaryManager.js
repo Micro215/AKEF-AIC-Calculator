@@ -116,7 +116,7 @@ export class ProductionSummaryManager {
         const sharedItems = [];
         itemUsage.forEach((usage, id) => {
             if (usage.count > 1 && id !== targetId) {
-                const item = window.datas.itemsData.items[id];
+                const item = window.datas.itemsData[id];
                 if (item) {
                     sharedItems.push({
                         id,
@@ -160,7 +160,7 @@ export class ProductionSummaryManager {
         const data = window.datas.allNeedsMap.get(itemId);
         if (!data) return null;
 
-        const item = window.datas.itemsData.items[itemId];
+        const item = window.datas.itemsData[itemId];
         if (!item) return null;
 
         // Create a node object representing the current item in the production chain.
@@ -177,15 +177,15 @@ export class ProductionSummaryManager {
         // If the item is not a raw material, it has a recipe. Process the recipe details.
         if (!data.isRaw && data.allRecipes?.length > 0) {
             const recipe = data.allRecipes[data.selectedRecipeIndex];
-            const building = window.datas.buildingsData.buildings[recipe.buildingId];
+            const building = window.datas.buildingsData[recipe.buildingId];
 
             if (building) {
                 const machineCount = data.machineCount;
                 const recipeTimeInMinutes = recipe.time / 60;
                 node.recipe = {
                     building: {
-                        name: window.localization.getBuildingName(building),
-                        icon: building.img,
+                        name: window.localization.getItemName(window.datas.itemsData[recipe.buildingId]),
+                        icon: window.datas.itemsData[recipe.buildingId].img,
                         count: machineCount
                     },
                     ingredients: recipe.ingredients.map(ing => ({
@@ -352,7 +352,7 @@ export class ProductionSummaryManager {
             const item = document.createElement('span');
             item.className = 'tree-craft-item';
             const icon = document.createElement('img');
-            icon.src = `${window.projectBaseUrl}images/${window.datas.itemsData.items[ing.id].img}`;
+            icon.src = `${window.projectBaseUrl}images/${window.datas.itemsData[ing.id].img}`;
             icon.className = 'tree-craft-icon';
             item.appendChild(icon);
             item.appendChild(document.createTextNode(`${ing.rate.toFixed(1)} ${window.localization.t('app.per_minute')}`));
@@ -368,7 +368,7 @@ export class ProductionSummaryManager {
             const item = document.createElement('span');
             item.className = 'tree-craft-item';
             const icon = document.createElement('img');
-            icon.src = `${window.projectBaseUrl}images/${window.datas.itemsData.items[prod.id].img}`;
+            icon.src = `${window.projectBaseUrl}images/${window.datas.itemsData[prod.id].img}`;
             icon.className = 'tree-craft-icon';
             item.appendChild(icon);
             item.appendChild(document.createTextNode(`${prod.rate.toFixed(1)} ${window.localization.t('app.per_minute')}`));
@@ -427,14 +427,14 @@ export class ProductionSummaryManager {
             content.className = 'tree-content';
 
             const icon = document.createElement('img');
-            icon.src = `${window.projectBaseUrl}images/${window.datas.itemsData.items[item.originalItemId].img}`;
+            icon.src = `${window.projectBaseUrl}images/${window.datas.itemsData[item.originalItemId].img}`;
             icon.className = 'tree-icon';
-            icon.alt = window.localization.getItemName(window.datas.itemsData.items[item.originalItemId]);
+            icon.alt = window.localization.getItemName(window.datas.itemsData[item.originalItemId]);
             content.appendChild(icon);
 
             const name = document.createElement('span');
             name.className = 'tree-name';
-            name.textContent = window.localization.getItemName(window.datas.itemsData.items[item.originalItemId]);
+            name.textContent = window.localization.getItemName(window.datas.itemsData[item.originalItemId]);
             content.appendChild(name);
 
             const rate = document.createElement('span');
@@ -447,18 +447,18 @@ export class ProductionSummaryManager {
 
             if (item.allRecipes && item.allRecipes.length > 0) {
                 const recipe = item.allRecipes[0];
-                const building = window.datas.buildingsData.buildings[recipe.buildingId];
+                const building = window.datas.buildingsData[recipe.buildingId];
 
                 if (building) {
                     const machine = document.createElement('span');
                     machine.className = 'tree-machine';
                     const machineIcon = document.createElement('img');
-                    machineIcon.src = `${window.projectBaseUrl}images/${building.img}`;
+                    machineIcon.src = `${window.projectBaseUrl}images/${window.datas.itemsData[recipe.buildingId].img}`;
                     machineIcon.className = 'tree-machine-icon';
-                    machineIcon.alt = window.localization.getBuildingName(building);
+                    machineIcon.alt = window.localization.getItemName(window.datas.itemsData[recipe.buildingId]);
                     machine.appendChild(machineIcon);
                     const machineCount = item.machineCount || 1;
-                    machine.appendChild(document.createTextNode(`${machineCount.toFixed(2)}x ${window.localization.getBuildingName(building)}`));
+                    machine.appendChild(document.createTextNode(`${machineCount.toFixed(2)}x ${window.localization.getItemName(window.datas.itemsData[recipe.buildingId])}`));
                     content.appendChild(machine);
                 }
             }
@@ -497,11 +497,11 @@ export class ProductionSummaryManager {
      * @returns {HTMLElement|null} The transport element or null if no transport is needed.
      */
     getTransport(itemId, rate) {
-        const item = window.datas.itemsData.items[itemId];
+        const item = window.datas.itemsData[itemId];
         if (!item) return null;
-        const type = item.transport_type || 'belt';
+        const type = item.transport_type || 'item_log_belt_01';
         const info = window.datas.transportData[type];
-        if (!info?.img) return null;
+        if (!window.datas.itemsData[type].img) return null;
 
         const transportCount = rate / info.speed;
         console.debug(`[managers.ProductionSummaryManager.getTransport] For item ${itemId}, transport count is ${transportCount.toFixed(1)} (${type}).`);
@@ -509,7 +509,7 @@ export class ProductionSummaryManager {
         const transport = document.createElement('span');
         transport.className = 'tree-transport';
         const transportIcon = document.createElement('img');
-        transportIcon.src = `${window.projectBaseUrl}images/${info.img}`;
+        transportIcon.src = `${window.projectBaseUrl}images/${window.datas.itemsData[type].img}`;
         transportIcon.className = 'tree-transport-icon';
         transportIcon.alt = 'transport';
         transport.appendChild(transportIcon);

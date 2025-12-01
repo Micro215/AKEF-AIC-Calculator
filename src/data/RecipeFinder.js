@@ -1,58 +1,46 @@
 /**
  * Finds all recipes that produce the specified item.
- * This function is adapted to search inside the 'modes' property of buildings.
+ * This function searches for recipes directly within buildings.
  * @param {string} itemId - The ID of the item to find recipes for.
  * @returns {Array<Object>|null} An array of recipe objects, or null if none are found.
  */
 export function findRecipesForItem(itemId) {
-    // Log the start of the search for debugging purposes.
     console.debug(`[data.RecipeFinder.findRecipesForItem] Searching for recipes that produce item with ID: "${itemId}"`);
 
-    // Access the global data object. This contains all buildings, modes, and recipes.
     const datas = window.datas;
     const foundRecipes = [];
 
-    // Defensive check: Ensure the buildings data structure exists before trying to iterate.
-    if (!datas || !datas.buildingsData || !datas.buildingsData.buildings) {
+    if (!datas || !datas.buildingsData) {
         console.error("[data.RecipeFinder.findRecipesForItem]: Buildings data is not available.");
         return null;
     }
 
-    // Iterate through each building defined in the data.
-    for (const buildingId in datas.buildingsData.buildings) {
-        const building = datas.buildingsData.buildings[buildingId];
-        // Skip if the building or its modes are not defined.
-        if (!building || !building.modes) {
+    for (const buildingId in datas.buildingsData) {
+        const building = datas.buildingsData[buildingId];
+        if (!building || !building.recipes || !Array.isArray(building.recipes)) {
             continue;
         }
 
-        // Iterate through each operational mode of the current building.
-        for (const modeId in building.modes) {
-            const mode = building.modes[modeId];
-            // Skip if the mode or its recipes are not defined or not an array.
-            if (!mode || !mode.recipes || !Array.isArray(mode.recipes)) {
+        for (let i = 0; i < building.recipes.length; i++) {
+            const recipe = building.recipes[i];
+            // Skip if the recipe or its products are not defined or not an array.
+            if (!recipe || !recipe.products || !Array.isArray(recipe.products)) {
                 continue;
             }
 
-            // Iterate through all recipes available in the current mode.
-            for (const recipe of mode.recipes) {
-                // Skip if the recipe or its products are not defined or not an array.
-                if (!recipe || !recipe.products || !Array.isArray(recipe.products)) {
-                    continue;
+            // Check if any of the recipe's output products match the target item ID.
+            if (recipe.products.some(p => p.item_id === itemId)) {
+                if (typeof recipe.id === 'undefined') {
+                    recipe.id = `${buildingId}_recipe_${i}`;
+                    console.warn(`[data.RecipeFinder.findRecipesForItem] Recipe for item "${itemId}" in building "${buildingId}" was missing an ID. Generated temporary ID: "${recipe.id}". Please update your data file.`);
                 }
 
-                // Check if any of the recipe's output products match the target item ID.
-                if (recipe.products.some(p => p.item_id === itemId)) {
-                    // A match is found. Create a new object containing the recipe's data
-                    // and add context (buildingId and modeId) for later use.
-                    const foundRecipe = {
-                        ...recipe, // Copy all original recipe properties
-                        buildingId: buildingId,
-                        modeId: modeId
-                    };
-                    foundRecipes.push(foundRecipe);
-                    console.debug(`[data.RecipeFinder.findRecipesForItem] Found a matching recipe in building "${buildingId}", mode "${modeId}".`);
-                }
+                const foundRecipe = {
+                    ...recipe,
+                    buildingId: buildingId
+                };
+                foundRecipes.push(foundRecipe);
+                console.debug(`[data.RecipeFinder.findRecipesForItem] Found a matching recipe in building "${buildingId}".`);
             }
         }
     }
@@ -82,43 +70,34 @@ export function findDisposalRecipesForItem(itemId) {
     const foundRecipes = [];
 
     // Defensive check: Ensure the buildings data structure exists.
-    if (!datas || !datas.buildingsData || !datas.buildingsData.buildings) {
+    if (!datas || !datas.buildingsData) {
         console.error("[data.RecipeFinder.findDisposalRecipesForItem]: Buildings data is not available.");
         return null;
     }
 
     // Iterate through each building.
-    for (const buildingId in datas.buildingsData.buildings) {
-        const building = datas.buildingsData.buildings[buildingId];
-        if (!building || !building.modes) {
+    for (const buildingId in datas.buildingsData) {
+        const building = datas.buildingsData[buildingId];
+        if (!building || !building.recipes || !Array.isArray(building.recipes)) {
             continue;
         }
 
-        // Iterate through each mode of the building.
-        for (const modeId in building.modes) {
-            const mode = building.modes[modeId];
-            if (!mode || !mode.recipes || !Array.isArray(mode.recipes)) {
+        // Iterate through all recipes of the current building.
+        for (const recipe of building.recipes) {
+            // Skip if the recipe or its ingredients are not defined.
+            if (!recipe || !recipe.ingredients || !Array.isArray(recipe.ingredients)) {
                 continue;
             }
 
-            // Iterate through all recipes of the current mode.
-            for (const recipe of mode.recipes) {
-                // Skip if the recipe or its ingredients are not defined.
-                if (!recipe || !recipe.ingredients || !Array.isArray(recipe.ingredients)) {
-                    continue;
-                }
-
-                // Check if any of the recipe's input ingredients match the target item ID.
-                if (recipe.ingredients.some(ing => ing.item_id === itemId)) {
-                    // A match is found. Augment the recipe with its source context.
-                    const foundRecipe = {
-                        ...recipe, // Copy all original recipe properties
-                        buildingId: buildingId,
-                        modeId: modeId
-                    };
-                    foundRecipes.push(foundRecipe);
-                    console.debug(`[data.RecipeFinder.findDisposalRecipesForItem] Found a matching disposal recipe in building "${buildingId}", mode "${modeId}".`);
-                }
+            // Check if any of the recipe's input ingredients match the target item ID.
+            if (recipe.ingredients.some(ing => ing.item_id === itemId)) {
+                // A match is found. Augment the recipe with its source context.
+                const foundRecipe = {
+                    ...recipe, // Copy all original recipe properties
+                    buildingId: buildingId
+                };
+                foundRecipes.push(foundRecipe);
+                console.debug(`[data.RecipeFinder.findDisposalRecipesForItem] Found a matching disposal recipe in building "${buildingId}".`);
             }
         }
     }
@@ -145,44 +124,35 @@ export function findDisposalRecipeForItem(itemId) {
 
     const datas = window.datas;
     // Defensive check: Ensure the buildings data structure exists.
-    if (!datas || !datas.buildingsData || !datas.buildingsData.buildings) {
+    if (!datas || !datas.buildingsData || !datas.buildingsData) {
         console.error("[data.RecipeFinder.findDisposalRecipeForItem]: Buildings data is not available.");
         return null;
     }
 
     // Iterate through each building.
-    for (const buildingId in datas.buildingsData.buildings) {
-        const building = datas.buildingsData.buildings[buildingId];
-        if (!building || !building.modes) {
+    for (const buildingId in datas.buildingsData) {
+        const building = datas.buildingsData[buildingId];
+        if (!building || !building.recipes || !Array.isArray(building.recipes)) {
             continue;
         }
 
-        // Iterate through each mode of the building.
-        for (const modeId in building.modes) {
-            const mode = building.modes[modeId];
-            if (!mode || !mode.recipes || !Array.isArray(mode.recipes)) {
+        // Iterate through all recipes of the current building.
+        for (const recipe of building.recipes) {
+            // Skip if the recipe or its ingredients are not defined.
+            if (!recipe || !recipe.ingredients || !Array.isArray(recipe.ingredients)) {
                 continue;
             }
 
-            // Iterate through all recipes of the current mode.
-            for (const recipe of mode.recipes) {
-                // Skip if the recipe or its ingredients are not defined.
-                if (!recipe || !recipe.ingredients || !Array.isArray(recipe.ingredients)) {
-                    continue;
-                }
-
-                // Check if any of the recipe's ingredients match the target item ID.
-                if (recipe.ingredients.some(ing => ing.item_id === itemId)) {
-                    // A match is found. Immediately return the augmented recipe object.
-                    // This "early return" pattern ensures we only get the first match.
-                    const foundRecipe = {
-                        ...recipe, // Copy all original recipe properties
-                        buildingId: buildingId,
-                        modeId: modeId
-                    };
-                    console.debug(`[data.RecipeFinder.findDisposalRecipeForItem] Found the first matching disposal recipe in building "${buildingId}", mode "${modeId}".`);
-                    return foundRecipe;
-                }
+            // Check if any of the recipe's ingredients match the target item ID.
+            if (recipe.ingredients.some(ing => ing.item_id === itemId)) {
+                // A match is found. Immediately return the augmented recipe object.
+                // This "early return" pattern ensures we only get the first match.
+                const foundRecipe = {
+                    ...recipe, // Copy all original recipe properties
+                    buildingId: buildingId
+                };
+                console.debug(`[data.RecipeFinder.findDisposalRecipeForItem] Found the first matching disposal recipe in building "${buildingId}".`);
+                return foundRecipe;
             }
         }
     }
