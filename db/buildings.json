@@ -1334,7 +1334,7 @@
           },
           {
             "item_id": "item_originium_powder",
-            "amount": 20
+            "amount": 15
           }
         ],
         "products": [
@@ -1353,7 +1353,7 @@
           },
           {
             "item_id": "item_originium_enr_powder",
-            "amount": 20
+            "amount": 15
           }
         ],
         "products": [
