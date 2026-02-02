@@ -51,9 +51,9 @@
         "title": "How to Use",
         "steps": [
             "Click the 'Select Recipe' button on the left panel. In the modal window, find and select your desired end product.",
-            "Set your production target in the 'Target Speed' field. The production chain will be generated automatically.",
-            "To change a component's recipe, click the dropdown on its node and select an alternative. After making changes, click the 'Calculate' button to update all rates.",
-            "Use the tabs at the top to create, rename, and reorder multiple production plans. You can drag tabs to change their order.",
+            "Set your production target in the 'Target Rate' field. The production chain will be generated automatically.",
+            "To change a component's recipe, enable alternative recipes, click the dropdown on its node and select an alternative. After making changes, click the 'Calculate' button to update all rates.",
+            "Use the tabs at the top to create and rename multiple production plans. You can drag tabs to change their order.",
             "Below the main controls, toggle display options like raw materials, energy, alternative recipes, and physics simulation. The total energy consumption is shown here.",
             "To set global defaults, click the 'Default Recipes' button. This opens a window to choose preferred recipes for items with alternatives.",
             "Drag nodes to rearrange the graph. Click and drag the background to pan, and scroll to zoom."
