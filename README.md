@@ -76,4 +76,4 @@ This project is licensed under the MIT License.
 
 ## Disclaimer
 
-This is an unofficial fan-made tool. All game data, assets, and item names are the property of Hypergryph. This calculator is based on information from the Arknights: Endfield CBT and is subject to change upon official release.
+This is an unofficial fan-made tool. All game data, assets, and item names are the property of Hypergryph. This calculator is based on information from the Arknights: Endfield.
